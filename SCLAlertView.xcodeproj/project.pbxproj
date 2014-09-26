@@ -1,0 +1,454 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DD7282B919D6087C00077F54 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD7282B719D6087C00077F54 /* Storyboard.storyboard */; };
+		DDB15FBD19D5B7C600173158 /* SCLAlertViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB15FBC19D5B7C600173158 /* SCLAlertViewTests.m */; };
+		DDB15FCA19D5B88A00173158 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB15FC719D5B88A00173158 /* AppDelegate.m */; };
+		DDB15FCB19D5B88A00173158 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB15FC919D5B88A00173158 /* ViewController.m */; };
+		DDB15FD019D5B8BF00173158 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDB15FCF19D5B8BF00173158 /* Images.xcassets */; };
+		DDB15FD219D5B8CF00173158 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DDB15FD119D5B8CF00173158 /* Info.plist */; };
+		DDB15FD419D5B8DB00173158 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB15FD319D5B8DB00173158 /* main.m */; };
+		DDB15FD719D5B96500173158 /* SCLAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB15FD619D5B96500173158 /* SCLAlertView.m */; };
+		DDB15FDB19D5BAA000173158 /* SCLButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB15FDA19D5BAA000173158 /* SCLButton.m */; };
+		DDB15FDE19D5BCF400173158 /* SCLAlertViewResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB15FDD19D5BCF400173158 /* SCLAlertViewResponder.m */; };
+		DDB15FE119D5D85B00173158 /* SCLAlertViewStyleKit.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB15FE019D5D85B00173158 /* SCLAlertViewStyleKit.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DDB15FB719D5B7C600173158 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DDB15F9519D5B7C600173158 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DDB15F9C19D5B7C600173158;
+			remoteInfo = SCLAlertView;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DD7282B819D6087C00077F54 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = SCLAlertViewExample/Base.lproj/Storyboard.storyboard; sourceTree = SOURCE_ROOT; };
+		DDB15F9D19D5B7C600173158 /* SCLAlertView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SCLAlertView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DDB15FB619D5B7C600173158 /* SCLAlertViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SCLAlertViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DDB15FBB19D5B7C600173158 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DDB15FBC19D5B7C600173158 /* SCLAlertViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCLAlertViewTests.m; sourceTree = "<group>"; };
+		DDB15FC619D5B88A00173158 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = SCLAlertViewExample/AppDelegate.h; sourceTree = SOURCE_ROOT; };
+		DDB15FC719D5B88A00173158 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = SCLAlertViewExample/AppDelegate.m; sourceTree = SOURCE_ROOT; };
+		DDB15FC819D5B88A00173158 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = SCLAlertViewExample/ViewController.h; sourceTree = SOURCE_ROOT; };
+		DDB15FC919D5B88A00173158 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = SCLAlertViewExample/ViewController.m; sourceTree = SOURCE_ROOT; };
+		DDB15FCF19D5B8BF00173158 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = SCLAlertViewExample/Images.xcassets; sourceTree = SOURCE_ROOT; };
+		DDB15FD119D5B8CF00173158 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = SCLAlertViewExample/Info.plist; sourceTree = SOURCE_ROOT; };
+		DDB15FD319D5B8DB00173158 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = SCLAlertViewExample/main.m; sourceTree = SOURCE_ROOT; };
+		DDB15FD619D5B96500173158 /* SCLAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLAlertView.m; sourceTree = "<group>"; };
+		DDB15FD819D5B98800173158 /* SCLAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLAlertView.h; sourceTree = "<group>"; };
+		DDB15FD919D5BAA000173158 /* SCLButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLButton.h; sourceTree = "<group>"; };
+		DDB15FDA19D5BAA000173158 /* SCLButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLButton.m; sourceTree = "<group>"; };
+		DDB15FDC19D5BCF400173158 /* SCLAlertViewResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLAlertViewResponder.h; sourceTree = "<group>"; };
+		DDB15FDD19D5BCF400173158 /* SCLAlertViewResponder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLAlertViewResponder.m; sourceTree = "<group>"; };
+		DDB15FDF19D5D85B00173158 /* SCLAlertViewStyleKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLAlertViewStyleKit.h; sourceTree = "<group>"; };
+		DDB15FE019D5D85B00173158 /* SCLAlertViewStyleKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLAlertViewStyleKit.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DDB15F9A19D5B7C600173158 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DDB15FB319D5B7C600173158 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DDB15F9419D5B7C600173158 = {
+			isa = PBXGroup;
+			children = (
+				DDB15FD519D5B96500173158 /* SCLAlertView */,
+				DDB15F9F19D5B7C600173158 /* SCLAlertViewExample */,
+				DDB15FB919D5B7C600173158 /* SCLAlertViewTests */,
+				DDB15F9E19D5B7C600173158 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DDB15F9E19D5B7C600173158 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DDB15F9D19D5B7C600173158 /* SCLAlertView.app */,
+				DDB15FB619D5B7C600173158 /* SCLAlertViewTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DDB15F9F19D5B7C600173158 /* SCLAlertViewExample */ = {
+			isa = PBXGroup;
+			children = (
+				DDB15FCF19D5B8BF00173158 /* Images.xcassets */,
+				DDB15FC619D5B88A00173158 /* AppDelegate.h */,
+				DDB15FC719D5B88A00173158 /* AppDelegate.m */,
+				DDB15FC819D5B88A00173158 /* ViewController.h */,
+				DDB15FC919D5B88A00173158 /* ViewController.m */,
+				DDB15FA019D5B7C600173158 /* Supporting Files */,
+				DD7282B719D6087C00077F54 /* Storyboard.storyboard */,
+			);
+			name = SCLAlertViewExample;
+			path = SCLAlertView;
+			sourceTree = "<group>";
+		};
+		DDB15FA019D5B7C600173158 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DDB15FD319D5B8DB00173158 /* main.m */,
+				DDB15FD119D5B8CF00173158 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DDB15FB919D5B7C600173158 /* SCLAlertViewTests */ = {
+			isa = PBXGroup;
+			children = (
+				DDB15FBC19D5B7C600173158 /* SCLAlertViewTests.m */,
+				DDB15FBA19D5B7C600173158 /* Supporting Files */,
+			);
+			path = SCLAlertViewTests;
+			sourceTree = "<group>";
+		};
+		DDB15FBA19D5B7C600173158 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DDB15FBB19D5B7C600173158 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DDB15FD519D5B96500173158 /* SCLAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				DDB15FD819D5B98800173158 /* SCLAlertView.h */,
+				DDB15FD619D5B96500173158 /* SCLAlertView.m */,
+				DDB15FD919D5BAA000173158 /* SCLButton.h */,
+				DDB15FDA19D5BAA000173158 /* SCLButton.m */,
+				DDB15FDC19D5BCF400173158 /* SCLAlertViewResponder.h */,
+				DDB15FDD19D5BCF400173158 /* SCLAlertViewResponder.m */,
+				DDB15FDF19D5D85B00173158 /* SCLAlertViewStyleKit.h */,
+				DDB15FE019D5D85B00173158 /* SCLAlertViewStyleKit.m */,
+			);
+			path = SCLAlertView;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DDB15F9C19D5B7C600173158 /* SCLAlertView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DDB15FC019D5B7C600173158 /* Build configuration list for PBXNativeTarget "SCLAlertView" */;
+			buildPhases = (
+				DDB15F9919D5B7C600173158 /* Sources */,
+				DDB15F9A19D5B7C600173158 /* Frameworks */,
+				DDB15F9B19D5B7C600173158 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SCLAlertView;
+			productName = SCLAlertView;
+			productReference = DDB15F9D19D5B7C600173158 /* SCLAlertView.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DDB15FB519D5B7C600173158 /* SCLAlertViewTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DDB15FC319D5B7C600173158 /* Build configuration list for PBXNativeTarget "SCLAlertViewTests" */;
+			buildPhases = (
+				DDB15FB219D5B7C600173158 /* Sources */,
+				DDB15FB319D5B7C600173158 /* Frameworks */,
+				DDB15FB419D5B7C600173158 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DDB15FB819D5B7C600173158 /* PBXTargetDependency */,
+			);
+			name = SCLAlertViewTests;
+			productName = SCLAlertViewTests;
+			productReference = DDB15FB619D5B7C600173158 /* SCLAlertViewTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DDB15F9519D5B7C600173158 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = "AnyKey Entertainment";
+				TargetAttributes = {
+					DDB15F9C19D5B7C600173158 = {
+						CreatedOnToolsVersion = 6.0.1;
+					};
+					DDB15FB519D5B7C600173158 = {
+						CreatedOnToolsVersion = 6.0.1;
+						TestTargetID = DDB15F9C19D5B7C600173158;
+					};
+				};
+			};
+			buildConfigurationList = DDB15F9819D5B7C600173158 /* Build configuration list for PBXProject "SCLAlertView" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DDB15F9419D5B7C600173158;
+			productRefGroup = DDB15F9E19D5B7C600173158 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DDB15F9C19D5B7C600173158 /* SCLAlertView */,
+				DDB15FB519D5B7C600173158 /* SCLAlertViewTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DDB15F9B19D5B7C600173158 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DDB15FD019D5B8BF00173158 /* Images.xcassets in Resources */,
+				DDB15FD219D5B8CF00173158 /* Info.plist in Resources */,
+				DD7282B919D6087C00077F54 /* Storyboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DDB15FB419D5B7C600173158 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DDB15F9919D5B7C600173158 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DDB15FCB19D5B88A00173158 /* ViewController.m in Sources */,
+				DDB15FD419D5B8DB00173158 /* main.m in Sources */,
+				DDB15FE119D5D85B00173158 /* SCLAlertViewStyleKit.m in Sources */,
+				DDB15FD719D5B96500173158 /* SCLAlertView.m in Sources */,
+				DDB15FDB19D5BAA000173158 /* SCLButton.m in Sources */,
+				DDB15FCA19D5B88A00173158 /* AppDelegate.m in Sources */,
+				DDB15FDE19D5BCF400173158 /* SCLAlertViewResponder.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DDB15FB219D5B7C600173158 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DDB15FBD19D5B7C600173158 /* SCLAlertViewTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DDB15FB819D5B7C600173158 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DDB15F9C19D5B7C600173158 /* SCLAlertView */;
+			targetProxy = DDB15FB719D5B7C600173158 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DD7282B719D6087C00077F54 /* Storyboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DD7282B819D6087C00077F54 /* Base */,
+			);
+			name = Storyboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DDB15FBE19D5B7C600173158 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DDB15FBF19D5B7C600173158 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DDB15FC119D5B7C600173158 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "$(SRCROOT)/SCLAlertViewExample/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		DDB15FC219D5B7C600173158 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "$(SRCROOT)/SCLAlertViewExample/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		DDB15FC419D5B7C600173158 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SCLAlertViewTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SCLAlertView.app/SCLAlertView";
+			};
+			name = Debug;
+		};
+		DDB15FC519D5B7C600173158 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SCLAlertViewTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SCLAlertView.app/SCLAlertView";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DDB15F9819D5B7C600173158 /* Build configuration list for PBXProject "SCLAlertView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DDB15FBE19D5B7C600173158 /* Debug */,
+				DDB15FBF19D5B7C600173158 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DDB15FC019D5B7C600173158 /* Build configuration list for PBXNativeTarget "SCLAlertView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DDB15FC119D5B7C600173158 /* Debug */,
+				DDB15FC219D5B7C600173158 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DDB15FC319D5B7C600173158 /* Build configuration list for PBXNativeTarget "SCLAlertViewTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DDB15FC419D5B7C600173158 /* Debug */,
+				DDB15FC519D5B7C600173158 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DDB15F9519D5B7C600173158 /* Project object */;
+}
