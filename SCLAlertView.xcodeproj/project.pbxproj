@@ -12,7 +12,6 @@
 		DDB15FCA19D5B88A00173158 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB15FC719D5B88A00173158 /* AppDelegate.m */; };
 		DDB15FCB19D5B88A00173158 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB15FC919D5B88A00173158 /* ViewController.m */; };
 		DDB15FD019D5B8BF00173158 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDB15FCF19D5B8BF00173158 /* Images.xcassets */; };
-		DDB15FD219D5B8CF00173158 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DDB15FD119D5B8CF00173158 /* Info.plist */; };
 		DDB15FD419D5B8DB00173158 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB15FD319D5B8DB00173158 /* main.m */; };
 		DDB15FD719D5B96500173158 /* SCLAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB15FD619D5B96500173158 /* SCLAlertView.m */; };
 		DDB15FDB19D5BAA000173158 /* SCLButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB15FDA19D5BAA000173158 /* SCLButton.m */; };
@@ -31,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DD0D295B19D902DA00881F53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = SCLAlertViewExample/Info.plist; sourceTree = SOURCE_ROOT; };
 		DD7282B819D6087C00077F54 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = SCLAlertViewExample/Base.lproj/Storyboard.storyboard; sourceTree = SOURCE_ROOT; };
 		DDB15F9D19D5B7C600173158 /* SCLAlertView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SCLAlertView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDB15FB619D5B7C600173158 /* SCLAlertViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SCLAlertViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -41,7 +41,6 @@
 		DDB15FC819D5B88A00173158 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = SCLAlertViewExample/ViewController.h; sourceTree = SOURCE_ROOT; };
 		DDB15FC919D5B88A00173158 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = SCLAlertViewExample/ViewController.m; sourceTree = SOURCE_ROOT; };
 		DDB15FCF19D5B8BF00173158 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = SCLAlertViewExample/Images.xcassets; sourceTree = SOURCE_ROOT; };
-		DDB15FD119D5B8CF00173158 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = SCLAlertViewExample/Info.plist; sourceTree = SOURCE_ROOT; };
 		DDB15FD319D5B8DB00173158 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = SCLAlertViewExample/main.m; sourceTree = SOURCE_ROOT; };
 		DDB15FD619D5B96500173158 /* SCLAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLAlertView.m; sourceTree = "<group>"; };
 		DDB15FD819D5B98800173158 /* SCLAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLAlertView.h; sourceTree = "<group>"; };
@@ -108,8 +107,8 @@
 		DDB15FA019D5B7C600173158 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DD0D295B19D902DA00881F53 /* Info.plist */,
 				DDB15FD319D5B8DB00173158 /* main.m */,
-				DDB15FD119D5B8CF00173158 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -227,7 +226,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DDB15FD019D5B8BF00173158 /* Images.xcassets in Resources */,
-				DDB15FD219D5B8CF00173158 /* Info.plist in Resources */,
 				DD7282B919D6087C00077F54 /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
