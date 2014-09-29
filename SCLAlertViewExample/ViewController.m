@@ -43,10 +43,7 @@ CGFloat kDefaultAnimationDuration = 2.0f;
     [alert addButton:@"Second Button" actionBlock:^(void) {
         NSLog(@"Second button tapped");
     }];
-    
-//    alert.addButton() {
-//        println("Second button tapped")
-//    }
+
     [alert showSuccess:self title:kSuccessTitle subTitle:kSubtitle closeButtonTitle:nil duration:0.0f];
 }
 
