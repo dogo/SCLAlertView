@@ -11,25 +11,24 @@ Animated Alert View written in Swift but ported to Objective-C, which can be use
 // Get started
 SCLAlertView *alert = [[SCLAlertView alloc] init];
 
-[alert showSuccess:self title:@"Hello World" subTitle:@"This is a more descriptive text." closeButtonTitle:nil duration:0.0f];
+[alert showSuccess:self title:@"Hello World" subTitle:@"This is a more descriptive text." closeButtonTitle:@"Done" duration:0.0f];
 
 // Alternative alert types
 [alert showError:self title:@"Hello Error" subTitle:@"This is a more descriptive error text." closeButtonTitle:@"OK" duration:0.0f]; // Error
-[alert showNotice:self title:@"Hello Notice" subTitle:@"This is a more descriptive notice text." closeButtonTitle:nil duration:0.0f]; // Notice
-[alert showWarning:self title:@"Hello Warning" subTitle:@"This is a more descriptive warning text." closeButtonTitle:nil duration:0.0f]; // Warning
-[alert showInfo:self title:@"Hello Info" subTitle:@"This is a more descriptive info text." closeButtonTitle:nil duration:0.0f]; // Info
-[alert showEdit:self title:@"Hello Edit" subTitle:@"This is a more descriptive info text with a edit textbox" closeButtonTitle:nil duration:0.0f]; // Edit
+[alert showNotice:self title:@"Hello Notice" subTitle:@"This is a more descriptive notice text." closeButtonTitle:@"Done" duration:0.0f]; // Notice
+[alert showWarning:self title:@"Hello Warning" subTitle:@"This is a more descriptive warning text." closeButtonTitle:@"Done" duration:0.0f]; // Warning
+[alert showInfo:self title:@"Hello Info" subTitle:@"This is a more descriptive info text." closeButtonTitle:@"Done" duration:0.0f]; // Info
+[alert showEdit:self title:@"Hello Edit" subTitle:@"This is a more descriptive info text with a edit textbox" closeButtonTitle:@"Done" duration:0.0f]; // Edit
 
 // Advanced
 SCLAlertView *alert = [[SCLAlertView alloc] init];
 
 [alert showTitle:self // Parent view controller
     title:@"Congratulations" // Title of view
-    subTitle:@"Operation successfully completed.", // String of view
-    duration:2.0f // Duration to show before closing automatically
-    completeText:@"Done" // Optional button value, default: ""
-    style:Success]; // Styles - see below.
-)
+    subTitle:@"Operation successfully completed." // String of view
+    style:Success // Styles - see below.
+    completeText:@"Done" // Optional button value
+    duration:2.0f]; // Duration to show before closing automatically
 
 // Add buttons
 SCLAlertView *alert = [[SCLAlertView alloc] init];
@@ -41,7 +40,7 @@ SCLAlertView *alert = [[SCLAlertView alloc] init];
 [alert addButton:@"Second Button" actionBlock:^(void) {
     NSLog(@"Second button tapped");
 }];
-[alert showSuccess:self title:@"Button View" subTitle:@"This alert view has buttons" closeButtonTitle:nil duration:0.0f];
+[alert showSuccess:self title:@"Button View" subTitle:@"This alert view has buttons" closeButtonTitle:@"Done" duration:0.0f];
 
 // Add a text field
 SCLAlertView *alert = [[SCLAlertView alloc] init];
@@ -52,7 +51,7 @@ UITextField *textField = [alert addTextField:@"Enter your name"];
     NSLog(@"Text value: %@", textField.text);
 }];
 
-[alert showEdit:self title:@"Edit View" subTitle:@"This alert view shows a text box" closeButtonTitle:nil duration:0.0f];
+[alert showEdit:self title:@"Edit View" subTitle:@"This alert view shows a text box" closeButtonTitle:@"Done" duration:0.0f];
 ```
 
 ####Alert View Styles
