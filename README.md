@@ -4,7 +4,7 @@ SCLAlertView-Objective-C
 Animated Alert View written in Swift but ported to Objective-C, which can be used as a `UIAlertView` or `UIAlertController` replacement.
 
 ![BackgroundImage](https://raw.githubusercontent.com/dogo/SCLAlertView/master/ScreenShots/ScreenShot.png)_
-![BackgroundImage](https://raw.githubusercontent.com/dogo/SCLAlertView/master/ScreenShots/ScreenShot.png) 
+![BackgroundImage](https://raw.githubusercontent.com/dogo/SCLAlertView/master/ScreenShots/ScreenShot2.png) 
 
 ###Easy to use
 ```Objective-C
@@ -70,7 +70,7 @@ typedef NS_ENUM(NSInteger, SCLAlertViewStyle)
 
 ### Installation
 
-SCLAlertView-Objective-C is available through [CocoaPods](http://cocoapods.org).
+SCLAlertView-Objective-C is available through [CocoaPods](http://cocoapods.org). (Not Released yet)
 
 To install add the following line to your Podfile:
 
