@@ -219,11 +219,11 @@ NSTimer *durationTimer;
     return btn;
 }
 
-- (SCLButton *)addButton:(NSString *)title action:(SEL)action
+- (SCLButton *)addButton:(NSString *)title actionBlock:(ActionBlock)action
 {
     SCLButton *btn = [self addButton:title];
     btn.actionType = Closure;
-    btn.action = action;
+    btn.actionBlock = action;
     [btn addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
     
     return btn;
@@ -244,7 +244,8 @@ NSTimer *durationTimer;
 {
     if (btn.actionType == Closure)
     {
-        [btn action];
+        if (btn.actionBlock)
+            btn.actionBlock();
     }
     else if (btn.actionType == Selector)
     {

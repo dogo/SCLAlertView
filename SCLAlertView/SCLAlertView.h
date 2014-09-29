@@ -31,7 +31,7 @@ typedef NS_ENUM(NSInteger, SCLAlertViewStyle)
 
 - (UITextField *)addTextField:(NSString *)title;
 
-- (SCLButton *)addButton:(NSString *)title action:(SEL)action;
+- (SCLButton *)addButton:(NSString *)title actionBlock:(ActionBlock)action;
 - (SCLButton *)addButton:(NSString *)title target:(id)target selector:(SEL)selector;
 
 - (void)showSuccess:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration;

@@ -10,6 +10,8 @@
 
 @interface SCLButton : UIButton
 
+typedef void (^ActionBlock)(void);
+
 // Action Types
 typedef NS_ENUM(NSInteger, SCLActionType)
 {
@@ -21,7 +23,7 @@ typedef NS_ENUM(NSInteger, SCLActionType)
 
 @property SCLActionType actionType;
 
-@property SEL action;
+@property (nonatomic, copy) ActionBlock actionBlock;
 
 @property id target;
 
