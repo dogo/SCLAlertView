@@ -86,4 +86,6 @@ I tried to build an easy to use API, while beeing flexible enough for multiple v
 ### Thanks to the original team
 - Design [@SherzodMx](https://twitter.com/SherzodMx) Sherzod Max
 - Development [@hackua](https://twitter.com/hackua) Viktor Radchenko
-- Improvements by [@bih](http://github.com/bih) Bilawal Hameed, [@rizjoj](http://github.com/rizjoj) Riz Joj 
+- Improvements by [@bih](http://github.com/bih) Bilawal Hameed, [@rizjoj](http://github.com/rizjoj) Riz Joj
+
+https://github.com/vikmeup/SCLAlertView-Swift
