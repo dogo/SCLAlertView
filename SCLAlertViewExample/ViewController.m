@@ -81,7 +81,11 @@ CGFloat kDefaultAnimationDuration = 2.0f;
 {
     SCLAlertView *alert = [[SCLAlertView alloc] init];
     
-    [alert addTextField:@"Enter your name"];
+    UITextField *textField = [alert addTextField:@"Enter your name"];
+    
+    [alert addButton:@"Show Name" actionBlock:^(void) {
+        NSLog(@"Text value: %@", textField.text);
+    }];
     
     [alert showEdit:self title:kInfoTitle subTitle:kSubtitle closeButtonTitle:nil duration:0.0f];
 }
