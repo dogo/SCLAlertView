@@ -5,7 +5,7 @@ Pod::Spec.new do |spec|
   spec.homepage     = "https://github.com/dogo/SCLAlertView"
   spec.screenshots  = "https://raw.githubusercontent.com/dogo/SCLAlertView/master/ScreenShots/ScreenShot.png", "https://raw.githubusercontent.com/dogo/SCLAlertView/master/ScreenShots/ScreenShot2.png"
 
-  spec.license            = { :type => "GPLV2", :file => "LICENCE" }
+  spec.license            = { :type => "GPLV2", :file => "LICENSE" }
   spec.author             = { "Diogo Autilio" => "diautilio@gmail.com" }
   spec.social_media_url   = "http://twitter.com/di_autilio"
   spec.platform           = :ios
