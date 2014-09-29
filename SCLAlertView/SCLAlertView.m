@@ -235,7 +235,7 @@ NSTimer *durationTimer;
     btn.actionType = Block;
     btn.actionBlock = action;
     [btn addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
-    
+
     return btn;
 }
 
@@ -247,6 +247,7 @@ NSTimer *durationTimer;
     btn.target = target;
     btn.selector = selector;
     [btn addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    
     return btn;
 }
 
@@ -264,7 +265,7 @@ NSTimer *durationTimer;
     }
     else
     {
-        NSLog(@"Unknow action type for button");
+        NSLog(@"Unknown action type for button");
     }
     [self hideView];
 }
