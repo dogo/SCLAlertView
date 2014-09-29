@@ -69,7 +69,7 @@ typedef NS_ENUM(NSInteger, SCLAlertViewStyle)
 
 ### Installation
 
-SCLAlertView-Objective-C is available through [CocoaPods](http://cocoapods.org). (Not Released yet)
+SCLAlertView-Objective-C is available through [CocoaPods](http://cocoapods.org).
 
 To install add the following line to your Podfile:
 
