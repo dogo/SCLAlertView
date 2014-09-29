@@ -49,7 +49,7 @@ SCLAlertView *alert = [[SCLAlertView alloc] init];
 UITextField *textField = [alert addTextField:@"Enter your name"];
 
 [alert addButton:@"Show Name" actionBlock:^(void) {
-    NSLog(@"Text value: ", textField.text);
+    NSLog(@"Text value: %@", textField.text);
 }];
 
 [alert showEdit:self title:@"Edit View" subTitle:@"This alert view shows a text box" closeButtonTitle:nil duration:0.0f];
