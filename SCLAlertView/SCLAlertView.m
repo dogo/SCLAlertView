@@ -345,9 +345,11 @@ NSTimer *durationTimer;
         }
     }
 
-    // Done button
-    NSString *txt = completeText != nil ? completeText : @"Done";
-    [self addButton:txt target:self selector:@selector(hideView)];
+    // Add button, if necessary
+    if(completeText != nil)
+    {
+        [self addButton:completeText target:self selector:@selector(hideView)];
+    }
 
     // Alert view colour and images
     self.circleView.backgroundColor = viewColor;
