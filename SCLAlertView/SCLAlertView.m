@@ -31,15 +31,15 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 @implementation SCLAlertView
 
-CGFloat kDefaultShadowOpacity = 0.7f;
-CGFloat kCircleHeight = 56.0f;
-CGFloat kCircleTopPosition = -12.0f;
-CGFloat kCircleBackgroundTopPosition = -15.0f;
-CGFloat kCircleHeightBackground = 62.0f;
-CGFloat kCircleIconHeight = 20.0f;
-CGFloat kWindowWidth = 240.0f;
-CGFloat kWindowHeight = 178.0f;
-CGFloat kTextHeight = 90.0f;
+CGFloat kDefaultShadowOpacity;
+CGFloat kCircleHeight;
+CGFloat kCircleTopPosition;
+CGFloat kCircleBackgroundTopPosition;
+CGFloat kCircleHeightBackground;
+CGFloat kCircleIconHeight;
+CGFloat kWindowWidth;
+CGFloat kWindowHeight;
+CGFloat kTextHeight;
 
 // Font
 NSString *kDefaultFont = @"HelveticaNeue";
@@ -63,6 +63,17 @@ NSTimer *durationTimer;
     self = [super init];
     if (self)
     {
+        // Default values
+        kDefaultShadowOpacity = 0.7f;
+        kCircleHeight = 56.0f;
+        kCircleTopPosition = -12.0f;
+        kCircleBackgroundTopPosition = -15.0f;
+        kCircleHeightBackground = 62.0f;
+        kCircleIconHeight = 20.0f;
+        kWindowWidth = 240.0f;
+        kWindowHeight = 178.0f;
+        kTextHeight = 90.0f;
+        
         // Init
         _labelTitle = [[UILabel alloc] init];
         _viewText = [[UITextView alloc] init];
@@ -125,7 +136,7 @@ NSTimer *durationTimer;
     CGSize sz = [UIScreen mainScreen].bounds.size;
     
     NSString *systemVersion = [[UIDevice currentDevice] systemVersion];
-    if ([systemVersion floatValue] < 8.0)
+    if ([systemVersion floatValue] < 8.0f)
     {
         // iOS versions before 7.0 did not switch the width and height on device roration
         if UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])
