@@ -18,12 +18,14 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 @interface SCLAlertView ()
 
-@property NSMutableArray *inputs;
-@property NSMutableArray *buttons;
-@property UIView *circleView;
-@property UIImageView *circleIconImageView;
-@property UIView *shadowView;
-@property UIViewController *rootViewController;
+@property (nonatomic, strong) NSMutableArray *inputs;
+@property (nonatomic, strong) NSMutableArray *buttons;
+@property (nonatomic, strong) UIImageView *circleIconImageView;
+@property (nonatomic, strong) UIViewController *rootViewController;
+@property (nonatomic, strong) UIView *circleView;
+@property (nonatomic, strong) UIView *shadowView;
+@property (nonatomic, strong) UIView *contentView;
+@property (nonatomic, strong) UIView *circleViewBackground;
 
 @end
 
@@ -43,10 +45,7 @@ CGFloat kTextHeight = 90.0f;
 NSString *kDefaultFont = @"HelveticaNeue";
 NSString *kButtonFont = @"HelveticaNeue-Bold";
 
-// Members declaration
-UIView *contentView;
-UIView *circleViewBackground;
-
+// Timer
 NSTimer *durationTimer;
 
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -65,30 +64,29 @@ NSTimer *durationTimer;
         _labelTitle = [[UILabel alloc] init];
         _viewText = [[UITextView alloc] init];
         _shadowView = [[UIView alloc] init];
-        contentView = [[UIView alloc] init];
+        _contentView = [[UIView alloc] init];
         _circleView = [[UIView alloc] init];
-        circleViewBackground = [[UIView alloc] init];
+        _circleViewBackground = [[UIView alloc] init];
         _circleIconImageView = [[UIImageView alloc] init];
         _buttons = [[NSMutableArray alloc] init];
         _inputs = [[NSMutableArray alloc] init];
         
 		// Add Subvies
-        [self.view addSubview:contentView];
-        [self.view addSubview:circleViewBackground];
-        [self.view addSubview:self.circleView];
+        [self.view addSubview:_contentView];
+        [self.view addSubview:_circleViewBackground];
+        [self.view addSubview:_circleView];
 
         [self.circleView addSubview:self.circleIconImageView];
-        [contentView addSubview:_labelTitle];
-        [contentView addSubview:_viewText];
+        [_contentView addSubview:_labelTitle];
+        [_contentView addSubview:_viewText];
         
 		// Content View
-        contentView.backgroundColor = [UIColor whiteColor];
-        contentView.layer.cornerRadius = 5.0f;
-        contentView.layer.masksToBounds = YES;
-        contentView.layer.borderWidth = 0.5f;
+        _contentView.layer.cornerRadius = 5.0f;
+        _contentView.layer.masksToBounds = YES;
+        _contentView.layer.borderWidth = 0.5f;
         
 		// Circle View Background
-		circleViewBackground.backgroundColor = [UIColor whiteColor];
+		_circleViewBackground.backgroundColor = [UIColor whiteColor];
         
         // Title
         _labelTitle.numberOfLines = 1;
@@ -106,10 +104,10 @@ NSTimer *durationTimer;
         self.shadowView.backgroundColor = [UIColor blackColor];
         
         // Colors
-        contentView.backgroundColor = UIColorFromRGB(0xFFFFFF);
+        _contentView.backgroundColor = [UIColor whiteColor];
         _labelTitle.textColor = UIColorFromRGB(0x4D4D4D);
         _viewText.textColor = UIColorFromRGB(0x4D4D4D);
-        contentView.layer.borderColor = UIColorFromRGB(0xCCCCCC).CGColor;
+        _contentView.layer.borderColor = UIColorFromRGB(0xCCCCCC).CGColor;
     }
     return self;
 }
@@ -150,9 +148,9 @@ NSTimer *durationTimer;
     }
     
     self.view.frame = r;
-    contentView.frame = CGRectMake(0.0f, kCircleHeight / 4, kWindowWidth, kWindowHeight);
-    circleViewBackground.frame = CGRectMake(kWindowWidth / 2 - kCircleHeightBackground / 2, kCircleBackgroundTopPosition, kCircleHeightBackground, kCircleHeightBackground);
-    circleViewBackground.layer.cornerRadius = circleViewBackground.frame.size.height / 2;
+    _contentView.frame = CGRectMake(0.0f, kCircleHeight / 4, kWindowWidth, kWindowHeight);
+    _circleViewBackground.frame = CGRectMake(kWindowWidth / 2 - kCircleHeightBackground / 2, kCircleBackgroundTopPosition, kCircleHeightBackground, kCircleHeightBackground);
+    _circleViewBackground.layer.cornerRadius = _circleViewBackground.frame.size.height / 2;
     self.circleView.frame = CGRectMake(kWindowWidth / 2 - kCircleHeight / 2, kCircleTopPosition, kCircleHeight, kCircleHeight);
     self.circleView.layer.cornerRadius = self.circleView.frame.size.height / 2;
     self.circleIconImageView.frame = CGRectMake(kCircleHeight / 2 - kCircleIconHeight / 2, kCircleHeight / 2 - kCircleIconHeight / 2, kCircleIconHeight, kCircleIconHeight);
@@ -197,7 +195,7 @@ NSTimer *durationTimer;
         txt.placeholder = title;
     }
     
-    [contentView addSubview:txt];
+    [_contentView addSubview:txt];
     [_inputs addObject:txt];
     
     return txt;
@@ -215,7 +213,7 @@ NSTimer *durationTimer;
     [btn setTitle:title forState:UIControlStateNormal];
     btn.titleLabel.font = [UIFont fontWithName:kButtonFont size:14.0f];
 
-    [contentView addSubview:btn];
+    [_contentView addSubview:btn];
     [_buttons addObject:btn];
     
     return btn;
