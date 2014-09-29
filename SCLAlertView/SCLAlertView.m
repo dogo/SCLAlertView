@@ -48,6 +48,9 @@ NSString *kButtonFont = @"HelveticaNeue-Bold";
 // Timer
 NSTimer *durationTimer;
 
+#pragma mark --
+#pragma mark Initialization
+
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     @throw [NSException exceptionWithName:NSInternalInconsistencyException
@@ -112,6 +115,9 @@ NSTimer *durationTimer;
     return self;
 }
 
+#pragma mark --
+#pragma mark View Cycle
+
 -(void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
@@ -175,6 +181,8 @@ NSTimer *durationTimer;
     }
 }
 
+#pragma mark --
+#pragma mark TextField
 
 - (UITextField *)addTextField:(NSString *)title
 {
@@ -201,7 +209,9 @@ NSTimer *durationTimer;
     return txt;
 }
 
-//private
+#pragma mark --
+#pragma mark Buttons
+
 - (SCLButton *)addButton:(NSString *)title
 {
     // Update view height
@@ -222,7 +232,7 @@ NSTimer *durationTimer;
 - (SCLButton *)addButton:(NSString *)title actionBlock:(ActionBlock)action
 {
     SCLButton *btn = [self addButton:title];
-    btn.actionType = Closure;
+    btn.actionType = Block;
     btn.actionBlock = action;
     [btn addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -242,7 +252,7 @@ NSTimer *durationTimer;
 
 - (void)buttonTapped:(SCLButton *)btn
 {
-    if (btn.actionType == Closure)
+    if (btn.actionType == Block)
     {
         if (btn.actionBlock)
             btn.actionBlock();
@@ -258,6 +268,9 @@ NSTimer *durationTimer;
     }
     [self hideView];
 }
+
+#pragma mark --
+#pragma mark Show Alert
 
 -(SCLAlertViewResponder *)showTitle:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle duration:(NSTimeInterval)duration completeText:(NSString *)completeText style:(SCLAlertViewStyle)style
 {
@@ -387,31 +400,26 @@ NSTimer *durationTimer;
     return [[SCLAlertViewResponder alloc] init:self];
 }
 
-// showSuccess(view, title, subTitle)
 - (void)showSuccess:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
 {
     [self showTitle:vc title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Success];
 }
 
-// showError(view, title, subTitle)
 - (void)showError:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
 {
     [self showTitle:vc title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Error];
 }
 
-// showNotice(view, title, subTitle)
 - (void)showNotice:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
 {
     [self showTitle:vc title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Notice];
 }
 
-// showWarning(view, title, subTitle)
 - (void)showWarning:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
 {
     [self showTitle:vc title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Warning];
 }
 
-// showInfo(view, title, subTitle)
 - (void)showInfo:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
 {
     [self showTitle:vc title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Info];
@@ -422,11 +430,13 @@ NSTimer *durationTimer;
     [self showTitle:vc title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Edit];
 }
 
-// showTitle(view, title, subTitle, style)
 - (void)showTitle:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle style:(SCLAlertViewStyle)style closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
 {
     [self showTitle:vc title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:style];
 }
+
+#pragma mark --
+#pragma mark Hide Alert
 
 // Close SCLAlertView
 - (void)hideView

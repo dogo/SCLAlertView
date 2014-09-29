@@ -17,7 +17,7 @@ typedef NS_ENUM(NSInteger, SCLActionType)
 {
     None,
     Selector,
-    Closure
+    Block
 };
 
 

@@ -13,4 +13,7 @@
 
 - (instancetype)init:(SCLAlertView *)alertview;
 
+
+- (void)close;
+
 @end

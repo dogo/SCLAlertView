@@ -17,23 +17,17 @@
 #pragma mark Cache
 
 static UIImage *imageOfCheckmark = nil;
-static id checkmarkTargets = nil;
 static UIImage *imageOfCross = nil;
-static id crossTargets = nil;
 static UIImage *imageOfNotice = nil;
-static id noticeTargets = nil;
 static UIImage *imageOfWarning = nil;
-static id warningTargets = nil;
 static UIImage *imageOfInfo = nil;
-static id infoTargets = nil;
 static UIImage *imageOfEdit = nil;
-static id editTargets = nil;
 
 #pragma mark Initialization
 
 + (void)initialize
 {
-    NSLog(@"initialize");
+    // Do something
 }
 
 #pragma mark Drawing Methods
@@ -333,7 +327,5 @@ static id editTargets = nil;
     
     return imageOfEdit;
 }
-
-
 
 @end

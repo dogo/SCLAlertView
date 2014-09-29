@@ -11,7 +11,7 @@
 
 @interface SCLAlertView : UIViewController
 
-// Pop Up Styles
+// Alert Styles
 typedef NS_ENUM(NSInteger, SCLAlertViewStyle)
 {
     Success,
