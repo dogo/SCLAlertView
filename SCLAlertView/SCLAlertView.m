@@ -10,6 +10,7 @@
 #import "SCLButton.h"
 #import "SCLAlertViewResponder.h"
 #import "SCLAlertViewStyleKit.h"
+#import <AVFoundation/AVFoundation.h>
 
 #define UIColorFromRGB(rgbValue) [UIColor \
 colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
@@ -26,6 +27,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 @property (nonatomic, strong) UIView *shadowView;
 @property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, strong) UIView *circleViewBackground;
+@property (nonatomic, strong) AVAudioPlayer *audioPlayer;
 
 @end
 
@@ -193,6 +195,16 @@ NSTimer *durationTimer;
 }
 
 #pragma mark --
+#pragma mark Sound
+
+- (void)setSoundURL:(NSURL *)soundURL
+{
+    NSError *error;
+    _soundURL = soundURL;
+    _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:_soundURL error:&error];
+}
+
+#pragma mark --
 #pragma mark TextField
 
 - (UITextField *)addTextField:(NSString *)title
@@ -354,6 +366,19 @@ NSTimer *durationTimer;
         {
             kWindowHeight -= (kTextHeight - ht);
             kTextHeight = ht;
+        }
+    }
+    
+    // Play sound, if necessary
+    if(_soundURL != nil)
+    {
+        if (_audioPlayer == nil)
+        {
+            NSLog(@"You need to set your sound file first");
+        }
+        else
+        {
+            [_audioPlayer play];
         }
     }
 

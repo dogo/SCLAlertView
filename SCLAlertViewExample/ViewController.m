@@ -42,6 +42,8 @@ NSString *kButtonTitle = @"Done";
     [alert addButton:@"Second Button" actionBlock:^(void) {
         NSLog(@"Second button tapped");
     }];
+    
+    alert.soundURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/right_answer.mp3", [[NSBundle mainBundle] resourcePath]]];
 
     [alert showSuccess:self title:kSuccessTitle subTitle:kSubtitle closeButtonTitle:kButtonTitle duration:0.0f];
 }

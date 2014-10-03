@@ -25,7 +25,7 @@ typedef NS_ENUM(NSInteger, SCLAlertViewStyle)
 
 @property UILabel *labelTitle;
 @property UITextView *viewText;
-
+@property (nonatomic, strong) NSURL *soundURL;
 
 - (void)hideView;
 
