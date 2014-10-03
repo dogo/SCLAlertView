@@ -35,6 +35,7 @@
 		DD0D295B19D902DA00881F53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = SCLAlertViewExample/Info.plist; sourceTree = SOURCE_ROOT; };
 		DD4BA9BD19DED822008D73EB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		DD4BA9C019DED8EF008D73EB /* right_answer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = right_answer.mp3; sourceTree = "<group>"; };
+		DD4BA9C219DEDD8E008D73EB /* SCLAlertView-Objective-C-prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SCLAlertView-Objective-C-prefix.pch"; path = "SCLAlertViewExample/SCLAlertView-Objective-C-prefix.pch"; sourceTree = SOURCE_ROOT; };
 		DD7282B819D6087C00077F54 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = SCLAlertViewExample/Base.lproj/Storyboard.storyboard; sourceTree = SOURCE_ROOT; };
 		DDB15F9D19D5B7C600173158 /* SCLAlertView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SCLAlertView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDB15FB619D5B7C600173158 /* SCLAlertViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SCLAlertViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,9 +123,10 @@
 		DDB15FA019D5B7C600173158 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				DD4BA9BF19DED8EF008D73EB /* Sounds */,
-				DD0D295B19D902DA00881F53 /* Info.plist */,
 				DDB15FD319D5B8DB00173158 /* main.m */,
+				DD4BA9C219DEDD8E008D73EB /* SCLAlertView-Objective-C-prefix.pch */,
+				DD0D295B19D902DA00881F53 /* Info.plist */,
+				DD4BA9BF19DED8EF008D73EB /* Sounds */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
