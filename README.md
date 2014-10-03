@@ -40,6 +40,10 @@ SCLAlertView *alert = [[SCLAlertView alloc] init];
 [alert addButton:@"Second Button" actionBlock:^(void) {
     NSLog(@"Second button tapped");
 }];
+
+//Using sound
+alert.soundURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/right_answer.mp3", [[NSBundle mainBundle] resourcePath]]];
+
 [alert showSuccess:self title:@"Button View" subTitle:@"This alert view has buttons" closeButtonTitle:@"Done" duration:0.0f];
 
 // Add a text field
