@@ -111,6 +111,7 @@ NSTimer *durationTimer;
         
         // View text
         _viewText.editable = NO;
+        _viewText.allowsEditingTextAttributes = YES;
         _viewText.textAlignment = NSTextAlignmentCenter;
         _viewText.font = [UIFont fontWithName:kDefaultFont size:14.0f];
         
@@ -354,7 +355,11 @@ NSTimer *durationTimer;
     // Subtitle
     if([subTitle stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0)
     {
-        _viewText.text = subTitle;
+        // No custom text
+        if(_viewText.attributedText.string.length <= 0)
+        {
+            _viewText.text = subTitle;
+        }
         
         // Adjust text view size, if necessary
         NSString *str = subTitle;
