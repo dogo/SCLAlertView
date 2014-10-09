@@ -14,7 +14,7 @@
 // ------------------------------------
 @implementation SCLAlertViewStyleKit
 
-#pragma mark Cache
+#pragma mark - Cache
 
 static UIImage *imageOfCheckmark = nil;
 static UIImage *imageOfCross = nil;
@@ -23,14 +23,14 @@ static UIImage *imageOfWarning = nil;
 static UIImage *imageOfInfo = nil;
 static UIImage *imageOfEdit = nil;
 
-#pragma mark Initialization
+#pragma mark - Initialization
 
 + (void)initialize
 {
     // Do something
 }
 
-#pragma mark Drawing Methods
+#pragma mark - Drawing Methods
 
 + (void)drawCheckmark
 {
@@ -235,7 +235,7 @@ static UIImage *imageOfEdit = nil;
     [editPathPath fill];
 }
 
-#pragma mark Images
+#pragma mark - Images
 
 + (UIImage*)imageOfCheckmark
 {

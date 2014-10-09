@@ -50,8 +50,7 @@ NSString *kButtonFont = @"HelveticaNeue-Bold";
 // Timer
 NSTimer *durationTimer;
 
-#pragma mark --
-#pragma mark Initialization
+#pragma mark - Initialization
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -129,8 +128,7 @@ NSTimer *durationTimer;
     return self;
 }
 
-#pragma mark --
-#pragma mark View Cycle
+#pragma mark - View Cycle
 
 -(void)viewWillLayoutSubviews
 {
@@ -195,8 +193,7 @@ NSTimer *durationTimer;
     }
 }
 
-#pragma mark --
-#pragma mark Sound
+#pragma mark - Sound
 
 - (void)setSoundURL:(NSURL *)soundURL
 {
@@ -205,8 +202,7 @@ NSTimer *durationTimer;
     _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:_soundURL error:&error];
 }
 
-#pragma mark --
-#pragma mark TextField
+#pragma mark - TextField
 
 - (UITextField *)addTextField:(NSString *)title
 {
@@ -233,8 +229,7 @@ NSTimer *durationTimer;
     return txt;
 }
 
-#pragma mark --
-#pragma mark Buttons
+#pragma mark - Buttons
 
 - (SCLButton *)addButton:(NSString *)title
 {
@@ -294,8 +289,7 @@ NSTimer *durationTimer;
     [self hideView];
 }
 
-#pragma mark --
-#pragma mark Show Alert
+#pragma mark - Show Alert
 
 -(SCLAlertViewResponder *)showTitle:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle duration:(NSTimeInterval)duration completeText:(NSString *)completeText style:(SCLAlertViewStyle)style
 {
@@ -479,8 +473,7 @@ NSTimer *durationTimer;
     [self showTitle:vc title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:style];
 }
 
-#pragma mark --
-#pragma mark Hide Alert
+#pragma mark - Hide Alert
 
 // Close SCLAlertView
 - (void)hideView
