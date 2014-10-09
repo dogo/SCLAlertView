@@ -169,19 +169,25 @@ NSTimer *durationTimer;
     _contentView.frame = CGRectMake(0.0f, kCircleHeight / 4, kWindowWidth, kWindowHeight);
     _circleViewBackground.frame = CGRectMake(kWindowWidth / 2 - kCircleHeightBackground / 2, kCircleBackgroundTopPosition, kCircleHeightBackground, kCircleHeightBackground);
     _circleViewBackground.layer.cornerRadius = _circleViewBackground.frame.size.height / 2;
-    self.circleView.frame = CGRectMake(kWindowWidth / 2 - kCircleHeight / 2, kCircleTopPosition, kCircleHeight, kCircleHeight);
-    self.circleView.layer.cornerRadius = self.circleView.frame.size.height / 2;
-    self.circleIconImageView.frame = CGRectMake(kCircleHeight / 2 - kCircleIconHeight / 2, kCircleHeight / 2 - kCircleIconHeight / 2, kCircleIconHeight, kCircleIconHeight);
-    _labelTitle.frame = CGRectMake(12, kCircleHeight / 2 + 12, kWindowWidth - 24, 40.0f);
-    _viewText.frame = CGRectMake(12, 74, kWindowWidth - 24, kTextHeight);
+    _circleView.frame = CGRectMake(kWindowWidth / 2 - kCircleHeight / 2, kCircleTopPosition, kCircleHeight, kCircleHeight);
+    _circleView.layer.cornerRadius = self.circleView.frame.size.height / 2;
+    _circleIconImageView.frame = CGRectMake(kCircleHeight / 2 - kCircleIconHeight / 2, kCircleHeight / 2 - kCircleIconHeight / 2, kCircleIconHeight, kCircleIconHeight);
+    _labelTitle.frame = CGRectMake(12.0f, kCircleHeight / 2 + 12.0f, kWindowWidth - 24.0f, 40.0f);
+    _viewText.frame = CGRectMake(12.0f, 74.0f, kWindowWidth - 24.0f, kTextHeight);
     
+    // Title is nil, we can move the body message to center
+    if(_labelTitle.text == nil)
+    {
+        _viewText.frame = CGRectMake(12.0f, kCircleHeight, kWindowWidth - 24.0f, kTextHeight);
+    }
+        
     // Text fields
-    CGFloat y = 74.0 + kTextHeight + 14.0;
+    CGFloat y = 74.0f + kTextHeight + 14.0f;
     for (UITextField *textField in _inputs)
     {
-        textField.frame = CGRectMake(12.0f, y, kWindowWidth - 24, 30.0f);
+        textField.frame = CGRectMake(12.0f, y, kWindowWidth - 24.0f, 30.0f);
         textField.layer.cornerRadius = 3;
-        y += 40;
+        y += 40.0f;
     }
     
     // Buttons
