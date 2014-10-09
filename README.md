@@ -33,6 +33,20 @@ SCLAlertView *alert = [[SCLAlertView alloc] init];
 // Add buttons
 SCLAlertView *alert = [[SCLAlertView alloc] init];
 
+// Add Text Attributes
+NSMutableAttributedString *subTitle = [[NSMutableAttributedString alloc]initWithString:@"Attributed string operation successfully completed."];
+
+NSRange redRange = [kAttributeTitle rangeOfString:@"Attributed" options:NSCaseInsensitiveSearch];
+[subTitle addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:redRange];
+
+NSRange greenRange = [kAttributeTitle rangeOfString:@"successfully" options:NSCaseInsensitiveSearch];
+[subTitle addAttribute:NSForegroundColorAttributeName value:[UIColor greenColor] range:greenRange];
+
+NSRange underline = [kAttributeTitle rangeOfString:@"completed" options:NSCaseInsensitiveSearch];
+[subTitle addAttributes:@{NSUnderlineStyleAttributeName:@(NSUnderlineStyleSingle)} range:underline];
+
+alert.viewText.attributedText = subTitle;
+
 //Using Selector
 [alert addButton:@"First Button" target:self selector:@selector(firstButton)];
 
@@ -40,6 +54,9 @@ SCLAlertView *alert = [[SCLAlertView alloc] init];
 [alert addButton:@"Second Button" actionBlock:^(void) {
     NSLog(@"Second button tapped");
 }];
+
+//Dismiss on tap outside (Default is NO)
+alert.shouldDismissOnTapOutside = YES;
 
 //Using sound
 alert.soundURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/right_answer.mp3", [[NSBundle mainBundle] resourcePath]]];
