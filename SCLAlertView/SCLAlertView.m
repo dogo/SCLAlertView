@@ -28,6 +28,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 @property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, strong) UIView *circleViewBackground;
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
+@property (nonatomic, strong) UITapGestureRecognizer *gestureRecognizer;
 
 @end
 
@@ -74,6 +75,7 @@ NSTimer *durationTimer;
         kWindowWidth = 240.0f;
         kWindowHeight = 178.0f;
         kTextHeight = 90.0f;
+        _shouldDismissOnTapOutside = NO;
         
         // Init
         _labelTitle = [[UILabel alloc] init];
@@ -196,6 +198,27 @@ NSTimer *durationTimer;
         btn.frame = CGRectMake(12.0f, y, kWindowWidth - 24, 35.0f);
         btn.layer.cornerRadius = 3;
         y += 45.0;
+    }
+}
+
+#pragma mark - Handle gesture
+
+- (void)handleTap:(UITapGestureRecognizer *)gesture
+{
+    if (_shouldDismissOnTapOutside)
+    {
+        [self hideView];
+    }
+}
+
+- (void)setShouldDismissOnTapOutside:(BOOL)shouldDismissOnTapOutside
+{
+    _shouldDismissOnTapOutside = shouldDismissOnTapOutside;
+    
+    if(_shouldDismissOnTapOutside)
+    {
+        self.gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+        [self.shadowView addGestureRecognizer:_gestureRecognizer];
     }
 }
 
