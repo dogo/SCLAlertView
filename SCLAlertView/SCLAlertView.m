@@ -513,6 +513,7 @@ NSTimer *durationTimer;
     } completion:^(BOOL completed) {
         [self.shadowView removeFromSuperview];
         [self.view removeFromSuperview];
+        [self removeFromParentViewController];
     }];
 }
 
