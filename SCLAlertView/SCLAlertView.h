@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "SCLButton.h"
 
+typedef NSAttributedString* (^SCLAttributedFormatBlock)(NSString *value);
+
 @interface SCLAlertView : UIViewController
 
 /** Alert Styles
@@ -49,6 +51,12 @@ typedef NS_ENUM(NSInteger, SCLAlertViewStyle)
  * Holds the sound NSURL path.
  */
 @property (nonatomic, strong) NSURL *soundURL;
+
+/** Set text attributed format block
+ *
+ * Holds the attributed string.
+ */
+@property (nonatomic, copy) SCLAttributedFormatBlock attributedFormatBlock;
 
 /** Hide SCLAlertView
  *

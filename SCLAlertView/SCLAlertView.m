@@ -379,9 +379,13 @@ NSTimer *durationTimer;
     if([subTitle stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0)
     {
         // No custom text
-        if(_viewText.attributedText.string.length <= 0)
+        if (_attributedFormatBlock == nil)
         {
             _viewText.text = subTitle;
+        }
+        else
+        {
+            _viewText.attributedText = self.attributedFormatBlock(subTitle);
         }
         
         // Adjust text view size, if necessary

@@ -110,20 +110,23 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
         NSLog(@"Text value: %@", textField.text);
     }];
     
-    NSMutableAttributedString *subTitle = [[NSMutableAttributedString alloc]initWithString:kAttributeTitle];
-    
-    NSRange redRange = [kAttributeTitle rangeOfString:@"Attributed" options:NSCaseInsensitiveSearch];
-    [subTitle addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:redRange];
-    
-    NSRange greenRange = [kAttributeTitle rangeOfString:@"successfully" options:NSCaseInsensitiveSearch];
-    [subTitle addAttribute:NSForegroundColorAttributeName value:[UIColor greenColor] range:greenRange];
-    
-    NSRange underline = [kAttributeTitle rangeOfString:@"completed" options:NSCaseInsensitiveSearch];
-    [subTitle addAttributes:@{NSUnderlineStyleAttributeName:@(NSUnderlineStyleSingle)} range:underline];
-    
-    alert.viewText.attributedText = subTitle;
+    alert.attributedFormatBlock = ^NSAttributedString* (NSString *value)
+    {
+        NSMutableAttributedString *subTitle = [[NSMutableAttributedString alloc]initWithString:kAttributeTitle];
+        
+        NSRange redRange = [value rangeOfString:@"Attributed" options:NSCaseInsensitiveSearch];
+        [subTitle addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:redRange];
+        
+        NSRange greenRange = [value rangeOfString:@"successfully" options:NSCaseInsensitiveSearch];
+        [subTitle addAttribute:NSForegroundColorAttributeName value:[UIColor greenColor] range:greenRange];
+        
+        NSRange underline = [value rangeOfString:@"completed" options:NSCaseInsensitiveSearch];
+        [subTitle addAttributes:@{NSUnderlineStyleAttributeName:@(NSUnderlineStyleSingle)} range:underline];
+        
+        return subTitle;
+    };
 
-    [alert showTitle:self title:@"Congratulations" subTitle:alert.viewText.attributedText.string style:Success closeButtonTitle:@"Done" duration:0.0f];
+    [alert showTitle:self title:@"Congratulations" subTitle:kAttributeTitle style:Success closeButtonTitle:@"Done" duration:0.0f];
 }
 
 - (IBAction)showWithDuration:(id)sender
