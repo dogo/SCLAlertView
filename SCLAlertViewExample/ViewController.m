@@ -112,7 +112,7 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     
     alert.attributedFormatBlock = ^NSAttributedString* (NSString *value)
     {
-        NSMutableAttributedString *subTitle = [[NSMutableAttributedString alloc]initWithString:kAttributeTitle];
+        NSMutableAttributedString *subTitle = [[NSMutableAttributedString alloc]initWithString:value];
         
         NSRange redRange = [value rangeOfString:@"Attributed" options:NSCaseInsensitiveSearch];
         [subTitle addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:redRange];
