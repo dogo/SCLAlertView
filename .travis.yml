@@ -1,0 +1,6 @@
+# reference: http://www.objc.io/issue-6/travis-ci.html
+
+language: objective-c
+
+script:
+- xctool test -workspace Example/SCLAlertView.xcworkspace -scheme SCLAlertView -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
