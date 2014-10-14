@@ -3,4 +3,4 @@
 language: objective-c
 
 script:
-- xctool test -workspace Example/SCLAlertView.xcworkspace -scheme SCLAlertView -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+- xcodebuild -project SCLAlertView.xcodeproj -target SCLAlertView -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
