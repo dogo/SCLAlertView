@@ -15,7 +15,7 @@ typedef NSAttributedString* (^SCLAttributedFormatBlock)(NSString *value);
 
 /** Alert Styles
  *
- * TODO
+ * Set SCLAlertView Style
  */
 typedef NS_ENUM(NSInteger, SCLAlertViewStyle)
 {
@@ -25,6 +25,16 @@ typedef NS_ENUM(NSInteger, SCLAlertViewStyle)
     Warning,
     Info,
     Edit
+};
+
+/** Alert hide animation styles
+ *
+ * Set SCLAlertView hide animation type.
+ */
+typedef NS_ENUM(NSInteger, SCLAlertViewAnimation)
+{
+    NoAnimation,
+    FadeOut
 };
 
 /** Title Label
@@ -42,7 +52,7 @@ typedef NS_ENUM(NSInteger, SCLAlertViewStyle)
 /** Dismiss on tap outside
  *
  * A boolean value that determines whether to dismiss when tapping outside the SCLAlertView.
- * (Default = NO)
+ * (Default: NO)
  */
 @property (nonatomic, assign) BOOL shouldDismissOnTapOutside;
 
@@ -58,11 +68,24 @@ typedef NS_ENUM(NSInteger, SCLAlertViewStyle)
  */
 @property (nonatomic, copy) SCLAttributedFormatBlock attributedFormatBlock;
 
+/** Hide animation type
+ *
+ * Holds the hide animation type.
+ * (Default: NoAnimation)
+ */
+@property (nonatomic) SCLAlertViewAnimation hideAnimationType;
+
 /** Hide SCLAlertView
  *
- * TODO
+ * Hide SCLAlertView removing from super view.
  */
 - (void)hideView;
+
+/** Hide SCLAlertView
+ *
+ * Hide SCLAlertView using animation.
+ */
+- (void)hideViewWithAnimation:(SCLAlertViewAnimation)animation;
 
 /** Add Text Field
  *

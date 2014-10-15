@@ -76,6 +76,7 @@ NSTimer *durationTimer;
         kWindowHeight = 178.0f;
         kTextHeight = 90.0f;
         _shouldDismissOnTapOutside = NO;
+        self.hideAnimationType = NoAnimation;
         
         // Init
         _labelTitle = [[UILabel alloc] init];
@@ -315,7 +316,7 @@ NSTimer *durationTimer;
     {
         NSLog(@"Unknown action type for button");
     }
-    [self hideView];
+    [self hideViewWithAnimation:_hideAnimationType];
 }
 
 #pragma mark - Show Alert
@@ -508,17 +509,41 @@ NSTimer *durationTimer;
 
 #pragma mark - Hide Alert
 
-// Close SCLAlertView
 - (void)hideView
 {
     [UIView animateWithDuration:0.2f animations:^{
-        self.shadowView.alpha = 0;
-        self.view.alpha = 0;
+        self.shadowView.alpha = 0.0f;
+        self.view.alpha = 0.0f;
     } completion:^(BOOL completed) {
         [self.shadowView removeFromSuperview];
         [self.view removeFromSuperview];
         [self removeFromParentViewController];
     }];
+}
+
+- (void)hideViewWithAnimation:(SCLAlertViewAnimation)animation
+{    
+    switch (animation)
+    {
+        case NoAnimation:
+            [self hideView];
+            break;
+            
+        case FadeOut:
+            [self fadeOut];
+            break;
+    }
+}
+
+#pragma mark - Animations
+
+- (void)fadeOut
+{
+    [UIView animateWithDuration:1.0f animations:^{
+         self.shadowView.alpha = 0.0f;
+         self.view.alpha = 0.0f;
+    } completion:nil
+    ];
 }
 
 @end
