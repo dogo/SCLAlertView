@@ -24,7 +24,8 @@ typedef NS_ENUM(NSInteger, SCLAlertViewStyle)
     Notice,
     Warning,
     Info,
-    Edit
+    Edit,
+    Custom
 };
 
 /** Title Label
