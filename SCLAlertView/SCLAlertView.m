@@ -241,6 +241,7 @@ NSTimer *durationTimer;
     // Add text field
     UITextField *txt = [[UITextField alloc] init];
     txt.delegate = self;
+    txt.returnKeyType = UIReturnKeyDone;
     txt.borderStyle = UITextBorderStyleRoundedRect;
     txt.font = [UIFont fontWithName:kDefaultFont size:14.0f];
     txt.autocapitalizationType = UITextAutocapitalizationTypeWords;
