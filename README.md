@@ -7,6 +7,7 @@ Animated Alert View written in Swift but ported to Objective-C, which can be use
 
 ![BackgroundImage](https://raw.githubusercontent.com/dogo/SCLAlertView/master/ScreenShots/ScreenShot.png)_
 ![BackgroundImage](https://raw.githubusercontent.com/dogo/SCLAlertView/master/ScreenShots/ScreenShot2.png) 
+![BackgroundImage](ScreenShots/ScreenShot3.png) 
 
 ###Easy to use
 ```Objective-C
@@ -21,6 +22,7 @@ SCLAlertView *alert = [[SCLAlertView alloc] init];
 [alert showWarning:self title:@"Hello Warning" subTitle:@"This is a more descriptive warning text." closeButtonTitle:@"Done" duration:0.0f]; // Warning
 [alert showInfo:self title:@"Hello Info" subTitle:@"This is a more descriptive info text." closeButtonTitle:@"Done" duration:0.0f]; // Info
 [alert showEdit:self title:@"Hello Edit" subTitle:@"This is a more descriptive info text with a edit textbox" closeButtonTitle:@"Done" duration:0.0f]; // Edit
+[alert showCustom:self image:[UIImage imageNamed:@"git"] color:color title:@"Custom" subTitle:@"Add a custom icon and color for your own type of alert!" closeButtonTitle:@"OK" duration:0.0f]; // Custom
 
 // Advanced
 SCLAlertView *alert = [[SCLAlertView alloc] init];
@@ -89,7 +91,8 @@ typedef NS_ENUM(NSInteger, SCLAlertViewStyle)
     Notice,
     Warning,
     Info,
-    Edit
+    Edit,
+    Custom
 };
 ```
 
