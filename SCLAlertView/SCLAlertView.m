@@ -367,6 +367,12 @@ NSTimer *durationTimer;
             viewColor = UIColorFromRGB(0xA429FF);
             iconImage = SCLAlertViewStyleKit.imageOfEdit;
             break;
+            
+        case Custom:
+            viewColor = color;
+            iconImage = image;
+            kCircleIconHeight = kCircleIconHeight * 2;
+            break;
     }
 
     // Title
