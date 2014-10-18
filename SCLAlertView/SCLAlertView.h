@@ -72,7 +72,7 @@ typedef NS_ENUM(NSInteger, SCLAlertViewAnimation)
 /** Hide animation type
  *
  * Holds the hide animation type.
- * (Default: NoAnimation)
+ * (Default: FadeOut)
  */
 @property (nonatomic) SCLAlertViewAnimation hideAnimationType;
 

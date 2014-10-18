@@ -76,7 +76,7 @@ NSTimer *durationTimer;
         kWindowHeight = 178.0f;
         kTextHeight = 90.0f;
         _shouldDismissOnTapOutside = NO;
-        self.hideAnimationType = NoAnimation;
+        _hideAnimationType = FadeOut;
         
         // Init
         _labelTitle = [[UILabel alloc] init];
@@ -343,7 +343,10 @@ NSTimer *durationTimer;
     {
         NSLog(@"Unknown action type for button");
     }
-    [self hideViewWithAnimation:_hideAnimationType];
+    if([self isVisible])
+    {
+        [self hideView];
+    }
 }
 
 #pragma mark - Show Alert
@@ -545,26 +548,21 @@ NSTimer *durationTimer;
     [self showTitle:vc image:image color:color title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Custom];
 }
 
+#pragma mark - Visibility
+
+- (BOOL)isVisible
+{
+    return (self.shadowView.alpha && self.view.alpha);
+}
+
 #pragma mark - Hide Alert
 
 - (void)hideView
 {
-    [UIView animateWithDuration:0.2f animations:^{
-        self.shadowView.alpha = 0.0f;
-        self.view.alpha = 0.0f;
-    } completion:^(BOOL completed) {
-        [self.shadowView removeFromSuperview];
-        [self.view removeFromSuperview];
-        [self removeFromParentViewController];
-    }];
-}
-
-- (void)hideViewWithAnimation:(SCLAlertViewAnimation)animation
-{    
-    switch (animation)
+    switch (_hideAnimationType)
     {
         case NoAnimation:
-            [self hideView];
+            [self NoAnimation];
             break;
             
         case FadeOut:
@@ -577,11 +575,21 @@ NSTimer *durationTimer;
 
 - (void)fadeOut
 {
-    [UIView animateWithDuration:1.0f animations:^{
+    [UIView animateWithDuration:0.2f animations:^{
          self.shadowView.alpha = 0.0f;
          self.view.alpha = 0.0f;
-    } completion:nil
-    ];
+    } completion:^(BOOL completed) {
+        [self.shadowView removeFromSuperview];
+        [self.view removeFromSuperview];
+        [self removeFromParentViewController];
+    }];
+}
+
+- (void)NoAnimation
+{
+    [self.shadowView removeFromSuperview];
+    [self.view removeFromSuperview];
+    [self removeFromParentViewController];
 }
 
 @end
