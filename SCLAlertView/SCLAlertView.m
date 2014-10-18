@@ -76,6 +76,7 @@ NSTimer *durationTimer;
         kWindowHeight = 178.0f;
         kTextHeight = 90.0f;
         _shouldDismissOnTapOutside = NO;
+        _hideAnimationType = FadeOut;
         
         // Init
         _labelTitle = [[UILabel alloc] init];
@@ -304,6 +305,14 @@ NSTimer *durationTimer;
     return btn;
 }
 
+- (SCLButton *)addDoneButtonWithTitle:(NSString *)title
+{
+    SCLButton *btn = [self addButton:title];
+    [btn addTarget:self action:@selector(hideView) forControlEvents:UIControlEventTouchUpInside];
+    
+    return btn;
+}
+
 - (SCLButton *)addButton:(NSString *)title actionBlock:(ActionBlock)action
 {
     SCLButton *btn = [self addButton:title];
@@ -453,7 +462,7 @@ NSTimer *durationTimer;
     // Add button, if necessary
     if(completeText != nil)
     {
-        [self addButton:completeText target:self selector:@selector(hideView)];
+        [self addDoneButtonWithTitle:completeText];
     }
 
     // Alert view colour and images
@@ -558,14 +567,37 @@ NSTimer *durationTimer;
 
 - (void)hideView
 {
+    switch (_hideAnimationType)
+    {
+        case NoAnimation:
+            [self NoAnimation];
+            break;
+            
+        case FadeOut:
+            [self fadeOut];
+            break;
+    }
+}
+
+#pragma mark - Animations
+
+- (void)fadeOut
+{
     [UIView animateWithDuration:0.2f animations:^{
-        self.shadowView.alpha = 0;
-        self.view.alpha = 0;
+         self.shadowView.alpha = 0.0f;
+         self.view.alpha = 0.0f;
     } completion:^(BOOL completed) {
         [self.shadowView removeFromSuperview];
         [self.view removeFromSuperview];
         [self removeFromParentViewController];
     }];
+}
+
+- (void)NoAnimation
+{
+    [self.shadowView removeFromSuperview];
+    [self.view removeFromSuperview];
+    [self removeFromParentViewController];
 }
 
 @end
