@@ -350,7 +350,10 @@ NSTimer *durationTimer;
     {
         NSLog(@"Unknown action type for button");
     }
-    [self hideView];
+    if([self isVisible])
+    {
+        [self hideView];
+    }
 }
 
 #pragma mark - Show Alert
@@ -552,9 +555,15 @@ NSTimer *durationTimer;
     [self showTitle:vc image:image color:color title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Custom];
 }
 
+#pragma mark - Visibility
+
+- (BOOL)isVisible
+{
+    return (self.shadowView.alpha && self.view.alpha);
+}
+
 #pragma mark - Hide Alert
 
-// Close SCLAlertView
 - (void)hideView
 {
     [UIView animateWithDuration:0.2f animations:^{
