@@ -17,6 +17,9 @@ colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
+#define KEYBOARD_HEIGHT 80
+#define PREDICTION_BAR_HEIGHT 40
+
 @interface SCLAlertView ()  <UITextFieldDelegate>
 
 @property (nonatomic, strong) NSMutableArray *inputs;
@@ -127,8 +130,17 @@ NSTimer *durationTimer;
         _labelTitle.textColor = UIColorFromRGB(0x4D4D4D);
         _viewText.textColor = UIColorFromRGB(0x4D4D4D);
         _contentView.layer.borderColor = UIColorFromRGB(0xCCCCCC).CGColor;
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
     }
     return self;
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
 #pragma mark - View Cycle
@@ -260,30 +272,50 @@ NSTimer *durationTimer;
     
     // If there are other fields in the inputs array, get the previous field and set the
     // return key type on that to next.
-    if (_inputs.count > 1) {
+    if (_inputs.count > 1)
+    {
         NSUInteger indexOfCurrentField = [_inputs indexOfObject:txt];
         UITextField *priorField = _inputs[indexOfCurrentField - 1];
         priorField.returnKeyType = UIReturnKeyNext;
     }
-    
     return txt;
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+# pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
     // If this is the last object in the inputs array, resign first responder
     // as the form is at the end.
-    if (textField == [_inputs lastObject]) {
+    if (textField == [_inputs lastObject])
+    {
         [textField resignFirstResponder];
     }
-    
-    // Otherwise find the next field and make it first responder.
-    else {
+    else // Otherwise find the next field and make it first responder.
+    {
         NSUInteger indexOfCurrentField = [_inputs indexOfObject:textField];
         UITextField *nextField = _inputs[indexOfCurrentField + 1];
         [nextField becomeFirstResponder];
     }
-    
     return NO;
+}
+
+- (void)keyboardDidShow:(NSNotification *)notification
+{
+    [UIView animateWithDuration:0.2f animations:^{
+        CGRect f = self.view.frame;
+        f.origin.y -= KEYBOARD_HEIGHT + PREDICTION_BAR_HEIGHT;
+        self.view.frame = f;
+    }];
+}
+
+-(void)keyboardDidHide:(NSNotification *)notification
+{
+    [UIView animateWithDuration:0.2f animations:^{
+        CGRect f = self.view.frame;
+        f.origin.y += KEYBOARD_HEIGHT + PREDICTION_BAR_HEIGHT;
+        self.view.frame = f;
+    }];
 }
 
 #pragma mark - Buttons
