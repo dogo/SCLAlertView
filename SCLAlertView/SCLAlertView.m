@@ -268,6 +268,23 @@ NSTimer *durationTimer;
     return txt;
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    // If this is the last object in the inputs array, resign first responder
+    // as the form is at the end.
+    if (textField == [_inputs lastObject]) {
+        [textField resignFirstResponder];
+    }
+    
+    // Otherwise find the next field and make it first responder.
+    else {
+        NSUInteger indexOfCurrentField = [_inputs indexOfObject:textField];
+        UITextField *nextField = _inputs[indexOfCurrentField + 1];
+        [nextField becomeFirstResponder];
+    }
+    
+    return NO;
+}
+
 #pragma mark - Buttons
 
 - (SCLButton *)addButton:(NSString *)title
