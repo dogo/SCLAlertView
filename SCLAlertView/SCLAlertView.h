@@ -78,15 +78,9 @@ typedef NS_ENUM(NSInteger, SCLAlertViewAnimation)
 
 /** Hide SCLAlertView
  *
- * Hide SCLAlertView removing from super view.
+ * Hide SCLAlertView using animation and removing from super view.
  */
 - (void)hideView;
-
-/** Hide SCLAlertView
- *
- * Hide SCLAlertView using animation.
- */
-- (void)hideViewWithAnimation:(SCLAlertViewAnimation)animation;
 
 /** Add Text Field
  *
