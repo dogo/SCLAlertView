@@ -16,6 +16,7 @@
 - (IBAction)showWarning:(id)sender;
 - (IBAction)showInfo:(id)sender;
 - (IBAction)showEdit:(id)sender;
+- (IBAction)showCustom:(id)sender;
 
 @end
 
