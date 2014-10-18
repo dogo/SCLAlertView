@@ -305,6 +305,14 @@ NSTimer *durationTimer;
     return btn;
 }
 
+- (SCLButton *)addDoneButtonWithTitle:(NSString *)title
+{
+    SCLButton *btn = [self addButton:title];
+    [btn addTarget:self action:@selector(hideView) forControlEvents:UIControlEventTouchUpInside];
+    
+    return btn;
+}
+
 - (SCLButton *)addButton:(NSString *)title actionBlock:(ActionBlock)action
 {
     SCLButton *btn = [self addButton:title];
@@ -454,7 +462,7 @@ NSTimer *durationTimer;
     // Add button, if necessary
     if(completeText != nil)
     {
-        [self addButton:completeText target:self selector:@selector(hideView)];
+        [self addDoneButtonWithTitle:completeText];
     }
 
     // Alert view colour and images
