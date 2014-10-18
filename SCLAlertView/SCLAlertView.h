@@ -24,7 +24,8 @@ typedef NS_ENUM(NSInteger, SCLAlertViewStyle)
     Notice,
     Warning,
     Info,
-    Edit
+    Edit,
+    Custom
 };
 
 /** Alert hide animation styles
@@ -146,6 +147,18 @@ typedef NS_ENUM(NSInteger, SCLAlertViewAnimation)
  * TODO
  */
 - (void)showTitle:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle style:(SCLAlertViewStyle)style closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration;
+
+/** Shows a custom SCLAlertView without using a predefined type, allowing for a custom image and color to be specified.
+ *
+ * @param vc The view controller the alert view will be displayed in.
+ * @param image A UIImage object to be used as the icon for the alert view.
+ * @param color A UIColor object to be used to tint the background of the icon circle and the buttons.
+ * @param title The title text of the alert view.
+ * @param subTitle The subtitle text of the alert view.
+ * @param closeButtonTitle The text for the close button.
+ * @param duration The amount of time the alert will remain on screen until it is automatically dismissed. If automatic dismissal is not desired, set to 0.
+ */
+- (void)showCustom:(UIViewController *)vc image:(UIImage *)image color:(UIColor *)color title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration;
 
 
 @end

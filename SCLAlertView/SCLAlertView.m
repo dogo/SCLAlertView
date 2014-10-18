@@ -17,7 +17,7 @@ colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
-@interface SCLAlertView ()
+@interface SCLAlertView ()  <UITextFieldDelegate>
 
 @property (nonatomic, strong) NSMutableArray *inputs;
 @property (nonatomic, strong) NSMutableArray *buttons;
@@ -241,6 +241,8 @@ NSTimer *durationTimer;
     
     // Add text field
     UITextField *txt = [[UITextField alloc] init];
+    txt.delegate = self;
+    txt.returnKeyType = UIReturnKeyDone;
     txt.borderStyle = UITextBorderStyleRoundedRect;
     txt.font = [UIFont fontWithName:kDefaultFont size:14.0f];
     txt.autocapitalizationType = UITextAutocapitalizationTypeWords;
@@ -256,7 +258,32 @@ NSTimer *durationTimer;
     [_contentView addSubview:txt];
     [_inputs addObject:txt];
     
+    // If there are other fields in the inputs array, get the previous field and set the
+    // return key type on that to next.
+    if (_inputs.count > 1) {
+        NSUInteger indexOfCurrentField = [_inputs indexOfObject:txt];
+        UITextField *priorField = _inputs[indexOfCurrentField - 1];
+        priorField.returnKeyType = UIReturnKeyNext;
+    }
+    
     return txt;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    // If this is the last object in the inputs array, resign first responder
+    // as the form is at the end.
+    if (textField == [_inputs lastObject]) {
+        [textField resignFirstResponder];
+    }
+    
+    // Otherwise find the next field and make it first responder.
+    else {
+        NSUInteger indexOfCurrentField = [_inputs indexOfObject:textField];
+        UITextField *nextField = _inputs[indexOfCurrentField + 1];
+        [nextField becomeFirstResponder];
+    }
+    
+    return NO;
 }
 
 #pragma mark - Buttons
@@ -321,7 +348,7 @@ NSTimer *durationTimer;
 
 #pragma mark - Show Alert
 
--(SCLAlertViewResponder *)showTitle:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle duration:(NSTimeInterval)duration completeText:(NSString *)completeText style:(SCLAlertViewStyle)style
+-(SCLAlertViewResponder *)showTitle:(UIViewController *)vc image:(UIImage *)image color:(UIColor *)color title:(NSString *)title subTitle:(NSString *)subTitle duration:(NSTimeInterval)duration completeText:(NSString *)completeText style:(SCLAlertViewStyle)style
 {
     self.view.alpha = 0;
     self.rootViewController = vc;
@@ -367,6 +394,12 @@ NSTimer *durationTimer;
         case Edit:
             viewColor = UIColorFromRGB(0xA429FF);
             iconImage = SCLAlertViewStyleKit.imageOfEdit;
+            break;
+            
+        case Custom:
+            viewColor = color;
+            iconImage = image;
+            kCircleIconHeight = kCircleIconHeight * 2;
             break;
     }
 
@@ -474,37 +507,42 @@ NSTimer *durationTimer;
 
 - (void)showSuccess:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
 {
-    [self showTitle:vc title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Success];
+    [self showTitle:vc image:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Success];
 }
 
 - (void)showError:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
 {
-    [self showTitle:vc title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Error];
+    [self showTitle:vc image:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Error];
 }
 
 - (void)showNotice:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
 {
-    [self showTitle:vc title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Notice];
+    [self showTitle:vc image:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Notice];
 }
 
 - (void)showWarning:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
 {
-    [self showTitle:vc title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Warning];
+    [self showTitle:vc image:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Warning];
 }
 
 - (void)showInfo:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
 {
-    [self showTitle:vc title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Info];
+    [self showTitle:vc image:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Info];
 }
 
 - (void)showEdit:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
 {
-    [self showTitle:vc title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Edit];
+    [self showTitle:vc image:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Edit];
 }
 
 - (void)showTitle:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle style:(SCLAlertViewStyle)style closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
 {
-    [self showTitle:vc title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:style];
+    [self showTitle:vc image:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:style];
+}
+
+- (void)showCustom:(UIViewController *)vc image:(UIImage *)image color:(UIColor *)color title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
+{
+    [self showTitle:vc image:image color:color title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Custom];
 }
 
 #pragma mark - Hide Alert
