@@ -17,7 +17,7 @@ colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
-@interface SCLAlertView ()
+@interface SCLAlertView ()  <UITextFieldDelegate>
 
 @property (nonatomic, strong) NSMutableArray *inputs;
 @property (nonatomic, strong) NSMutableArray *buttons;
@@ -240,6 +240,8 @@ NSTimer *durationTimer;
     
     // Add text field
     UITextField *txt = [[UITextField alloc] init];
+    txt.delegate = self;
+    txt.returnKeyType = UIReturnKeyDone;
     txt.borderStyle = UITextBorderStyleRoundedRect;
     txt.font = [UIFont fontWithName:kDefaultFont size:14.0f];
     txt.autocapitalizationType = UITextAutocapitalizationTypeWords;
@@ -255,7 +257,32 @@ NSTimer *durationTimer;
     [_contentView addSubview:txt];
     [_inputs addObject:txt];
     
+    // If there are other fields in the inputs array, get the previous field and set the
+    // return key type on that to next.
+    if (_inputs.count > 1) {
+        NSUInteger indexOfCurrentField = [_inputs indexOfObject:txt];
+        UITextField *priorField = _inputs[indexOfCurrentField - 1];
+        priorField.returnKeyType = UIReturnKeyNext;
+    }
+    
     return txt;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    // If this is the last object in the inputs array, resign first responder
+    // as the form is at the end.
+    if (textField == [_inputs lastObject]) {
+        [textField resignFirstResponder];
+    }
+    
+    // Otherwise find the next field and make it first responder.
+    else {
+        NSUInteger indexOfCurrentField = [_inputs indexOfObject:textField];
+        UITextField *nextField = _inputs[indexOfCurrentField + 1];
+        [nextField becomeFirstResponder];
+    }
+    
+    return NO;
 }
 
 #pragma mark - Buttons
