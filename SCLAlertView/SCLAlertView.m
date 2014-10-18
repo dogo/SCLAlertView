@@ -257,6 +257,14 @@ NSTimer *durationTimer;
     [_contentView addSubview:txt];
     [_inputs addObject:txt];
     
+    // If there are other fields in the inputs array, get the previous field and set the
+    // return key type on that to next.
+    if (_inputs.count > 1) {
+        NSUInteger indexOfCurrentField = [_inputs indexOfObject:txt];
+        UITextField *priorField = _inputs[indexOfCurrentField - 1];
+        priorField.returnKeyType = UIReturnKeyNext;
+    }
+    
     return txt;
 }
 
