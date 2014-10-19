@@ -11,6 +11,7 @@
 @interface SCLButton : UIButton
 
 typedef void (^ActionBlock)(void);
+typedef BOOL (^ValidationBlock)(void);
 
 // Action Types
 typedef NS_ENUM(NSInteger, SCLActionType)
@@ -24,6 +25,7 @@ typedef NS_ENUM(NSInteger, SCLActionType)
 @property SCLActionType actionType;
 
 @property (nonatomic, copy) ActionBlock actionBlock;
+@property (nonatomic, copy) ValidationBlock validationBlock;
 
 @property id target;
 
