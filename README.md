@@ -62,6 +62,15 @@ alert.attributedFormatBlock = ^NSAttributedString* (NSString *value)
     NSLog(@"Second button tapped");
 }];
 
+//Using Blocks With Validation
+[alert addButton:@"Validate" validationBlock:^BOOL {
+	BOOL passedValidation = ....
+	return passedValidation;
+        
+} actionBlock:^{
+	// handle successful validation here
+}];
+
 //Dismiss on tap outside (Default is NO)
 alert.shouldDismissOnTapOutside = YES;
 
