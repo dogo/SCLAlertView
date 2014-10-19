@@ -138,9 +138,9 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
 
 - (IBAction)showCustom:(id)sender {
     SCLAlertView *alert = [[SCLAlertView alloc] init];
-
+    
     UIColor *color = [UIColor colorWithRed:65.0/255.0 green:64.0/255.0 blue:144.0/255.0 alpha:1.0];
-    [alert showCustom:self image:[UIImage imageNamed:@"git"] color:color title:@"Custom" subTitle:@"Add a custom icon and color for your own type of alert!" closeButtonTitle:@"Cancel" duration:0.0f];
+    [alert showCustom:self image:[UIImage imageNamed:@"git"] color:color title:@"Custom" subTitle:@"Add a custom icon and color for your own type of alert!" closeButtonTitle:@"OK" duration:0.0f];
 }
 
 - (IBAction)showValidation:(id)sender {
