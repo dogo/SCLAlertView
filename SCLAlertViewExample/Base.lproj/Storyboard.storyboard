@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Ohq-jH-G4R">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
@@ -96,6 +95,15 @@
                                 </state>
                                 <connections>
                                     <action selector="showCustom:" destination="Ohq-jH-G4R" eventType="touchUpInside" id="m4v-4B-1YQ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XBG-LD-1eZ">
+                                <rect key="frame" x="88" y="466" width="143" height="30"/>
+                                <state key="normal" title="Show Validation">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showValidation:" destination="Ohq-jH-G4R" eventType="touchUpInside" id="1DV-xd-ugz"/>
                                 </connections>
                             </button>
                         </subviews>

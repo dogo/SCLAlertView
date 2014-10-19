@@ -355,6 +355,13 @@ NSTimer *durationTimer;
     return btn;
 }
 
+- (SCLButton *)addButton:(NSString *)title validationBlock:(ValidationBlock)validationBlock actionBlock:(ActionBlock)action
+{
+    SCLButton *btn = [self addButton:title actionBlock:action];
+    btn.validationBlock = validationBlock;
+    
+    return btn;
+}
 
 - (SCLButton *)addButton:(NSString *)title target:(id)target selector:(SEL)selector
 {
@@ -369,6 +376,11 @@ NSTimer *durationTimer;
 
 - (void)buttonTapped:(SCLButton *)btn
 {
+    // If the button has a validation block, and the validation block returns NO, validation
+    // failed, so we should bail.
+    if (btn.validationBlock && btn.validationBlock() == NO) {
+        return;
+    }
     if (btn.actionType == Block)
     {
         if (btn.actionBlock)
