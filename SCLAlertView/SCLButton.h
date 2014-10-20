@@ -26,6 +26,7 @@ typedef NS_ENUM(NSInteger, SCLActionType)
 
 @property (nonatomic, copy) ActionBlock actionBlock;
 @property (nonatomic, copy) ValidationBlock validationBlock;
+@property (nonatomic, strong) UIColor *defaultBackgroundColor;
 
 @property id target;
 

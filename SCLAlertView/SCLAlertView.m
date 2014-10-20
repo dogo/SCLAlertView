@@ -520,7 +520,7 @@ NSTimer *durationTimer;
     
     for (SCLButton *btn in _buttons)
     {
-        btn.backgroundColor = viewColor;
+        btn.defaultBackgroundColor = viewColor;
         
         if (style == Warning)
         {
