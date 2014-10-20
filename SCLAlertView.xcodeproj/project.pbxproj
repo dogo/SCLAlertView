@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		274E5C1C19F1ECFE009D8B4A /* git.png in Resources */ = {isa = PBXBuildFile; fileRef = 274E5C1B19F1ECFE009D8B4A /* git.png */; };
 		DD4BA9BE19DED822008D73EB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD4BA9BD19DED822008D73EB /* AVFoundation.framework */; };
 		DD4BA9C119DED8EF008D73EB /* right_answer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DD4BA9C019DED8EF008D73EB /* right_answer.mp3 */; };
 		DD7282B919D6087C00077F54 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD7282B719D6087C00077F54 /* Storyboard.storyboard */; };
@@ -33,7 +32,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		274E5C1B19F1ECFE009D8B4A /* git.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = git.png; sourceTree = "<group>"; };
 		DD0D295B19D902DA00881F53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = SCLAlertViewExample/Info.plist; sourceTree = SOURCE_ROOT; };
 		DD4BA9BD19DED822008D73EB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		DD4BA9C019DED8EF008D73EB /* right_answer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = right_answer.mp3; sourceTree = "<group>"; };
@@ -128,7 +126,6 @@
 				DDB15FD319D5B8DB00173158 /* main.m */,
 				DD4BA9C219DEDD8E008D73EB /* SCLAlertView-Objective-C-prefix.pch */,
 				DD0D295B19D902DA00881F53 /* Info.plist */,
-				274E5C1B19F1ECFE009D8B4A /* git.png */,
 				DD4BA9BF19DED8EF008D73EB /* Sounds */,
 			);
 			name = "Supporting Files";
@@ -248,7 +245,6 @@
 			files = (
 				DD4BA9C119DED8EF008D73EB /* right_answer.mp3 in Resources */,
 				DDB15FD019D5B8BF00173158 /* Images.xcassets in Resources */,
-				274E5C1C19F1ECFE009D8B4A /* git.png in Resources */,
 				DD7282B919D6087C00077F54 /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -136,14 +136,16 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     [alert showNotice:self title:kNoticeTitle subTitle:@"You've just displayed this awesome Pop Up View with 5 seconds duration" closeButtonTitle:nil duration:5.0f];
 }
 
-- (IBAction)showCustom:(id)sender {
+- (IBAction)showCustom:(id)sender
+{
     SCLAlertView *alert = [[SCLAlertView alloc] init];
     
     UIColor *color = [UIColor colorWithRed:65.0/255.0 green:64.0/255.0 blue:144.0/255.0 alpha:1.0];
     [alert showCustom:self image:[UIImage imageNamed:@"git"] color:color title:@"Custom" subTitle:@"Add a custom icon and color for your own type of alert!" closeButtonTitle:@"OK" duration:0.0f];
 }
 
-- (IBAction)showValidation:(id)sender {
+- (IBAction)showValidation:(id)sender
+{
     SCLAlertView *alert = [[SCLAlertView alloc] init];
     
     UITextField *evenField = [alert addTextField:@"Enter an even number"];
@@ -153,13 +155,15 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     oddField.keyboardType = UIKeyboardTypeNumberPad;
     
     [alert addButton:@"Test Validation" validationBlock:^BOOL{
-        if (evenField.text.length == 0) {
+        if (evenField.text.length == 0)
+        {
             [[[UIAlertView alloc] initWithTitle:@"Whoops!" message:@"You forgot to add an even number." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
             [evenField becomeFirstResponder];
             return NO;
         }
         
-        if (oddField.text.length == 0) {
+        if (oddField.text.length == 0)
+        {
             [[[UIAlertView alloc] initWithTitle:@"Whoops!" message:@"You forgot to add an odd number." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
             [oddField becomeFirstResponder];
             return NO;
@@ -168,7 +172,8 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
         NSInteger evenFieldEntry = [evenField.text integerValue];
         BOOL evenFieldPassedValidation = evenFieldEntry % 2 == 0;
         
-        if (!evenFieldPassedValidation) {
+        if (!evenFieldPassedValidation)
+        {
             [[[UIAlertView alloc] initWithTitle:@"Whoops!" message:@"That is not an even number." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
             [evenField becomeFirstResponder];
             return NO;
@@ -177,14 +182,13 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
         NSInteger oddFieldEntry = [oddField.text integerValue];
         BOOL oddFieldPassedValidation = oddFieldEntry % 2 == 1;
         
-        if (!oddFieldPassedValidation) {
+        if (!oddFieldPassedValidation)
+        {
             [[[UIAlertView alloc] initWithTitle:@"Whoops!" message:@"That is not an odd number." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
             [oddField becomeFirstResponder];
             return NO;
         }
-        
         return YES;
-        
     } actionBlock:^{
         [[[UIAlertView alloc] initWithTitle:@"Great Job!" message:@"Thanks for playing." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
     }];
