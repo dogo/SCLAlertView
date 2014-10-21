@@ -540,7 +540,7 @@ NSTimer *durationTimer;
     }
 
     // Animate in the alert view
-    [UIView animateWithDuration:0.2f animations:^{
+    [UIView animateWithDuration:0.3f animations:^{
         self.shadowView.alpha = kDefaultShadowOpacity;
         
         //New Frame
@@ -620,16 +620,39 @@ NSTimer *durationTimer;
         case FadeOut:
             [self fadeOut];
             break;
+            
+        case SlideOutToBottom:
+            [self slideOutToBottom];
+            break;
+            
+        case SlideOutToTop:
+            [self slideOutToTop];
+            break;
+            
+        case SlideOutToLeft:
+            [self slideOutToLeft];
+            break;
+            
+        case SlideOutToRight:
+            [self slideOutToRight];
+            break;
     }
 }
 
 #pragma mark - Animations
 
+- (void)NoAnimation
+{
+    [self.shadowView removeFromSuperview];
+    [self.view removeFromSuperview];
+    [self removeFromParentViewController];
+}
+
 - (void)fadeOut
 {
-    [UIView animateWithDuration:0.2f animations:^{
-         self.shadowView.alpha = 0.0f;
-         self.view.alpha = 0.0f;
+    [UIView animateWithDuration:0.3f animations:^{
+        self.shadowView.alpha = 0.0f;
+        self.view.alpha = 0.0f;
     } completion:^(BOOL completed) {
         [self.shadowView removeFromSuperview];
         [self.view removeFromSuperview];
@@ -637,11 +660,48 @@ NSTimer *durationTimer;
     }];
 }
 
-- (void)NoAnimation
+- (void)slideOutToBottom
 {
-    [self.shadowView removeFromSuperview];
-    [self.view removeFromSuperview];
-    [self removeFromParentViewController];
+    [UIView animateWithDuration:0.3f animations:^{
+        CGRect frame = self.view.frame;
+        frame.origin.y += self.shadowView.frame.size.height;
+        self.view.frame = frame;
+    } completion:^(BOOL completed) {
+        [self fadeOut];
+    }];
+}
+
+- (void)slideOutToTop
+{
+    [UIView animateWithDuration:0.3f animations:^{
+        CGRect frame = self.view.frame;
+        frame.origin.y -= self.shadowView.frame.size.height;
+        self.view.frame = frame;
+    } completion:^(BOOL completed) {
+        [self fadeOut];
+    }];
+}
+
+- (void)slideOutToLeft
+{
+    [UIView animateWithDuration:0.3f animations:^{
+        CGRect frame = self.view.frame;
+        frame.origin.x -= self.shadowView.frame.size.width;
+        self.view.frame = frame;
+    } completion:^(BOOL completed) {
+        [self fadeOut];
+    }];
+}
+
+- (void)slideOutToRight
+{
+    [UIView animateWithDuration:0.3f animations:^{
+        CGRect frame = self.view.frame;
+        frame.origin.x += self.shadowView.frame.size.width;
+        self.view.frame = frame;
+    } completion:^(BOOL completed) {
+        [self fadeOut];
+    }];
 }
 
 @end

@@ -35,7 +35,11 @@ typedef NS_ENUM(NSInteger, SCLAlertViewStyle)
 typedef NS_ENUM(NSInteger, SCLAlertViewAnimation)
 {
     NoAnimation,
-    FadeOut
+    FadeOut,
+    SlideOutToBottom,
+    SlideOutToTop,
+    SlideOutToLeft,
+    SlideOutToRight
 };
 
 /** Title Label
