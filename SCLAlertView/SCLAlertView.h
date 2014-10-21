@@ -10,6 +10,7 @@
 #import "SCLButton.h"
 
 typedef NSAttributedString* (^SCLAttributedFormatBlock)(NSString *value);
+typedef void (^DismissBlock)(void);
 
 @interface SCLAlertView : UIViewController
 
@@ -79,6 +80,12 @@ typedef NS_ENUM(NSInteger, SCLAlertViewAnimation)
  * (Default: FadeOut)
  */
 @property (nonatomic) SCLAlertViewAnimation hideAnimationType;
+
+/** Warns that alerts is gone
+ *
+ * Warns that alerts is gone using block
+ */
+- (void)alertIsDismissed:(DismissBlock)dismissBlock;
 
 /** Hide SCLAlertView
  *

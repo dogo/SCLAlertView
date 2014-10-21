@@ -32,6 +32,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 @property (nonatomic, strong) UIView *circleViewBackground;
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
 @property (nonatomic, strong) UITapGestureRecognizer *gestureRecognizer;
+@property (nonatomic, copy) DismissBlock dismissBlock;
 
 @end
 
@@ -607,6 +608,11 @@ NSTimer *durationTimer;
     return (self.shadowView.alpha && self.view.alpha);
 }
 
+- (void)alertIsDismissed:(DismissBlock)dismissBlock
+{
+    self.dismissBlock = dismissBlock;
+}
+
 #pragma mark - Hide Alert
 
 - (void)hideView
@@ -636,6 +642,10 @@ NSTimer *durationTimer;
         case SlideOutToRight:
             [self slideOutToRight];
             break;
+    }
+    if (self.dismissBlock)
+    {
+        self.dismissBlock();
     }
 }
 
