@@ -74,6 +74,9 @@ alert.attributedFormatBlock = ^NSAttributedString* (NSString *value)
 //Dismiss on tap outside (Default is NO)
 alert.shouldDismissOnTapOutside = YES;
 
+//Hide animation type (Default is FadeOut)
+alert.hideAnimationType = SlideOutToBottom;
+
 //Using sound
 alert.soundURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/right_answer.mp3", [[NSBundle mainBundle] resourcePath]]];
 
@@ -102,6 +105,18 @@ typedef NS_ENUM(NSInteger, SCLAlertViewStyle)
     Info,
     Edit,
     Custom
+};
+```
+####Alert View Styles
+```Objective-C
+typedef NS_ENUM(NSInteger, SCLAlertViewAnimation)
+{
+    NoAnimation,
+    FadeOut,
+    SlideOutToBottom,
+    SlideOutToTop,
+    SlideOutToLeft,
+    SlideOutToRight
 };
 ```
 
