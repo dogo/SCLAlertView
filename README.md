@@ -108,6 +108,15 @@ alert.hideAnimationType = SlideOutToBottom;
 alert.soundURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/right_answer.mp3", [[NSBundle mainBundle] resourcePath]]];
 ```
 
+###Helpers
+```
+```Objective-C
+//Receiving information that SCLAlertView is dismissed
+[alert alertIsDismissed:^{
+    NSLog(@"SCLAlertView dismissed!");
+}];
+```
+
 ####Alert View Styles
 ```Objective-C
 typedef NS_ENUM(NSInteger, SCLAlertViewStyle)

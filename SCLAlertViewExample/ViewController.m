@@ -78,6 +78,10 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     
     alert.shouldDismissOnTapOutside = YES;
     
+    [alert alertIsDismissed:^{
+        NSLog(@"SCLAlertView dismissed!");
+    }];
+    
     [alert showInfo:self title:kInfoTitle subTitle:kSubtitle closeButtonTitle:kButtonTitle duration:0.0f];
 }
 
