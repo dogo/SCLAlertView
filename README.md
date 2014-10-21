@@ -7,7 +7,7 @@ Animated Alert View written in Swift but ported to Objective-C, which can be use
 
 ![BackgroundImage](https://raw.githubusercontent.com/dogo/SCLAlertView/master/ScreenShots/ScreenShot.png)_
 ![BackgroundImage](https://raw.githubusercontent.com/dogo/SCLAlertView/master/ScreenShots/ScreenShot2.png) 
-![BackgroundImage](ScreenShots/ScreenShot3.png) 
+![BackgroundImage](https://raw.githubusercontent.com/dogo/SCLAlertView/master/ScreenShots/ScreenShot3.png) 
 
 ###Easy to use
 ```Objective-C
@@ -23,8 +23,10 @@ SCLAlertView *alert = [[SCLAlertView alloc] init];
 [alert showInfo:self title:@"Hello Info" subTitle:@"This is a more descriptive info text." closeButtonTitle:@"Done" duration:0.0f]; // Info
 [alert showEdit:self title:@"Hello Edit" subTitle:@"This is a more descriptive info text with a edit textbox" closeButtonTitle:@"Done" duration:0.0f]; // Edit
 [alert showCustom:self image:[UIImage imageNamed:@"git"] color:color title:@"Custom" subTitle:@"Add a custom icon and color for your own type of alert!" closeButtonTitle:@"OK" duration:0.0f]; // Custom
+```
 
-// Advanced
+###Advanced
+```Objective-C
 SCLAlertView *alert = [[SCLAlertView alloc] init];
 
 [alert showTitle:self // Parent view controller
@@ -33,26 +35,11 @@ SCLAlertView *alert = [[SCLAlertView alloc] init];
     style:Success // Styles - see below.
     completeText:@"Done" // Optional button value
     duration:2.0f]; // Duration to show before closing automatically
+```
 
-// Add buttons
+###Add buttons
+```Objective-C
 SCLAlertView *alert = [[SCLAlertView alloc] init];
-
-// Add Text Attributes
-alert.attributedFormatBlock = ^NSAttributedString* (NSString *value)
-{
-    NSMutableAttributedString *subTitle = [[NSMutableAttributedString alloc]initWithString:value];
-    
-    NSRange redRange = [value rangeOfString:@"Attributed" options:NSCaseInsensitiveSearch];
-    [subTitle addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:redRange];
-    
-    NSRange greenRange = [value rangeOfString:@"successfully" options:NSCaseInsensitiveSearch];
-    [subTitle addAttribute:NSForegroundColorAttributeName value:[UIColor greenColor] range:greenRange];
-    
-    NSRange underline = [value rangeOfString:@"completed" options:NSCaseInsensitiveSearch];
-    [subTitle addAttributes:@{NSUnderlineStyleAttributeName:@(NSUnderlineStyleSingle)} range:underline];
-    
-    return subTitle;
-};
 
 //Using Selector
 [alert addButton:@"First Button" target:self selector:@selector(firstButton)];
@@ -64,25 +51,40 @@ alert.attributedFormatBlock = ^NSAttributedString* (NSString *value)
 
 //Using Blocks With Validation
 [alert addButton:@"Validate" validationBlock:^BOOL {
-	BOOL passedValidation = ....
-	return passedValidation;
-        
+    BOOL passedValidation = ....
+    return passedValidation;
+
 } actionBlock:^{
-	// handle successful validation here
+    // handle successful validation here
 }];
 
-//Dismiss on tap outside (Default is NO)
-alert.shouldDismissOnTapOutside = YES;
-
-//Hide animation type (Default is FadeOut)
-alert.hideAnimationType = SlideOutToBottom;
-
-//Using sound
-alert.soundURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/right_answer.mp3", [[NSBundle mainBundle] resourcePath]]];
-
 [alert showSuccess:self title:@"Button View" subTitle:@"This alert view has buttons" closeButtonTitle:@"Done" duration:0.0f];
+```
 
-// Add a text field
+###Add Text Attributes
+```Objective-C
+SCLAlertView *alert = [[SCLAlertView alloc] init];
+
+alert.attributedFormatBlock = ^NSAttributedString* (NSString *value)
+{
+    NSMutableAttributedString *subTitle = [[NSMutableAttributedString alloc]initWithString:value];
+
+    NSRange redRange = [value rangeOfString:@"Attributed" options:NSCaseInsensitiveSearch];
+    [subTitle addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:redRange];
+
+    NSRange greenRange = [value rangeOfString:@"successfully" options:NSCaseInsensitiveSearch];
+    [subTitle addAttribute:NSForegroundColorAttributeName value:[UIColor greenColor] range:greenRange];
+
+    NSRange underline = [value rangeOfString:@"completed" options:NSCaseInsensitiveSearch];
+    [subTitle addAttributes:@{NSUnderlineStyleAttributeName:@(NSUnderlineStyleSingle)} range:underline];
+
+    return subTitle;
+};
+
+[alert showSuccess:self title:@"Button View" subTitle:@"Attributed string operation successfully completed." closeButtonTitle:@"Done" duration:0.0f];
+```
+###Add a text field
+```Objective-C
 SCLAlertView *alert = [[SCLAlertView alloc] init];
 
 UITextField *textField = [alert addTextField:@"Enter your name"];
@@ -92,6 +94,18 @@ UITextField *textField = [alert addTextField:@"Enter your name"];
 }];
 
 [alert showEdit:self title:@"Edit View" subTitle:@"This alert view shows a text box" closeButtonTitle:@"Done" duration:0.0f];
+```
+
+###SCLAlertView properties
+```Objective-C
+//Dismiss on tap outside (Default is NO)
+alert.shouldDismissOnTapOutside = YES;
+
+//Hide animation type (Default is FadeOut)
+alert.hideAnimationType = SlideOutToBottom;
+
+//Using sound
+alert.soundURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/right_answer.mp3", [[NSBundle mainBundle] resourcePath]]];
 ```
 
 ####Alert View Styles
@@ -107,7 +121,7 @@ typedef NS_ENUM(NSInteger, SCLAlertViewStyle)
     Custom
 };
 ```
-####Alert View Styles
+####Alert View hide animation styles
 ```Objective-C
 typedef NS_ENUM(NSInteger, SCLAlertViewAnimation)
 {
