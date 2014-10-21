@@ -11,9 +11,16 @@
 
 @interface SCLAlertViewResponder : NSObject
 
+/** TODO
+ *
+ * TODO
+ */
 - (instancetype)init:(SCLAlertView *)alertview;
 
-
+/** TODO
+ *
+ * TODO
+ */
 - (void)close;
 
 @end

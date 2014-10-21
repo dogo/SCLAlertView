@@ -21,15 +21,40 @@ typedef NS_ENUM(NSInteger, SCLActionType)
     Block
 };
 
-
+/** TODO
+ *
+ * TODO
+ */
 @property SCLActionType actionType;
 
+/** TODO
+ *
+ * TODO
+ */
 @property (nonatomic, copy) ActionBlock actionBlock;
+
+/** TODO
+ *
+ * TODO
+ */
 @property (nonatomic, copy) ValidationBlock validationBlock;
+
+/** TODO
+ *
+ * TODO
+ */
 @property (nonatomic, strong) UIColor *defaultBackgroundColor;
 
+/** TODO
+ *
+ * TODO
+ */
 @property id target;
 
+/** TODO
+ *
+ * TODO
+ */
 @property SEL selector;
 
 @end
