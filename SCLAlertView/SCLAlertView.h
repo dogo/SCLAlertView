@@ -40,13 +40,13 @@ typedef NS_ENUM(NSInteger, SCLAlertViewAnimation)
 
 /** Title Label
  *
- * TODO
+ * The text displayed as title.
  */
 @property UILabel *labelTitle;
 
 /** Text view with the body message
  *
- * TODO
+ * Holds the textview.
  */
 @property UITextView *viewText;
 
@@ -84,13 +84,14 @@ typedef NS_ENUM(NSInteger, SCLAlertViewAnimation)
 
 /** Add Text Field
  *
- * TODO
+ * @param title The text displayed on the textfield.
  */
 - (UITextField *)addTextField:(NSString *)title;
 
-/** Add Button
+/** Add a Button with a title and a block to handle when the button is pressed.
  *
- * TODO
+ * @param title The text displayed on the button.
+ * @param action A block of code to be executed when the button is pressed.
  */
 - (SCLButton *)addButton:(NSString *)title actionBlock:(ActionBlock)action;
 
@@ -98,55 +99,86 @@ typedef NS_ENUM(NSInteger, SCLAlertViewAnimation)
  *
  * @param title The text displayed on the button.
  * @param validationBlock A block of code that will allow you to validate fields or do any other logic you may want to do to determine if the alert should be dismissed or not. Inside of this block, return a BOOL indicating whether or not the action block should be called and the alert dismissed.
- * @param actionBlock A block of code to be executed when the button is pressed and validation passes.
+ * @param action A block of code to be executed when the button is pressed and validation passes.
  */
 - (SCLButton *)addButton:(NSString *)title validationBlock:(ValidationBlock)validationBlock actionBlock:(ActionBlock)action;
 
-/** Add Button
+/** Add a Button with a title, a target and a selector to handle when the button is pressed.
  *
- * TODO
+ * @param title The text displayed on the button.
+ * @param target Add target for particular event.
+ * @param selector A method to be executed when the button is pressed.
  */
 - (SCLButton *)addButton:(NSString *)title target:(id)target selector:(SEL)selector;
 
 /** Show Success SCLAlertView
  *
- * TODO
+ * @param vc The view controller the alert view will be displayed in.
+ * @param title The text displayed on the button.
+ * @param subTitle The subtitle text of the alert view.
+ * @param closeButtonTitle The text for the close button.
+ * @param duration The amount of time the alert will remain on screen until it is automatically dismissed. If automatic dismissal is not desired, set to 0.
  */
 - (void)showSuccess:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration;
 
 /** Show Error SCLAlertView
  *
- * TODO
+ * @param vc The view controller the alert view will be displayed in.
+ * @param title The text displayed on the button.
+ * @param subTitle The subtitle text of the alert view.
+ * @param closeButtonTitle The text for the close button.
+ * @param duration The amount of time the alert will remain on screen until it is automatically dismissed. If automatic dismissal is not desired, set to 0.
  */
 - (void)showError:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration;
 
 /** Show Notice SCLAlertView
  *
- * TODO
+ * @param vc The view controller the alert view will be displayed in.
+ * @param title The text displayed on the button.
+ * @param subTitle The subtitle text of the alert view.
+ * @param closeButtonTitle The text for the close button.
+ * @param duration The amount of time the alert will remain on screen until it is automatically dismissed. If automatic dismissal is not desired, set to 0.
  */
 - (void)showNotice:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration;
 
 /** Show Warning SCLAlertView
  *
- * TODO
+ * @param vc The view controller the alert view will be displayed in.
+ * @param title The text displayed on the button.
+ * @param subTitle The subtitle text of the alert view.
+ * @param closeButtonTitle The text for the close button.
+ * @param duration The amount of time the alert will remain on screen until it is automatically dismissed. If automatic dismissal is not desired, set to 0.
  */
 - (void)showWarning:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration;
 
 /** Show Info SCLAlertView
  *
- * TODO
+ * @param vc The view controller the alert view will be displayed in.
+ * @param title The text displayed on the button.
+ * @param subTitle The subtitle text of the alert view.
+ * @param closeButtonTitle The text for the close button.
+ * @param duration The amount of time the alert will remain on screen until it is automatically dismissed. If automatic dismissal is not desired, set to 0.
  */
 - (void)showInfo:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration;
 
 /** Show Edit SCLAlertView
  *
- * TODO
+ * @param vc The view controller the alert view will be displayed in.
+ * @param title The text displayed on the button.
+ * @param subTitle The subtitle text of the alert view.
+ * @param closeButtonTitle The text for the close button.
+ * @param duration The amount of time the alert will remain on screen until it is automatically dismissed. If automatic dismissal is not desired, set to 0.
  */
 - (void)showEdit:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration;
 
-/** Show Title SCLAlertView
+/** Show Title SCLAlertView using a predefined type
  *
- * TODO
+ * @param vc The view controller the alert view will be displayed in.
+ * @param title The text displayed on the button.
+ * @param subTitle The subtitle text of the alert view.
+ * @param style One of predefined SCLAlertView styles.
+ * @param closeButtonTitle The text for the close button.
+ * @param duration The amount of time the alert will remain on screen until it is automatically dismissed. If automatic dismissal is not desired, set to 0.
  */
 - (void)showTitle:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle style:(SCLAlertViewStyle)style closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration;
 
