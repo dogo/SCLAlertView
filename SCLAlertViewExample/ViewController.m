@@ -114,6 +114,16 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
         NSLog(@"Text value: %@", textField.text);
     }];
     
+    alert.completeButtonFormatBlock = ^NSDictionary* (void)
+    {
+        NSMutableDictionary *buttonConfig = [[NSMutableDictionary alloc] init];
+        
+        [buttonConfig setObject:[UIColor greenColor] forKey:@"backgroundColor"];
+        [buttonConfig setObject:[UIColor purpleColor] forKey:@"textColor"];
+        
+        return buttonConfig;
+    };
+    
     alert.attributedFormatBlock = ^NSAttributedString* (NSString *value)
     {
         NSMutableAttributedString *subTitle = [[NSMutableAttributedString alloc]initWithString:value];

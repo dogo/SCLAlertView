@@ -74,6 +74,13 @@ typedef NS_ENUM(NSInteger, SCLAlertViewAnimation)
  */
 @property (nonatomic, copy) SCLAttributedFormatBlock attributedFormatBlock;
 
+/** Set button format block.
+ *
+ * Holds the button format block. 
+ * Support keys : backgroundColor, textColor
+ */
+@property (nonatomic, copy) CompleteButtonFormatBlock completeButtonFormatBlock;
+
 /** Hide animation type
  *
  * Holds the hide animation type.

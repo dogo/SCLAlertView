@@ -341,6 +341,12 @@ NSTimer *durationTimer;
 - (SCLButton *)addDoneButtonWithTitle:(NSString *)title
 {
     SCLButton *btn = [self addButton:title];
+    
+    if (_completeButtonFormatBlock != nil)
+    {
+        btn.completeButtonFormatBlock = _completeButtonFormatBlock;
+    }
+    
     [btn addTarget:self action:@selector(hideView) forControlEvents:UIControlEventTouchUpInside];
     
     return btn;
@@ -521,6 +527,21 @@ NSTimer *durationTimer;
     
     for (SCLButton *btn in _buttons)
     {
+        if (btn.completeButtonFormatBlock != nil)
+        {
+            NSDictionary *buttonConfig = btn.completeButtonFormatBlock();
+    
+            if ([buttonConfig objectForKey:@"backgroundColor"])
+            {
+                viewColor = [buttonConfig objectForKey:@"backgroundColor"];
+                [btn setBackgroundColor:viewColor];
+            }
+            if ([buttonConfig objectForKey:@"textColor"])
+            {
+                [btn setTitleColor:[buttonConfig objectForKey:@"textColor"] forState:UIControlStateNormal];
+            }
+        }
+        
         btn.defaultBackgroundColor = viewColor;
         
         if (style == Warning)
