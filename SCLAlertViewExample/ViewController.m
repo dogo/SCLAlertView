@@ -119,7 +119,7 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
         NSMutableDictionary *buttonConfig = [[NSMutableDictionary alloc] init];
         
         [buttonConfig setObject:[UIColor greenColor] forKey:@"backgroundColor"];
-        [buttonConfig setObject:[UIColor purpleColor] forKey:@"textColor"];
+        [buttonConfig setObject:[UIColor blackColor] forKey:@"textColor"];
         
         return buttonConfig;
     };

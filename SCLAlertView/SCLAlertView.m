@@ -485,15 +485,30 @@ NSTimer *durationTimer;
         }
         
         // Adjust text view size, if necessary
-        NSString *str = subTitle;
         CGSize sz = CGSizeMake(kWindowWidth - 24.0f, 90.0f);
         NSDictionary *attr = @{NSFontAttributeName:self.viewText.font};
-        CGRect r = [str boundingRectWithSize:sz options:NSStringDrawingUsesLineFragmentOrigin attributes:attr context:nil];
-        CGFloat ht = ceil(r.size.height) + 10;
-        if (ht < kTextHeight)
+        
+        if([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
         {
-            kWindowHeight -= (kTextHeight - ht);
-            kTextHeight = ht;
+            NSString *str = subTitle;
+            CGRect r = [str boundingRectWithSize:sz options:NSStringDrawingUsesLineFragmentOrigin attributes:attr context:nil];
+            CGFloat ht = ceil(r.size.height) + 10;
+            if (ht < kTextHeight)
+            {
+                kWindowHeight -= (kTextHeight - ht);
+                kTextHeight = ht;
+            }
+        }
+        else
+        {
+            NSAttributedString *str =[[NSAttributedString alloc] initWithString:subTitle];
+            CGRect r = [str boundingRectWithSize:sz options:NSStringDrawingUsesLineFragmentOrigin context:nil];
+            CGFloat ht = ceil(r.size.height) + 10;
+            if (ht < kTextHeight)
+            {
+                kWindowHeight -= (kTextHeight - ht);
+                kTextHeight = ht;
+            }
         }
     }
     
