@@ -93,7 +93,7 @@ NSTimer *durationTimer;
         _buttons = [[NSMutableArray alloc] init];
         _inputs = [[NSMutableArray alloc] init];
         
-		// Add Subvies
+        // Add Subviews
         [self.view addSubview:_contentView];
         [self.view addSubview:_circleViewBackground];
         [self.view addSubview:_circleView];
