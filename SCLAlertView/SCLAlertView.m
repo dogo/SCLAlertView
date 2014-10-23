@@ -33,6 +33,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
 @property (nonatomic, strong) UITapGestureRecognizer *gestureRecognizer;
 @property (nonatomic, copy) DismissBlock dismissBlock;
+@property (nonatomic) BOOL canAddObservers;
 
 @end
 
@@ -80,6 +81,7 @@ NSTimer *durationTimer;
         kWindowHeight = 178.0f;
         kTextHeight = 90.0f;
         _shouldDismissOnTapOutside = NO;
+        _canAddObservers = YES;
         _hideAnimationType = FadeOut;
         _showAnimationType = SlideInFromTop;
         
@@ -140,6 +142,21 @@ NSTimer *durationTimer;
 }
 
 - (void)dealloc
+{
+    [self removeObservers];
+}
+
+- (void)addObservers
+{
+    if(_canAddObservers)
+    {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+        _canAddObservers = NO;
+    }
+}
+
+- (void)removeObservers
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
@@ -250,6 +267,8 @@ NSTimer *durationTimer;
 
 - (UITextField *)addTextField:(NSString *)title
 {
+    [self addObservers];
+    
     // Update view height
     kWindowHeight += 40.0;
     
