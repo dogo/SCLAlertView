@@ -33,14 +33,26 @@ typedef NS_ENUM(NSInteger, SCLAlertViewStyle)
  *
  * Set SCLAlertView hide animation type.
  */
-typedef NS_ENUM(NSInteger, SCLAlertViewAnimation)
+typedef NS_ENUM(NSInteger, SCLAlertViewHideAnimation)
 {
-    NoAnimation,
     FadeOut,
     SlideOutToBottom,
     SlideOutToTop,
     SlideOutToLeft,
     SlideOutToRight
+};
+
+/** Alert show animation styles
+ *
+ * Set SCLAlertView show animation type.
+ */
+typedef NS_ENUM(NSInteger, SCLAlertViewShowAnimation)
+{
+    FadeIn,
+    SlideInFromBottom,
+    SlideInFromTop,
+    SlideInFromLeft,
+    SlideInFromRight
 };
 
 /** Title Label
@@ -86,7 +98,14 @@ typedef NS_ENUM(NSInteger, SCLAlertViewAnimation)
  * Holds the hide animation type.
  * (Default: FadeOut)
  */
-@property (nonatomic) SCLAlertViewAnimation hideAnimationType;
+@property (nonatomic) SCLAlertViewHideAnimation hideAnimationType;
+
+/** Show animation type
+ *
+ * Holds the show animation type.
+ * (Default: SlideInFromTop)
+ */
+@property (nonatomic) SCLAlertViewShowAnimation showAnimationType;
 
 /** Warns that alerts is gone
  *

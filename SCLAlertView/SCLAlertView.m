@@ -81,6 +81,7 @@ NSTimer *durationTimer;
         kTextHeight = 90.0f;
         _shouldDismissOnTapOutside = NO;
         _hideAnimationType = FadeOut;
+        _showAnimationType = SlideInFromTop;
         
         // Init
         _labelTitle = [[UILabel alloc] init];
@@ -571,22 +572,8 @@ NSTimer *durationTimer;
                                                          repeats:NO];
     }
 
-    // Animate in the alert view
-    [UIView animateWithDuration:0.3f animations:^{
-        self.shadowView.alpha = kDefaultShadowOpacity;
-        
-        //New Frame
-        CGRect frame = self.view.frame;
-        frame.origin.y = self.rootViewController.view.center.y - 100.0f;
-        self.view.frame = frame;
-    
-        self.view.alpha = 1.0f;
-    } completion:^(BOOL completed) {
-        [UIView animateWithDuration:0.2f animations:^{
-            self.view.center = self.rootViewController.view.center;
-        }];
-    }];
-
+    // Show the alert view
+    [self showView];
 
     // Chainable objects
     return [[SCLAlertViewResponder alloc] init:self];
@@ -644,16 +631,44 @@ NSTimer *durationTimer;
     self.dismissBlock = dismissBlock;
 }
 
+#pragma mark - Show Alert
+
+- (void)showView
+{
+    switch (_showAnimationType)
+    {
+        case FadeIn:
+            //[self fadeIn];
+            break;
+            
+        case SlideInFromBottom:
+            //[self slideInFromBottom];
+            break;
+            
+        case SlideInFromTop:
+            [self slideInFromTop];
+            break;
+            
+        case SlideInFromLeft:
+            //[self SlideInFromLeft];
+            break;
+            
+        case SlideInFromRight:
+            //[self SlideInFromRight];
+            break;
+            
+        default:
+            [self NoAnimation];
+            break;
+    }
+}
+
 #pragma mark - Hide Alert
 
 - (void)hideView
 {
     switch (_hideAnimationType)
     {
-        case NoAnimation:
-            [self NoAnimation];
-            break;
-            
         case FadeOut:
             [self fadeOut];
             break;
@@ -673,6 +688,10 @@ NSTimer *durationTimer;
         case SlideOutToRight:
             [self slideOutToRight];
             break;
+
+        default:
+            [self NoAnimation];
+            break;
     }
     if (self.dismissBlock)
     {
@@ -680,7 +699,7 @@ NSTimer *durationTimer;
     }
 }
 
-#pragma mark - Animations
+#pragma mark - Hide Animations
 
 - (void)NoAnimation
 {
@@ -742,6 +761,27 @@ NSTimer *durationTimer;
         self.view.frame = frame;
     } completion:^(BOOL completed) {
         [self fadeOut];
+    }];
+}
+
+#pragma mark - Show Animations
+
+- (void)slideInFromTop
+{
+    // Animate in the alert view
+    [UIView animateWithDuration:0.3f animations:^{
+        self.shadowView.alpha = kDefaultShadowOpacity;
+        
+        //New Frame
+        CGRect frame = self.view.frame;
+        frame.origin.y = self.rootViewController.view.center.y - 100.0f;
+        self.view.frame = frame;
+        
+        self.view.alpha = 1.0f;
+    } completion:^(BOOL completed) {
+        [UIView animateWithDuration:0.2f animations:^{
+            self.view.center = self.rootViewController.view.center;
+        }];
     }];
 }
 
