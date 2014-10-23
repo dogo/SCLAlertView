@@ -64,7 +64,7 @@ NSTimer *durationTimer;
                                  userInfo:nil];
 }
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
     if (self)
@@ -421,7 +421,7 @@ NSTimer *durationTimer;
     [self.rootViewController.view addSubview:self.shadowView];
     [self.rootViewController.view addSubview:self.view];
 
-    // Alert colour/icon
+    // Alert color/icon
     UIColor *viewColor;
     UIImage *iconImage;
 
