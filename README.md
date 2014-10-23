@@ -104,6 +104,9 @@ alert.shouldDismissOnTapOutside = YES;
 //Hide animation type (Default is FadeOut)
 alert.hideAnimationType = SlideOutToBottom;
 
+//Show animation type (Default is SlideInFromTop)
+alert.showAnimationType = SlideInFromLeft;
+
 //Using sound
 alert.soundURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/right_answer.mp3", [[NSBundle mainBundle] resourcePath]]];
 ```
@@ -132,14 +135,24 @@ typedef NS_ENUM(NSInteger, SCLAlertViewStyle)
 ```
 ####Alert View hide animation styles
 ```Objective-C
-typedef NS_ENUM(NSInteger, SCLAlertViewAnimation)
+typedef NS_ENUM(NSInteger, SCLAlertViewHideAnimation)
 {
-    NoAnimation,
     FadeOut,
     SlideOutToBottom,
     SlideOutToTop,
     SlideOutToLeft,
     SlideOutToRight
+};
+```
+####Alert View show animation styles
+```Objective-C
+typedef NS_ENUM(NSInteger, SCLAlertViewShowAnimation)
+{
+    FadeIn,
+    SlideInFromBottom,
+    SlideInFromTop,
+    SlideInFromLeft,
+    SlideInFromRight
 };
 ```
 
