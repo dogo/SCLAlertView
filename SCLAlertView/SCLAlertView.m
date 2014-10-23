@@ -544,21 +544,16 @@ NSTimer *durationTimer;
     {
         if (btn.completeButtonFormatBlock != nil)
         {
-            NSDictionary *buttonConfig = btn.completeButtonFormatBlock();
-    
-            if ([buttonConfig objectForKey:@"backgroundColor"])
-            {
-                viewColor = [buttonConfig objectForKey:@"backgroundColor"];
-                [btn setBackgroundColor:viewColor];
-            }
-            if ([buttonConfig objectForKey:@"textColor"])
-            {
-                [btn setTitleColor:[buttonConfig objectForKey:@"textColor"] forState:UIControlStateNormal];
-            }
+            [btn parseConfig:btn.completeButtonFormatBlock()];
         }
-        
-        btn.defaultBackgroundColor = viewColor;
-        
+        else if (btn.buttonFormatBlock != nil)
+        {
+            [btn parseConfig:btn.buttonFormatBlock()];
+        }
+        else
+        {
+            btn.defaultBackgroundColor = viewColor;
+        }
         if (style == Warning)
         {
             [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];

@@ -13,6 +13,7 @@
 typedef void (^ActionBlock)(void);
 typedef BOOL (^ValidationBlock)(void);
 typedef NSDictionary* (^CompleteButtonFormatBlock)(void);
+typedef NSDictionary* (^ButtonFormatBlock)(void);
 
 // Action Types
 typedef NS_ENUM(NSInteger, SCLActionType)
@@ -40,12 +41,19 @@ typedef NS_ENUM(NSInteger, SCLActionType)
  */
 @property (nonatomic, copy) ValidationBlock validationBlock;
 
+/** Set Complete button format block.
+ *
+ * Holds the complete button format block.
+ * Support keys : backgroundColor, textColor
+ */
+@property (nonatomic, copy) CompleteButtonFormatBlock completeButtonFormatBlock;
+
 /** Set button format block.
  *
  * Holds the button format block.
  * Support keys : backgroundColor, textColor
  */
-@property (nonatomic, copy) CompleteButtonFormatBlock completeButtonFormatBlock;
+@property (nonatomic, copy) ButtonFormatBlock buttonFormatBlock;
 
 /** TODO
  *
@@ -64,5 +72,12 @@ typedef NS_ENUM(NSInteger, SCLActionType)
  * TODO
  */
 @property SEL selector;
+
+/** Parse button configuration
+ *
+ * Parse ButtonFormatBlock and CompleteButtonFormatBlock setting custom configuration.
+ * Set keys : backgroundColor, textColor
+ */
+- (void)parseConfig:(NSDictionary *)buttonConfig;
 
 @end

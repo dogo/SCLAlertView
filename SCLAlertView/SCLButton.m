@@ -55,6 +55,20 @@
     self.backgroundColor = _defaultBackgroundColor = defaultBackgroundColor;
 }
 
+#pragma mark - Button Apperance
+
+- (void)parseConfig:(NSDictionary *)buttonConfig
+{
+    if ([buttonConfig objectForKey:@"backgroundColor"])
+    {
+        self.defaultBackgroundColor = [buttonConfig objectForKey:@"backgroundColor"];
+    }
+    if ([buttonConfig objectForKey:@"textColor"])
+    {
+        [self setTitleColor:[buttonConfig objectForKey:@"textColor"] forState:UIControlStateNormal];
+    }
+}
+
 #pragma mark - Helpers
 
 - (UIColor *)darkerColorForColor:(UIColor *)color

@@ -38,7 +38,17 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
 {
     SCLAlertView *alert = [[SCLAlertView alloc] init];
     
-    [alert addButton:@"First Button" target:self selector:@selector(firstButton)];
+    SCLButton *button = [alert addButton:@"First Button" target:self selector:@selector(firstButton)];
+    
+    button.buttonFormatBlock = ^NSDictionary* (void)
+    {
+        NSMutableDictionary *buttonConfig = [[NSMutableDictionary alloc] init];
+        
+        [buttonConfig setObject:[UIColor redColor] forKey:@"backgroundColor"];
+        [buttonConfig setObject:[UIColor blackColor] forKey:@"textColor"];
+        
+        return buttonConfig;
+    };
     
     [alert addButton:@"Second Button" actionBlock:^(void) {
         NSLog(@"Second button tapped");
