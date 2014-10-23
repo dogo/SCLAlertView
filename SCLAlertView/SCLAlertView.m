@@ -134,9 +134,6 @@ NSTimer *durationTimer;
         _labelTitle.textColor = UIColorFromRGB(0x4D4D4D);
         _viewText.textColor = UIColorFromRGB(0x4D4D4D);
         _contentView.layer.borderColor = UIColorFromRGB(0xCCCCCC).CGColor;
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
     }
     return self;
 }
