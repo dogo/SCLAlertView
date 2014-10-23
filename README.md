@@ -112,7 +112,6 @@ alert.soundURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/right_an
 ```
 
 ###Helpers
-```
 ```Objective-C
 //Receiving information that SCLAlertView is dismissed
 [alert alertIsDismissed:^{
