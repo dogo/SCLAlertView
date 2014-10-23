@@ -638,11 +638,11 @@ NSTimer *durationTimer;
     switch (_showAnimationType)
     {
         case FadeIn:
-            //[self fadeIn];
+            [self fadeIn];
             break;
             
         case SlideInFromBottom:
-            //[self slideInFromBottom];
+            [self slideInFromBottom];
             break;
             
         case SlideInFromTop:
@@ -650,15 +650,11 @@ NSTimer *durationTimer;
             break;
             
         case SlideInFromLeft:
-            //[self SlideInFromLeft];
+            [self slideInFromLeft];
             break;
             
         case SlideInFromRight:
-            //[self SlideInFromRight];
-            break;
-            
-        default:
-            [self NoAnimation];
+            [self slideInFromRight];
             break;
     }
 }
@@ -688,10 +684,6 @@ NSTimer *durationTimer;
         case SlideOutToRight:
             [self slideOutToRight];
             break;
-
-        default:
-            [self NoAnimation];
-            break;
     }
     if (self.dismissBlock)
     {
@@ -700,13 +692,6 @@ NSTimer *durationTimer;
 }
 
 #pragma mark - Hide Animations
-
-- (void)NoAnimation
-{
-    [self.shadowView removeFromSuperview];
-    [self.view removeFromSuperview];
-    [self removeFromParentViewController];
-}
 
 - (void)fadeOut
 {
@@ -766,15 +751,83 @@ NSTimer *durationTimer;
 
 #pragma mark - Show Animations
 
+- (void)fadeIn
+{
+    self.shadowView.alpha = 0.0f;
+    self.view.alpha = 0.0f;
+    
+    [UIView animateWithDuration:0.3f
+                          delay:0.0f
+                        options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{
+                         self.shadowView.alpha = kDefaultShadowOpacity;
+                         self.view.alpha = 1.0f;
+                     }
+                     completion:nil];
+}
+
 - (void)slideInFromTop
 {
-    // Animate in the alert view
     [UIView animateWithDuration:0.3f animations:^{
         self.shadowView.alpha = kDefaultShadowOpacity;
         
         //New Frame
         CGRect frame = self.view.frame;
-        frame.origin.y = self.rootViewController.view.center.y - 100.0f;
+        frame.origin.y = self.shadowView.frame.size.height;
+        self.view.frame = frame;
+        
+        self.view.alpha = 1.0f;
+    } completion:^(BOOL completed) {
+        [UIView animateWithDuration:0.2f animations:^{
+            self.view.center = self.rootViewController.view.center;
+        }];
+    }];
+}
+
+- (void)slideInFromBottom
+{
+    [UIView animateWithDuration:0.3f animations:^{
+        self.shadowView.alpha = kDefaultShadowOpacity;
+        
+        //New Frame
+        CGRect frame = self.view.frame;
+        frame.origin.y -= self.shadowView.frame.size.height;
+        self.view.frame = frame;
+        
+        self.view.alpha = 1.0f;
+    } completion:^(BOOL completed) {
+        [UIView animateWithDuration:0.2f animations:^{
+            self.view.center = self.rootViewController.view.center;
+        }];
+    }];
+}
+
+- (void)slideInFromLeft
+{
+    [UIView animateWithDuration:0.3f animations:^{
+        self.shadowView.alpha = kDefaultShadowOpacity;
+        
+        //New Frame
+        CGRect frame = self.view.frame;
+        frame.origin.x = self.shadowView.frame.size.width;
+        self.view.frame = frame;
+        
+        self.view.alpha = 1.0f;
+    } completion:^(BOOL completed) {
+        [UIView animateWithDuration:0.2f animations:^{
+            self.view.center = self.rootViewController.view.center;
+        }];
+    }];
+}
+
+- (void)slideInFromRight
+{
+    [UIView animateWithDuration:0.3f animations:^{
+        self.shadowView.alpha = kDefaultShadowOpacity;
+        
+        //New Frame
+        CGRect frame = self.view.frame;
+        frame.origin.x -= self.shadowView.frame.size.width;
         self.view.frame = frame;
         
         self.view.alpha = 1.0f;
