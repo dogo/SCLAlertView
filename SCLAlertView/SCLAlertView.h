@@ -55,6 +55,16 @@ typedef NS_ENUM(NSInteger, SCLAlertViewShowAnimation)
     SlideInFromRight
 };
 
+/** Alert background styles
+ *
+ * Set SCLAlertView background type.
+ */
+typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
+{
+    Shadow,
+    Blur
+};
+
 /** Title Label
  *
  * The text displayed as title.
@@ -106,6 +116,13 @@ typedef NS_ENUM(NSInteger, SCLAlertViewShowAnimation)
  * (Default: SlideInFromTop)
  */
 @property (nonatomic) SCLAlertViewShowAnimation showAnimationType;
+
+/** Set SCLAlertView background type.
+ *
+ * SCLAlertView background type.
+ * (Default: Shadow)
+ */
+@property (nonatomic) SCLAlertViewBackground backgroundType;
 
 /** Warns that alerts is gone
  *

@@ -72,7 +72,9 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
 {
     SCLAlertView *alert = [[SCLAlertView alloc] init];
     
-    [alert showNotice:self title:kNoticeTitle subTitle:kSubtitle closeButtonTitle:kButtonTitle duration:0.0f];
+    alert.backgroundType = Blur;
+    
+    [alert showNotice:self title:kNoticeTitle subTitle:@"You've just displayed this awesome Pop Up View with blur effect" closeButtonTitle:kButtonTitle duration:0.0f];
 }
 
 - (IBAction)showWarning:(id)sender

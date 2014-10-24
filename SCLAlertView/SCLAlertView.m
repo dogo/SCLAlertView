@@ -10,6 +10,7 @@
 #import "SCLButton.h"
 #import "SCLAlertViewResponder.h"
 #import "SCLAlertViewStyleKit.h"
+#import "UIImage+ImageEffects.h"
 #import <AVFoundation/AVFoundation.h>
 
 #define UIColorFromRGB(rgbValue) [UIColor \
@@ -27,19 +28,19 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 @property (nonatomic, strong) UIImageView *circleIconImageView;
 @property (nonatomic, strong) UIViewController *rootViewController;
 @property (nonatomic, strong) UIView *circleView;
-@property (nonatomic, strong) UIView *shadowView;
 @property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, strong) UIView *circleViewBackground;
+@property (nonatomic, strong) UIImageView *backgroundView;
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
 @property (nonatomic, strong) UITapGestureRecognizer *gestureRecognizer;
 @property (nonatomic, copy) DismissBlock dismissBlock;
 @property (nonatomic) BOOL canAddObservers;
+@property (nonatomic) CGFloat backgroundOpacity;
 
 @end
 
 @implementation SCLAlertView
 
-CGFloat kDefaultShadowOpacity;
 CGFloat kCircleHeight;
 CGFloat kCircleTopPosition;
 CGFloat kCircleBackgroundTopPosition;
@@ -71,7 +72,6 @@ NSTimer *durationTimer;
     if (self)
     {
         // Default values
-        kDefaultShadowOpacity = 0.7f;
         kCircleHeight = 56.0f;
         kCircleTopPosition = -12.0f;
         kCircleBackgroundTopPosition = -15.0f;
@@ -84,15 +84,16 @@ NSTimer *durationTimer;
         _canAddObservers = YES;
         _hideAnimationType = FadeOut;
         _showAnimationType = SlideInFromTop;
+        _backgroundType = Shadow;
         
         // Init
         _labelTitle = [[UILabel alloc] init];
         _viewText = [[UITextView alloc] init];
-        _shadowView = [[UIView alloc] init];
         _contentView = [[UIView alloc] init];
         _circleView = [[UIView alloc] init];
         _circleViewBackground = [[UIView alloc] init];
         _circleIconImageView = [[UIImageView alloc] init];
+        _backgroundView = [[UIImageView alloc]initWithFrame:[self mainScreenFrame]];
         _buttons = [[NSMutableArray alloc] init];
         _inputs = [[NSMutableArray alloc] init];
         
@@ -123,11 +124,6 @@ NSTimer *durationTimer;
         _viewText.allowsEditingTextAttributes = YES;
         _viewText.textAlignment = NSTextAlignmentCenter;
         _viewText.font = [UIFont fontWithName:kDefaultFont size:14.0f];
-        
-        // Shadow View
-        self.shadowView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
-        self.shadowView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-        self.shadowView.backgroundColor = [UIColor blackColor];
         
         // Colors
         _contentView.backgroundColor = [UIColor whiteColor];
@@ -179,9 +175,9 @@ NSTimer *durationTimer;
     }
     
     // Set background frame
-    CGRect newFrame = self.shadowView.frame;
+    CGRect newFrame = self.backgroundView.frame;
     newFrame.size = sz;
-    self.shadowView.frame = newFrame;
+    self.backgroundView.frame = newFrame;
     
     // Set frames
     CGRect r;
@@ -247,7 +243,8 @@ NSTimer *durationTimer;
     if(_shouldDismissOnTapOutside)
     {
         self.gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
-        [self.shadowView addGestureRecognizer:_gestureRecognizer];
+        _backgroundView.userInteractionEnabled = YES;
+        [_backgroundView addGestureRecognizer:_gestureRecognizer];
     }
 }
 
@@ -432,10 +429,12 @@ NSTimer *durationTimer;
     self.view.alpha = 0;
     self.rootViewController = vc;
     
+    [self setBackground];
+    
     // Add subviews
     [self.rootViewController addChildViewController:self];
-    self.shadowView.frame = vc.view.bounds;
-    [self.rootViewController.view addSubview:self.shadowView];
+    self.backgroundView.frame = vc.view.bounds;
+    [self.rootViewController.view addSubview:self.backgroundView];
     [self.rootViewController.view addSubview:self.view];
 
     // Alert color/icon
@@ -639,12 +638,56 @@ NSTimer *durationTimer;
 
 - (BOOL)isVisible
 {
-    return (self.shadowView.alpha && self.view.alpha);
+    return (self.backgroundView.alpha && self.view.alpha);
 }
 
 - (void)alertIsDismissed:(DismissBlock)dismissBlock
 {
     self.dismissBlock = dismissBlock;
+}
+
+- (CGRect)mainScreenFrame
+{
+    return [UIScreen mainScreen].bounds;
+}
+
+#pragma mark - Background Effects
+
+- (void)makeShadowBackground
+{
+    _backgroundView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    _backgroundView.backgroundColor = [UIColor blackColor];
+    _backgroundView.alpha = 0.7f;
+    _backgroundOpacity = 0.7f;
+}
+
+- (void)makeBlurBackground
+{
+    UIImage *image = [UIImage convertViewToImage];
+    UIImage *blurSnapshotImage = nil;
+    blurSnapshotImage = [image applyBlurWithRadius:5.0
+                                         tintColor:[UIColor colorWithWhite:0.2
+                                                                     alpha:0.7]
+                             saturationDeltaFactor:1.8
+                                         maskImage:nil];
+    
+    _backgroundView.image = blurSnapshotImage;
+    _backgroundView.alpha = 0.0f;
+    _backgroundOpacity = 1.0f;
+}
+
+- (void)setBackground
+{
+    switch (_backgroundType)
+    {
+        case Shadow:
+            [self makeShadowBackground];
+            break;
+            
+        case Blur:
+            [self makeBlurBackground];
+            break;
+    }
 }
 
 #pragma mark - Show Alert
@@ -712,10 +755,10 @@ NSTimer *durationTimer;
 - (void)fadeOut
 {
     [UIView animateWithDuration:0.3f animations:^{
-        self.shadowView.alpha = 0.0f;
+        self.backgroundView.alpha = 0.0f;
         self.view.alpha = 0.0f;
     } completion:^(BOOL completed) {
-        [self.shadowView removeFromSuperview];
+        [self.backgroundView removeFromSuperview];
         [self.view removeFromSuperview];
         [self removeFromParentViewController];
     }];
@@ -725,7 +768,7 @@ NSTimer *durationTimer;
 {
     [UIView animateWithDuration:0.3f animations:^{
         CGRect frame = self.view.frame;
-        frame.origin.y += self.shadowView.frame.size.height;
+        frame.origin.y += self.backgroundView.frame.size.height;
         self.view.frame = frame;
     } completion:^(BOOL completed) {
         [self fadeOut];
@@ -736,7 +779,7 @@ NSTimer *durationTimer;
 {
     [UIView animateWithDuration:0.3f animations:^{
         CGRect frame = self.view.frame;
-        frame.origin.y -= self.shadowView.frame.size.height;
+        frame.origin.y -= self.backgroundView.frame.size.height;
         self.view.frame = frame;
     } completion:^(BOOL completed) {
         [self fadeOut];
@@ -747,7 +790,7 @@ NSTimer *durationTimer;
 {
     [UIView animateWithDuration:0.3f animations:^{
         CGRect frame = self.view.frame;
-        frame.origin.x -= self.shadowView.frame.size.width;
+        frame.origin.x -= self.backgroundView.frame.size.width;
         self.view.frame = frame;
     } completion:^(BOOL completed) {
         [self fadeOut];
@@ -758,7 +801,7 @@ NSTimer *durationTimer;
 {
     [UIView animateWithDuration:0.3f animations:^{
         CGRect frame = self.view.frame;
-        frame.origin.x += self.shadowView.frame.size.width;
+        frame.origin.x += self.backgroundView.frame.size.width;
         self.view.frame = frame;
     } completion:^(BOOL completed) {
         [self fadeOut];
@@ -769,14 +812,14 @@ NSTimer *durationTimer;
 
 - (void)fadeIn
 {
-    self.shadowView.alpha = 0.0f;
+    self.backgroundView.alpha = 0.0f;
     self.view.alpha = 0.0f;
     
     [UIView animateWithDuration:0.3f
                           delay:0.0f
                         options:UIViewAnimationOptionCurveEaseIn
                      animations:^{
-                         self.shadowView.alpha = kDefaultShadowOpacity;
+                         self.backgroundView.alpha = _backgroundOpacity;
                          self.view.alpha = 1.0f;
                      }
                      completion:nil];
@@ -785,11 +828,11 @@ NSTimer *durationTimer;
 - (void)slideInFromTop
 {
     [UIView animateWithDuration:0.3f animations:^{
-        self.shadowView.alpha = kDefaultShadowOpacity;
+        self.backgroundView.alpha = _backgroundOpacity;
         
         //New Frame
         CGRect frame = self.view.frame;
-        frame.origin.y = self.shadowView.frame.size.height;
+        frame.origin.y = self.backgroundView.frame.size.height;
         self.view.frame = frame;
         
         self.view.alpha = 1.0f;
@@ -803,11 +846,11 @@ NSTimer *durationTimer;
 - (void)slideInFromBottom
 {
     [UIView animateWithDuration:0.3f animations:^{
-        self.shadowView.alpha = kDefaultShadowOpacity;
+        self.backgroundView.alpha = _backgroundOpacity;
         
         //New Frame
         CGRect frame = self.view.frame;
-        frame.origin.y -= self.shadowView.frame.size.height;
+        frame.origin.y -= self.backgroundView.frame.size.height;
         self.view.frame = frame;
         
         self.view.alpha = 1.0f;
@@ -821,11 +864,11 @@ NSTimer *durationTimer;
 - (void)slideInFromLeft
 {
     [UIView animateWithDuration:0.3f animations:^{
-        self.shadowView.alpha = kDefaultShadowOpacity;
+        self.backgroundView.alpha = _backgroundOpacity;
         
         //New Frame
         CGRect frame = self.view.frame;
-        frame.origin.x = self.shadowView.frame.size.width;
+        frame.origin.x = self.backgroundView.frame.size.width;
         self.view.frame = frame;
         
         self.view.alpha = 1.0f;
@@ -839,11 +882,11 @@ NSTimer *durationTimer;
 - (void)slideInFromRight
 {
     [UIView animateWithDuration:0.3f animations:^{
-        self.shadowView.alpha = kDefaultShadowOpacity;
+        self.backgroundView.alpha = _backgroundOpacity;
         
         //New Frame
         CGRect frame = self.view.frame;
-        frame.origin.x -= self.shadowView.frame.size.width;
+        frame.origin.x -= self.backgroundView.frame.size.width;
         self.view.frame = frame;
         
         self.view.alpha = 1.0f;
