@@ -107,6 +107,9 @@ alert.hideAnimationType = SlideOutToBottom;
 //Show animation type (Default is SlideInFromTop)
 alert.showAnimationType = SlideInFromLeft;
 
+//Set background type (Default is Shadow)
+alert.backgroundType = Blur;
+
 //Using sound
 alert.soundURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/right_answer.mp3", [[NSBundle mainBundle] resourcePath]]];
 ```
@@ -152,6 +155,15 @@ typedef NS_ENUM(NSInteger, SCLAlertViewShowAnimation)
     SlideInFromTop,
     SlideInFromLeft,
     SlideInFromRight
+};
+```
+
+####Alert View background styles
+```Objective-C
+typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
+{
+    Shadow,
+    Blur
 };
 ```
 
