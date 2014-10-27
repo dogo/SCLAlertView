@@ -10,7 +10,7 @@
 
 @interface SCLButton : UIButton
 
-typedef void (^ActionBlock)(void);
+typedef void (^SCLActionBlock)(void);
 typedef BOOL (^ValidationBlock)(void);
 typedef NSDictionary* (^CompleteButtonFormatBlock)(void);
 typedef NSDictionary* (^ButtonFormatBlock)(void);
@@ -33,7 +33,7 @@ typedef NS_ENUM(NSInteger, SCLActionType)
  *
  * TODO
  */
-@property (nonatomic, copy) ActionBlock actionBlock;
+@property (nonatomic, copy) SCLActionBlock actionBlock;
 
 /** TODO
  *

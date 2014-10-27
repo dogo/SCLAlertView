@@ -366,7 +366,7 @@ NSTimer *durationTimer;
     return btn;
 }
 
-- (SCLButton *)addButton:(NSString *)title actionBlock:(ActionBlock)action
+- (SCLButton *)addButton:(NSString *)title actionBlock:(SCLActionBlock)action
 {
     SCLButton *btn = [self addButton:title];
     btn.actionType = Block;
@@ -376,7 +376,7 @@ NSTimer *durationTimer;
     return btn;
 }
 
-- (SCLButton *)addButton:(NSString *)title validationBlock:(ValidationBlock)validationBlock actionBlock:(ActionBlock)action
+- (SCLButton *)addButton:(NSString *)title validationBlock:(ValidationBlock)validationBlock actionBlock:(SCLActionBlock)action
 {
     SCLButton *btn = [self addButton:title actionBlock:action];
     btn.validationBlock = validationBlock;

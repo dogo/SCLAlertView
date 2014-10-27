@@ -147,7 +147,7 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
  * @param title The text displayed on the button.
  * @param action A block of code to be executed when the button is pressed.
  */
-- (SCLButton *)addButton:(NSString *)title actionBlock:(ActionBlock)action;
+- (SCLButton *)addButton:(NSString *)title actionBlock:(SCLActionBlock)action;
 
 /** Add a Button with a title, a block to handle validation, and a block to handle when the button is pressed and validation succeeds.
  *
@@ -155,7 +155,7 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
  * @param validationBlock A block of code that will allow you to validate fields or do any other logic you may want to do to determine if the alert should be dismissed or not. Inside of this block, return a BOOL indicating whether or not the action block should be called and the alert dismissed.
  * @param action A block of code to be executed when the button is pressed and validation passes.
  */
-- (SCLButton *)addButton:(NSString *)title validationBlock:(ValidationBlock)validationBlock actionBlock:(ActionBlock)action;
+- (SCLButton *)addButton:(NSString *)title validationBlock:(ValidationBlock)validationBlock actionBlock:(SCLActionBlock)action;
 
 /** Add a Button with a title, a target and a selector to handle when the button is pressed.
  *
