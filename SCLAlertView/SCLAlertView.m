@@ -664,11 +664,10 @@ NSTimer *durationTimer;
 - (void)makeBlurBackground
 {
     UIImage *image = [UIImage convertViewToImage];
-    UIImage *blurSnapshotImage = nil;
-    blurSnapshotImage = [image applyBlurWithRadius:5.0
-                                         tintColor:[UIColor colorWithWhite:0.2
-                                                                     alpha:0.7]
-                             saturationDeltaFactor:1.8
+    UIImage *blurSnapshotImage = [image applyBlurWithRadius:5.0f
+                                         tintColor:[UIColor colorWithWhite:0.2f
+                                                                     alpha:0.7f]
+                             saturationDeltaFactor:1.8f
                                          maskImage:nil];
     
     _backgroundView.image = blurSnapshotImage;
