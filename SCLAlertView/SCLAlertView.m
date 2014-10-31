@@ -826,12 +826,17 @@ NSTimer *durationTimer;
 
 - (void)slideInFromTop
 {
+    //From Frame
+    CGRect frame = self.view.frame;
+    frame.origin.y = -self.backgroundView.frame.size.height;
+    self.view.frame = frame;
+    
     [UIView animateWithDuration:0.3f animations:^{
         self.backgroundView.alpha = _backgroundOpacity;
         
-        //New Frame
+        //To Frame
         CGRect frame = self.view.frame;
-        frame.origin.y = self.backgroundView.frame.size.height;
+        frame.origin.y = 0;
         self.view.frame = frame;
         
         self.view.alpha = 1.0f;
@@ -844,12 +849,17 @@ NSTimer *durationTimer;
 
 - (void)slideInFromBottom
 {
+    //From Frame
+    CGRect frame = self.view.frame;
+    frame.origin.y = self.backgroundView.frame.size.height;
+    self.view.frame = frame;
+    
     [UIView animateWithDuration:0.3f animations:^{
         self.backgroundView.alpha = _backgroundOpacity;
         
-        //New Frame
+        //To Frame
         CGRect frame = self.view.frame;
-        frame.origin.y -= self.backgroundView.frame.size.height;
+        frame.origin.y = 0;
         self.view.frame = frame;
         
         self.view.alpha = 1.0f;
@@ -862,12 +872,17 @@ NSTimer *durationTimer;
 
 - (void)slideInFromLeft
 {
+    //From Frame
+    CGRect frame = self.view.frame;
+    frame.origin.x = -self.backgroundView.frame.size.width;
+    self.view.frame = frame;
+    
     [UIView animateWithDuration:0.3f animations:^{
         self.backgroundView.alpha = _backgroundOpacity;
         
-        //New Frame
+        //To Frame
         CGRect frame = self.view.frame;
-        frame.origin.x = self.backgroundView.frame.size.width;
+        frame.origin.x = 0;
         self.view.frame = frame;
         
         self.view.alpha = 1.0f;
@@ -880,12 +895,17 @@ NSTimer *durationTimer;
 
 - (void)slideInFromRight
 {
+    //From Frame
+    CGRect frame = self.view.frame;
+    frame.origin.x = self.backgroundView.frame.size.width;
+    self.view.frame = frame;
+    
     [UIView animateWithDuration:0.3f animations:^{
         self.backgroundView.alpha = _backgroundOpacity;
         
-        //New Frame
+        //To Frame
         CGRect frame = self.view.frame;
-        frame.origin.x -= self.backgroundView.frame.size.width;
+        frame.origin.x = 0;
         self.view.frame = frame;
         
         self.view.alpha = 1.0f;
