@@ -36,7 +36,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 @property (nonatomic, copy) DismissBlock dismissBlock;
 @property (nonatomic) BOOL canAddObservers;
 @property (nonatomic) CGFloat backgroundOpacity;
-
+@property (nonatomic,strong) UITextField *txt;
 @end
 
 @implementation SCLAlertView
@@ -232,7 +232,12 @@ NSTimer *durationTimer;
 {
     if (_shouldDismissOnTapOutside)
     {
-        [self hideView];
+    	//check if Keyboard is onscreen then dismiss else hideView
+        if ([_txt isEditing]) {
+            [self dismissKeyboard];
+        }else{
+            [self hideView];
+        }
     }
 }
 
@@ -267,23 +272,19 @@ NSTimer *durationTimer;
     kWindowHeight += 40.0;
     
     // Add text field
-    UITextField *txt = [[UITextField alloc] init];
-    txt.delegate = self;
-    txt.returnKeyType = UIReturnKeyDone;
-    txt.borderStyle = UITextBorderStyleRoundedRect;
-    txt.font = [UIFont fontWithName:kDefaultFont size:14.0f];
-    txt.autocapitalizationType = UITextAutocapitalizationTypeWords;
-    txt.clearButtonMode = UITextFieldViewModeWhileEditing;
-    txt.layer.masksToBounds = YES;
-    txt.layer.borderWidth = 1.0f;
-    
+    _txt = [[UITextField alloc] init];
+    _txt.borderStyle = UITextBorderStyleRoundedRect;
+    _txt.font = [UIFont fontWithName:kDefaultFont size:14.0f];
+    _txt.autocapitalizationType = UITextAutocapitalizationTypeWords;
+    _txt.clearButtonMode = UITextFieldViewModeWhileEditing;
+    _txt.layer.masksToBounds = YES;
+    _txt.layer.borderWidth = 1.0f;
     if (title != nil)
     {
-        txt.placeholder = title;
+        _txt.placeholder = title;
     }
-    
-    [_contentView addSubview:txt];
-    [_inputs addObject:txt];
+    [_contentView addSubview:_txt];
+    [_inputs addObject:_txt];
     
     // If there are other fields in the inputs array, get the previous field and set the
     // return key type on that to next.
@@ -293,7 +294,7 @@ NSTimer *durationTimer;
         UITextField *priorField = _inputs[indexOfCurrentField - 1];
         priorField.returnKeyType = UIReturnKeyNext;
     }
-    return txt;
+    return _txt;
 }
 
 # pragma mark - UITextFieldDelegate
@@ -436,7 +437,7 @@ NSTimer *durationTimer;
     self.backgroundView.frame = vc.view.bounds;
     [self.rootViewController.view addSubview:self.backgroundView];
     [self.rootViewController.view addSubview:self.view];
-
+    
     // Alert color/icon
     UIColor *viewColor;
     UIImage *iconImage;
