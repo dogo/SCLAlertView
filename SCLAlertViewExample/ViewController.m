@@ -40,12 +40,15 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     
     SCLButton *button = [alert addButton:@"First Button" target:self selector:@selector(firstButton)];
     
+    button.layer.borderWidth = 2.0f;
+    
     button.buttonFormatBlock = ^NSDictionary* (void)
     {
         NSMutableDictionary *buttonConfig = [[NSMutableDictionary alloc] init];
         
-        [buttonConfig setObject:[UIColor redColor] forKey:@"backgroundColor"];
+        [buttonConfig setObject:[UIColor whiteColor] forKey:@"backgroundColor"];
         [buttonConfig setObject:[UIColor blackColor] forKey:@"textColor"];
+        [buttonConfig setObject:[UIColor greenColor] forKey:@"borderColor"];
         
         return buttonConfig;
     };

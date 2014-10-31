@@ -63,6 +63,10 @@
     {
         self.defaultBackgroundColor = [buttonConfig objectForKey:@"backgroundColor"];
     }
+    if ([buttonConfig objectForKey:@"borderColor"])
+    {
+        self.layer.borderColor = ((UIColor*)[buttonConfig objectForKey:@"borderColor"]).CGColor;
+    }
     if ([buttonConfig objectForKey:@"textColor"])
     {
         [self setTitleColor:[buttonConfig objectForKey:@"textColor"] forState:UIControlStateNormal];
