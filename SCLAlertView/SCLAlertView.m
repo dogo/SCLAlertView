@@ -102,7 +102,7 @@ NSTimer *durationTimer;
         [self.view addSubview:_circleViewBackground];
         [self.view addSubview:_circleView];
 
-        [self.circleView addSubview:self.circleIconImageView];
+        [_circleView addSubview:_circleIconImageView];
         [_contentView addSubview:_labelTitle];
         [_contentView addSubview:_viewText];
         
@@ -113,6 +113,9 @@ NSTimer *durationTimer;
         
 		// Circle View Background
 		_circleViewBackground.backgroundColor = [UIColor whiteColor];
+        
+        // Background View
+        _backgroundView.userInteractionEnabled = YES;
         
         // Title
         _labelTitle.numberOfLines = 1;
@@ -243,7 +246,6 @@ NSTimer *durationTimer;
     if(_shouldDismissOnTapOutside)
     {
         self.gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
-        _backgroundView.userInteractionEnabled = YES;
         [_backgroundView addGestureRecognizer:_gestureRecognizer];
     }
 }
@@ -427,15 +429,16 @@ NSTimer *durationTimer;
 -(SCLAlertViewResponder *)showTitle:(UIViewController *)vc image:(UIImage *)image color:(UIColor *)color title:(NSString *)title subTitle:(NSString *)subTitle duration:(NSTimeInterval)duration completeText:(NSString *)completeText style:(SCLAlertViewStyle)style
 {
     self.view.alpha = 0;
-    self.rootViewController = vc;
+    _rootViewController = vc;
     
     [self setBackground];
     
+    _backgroundView.frame = vc.view.bounds;
+    
     // Add subviews
-    [self.rootViewController addChildViewController:self];
-    self.backgroundView.frame = vc.view.bounds;
-    [self.rootViewController.view addSubview:self.backgroundView];
-    [self.rootViewController.view addSubview:self.view];
+    [_rootViewController addChildViewController:self];
+    [_rootViewController.view addSubview:_backgroundView];
+    [_rootViewController.view addSubview:self.view];
 
     // Alert color/icon
     UIColor *viewColor;
