@@ -517,7 +517,7 @@ NSTimer *durationTimer;
         }
         else
         {
-            NSAttributedString *str =[[NSAttributedString alloc] initWithString:subTitle];
+            NSAttributedString *str =[[NSAttributedString alloc] initWithString:subTitle attributes:attr];
             CGRect r = [str boundingRectWithSize:sz options:NSStringDrawingUsesLineFragmentOrigin context:nil];
             CGFloat ht = ceil(r.size.height) + 10;
             if (ht < kTextHeight)
