@@ -26,7 +26,6 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 @property (nonatomic, strong) NSMutableArray *inputs;
 @property (nonatomic, strong) NSMutableArray *buttons;
 @property (nonatomic, strong) UIImageView *circleIconImageView;
-@property (nonatomic, strong) UIViewController *rootViewController;
 @property (nonatomic, strong) UIView *circleView;
 @property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, strong) UIView *circleViewBackground;
@@ -434,17 +433,18 @@ NSTimer *durationTimer;
 
 -(SCLAlertViewResponder *)showTitle:(UIViewController *)vc image:(UIImage *)image color:(UIColor *)color title:(NSString *)title subTitle:(NSString *)subTitle duration:(NSTimeInterval)duration completeText:(NSString *)completeText style:(SCLAlertViewStyle)style
 {
+    UIViewController *rootViewController = vc;
+    
     self.view.alpha = 0;
-    _rootViewController = vc;
     
     [self setBackground];
     
     _backgroundView.frame = vc.view.bounds;
     
     // Add subviews
-    [_rootViewController addChildViewController:self];
-    [_rootViewController.view addSubview:_backgroundView];
-    [_rootViewController.view addSubview:self.view];
+    [rootViewController addChildViewController:self];
+    [rootViewController.view addSubview:_backgroundView];
+    [rootViewController.view addSubview:self.view];
 
     // Alert color/icon
     UIColor *viewColor;
