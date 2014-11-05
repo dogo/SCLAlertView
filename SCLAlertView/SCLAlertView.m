@@ -836,7 +836,7 @@ NSTimer *durationTimer;
 - (void)slideInFromTop
 {
     //From Frame
-    CGRect frame = self.view.frame;
+    CGRect frame = self.backgroundView.frame;
     frame.origin.y = -self.backgroundView.frame.size.height;
     self.view.frame = frame;
     
@@ -844,14 +844,14 @@ NSTimer *durationTimer;
         self.backgroundView.alpha = _backgroundOpacity;
         
         //To Frame
-        CGRect frame = self.view.frame;
+        CGRect frame = self.backgroundView.frame;
         frame.origin.y = 0;
         self.view.frame = frame;
         
         self.view.alpha = 1.0f;
     } completion:^(BOOL completed) {
         [UIView animateWithDuration:0.2f animations:^{
-            self.view.center = self.rootViewController.view.center;
+            self.view.center = _backgroundView.center;
         }];
     }];
 }
@@ -859,7 +859,7 @@ NSTimer *durationTimer;
 - (void)slideInFromBottom
 {
     //From Frame
-    CGRect frame = self.view.frame;
+    CGRect frame = self.backgroundView.frame;
     frame.origin.y = self.backgroundView.frame.size.height;
     self.view.frame = frame;
     
@@ -867,14 +867,14 @@ NSTimer *durationTimer;
         self.backgroundView.alpha = _backgroundOpacity;
         
         //To Frame
-        CGRect frame = self.view.frame;
+        CGRect frame = self.backgroundView.frame;
         frame.origin.y = 0;
         self.view.frame = frame;
         
         self.view.alpha = 1.0f;
     } completion:^(BOOL completed) {
         [UIView animateWithDuration:0.2f animations:^{
-            self.view.center = self.rootViewController.view.center;
+            self.view.center = _backgroundView.center;
         }];
     }];
 }
@@ -882,7 +882,7 @@ NSTimer *durationTimer;
 - (void)slideInFromLeft
 {
     //From Frame
-    CGRect frame = self.view.frame;
+    CGRect frame = self.backgroundView.frame;
     frame.origin.x = -self.backgroundView.frame.size.width;
     self.view.frame = frame;
     
@@ -890,14 +890,14 @@ NSTimer *durationTimer;
         self.backgroundView.alpha = _backgroundOpacity;
         
         //To Frame
-        CGRect frame = self.view.frame;
+        CGRect frame = self.backgroundView.frame;
         frame.origin.x = 0;
         self.view.frame = frame;
         
         self.view.alpha = 1.0f;
     } completion:^(BOOL completed) {
         [UIView animateWithDuration:0.2f animations:^{
-            self.view.center = self.rootViewController.view.center;
+            self.view.center = _backgroundView.center;
         }];
     }];
 }
@@ -905,7 +905,7 @@ NSTimer *durationTimer;
 - (void)slideInFromRight
 {
     //From Frame
-    CGRect frame = self.view.frame;
+    CGRect frame = self.backgroundView.frame;
     frame.origin.x = self.backgroundView.frame.size.width;
     self.view.frame = frame;
     
@@ -913,14 +913,14 @@ NSTimer *durationTimer;
         self.backgroundView.alpha = _backgroundOpacity;
         
         //To Frame
-        CGRect frame = self.view.frame;
+        CGRect frame = self.backgroundView.frame;
         frame.origin.x = 0;
         self.view.frame = frame;
         
         self.view.alpha = 1.0f;
     } completion:^(BOOL completed) {
         [UIView animateWithDuration:0.2f animations:^{
-            self.view.center = self.rootViewController.view.center;
+            self.view.center = _backgroundView.center;
         }];
     }];
 }
