@@ -35,6 +35,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 @property (nonatomic, strong) UITapGestureRecognizer *gestureRecognizer;
 @property (nonatomic, copy) DismissBlock dismissBlock;
 @property (nonatomic) BOOL canAddObservers;
+@property (nonatomic) BOOL keyboardIsVisible;
 @property (nonatomic) CGFloat backgroundOpacity;
 
 @end
@@ -82,6 +83,7 @@ NSTimer *durationTimer;
         kTextHeight = 90.0f;
         _shouldDismissOnTapOutside = NO;
         _canAddObservers = YES;
+        _keyboardIsVisible = NO;
         _hideAnimationType = FadeOut;
         _showAnimationType = SlideInFromTop;
         _backgroundType = Shadow;
@@ -319,11 +321,14 @@ NSTimer *durationTimer;
 
 - (void)keyboardDidShow:(NSNotification *)notification
 {
+    if(_keyboardIsVisible) return;
+    
     [UIView animateWithDuration:0.2f animations:^{
         CGRect f = self.view.frame;
         f.origin.y -= KEYBOARD_HEIGHT + PREDICTION_BAR_HEIGHT;
         self.view.frame = f;
     }];
+    _keyboardIsVisible = YES;
 }
 
 -(void)keyboardDidHide:(NSNotification *)notification
@@ -333,6 +338,7 @@ NSTimer *durationTimer;
         f.origin.y += KEYBOARD_HEIGHT + PREDICTION_BAR_HEIGHT;
         self.view.frame = f;
     }];
+    _keyboardIsVisible = NO;
 }
 
 #pragma mark - Buttons
