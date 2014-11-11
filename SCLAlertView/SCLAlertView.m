@@ -126,6 +126,8 @@ NSTimer *durationTimer;
         // View text
         _viewText.editable = NO;
         _viewText.allowsEditingTextAttributes = YES;
+        _viewText.textContainerInset = UIEdgeInsetsZero;
+        _viewText.textContainer.lineFragmentPadding = 0;
         _viewText.textAlignment = NSTextAlignmentCenter;
         _viewText.font = [UIFont fontWithName:kDefaultFont size:14.0f];
         
@@ -517,7 +519,7 @@ NSTimer *durationTimer;
         {
             NSString *str = subTitle;
             CGRect r = [str boundingRectWithSize:sz options:NSStringDrawingUsesLineFragmentOrigin attributes:attr context:nil];
-            CGFloat ht = ceil(r.size.height) + 10;
+            CGFloat ht = ceil(r.size.height);
             if (ht < kTextHeight)
             {
                 kWindowHeight -= (kTextHeight - ht);
@@ -528,7 +530,7 @@ NSTimer *durationTimer;
         {
             NSAttributedString *str =[[NSAttributedString alloc] initWithString:subTitle attributes:attr];
             CGRect r = [str boundingRectWithSize:sz options:NSStringDrawingUsesLineFragmentOrigin context:nil];
-            CGFloat ht = ceil(r.size.height) + 10;
+            CGFloat ht = ceil(r.size.height);
             if (ht < kTextHeight)
             {
                 kWindowHeight -= (kTextHeight - ht);
