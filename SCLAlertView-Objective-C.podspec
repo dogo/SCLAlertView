@@ -10,7 +10,7 @@ Pod::Spec.new do |spec|
   spec.social_media_url   = "http://twitter.com/di_autilio"
   spec.platform           = :ios
   spec.ios.deployment_target = '7.0'
-  spec.source             = { :git => "https://github.com/dogo/SCLAlertView.git", :tag => "0.3.3" }
+  spec.source             = { :git => "https://github.com/dogo/SCLAlertView.git", :tag => spec.version.to_s }
   spec.source_files       = "SCLAlertView/*"
   spec.requires_arc       = true
 end
