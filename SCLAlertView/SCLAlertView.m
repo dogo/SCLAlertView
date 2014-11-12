@@ -238,7 +238,18 @@ NSTimer *durationTimer;
 {
     if (_shouldDismissOnTapOutside)
     {
-        [self hideView];
+        BOOL hide = _shouldDismissOnTapOutside;
+
+        for(UITextField *txt in _inputs)
+        {
+            // Check if there is any keyboard on screen and dismiss
+            if ([txt isEditing])
+            {
+                [txt resignFirstResponder];
+                hide = NO;
+            }
+        }
+        if(hide)[self hideView];
     }
 }
 
