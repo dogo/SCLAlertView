@@ -11,7 +11,7 @@
 @interface SCLButton : UIButton
 
 typedef void (^SCLActionBlock)(void);
-typedef BOOL (^ValidationBlock)(void);
+typedef BOOL (^SCLValidationBlock)(void);
 typedef NSDictionary* (^CompleteButtonFormatBlock)(void);
 typedef NSDictionary* (^ButtonFormatBlock)(void);
 
@@ -39,7 +39,7 @@ typedef NS_ENUM(NSInteger, SCLActionType)
  *
  * TODO
  */
-@property (nonatomic, copy) ValidationBlock validationBlock;
+@property (nonatomic, copy) SCLValidationBlock validationBlock;
 
 /** Set Complete button format block.
  *
