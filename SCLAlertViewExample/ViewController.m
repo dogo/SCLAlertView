@@ -46,9 +46,9 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     {
         NSMutableDictionary *buttonConfig = [[NSMutableDictionary alloc] init];
         
-        [buttonConfig setObject:[UIColor whiteColor] forKey:@"backgroundColor"];
-        [buttonConfig setObject:[UIColor blackColor] forKey:@"textColor"];
-        [buttonConfig setObject:[UIColor greenColor] forKey:@"borderColor"];
+        buttonConfig[@"backgroundColor"] = [UIColor whiteColor];
+        buttonConfig[@"textColor"] = [UIColor blackColor];
+        buttonConfig[@"borderColor"] = [UIColor greenColor];
         
         return buttonConfig;
     };
@@ -133,8 +133,8 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     {
         NSMutableDictionary *buttonConfig = [[NSMutableDictionary alloc] init];
         
-        [buttonConfig setObject:[UIColor greenColor] forKey:@"backgroundColor"];
-        [buttonConfig setObject:[UIColor blackColor] forKey:@"textColor"];
+        buttonConfig[@"backgroundColor"] = [UIColor greenColor];
+        buttonConfig[@"textColor"] = [UIColor blackColor];
         
         return buttonConfig;
     };

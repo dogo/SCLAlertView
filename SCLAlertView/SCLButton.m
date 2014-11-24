@@ -38,15 +38,8 @@
 }
 
 - (void)setHighlighted:(BOOL)highlighted
-{    
-    if(highlighted)
-    {
-        self.backgroundColor = [self darkerColorForColor:_defaultBackgroundColor];
-    }
-    else
-    {
-        self.backgroundColor = _defaultBackgroundColor;
-    }
+{
+    self.backgroundColor = (highlighted) ? [self darkerColorForColor:_defaultBackgroundColor] : _defaultBackgroundColor;
     [super setHighlighted:highlighted];
 }
 
@@ -59,17 +52,17 @@
 
 - (void)parseConfig:(NSDictionary *)buttonConfig
 {
-    if ([buttonConfig objectForKey:@"backgroundColor"])
+    if (buttonConfig[@"backgroundColor"])
     {
-        self.defaultBackgroundColor = [buttonConfig objectForKey:@"backgroundColor"];
+        self.defaultBackgroundColor = buttonConfig[@"backgroundColor"];
     }
-    if ([buttonConfig objectForKey:@"borderColor"])
+    if (buttonConfig[@"borderColor"])
     {
-        self.layer.borderColor = ((UIColor*)[buttonConfig objectForKey:@"borderColor"]).CGColor;
+        self.layer.borderColor = ((UIColor*)buttonConfig[@"borderColor"]).CGColor;
     }
-    if ([buttonConfig objectForKey:@"textColor"])
+    if (buttonConfig[@"textColor"])
     {
-        [self setTitleColor:[buttonConfig objectForKey:@"textColor"] forState:UIControlStateNormal];
+        [self setTitleColor:buttonConfig[@"textColor"] forState:UIControlStateNormal];
     }
 }
 
