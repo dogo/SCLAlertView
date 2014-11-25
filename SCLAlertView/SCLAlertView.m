@@ -7,7 +7,6 @@
 //
 
 #import "SCLAlertView.h"
-#import "SCLButton.h"
 #import "SCLAlertViewResponder.h"
 #import "SCLAlertViewStyleKit.h"
 #import "UIImage+ImageEffects.h"
@@ -419,7 +418,7 @@ NSTimer *durationTimer;
 {
     // If the button has a validation block, and the validation block returns NO, validation
     // failed, so we should bail.
-    if (btn.validationBlock && btn.validationBlock() == NO) {
+    if (btn.validationBlock && !btn.validationBlock()) {
         return;
     }
     if (btn.actionType == Block)
