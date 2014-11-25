@@ -17,6 +17,12 @@ colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
+#define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
+#define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
+
 #define KEYBOARD_HEIGHT 80
 #define PREDICTION_BAR_HEIGHT 40
 
@@ -125,11 +131,15 @@ NSTimer *durationTimer;
         // View text
         _viewText.editable = NO;
         _viewText.allowsEditingTextAttributes = YES;
-        _viewText.textContainerInset = UIEdgeInsetsZero;
-        _viewText.textContainer.lineFragmentPadding = 0;
         _viewText.textAlignment = NSTextAlignmentCenter;
         _viewText.font = [UIFont fontWithName:kDefaultFont size:14.0f];
         
+        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
+        {
+            _viewText.textContainerInset = UIEdgeInsetsZero;
+            _viewText.textContainer.lineFragmentPadding = 0;
+        }
+    
         // Colors
         _contentView.backgroundColor = [UIColor whiteColor];
         _labelTitle.textColor = UIColorFromRGB(0x4D4D4D);
@@ -168,8 +178,7 @@ NSTimer *durationTimer;
     
     CGSize sz = [UIScreen mainScreen].bounds.size;
     
-    NSString *systemVersion = [[UIDevice currentDevice] systemVersion];
-    if ([systemVersion floatValue] < 8.0f)
+    if (SYSTEM_VERSION_LESS_THAN(@"8.0"))
     {
         // iOS versions before 7.0 did not switch the width and height on device roration
         if UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])
@@ -525,7 +534,7 @@ NSTimer *durationTimer;
         CGSize sz = CGSizeMake(kWindowWidth - 24.0f, 90.0f);
         NSDictionary *attr = @{NSFontAttributeName:self.viewText.font};
         
-        if([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
+        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
         {
             NSString *str = subTitle;
             CGRect r = [str boundingRectWithSize:sz options:NSStringDrawingUsesLineFragmentOrigin attributes:attr context:nil];
