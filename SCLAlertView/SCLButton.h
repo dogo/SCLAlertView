@@ -23,9 +23,9 @@ typedef NS_ENUM(NSInteger, SCLActionType)
     Block
 };
 
-/** TODO
+/** Set button action type.
  *
- * TODO
+ * Holds the button action type.
  */
 @property SCLActionType actionType;
 
