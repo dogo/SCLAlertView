@@ -142,6 +142,12 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
  */
 - (UITextField *)addTextField:(NSString *)title;
 
+/** Set SubTitle Height
+ *
+ * @param value Height of scrollable subtitle text field.
+ */
+- (void)setSubTitleHeight:(CGFloat)value;
+
 /** Add a Button with a title and a block to handle when the button is pressed.
  *
  * @param title The text displayed on the button.
