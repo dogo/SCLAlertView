@@ -554,6 +554,9 @@ NSTimer *durationTimer;
             {
                 kWindowHeight -= (kTextHeight - ht);
                 kTextHeight = ht;
+            }else{
+                kWindowHeight += (ht - kTextHeight);
+                kTextHeight = ht;
             }
         }
         else
@@ -564,6 +567,9 @@ NSTimer *durationTimer;
             if (ht < kTextHeight)
             {
                 kWindowHeight -= (kTextHeight - ht);
+                kTextHeight = ht;
+            }else{
+                kWindowHeight += (ht - kTextHeight);
                 kTextHeight = ht;
             }
         }
