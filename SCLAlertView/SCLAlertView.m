@@ -55,6 +55,9 @@ CGFloat kWindowWidth;
 CGFloat kWindowHeight;
 CGFloat kTextHeight;
 
+// Subtitle
+CGFloat kSubTitleHeight;
+
 // Font
 NSString *kDefaultFont = @"HelveticaNeue";
 NSString *kButtonFont = @"HelveticaNeue-Bold";
@@ -84,6 +87,7 @@ NSTimer *durationTimer;
         kCircleIconHeight = 20.0f;
         kWindowWidth = 240.0f;
         kWindowHeight = 178.0f;
+        kSubTitleHeight = 90.0f;
         kTextHeight = 90.0f;
         _shouldDismissOnTapOutside = NO;
         _canAddObservers = YES;
@@ -279,6 +283,13 @@ NSTimer *durationTimer;
     NSError *error;
     _soundURL = soundURL;
     _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:_soundURL error:&error];
+}
+
+#pragma mark - Subtitle Height
+
+- (void)setSubTitleHeight:(CGFloat)value
+{
+    kSubTitleHeight = value;
 }
 
 #pragma mark - TextField
@@ -531,7 +542,7 @@ NSTimer *durationTimer;
         }
         
         // Adjust text view size, if necessary
-        CGSize sz = CGSizeMake(kWindowWidth - 24.0f, 90.0f);
+        CGSize sz = CGSizeMake(kWindowWidth - 24.0f, kSubTitleHeight);
         NSDictionary *attr = @{NSFontAttributeName:self.viewText.font};
         
         if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
