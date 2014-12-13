@@ -51,6 +51,7 @@ CGFloat kCircleTopPosition;
 CGFloat kCircleBackgroundTopPosition;
 CGFloat kCircleHeightBackground;
 CGFloat kCircleIconHeight;
+CGFloat kActivityIndicatorHeight;
 CGFloat kWindowWidth;
 CGFloat kWindowHeight;
 CGFloat kTextHeight;
@@ -85,6 +86,7 @@ NSTimer *durationTimer;
         kCircleBackgroundTopPosition = -15.0f;
         kCircleHeightBackground = 62.0f;
         kCircleIconHeight = 20.0f;
+        kActivityIndicatorHeight = 40.0f;
         kWindowWidth = 240.0f;
         kWindowHeight = 178.0f;
         kSubTitleHeight = 90.0f;
@@ -95,7 +97,7 @@ NSTimer *durationTimer;
         _hideAnimationType = FadeOut;
         _showAnimationType = SlideInFromTop;
         _backgroundType = Shadow;
-        
+
         // Init
         _labelTitle = [[UILabel alloc] init];
         _viewText = [[UITextView alloc] init];
@@ -106,6 +108,7 @@ NSTimer *durationTimer;
         _backgroundView = [[UIImageView alloc]initWithFrame:[self mainScreenFrame]];
         _buttons = [[NSMutableArray alloc] init];
         _inputs = [[NSMutableArray alloc] init];
+        _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         
         // Add Subviews
         [self.view addSubview:_contentView];
@@ -113,6 +116,7 @@ NSTimer *durationTimer;
         [self.view addSubview:_circleView];
 
         [_circleView addSubview:_circleIconImageView];
+        [_circleView addSubview:_activityIndicatorView];
         [_contentView addSubview:_labelTitle];
         [_contentView addSubview:_viewText];
         
@@ -217,6 +221,8 @@ NSTimer *durationTimer;
     _circleView.frame = CGRectMake(kWindowWidth / 2 - kCircleHeight / 2, kCircleTopPosition, kCircleHeight, kCircleHeight);
     _circleView.layer.cornerRadius = self.circleView.frame.size.height / 2;
     _circleIconImageView.frame = CGRectMake(kCircleHeight / 2 - kCircleIconHeight / 2, kCircleHeight / 2 - kCircleIconHeight / 2, kCircleIconHeight, kCircleIconHeight);
+    _activityIndicatorView.frame =CGRectMake(kCircleHeight / 2 - kActivityIndicatorHeight / 2, kCircleHeight / 2 - kActivityIndicatorHeight / 2, kActivityIndicatorHeight, kActivityIndicatorHeight);
+
     _labelTitle.frame = CGRectMake(12.0f, kCircleHeight / 2 + 12.0f, kWindowWidth - 24.0f, 40.0f);
     _viewText.frame = CGRectMake(12.0f, 74.0f, kWindowWidth - 24.0f, kTextHeight);
     
@@ -515,6 +521,10 @@ NSTimer *durationTimer;
             iconImage = SCLAlertViewStyleKit.imageOfEdit;
             break;
             
+        case Waiting:
+            viewColor = UIColorFromRGB(0x6c125d);
+            break;
+            
         case Custom:
             viewColor = color;
             iconImage = image;
@@ -596,7 +606,13 @@ NSTimer *durationTimer;
 
     // Alert view colour and images
     self.circleView.backgroundColor = viewColor;
-    self.circleIconImageView.image  = iconImage;
+    
+    if (style == Waiting) {
+        [self.activityIndicatorView startAnimating];
+    } else {
+        self.circleIconImageView.image  = iconImage;
+    }
+    
     
     for (UITextField *textField in _inputs)
     {
@@ -681,6 +697,11 @@ NSTimer *durationTimer;
     [self showTitle:vc image:image color:color title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Custom];
 }
 
+- (void)showWaiting:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
+{
+    [self showTitle:vc image:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Waiting];
+}
+
 #pragma mark - Visibility
 
 - (BOOL)isVisible
@@ -761,6 +782,14 @@ NSTimer *durationTimer;
         case SlideInFromRight:
             [self slideInFromRight];
             break;
+            
+        case SlideInFromCenter:
+            [self slideInFromCenter];
+            break;
+            
+        case SlideInToCenter:
+            [self slideInToCenter];
+            break;
     }
 }
 
@@ -789,7 +818,18 @@ NSTimer *durationTimer;
         case SlideOutToRight:
             [self slideOutToRight];
             break;
+            
+        case SlideOutToCenter:
+            [self slideOutToCenter];
+            break;
+            
+        case SlideOutFromCenter:
+            [self slideOutFromCenter];
+            break;
     }
+    
+    [_activityIndicatorView stopAnimating];
+    
     if (self.dismissBlock)
     {
         self.dismissBlock();
@@ -849,6 +889,30 @@ NSTimer *durationTimer;
         CGRect frame = self.view.frame;
         frame.origin.x += self.backgroundView.frame.size.width;
         self.view.frame = frame;
+    } completion:^(BOOL completed) {
+        [self fadeOut];
+    }];
+}
+
+- (void)slideOutToCenter
+{
+    [UIView animateWithDuration:0.3f animations:^{
+        self.view.transform =
+        CGAffineTransformConcat(CGAffineTransformIdentity,
+                                CGAffineTransformMakeScale(0.1f, 0.1f));
+        self.view.alpha = 0.0f;
+    } completion:^(BOOL completed) {
+        [self fadeOut];
+    }];
+}
+
+- (void)slideOutFromCenter
+{
+    [UIView animateWithDuration:0.3f animations:^{
+        self.view.transform =
+        CGAffineTransformConcat(CGAffineTransformIdentity,
+                                CGAffineTransformMakeScale(3.0f, 3.0f));
+        self.view.alpha = 0.0f;
     } completion:^(BOOL completed) {
         [self fadeOut];
     }];
@@ -955,6 +1019,48 @@ NSTimer *durationTimer;
         frame.origin.x = 0;
         self.view.frame = frame;
         
+        self.view.alpha = 1.0f;
+    } completion:^(BOOL completed) {
+        [UIView animateWithDuration:0.2f animations:^{
+            self.view.center = _backgroundView.center;
+        }];
+    }];
+}
+
+- (void)slideInFromCenter
+{
+    //From
+    self.view.transform = CGAffineTransformConcat(CGAffineTransformIdentity,
+                                CGAffineTransformMakeScale(3.0f, 3.0f));
+    self.view.alpha = 0.0f;
+    
+    [UIView animateWithDuration:0.3f animations:^{
+        self.backgroundView.alpha = _backgroundOpacity;
+        
+        //To
+        self.view.transform = CGAffineTransformConcat(CGAffineTransformIdentity,
+                                                      CGAffineTransformMakeScale(1.0f, 1.0f));
+        self.view.alpha = 1.0f;
+    } completion:^(BOOL completed) {
+        [UIView animateWithDuration:0.2f animations:^{
+            self.view.center = _backgroundView.center;
+        }];
+    }];
+}
+
+- (void)slideInToCenter
+{
+    //From
+    self.view.transform = CGAffineTransformConcat(CGAffineTransformIdentity,
+                                                  CGAffineTransformMakeScale(0.1f, 0.1f));
+    self.view.alpha = 0.0f;
+    
+    [UIView animateWithDuration:0.3f animations:^{
+        self.backgroundView.alpha = _backgroundOpacity;
+        
+        //To
+        self.view.transform = CGAffineTransformConcat(CGAffineTransformIdentity,
+                                                      CGAffineTransformMakeScale(1.0f, 1.0f));
         self.view.alpha = 1.0f;
     } completion:^(BOOL completed) {
         [UIView animateWithDuration:0.2f animations:^{

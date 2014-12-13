@@ -10,6 +10,7 @@ Animated Alert View written in Swift but ported to Objective-C, which can be use
 ![BackgroundImage](https://raw.githubusercontent.com/dogo/SCLAlertView/master/ScreenShots/ScreenShot2.png) 
 ![BackgroundImage](https://raw.githubusercontent.com/dogo/SCLAlertView/master/ScreenShots/ScreenShot3.png) 
 ![BackgroundImage](https://raw.githubusercontent.com/dogo/SCLAlertView/master/ScreenShots/ScreenShot4.png) 
+![BackgroundImage](https://raw.githubusercontent.com/dogo/SCLAlertView/master/ScreenShots/ScreenShot5.png) 
 
 ###Easy to use
 ```Objective-C
@@ -98,6 +99,14 @@ UITextField *textField = [alert addTextField:@"Enter your name"];
 [alert showEdit:self title:@"Edit View" subTitle:@"This alert view shows a text box" closeButtonTitle:@"Done" duration:0.0f];
 ```
 
+###Indeterminate progress
+```Objective-C
+SCLAlertView *alert = [[SCLAlertView alloc] init];
+    
+[alert showWaiting:self title:@"Waiting..." subTitle:@"Blah de blah de blah, blah. Blah de blah de" closeButtonTitle:nil duration:5.0f];
+```
+
+
 ###SCLAlertView properties
 ```Objective-C
 //Dismiss on tap outside (Default is NO)
@@ -134,6 +143,7 @@ typedef NS_ENUM(NSInteger, SCLAlertViewStyle)
     Warning,
     Info,
     Edit,
+    Waiting,
     Custom
 };
 ```
@@ -145,7 +155,9 @@ typedef NS_ENUM(NSInteger, SCLAlertViewHideAnimation)
     SlideOutToBottom,
     SlideOutToTop,
     SlideOutToLeft,
-    SlideOutToRight
+    SlideOutToRight,
+    SlideOutToCenter,
+    SlideOutFromCenter
 };
 ```
 ####Alert View show animation styles
@@ -156,7 +168,9 @@ typedef NS_ENUM(NSInteger, SCLAlertViewShowAnimation)
     SlideInFromBottom,
     SlideInFromTop,
     SlideInFromLeft,
-    SlideInFromRight
+    SlideInFromRight,
+    SlideInFromCenter,
+    SlideInToCenter
 };
 ```
 
