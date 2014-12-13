@@ -782,6 +782,14 @@ NSTimer *durationTimer;
         case SlideInFromRight:
             [self slideInFromRight];
             break;
+            
+        case SlideInFromCenter:
+            [self slideInFromCenter];
+            break;
+            
+        case SlideInToCenter:
+            [self slideInToCenter];
+            break;
     }
 }
 
@@ -809,6 +817,14 @@ NSTimer *durationTimer;
             
         case SlideOutToRight:
             [self slideOutToRight];
+            break;
+            
+        case SlideOutToCenter:
+            [self slideOutToCenter];
+            break;
+            
+        case SlideOutFromCenter:
+            [self slideOutFromCenter];
             break;
     }
     
@@ -873,6 +889,30 @@ NSTimer *durationTimer;
         CGRect frame = self.view.frame;
         frame.origin.x += self.backgroundView.frame.size.width;
         self.view.frame = frame;
+    } completion:^(BOOL completed) {
+        [self fadeOut];
+    }];
+}
+
+- (void)slideOutToCenter
+{
+    [UIView animateWithDuration:0.3f animations:^{
+        self.view.transform =
+        CGAffineTransformConcat(CGAffineTransformIdentity,
+                                CGAffineTransformMakeScale(0.1f, 0.1f));
+        self.view.alpha = 0.0f;
+    } completion:^(BOOL completed) {
+        [self fadeOut];
+    }];
+}
+
+- (void)slideOutFromCenter
+{
+    [UIView animateWithDuration:0.3f animations:^{
+        self.view.transform =
+        CGAffineTransformConcat(CGAffineTransformIdentity,
+                                CGAffineTransformMakeScale(3.0f, 3.0f));
+        self.view.alpha = 0.0f;
     } completion:^(BOOL completed) {
         [self fadeOut];
     }];
@@ -979,6 +1019,48 @@ NSTimer *durationTimer;
         frame.origin.x = 0;
         self.view.frame = frame;
         
+        self.view.alpha = 1.0f;
+    } completion:^(BOOL completed) {
+        [UIView animateWithDuration:0.2f animations:^{
+            self.view.center = _backgroundView.center;
+        }];
+    }];
+}
+
+- (void)slideInFromCenter
+{
+    //From
+    self.view.transform = CGAffineTransformConcat(CGAffineTransformIdentity,
+                                CGAffineTransformMakeScale(3.0f, 3.0f));
+    self.view.alpha = 0.0f;
+    
+    [UIView animateWithDuration:0.3f animations:^{
+        self.backgroundView.alpha = _backgroundOpacity;
+        
+        //To
+        self.view.transform = CGAffineTransformConcat(CGAffineTransformIdentity,
+                                                      CGAffineTransformMakeScale(1.0f, 1.0f));
+        self.view.alpha = 1.0f;
+    } completion:^(BOOL completed) {
+        [UIView animateWithDuration:0.2f animations:^{
+            self.view.center = _backgroundView.center;
+        }];
+    }];
+}
+
+- (void)slideInToCenter
+{
+    //From
+    self.view.transform = CGAffineTransformConcat(CGAffineTransformIdentity,
+                                                  CGAffineTransformMakeScale(0.1f, 0.1f));
+    self.view.alpha = 0.0f;
+    
+    [UIView animateWithDuration:0.3f animations:^{
+        self.backgroundView.alpha = _backgroundOpacity;
+        
+        //To
+        self.view.transform = CGAffineTransformConcat(CGAffineTransformIdentity,
+                                                      CGAffineTransformMakeScale(1.0f, 1.0f));
         self.view.alpha = 1.0f;
     } completion:^(BOOL completed) {
         [UIView animateWithDuration:0.2f animations:^{

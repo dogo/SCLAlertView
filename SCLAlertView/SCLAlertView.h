@@ -40,7 +40,9 @@ typedef NS_ENUM(NSInteger, SCLAlertViewHideAnimation)
     SlideOutToBottom,
     SlideOutToTop,
     SlideOutToLeft,
-    SlideOutToRight
+    SlideOutToRight,
+    SlideOutToCenter,
+    SlideOutFromCenter
 };
 
 /** Alert show animation styles
@@ -53,7 +55,9 @@ typedef NS_ENUM(NSInteger, SCLAlertViewShowAnimation)
     SlideInFromBottom,
     SlideInFromTop,
     SlideInFromLeft,
-    SlideInFromRight
+    SlideInFromRight,
+    SlideInFromCenter,
+    SlideInToCenter
 };
 
 /** Alert background styles

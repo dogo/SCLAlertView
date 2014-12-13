@@ -228,6 +228,9 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
 - (IBAction)showWaiting:(id)sender {
     SCLAlertView *alert = [[SCLAlertView alloc] init];
     
+    [alert setShowAnimationType:SlideInToCenter];
+    [alert setHideAnimationType:SlideOutFromCenter];
+    
     [alert showWaiting:self title:@"Waiting..."
             subTitle:@"Blah de blah de blah, blah. Blah de blah de"
     closeButtonTitle:nil duration:5.0f];
