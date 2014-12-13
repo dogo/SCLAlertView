@@ -18,6 +18,7 @@
 - (IBAction)showEdit:(id)sender;
 - (IBAction)showCustom:(id)sender;
 - (IBAction)showValidation:(id)sender;
+- (IBAction)showWaiting:(id)sender;
 
 @end
 

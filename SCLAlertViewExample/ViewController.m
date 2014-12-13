@@ -225,6 +225,14 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     [alert showEdit:self title:@"Validation" subTitle:@"Ensure the data is correct before dismissing!" closeButtonTitle:@"Cancel" duration:0];
 }
 
+- (IBAction)showWaiting:(id)sender {
+    SCLAlertView *alert = [[SCLAlertView alloc] init];
+    
+    [alert showWaiting:self title:@"Waiting..."
+            subTitle:@"Blah de blah de blah, blah. Blah de blah de"
+    closeButtonTitle:nil duration:5.0f];
+}
+
 - (void)firstButton
 {
     NSLog(@"First button tapped");

@@ -26,6 +26,7 @@ typedef NS_ENUM(NSInteger, SCLAlertViewStyle)
     Warning,
     Info,
     Edit,
+    Waiting,
     Custom
 };
 
@@ -76,6 +77,12 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
  * Holds the textview.
  */
 @property UITextView *viewText;
+
+/** Activity Indicator
+ *
+ * Holds the activityIndicator.
+ */
+@property UIActivityIndicatorView *activityIndicatorView;
 
 /** Dismiss on tap outside
  *
@@ -253,6 +260,16 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
  * @param duration The amount of time the alert will remain on screen until it is automatically dismissed. If automatic dismissal is not desired, set to 0.
  */
 - (void)showCustom:(UIViewController *)vc image:(UIImage *)image color:(UIColor *)color title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration;
+
+/** Show Waiting SCLAlertView with UIActityIndicator.
+ *
+ * @param vc The view controller the alert view will be displayed in.
+ * @param title The text displayed on the button.
+ * @param subTitle The subtitle text of the alert view.
+ * @param closeButtonTitle The text for the close button.
+ * @param duration The amount of time the alert will remain on screen until it is automatically dismissed. If automatic dismissal is not desired, set to 0.
+ */
+- (void)showWaiting:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration;
 
 
 @end
