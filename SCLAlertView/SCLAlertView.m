@@ -32,8 +32,8 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 @property (nonatomic, strong) NSMutableArray *buttons;
 @property (nonatomic, strong) UIImageView *circleIconImageView;
 @property (nonatomic, strong) UIView *circleView;
-@property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, strong) UIView *circleViewBackground;
+@property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, strong) UIImageView *backgroundView;
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
 @property (nonatomic, strong) UITapGestureRecognizer *gestureRecognizer;
@@ -703,6 +703,12 @@ NSTimer *durationTimer;
 }
 
 #pragma mark - Visibility
+
+- (void)removeTopCircle
+{
+    [_circleViewBackground removeFromSuperview];
+    [_circleView removeFromSuperview];
+}
 
 - (BOOL)isVisible
 {

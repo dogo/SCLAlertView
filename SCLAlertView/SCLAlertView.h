@@ -147,6 +147,12 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
  */
 - (void)hideView;
 
+/** Remove Top Circle
+ *
+ * Remove top circle from SCLAlertView.
+ */
+- (void)removeTopCircle;
+
 /** Add Text Field
  *
  * @param title The text displayed on the textfield.
