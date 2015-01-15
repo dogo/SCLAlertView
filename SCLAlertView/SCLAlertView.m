@@ -180,7 +180,7 @@ NSTimer *durationTimer;
 
 #pragma mark - View Cycle
 
--(void)viewWillLayoutSubviews
+- (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
     
@@ -477,7 +477,7 @@ NSTimer *durationTimer;
     
     [self setBackground];
     
-    _backgroundView.frame = vc.view.bounds;
+    self.backgroundView.frame = vc.view.bounds;
     
     // Add subviews
     [window addSubview:_backgroundView];
