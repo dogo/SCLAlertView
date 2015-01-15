@@ -471,7 +471,7 @@ NSTimer *durationTimer;
 
 -(SCLAlertViewResponder *)showTitle:(UIViewController *)vc image:(UIImage *)image color:(UIColor *)color title:(NSString *)title subTitle:(NSString *)subTitle duration:(NSTimeInterval)duration completeText:(NSString *)completeText style:(SCLAlertViewStyle)style
 {
-    UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+    UIViewController *rootViewController = vc;
     
     self.view.alpha = 0;
     
@@ -480,9 +480,9 @@ NSTimer *durationTimer;
     self.backgroundView.frame = vc.view.bounds;
     
     // Add subviews
-    [window addSubview:_backgroundView];
-    [window addSubview:self.view];
-    [vc addChildViewController:self];
+    [rootViewController addChildViewController:self];
+    [rootViewController.view addSubview:_backgroundView];
+    [rootViewController.view addSubview:self.view];
 
     // Alert color/icon
     UIColor *viewColor;
