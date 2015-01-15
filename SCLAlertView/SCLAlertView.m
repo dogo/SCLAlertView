@@ -237,16 +237,16 @@ NSTimer *durationTimer;
     for (UITextField *textField in _inputs)
     {
         textField.frame = CGRectMake(12.0f, y, kWindowWidth - 24.0f, 30.0f);
-        textField.layer.cornerRadius = 3;
+        textField.layer.cornerRadius = 3.0f;
         y += 40.0f;
     }
     
     // Buttons
     for (SCLButton *btn in _buttons)
     {
-        btn.frame = CGRectMake(12.0f, y, kWindowWidth - 24, 35.0f);
-        btn.layer.cornerRadius = 3;
-        y += 45.0;
+        btn.frame = CGRectMake(12.0f, y, kWindowWidth - 24.0f, 35.0f);
+        btn.layer.cornerRadius = 3.0f;
+        y += 45.0f;
     }
 }
 
@@ -305,7 +305,7 @@ NSTimer *durationTimer;
     [self addObservers];
     
     // Update view height
-    kWindowHeight += 40.0;
+    kWindowHeight += 40.0f;
     
     // Add text field
     UITextField *txt = [[UITextField alloc] init];
@@ -383,7 +383,7 @@ NSTimer *durationTimer;
 - (SCLButton *)addButton:(NSString *)title
 {
     // Update view height
-    kWindowHeight += 45.0;
+    kWindowHeight += 45.0f;
     
     // Add button
     SCLButton *btn = [[SCLButton alloc] init];
@@ -473,7 +473,7 @@ NSTimer *durationTimer;
 {
     UIViewController *rootViewController = vc;
     
-    self.view.alpha = 0;
+    self.view.alpha = 0.0f;
     
     [self setBackground];
     
@@ -528,7 +528,7 @@ NSTimer *durationTimer;
         case Custom:
             viewColor = color;
             iconImage = image;
-            kCircleIconHeight = kCircleIconHeight * 2;
+            kCircleIconHeight = kCircleIconHeight * 2.0f;
             break;
     }
 
@@ -573,7 +573,7 @@ NSTimer *durationTimer;
         {
             NSAttributedString *str =[[NSAttributedString alloc] initWithString:subTitle attributes:attr];
             CGRect r = [str boundingRectWithSize:sz options:NSStringDrawingUsesLineFragmentOrigin context:nil];
-            CGFloat ht = ceil(r.size.height) + 10;
+            CGFloat ht = ceil(r.size.height) + 10.0f;
             if (ht < kTextHeight)
             {
                 kWindowHeight -= (kTextHeight - ht);
@@ -604,15 +604,17 @@ NSTimer *durationTimer;
         [self addDoneButtonWithTitle:completeText];
     }
 
-    // Alert view colour and images
+    // Alert view color and images
     self.circleView.backgroundColor = viewColor;
     
-    if (style == Waiting) {
+    if (style == Waiting)
+    {
         [self.activityIndicatorView startAnimating];
-    } else {
+    }
+    else
+    {
         self.circleIconImageView.image  = iconImage;
     }
-    
     
     for (UITextField *textField in _inputs)
     {
@@ -953,7 +955,7 @@ NSTimer *durationTimer;
         
         //To Frame
         CGRect frame = self.backgroundView.frame;
-        frame.origin.y = 0;
+        frame.origin.y = 0.0f;
         self.view.frame = frame;
         
         self.view.alpha = 1.0f;
@@ -976,7 +978,7 @@ NSTimer *durationTimer;
         
         //To Frame
         CGRect frame = self.backgroundView.frame;
-        frame.origin.y = 0;
+        frame.origin.y = 0.0f;
         self.view.frame = frame;
         
         self.view.alpha = 1.0f;
@@ -999,7 +1001,7 @@ NSTimer *durationTimer;
         
         //To Frame
         CGRect frame = self.backgroundView.frame;
-        frame.origin.x = 0;
+        frame.origin.x = 0.0f;
         self.view.frame = frame;
         
         self.view.alpha = 1.0f;
@@ -1022,7 +1024,7 @@ NSTimer *durationTimer;
         
         //To Frame
         CGRect frame = self.backgroundView.frame;
-        frame.origin.x = 0;
+        frame.origin.x = 0.0f;
         self.view.frame = frame;
         
         self.view.alpha = 1.0f;
