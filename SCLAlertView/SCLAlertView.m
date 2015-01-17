@@ -370,6 +370,8 @@ NSTimer *durationTimer;
 
 -(void)keyboardDidHide:(NSNotification *)notification
 {
+    if(!_keyboardIsVisible) return;
+
     [UIView animateWithDuration:0.2f animations:^{
         CGRect f = self.view.frame;
         f.origin.y += KEYBOARD_HEIGHT + PREDICTION_BAR_HEIGHT;
