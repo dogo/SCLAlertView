@@ -41,6 +41,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 @property (nonatomic) BOOL canAddObservers;
 @property (nonatomic) BOOL keyboardIsVisible;
 @property (nonatomic) CGFloat backgroundOpacity;
+@property (nonatomic) CGSize viewControllerSize;
 
 @end
 
@@ -184,7 +185,7 @@ NSTimer *durationTimer;
 {
     [super viewWillLayoutSubviews];
     
-    CGSize sz = [UIScreen mainScreen].bounds.size;
+    CGSize sz = _viewControllerSize;
     
     if (SYSTEM_VERSION_LESS_THAN(@"8.0"))
     {
@@ -474,6 +475,7 @@ NSTimer *durationTimer;
 -(SCLAlertViewResponder *)showTitle:(UIViewController *)vc image:(UIImage *)image color:(UIColor *)color title:(NSString *)title subTitle:(NSString *)subTitle duration:(NSTimeInterval)duration completeText:(NSString *)completeText style:(SCLAlertViewStyle)style
 {
     UIViewController *rootViewController = vc;
+    self.viewControllerSize = vc.view.frame.size;
     
     self.view.alpha = 0.0f;
     
