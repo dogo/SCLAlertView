@@ -117,6 +117,10 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
 {
     SCLAlertView *alert = [[SCLAlertView alloc] init];
     
+    [alert setTitleFontFamily:@"Superclarendon" withSize:20.0f];
+    [alert setBodyTextFontFamily:@"TrebuchetMS" withSize:14.0f];
+    [alert setButtonsTextFontFamily:@"Baskerville" withSize:14.0f];
+    
     [alert addButton:@"First Button" target:self selector:@selector(firstButton)];
     
     [alert addButton:@"Second Button" actionBlock:^(void) {
