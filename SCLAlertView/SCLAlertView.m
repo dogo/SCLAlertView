@@ -189,6 +189,8 @@ NSTimer *durationTimer;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
+#pragma mark - Modal Validation
+
 - (BOOL)isModal
 {
     return (_rootViewController != nil && _rootViewController.presentingViewController);
@@ -202,6 +204,7 @@ NSTimer *durationTimer;
     
     CGSize sz = [UIScreen mainScreen].bounds.size;
     
+    // Check if the rootViewController is modal, if so we need to get the modal size not the main screen size
     if([self isModal])
     {
         sz = _rootViewController.view.frame.size;
