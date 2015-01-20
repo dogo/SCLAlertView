@@ -40,10 +40,10 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 @property (nonatomic, strong) NSString *titleFontFamily;
 @property (nonatomic, strong) NSString *bodyTextFontFamily;
 @property (nonatomic, strong) NSString *buttonsFontFamily;
+@property (nonatomic, strong) UIViewController *rootViewController;
 @property (nonatomic, copy) DismissBlock dismissBlock;
 @property (nonatomic) BOOL canAddObservers;
 @property (nonatomic) BOOL keyboardIsVisible;
-@property (nonatomic) CGSize viewControllerSize;
 @property (nonatomic) CGFloat backgroundOpacity;
 @property (nonatomic) CGFloat titleFontSize;
 @property (nonatomic) CGFloat bodyFontSize;
@@ -189,13 +189,23 @@ NSTimer *durationTimer;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
+- (BOOL)isModal
+{
+    return (_rootViewController != nil && _rootViewController.presentingViewController);
+}
+
 #pragma mark - View Cycle
 
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
     
-    CGSize sz = _viewControllerSize;
+    CGSize sz = [UIScreen mainScreen].bounds.size;
+    
+    if([self isModal])
+    {
+        sz = _rootViewController.view.frame.size;
+    }
     
     if (SYSTEM_VERSION_LESS_THAN(@"8.0"))
     {
@@ -506,8 +516,7 @@ NSTimer *durationTimer;
 
 -(SCLAlertViewResponder *)showTitle:(UIViewController *)vc image:(UIImage *)image color:(UIColor *)color title:(NSString *)title subTitle:(NSString *)subTitle duration:(NSTimeInterval)duration completeText:(NSString *)completeText style:(SCLAlertViewStyle)style
 {
-    UIViewController *rootViewController = vc;
-    self.viewControllerSize = vc.view.frame.size;
+    _rootViewController = vc;
     
     self.view.alpha = 0.0f;
     
@@ -516,9 +525,9 @@ NSTimer *durationTimer;
     self.backgroundView.frame = vc.view.bounds;
     
     // Add subviews
-    [rootViewController addChildViewController:self];
-    [rootViewController.view addSubview:_backgroundView];
-    [rootViewController.view addSubview:self.view];
+    [_rootViewController addChildViewController:self];
+    [_rootViewController.view addSubview:_backgroundView];
+    [_rootViewController.view addSubview:self.view];
 
     // Alert color/icon
     UIColor *viewColor;
