@@ -165,6 +165,27 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
  */
 - (void)setSubTitleHeight:(CGFloat)value;
 
+/** Set Title font family and size
+ *
+ * @param titleFontFamily The family name used to displayed the title.
+ * @param size Font size.
+ */
+- (void)setTitleFontFamily:(NSString *)titleFontFamily withSize:(CGFloat)size;
+
+/** Set Text field font family and size
+ *
+ * @param bodyTextFontFamily The family name used to displayed the text field.
+ * @param size Font size.
+ */
+- (void)setBodyTextFontFamily:(NSString *)bodyTextFontFamily withSize:(CGFloat)size;
+
+/** Set Buttons font family and size
+ *
+ * @param buttonsFontFamily The family name used to displayed the buttons.
+ * @param size Font size.
+ */
+- (void)setButtonsTextFontFamily:(NSString *)buttonsFontFamily withSize:(CGFloat)size;
+
 /** Add a Button with a title and a block to handle when the button is pressed.
  *
  * @param title The text displayed on the button.

@@ -37,11 +37,17 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 @property (nonatomic, strong) UIImageView *backgroundView;
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
 @property (nonatomic, strong) UITapGestureRecognizer *gestureRecognizer;
+@property (nonatomic, strong) NSString *titleFontFamily;
+@property (nonatomic, strong) NSString *bodyTextFontFamily;
+@property (nonatomic, strong) NSString *buttonsFontFamily;
 @property (nonatomic, copy) DismissBlock dismissBlock;
 @property (nonatomic) BOOL canAddObservers;
 @property (nonatomic) BOOL keyboardIsVisible;
-@property (nonatomic) CGFloat backgroundOpacity;
 @property (nonatomic) CGSize viewControllerSize;
+@property (nonatomic) CGFloat backgroundOpacity;
+@property (nonatomic) CGFloat titleFontSize;
+@property (nonatomic) CGFloat bodyFontSize;
+@property (nonatomic) CGFloat buttonsFontSize;
 
 @end
 
@@ -59,10 +65,6 @@ CGFloat kTextHeight;
 
 // Subtitle
 CGFloat kSubTitleHeight;
-
-// Font
-NSString *kDefaultFont = @"HelveticaNeue";
-NSString *kButtonFont = @"HelveticaNeue-Bold";
 
 // Timer
 NSTimer *durationTimer;
@@ -98,6 +100,14 @@ NSTimer *durationTimer;
         _hideAnimationType = FadeOut;
         _showAnimationType = SlideInFromTop;
         _backgroundType = Shadow;
+        
+        // Font
+        _titleFontFamily = @"HelveticaNeue";
+        _bodyTextFontFamily = @"HelveticaNeue";
+        _buttonsFontFamily = @"HelveticaNeue-Bold";
+        _titleFontSize = 20.0f;
+        _bodyFontSize = 14.0f;
+        _buttonsFontSize = 14.0f;
 
         // Init
         _labelTitle = [[UILabel alloc] init];
@@ -135,13 +145,13 @@ NSTimer *durationTimer;
         // Title
         _labelTitle.numberOfLines = 1;
         _labelTitle.textAlignment = NSTextAlignmentCenter;
-        _labelTitle.font = [UIFont fontWithName:kDefaultFont size:20.0f];
+        _labelTitle.font = [UIFont fontWithName:_titleFontFamily size:_titleFontSize];
         
         // View text
         _viewText.editable = NO;
         _viewText.allowsEditingTextAttributes = YES;
         _viewText.textAlignment = NSTextAlignmentCenter;
-        _viewText.font = [UIFont fontWithName:kDefaultFont size:14.0f];
+        _viewText.font = [UIFont fontWithName:_bodyTextFontFamily size:_bodyFontSize];
         
         if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
         {
@@ -283,6 +293,28 @@ NSTimer *durationTimer;
     }
 }
 
+#pragma mark - Custom Fonts
+
+- (void)setTitleFontFamily:(NSString *)titleFontFamily withSize:(CGFloat)size
+{
+    self.titleFontFamily = titleFontFamily;
+    self.titleFontSize = size;
+    self.labelTitle.font = [UIFont fontWithName:_titleFontFamily size:_titleFontSize];
+}
+
+- (void)setBodyTextFontFamily:(NSString *)bodyTextFontFamily withSize:(CGFloat)size
+{
+    self.bodyTextFontFamily = bodyTextFontFamily;
+    self.bodyFontSize = size;
+    self.viewText.font = [UIFont fontWithName:_bodyTextFontFamily size:_bodyFontSize];
+}
+
+- (void)setButtonsTextFontFamily:(NSString *)buttonsFontFamily withSize:(CGFloat)size
+{
+    self.buttonsFontFamily = buttonsFontFamily;
+    self.buttonsFontSize = size;
+}
+
 #pragma mark - Sound
 
 - (void)setSoundURL:(NSURL *)soundURL
@@ -313,7 +345,7 @@ NSTimer *durationTimer;
     txt.delegate = self;
     txt.returnKeyType = UIReturnKeyDone;
     txt.borderStyle = UITextBorderStyleRoundedRect;
-    txt.font = [UIFont fontWithName:kDefaultFont size:14.0f];
+    txt.font = [UIFont fontWithName:_bodyTextFontFamily size:_bodyFontSize];
     txt.autocapitalizationType = UITextAutocapitalizationTypeWords;
     txt.clearButtonMode = UITextFieldViewModeWhileEditing;
     txt.layer.masksToBounds = YES;
@@ -392,7 +424,7 @@ NSTimer *durationTimer;
     SCLButton *btn = [[SCLButton alloc] init];
     btn.layer.masksToBounds = YES;
     [btn setTitle:title forState:UIControlStateNormal];
-    btn.titleLabel.font = [UIFont fontWithName:kButtonFont size:14.0f];
+    btn.titleLabel.font = [UIFont fontWithName:_buttonsFontFamily size:_buttonsFontSize];
 
     [_contentView addSubview:btn];
     [_buttons addObject:btn];
@@ -553,6 +585,7 @@ NSTimer *durationTimer;
         else
         {
             _viewText.attributedText = self.attributedFormatBlock(subTitle);
+            self.viewText.font = [UIFont fontWithName:_bodyTextFontFamily size:_bodyFontSize];
         }
         
         // Adjust text view size, if necessary
