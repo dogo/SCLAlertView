@@ -202,7 +202,7 @@ NSTimer *durationTimer;
 {
     [super viewWillLayoutSubviews];
     
-    CGSize sz = [UIScreen mainScreen].bounds.size;
+    CGSize sz = [self mainScreenFrame].size;
     
     // Check if the rootViewController is modal, if so we need to get the modal size not the main screen size
     if([self isModal])
