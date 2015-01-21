@@ -146,12 +146,14 @@ NSTimer *durationTimer;
         _labelTitle.numberOfLines = 1;
         _labelTitle.textAlignment = NSTextAlignmentCenter;
         _labelTitle.font = [UIFont fontWithName:_titleFontFamily size:_titleFontSize];
+        _labelTitle.frame = CGRectMake(12.0f, (kCircleHeight / 2) + 4.0f, kWindowWidth - 24.0f, 40.0f);
         
         // View text
         _viewText.editable = NO;
         _viewText.allowsEditingTextAttributes = YES;
         _viewText.textAlignment = NSTextAlignmentCenter;
         _viewText.font = [UIFont fontWithName:_bodyTextFontFamily size:_bodyFontSize];
+        _viewText.frame = CGRectMake(12.0f, 70.0f, kWindowWidth - 24.0f, kTextHeight);        
         
         if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
         {
@@ -225,8 +227,6 @@ NSTimer *durationTimer;
     newFrame.size = sz;
     self.backgroundView.frame = newFrame;
     
-    [self resizeAlertIfNeeded];
-    
     // Set frames
     CGRect r;
     if (self.view.superview != nil)
@@ -251,7 +251,7 @@ NSTimer *durationTimer;
     
     // Text fields
     CGFloat y = (_labelTitle.text == nil) ? (kCircleHeight - 20.0f) : 74.0f;
-    y += + kTextHeight + 14.0f;
+    y += kTextHeight + 14.0f;
     for (UITextField *textField in _inputs)
     {
         textField.frame = CGRectMake(12.0f, y, kWindowWidth - 24.0f, 30.0f);
@@ -579,6 +579,15 @@ NSTimer *durationTimer;
     {
         self.labelTitle.text = title;
     }
+    else
+    {
+        // Title is nil, we can move the body message to center and remove it from superView
+        kWindowHeight -= _labelTitle.frame.size.height;
+        [_labelTitle removeFromSuperview];
+        
+        // Move up
+        _viewText.frame = CGRectMake(12.0f, kCircleHeight - 20, kWindowWidth - 24.0f, kTextHeight);
+    }
 
     // Subtitle
     if([subTitle stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0)
@@ -626,6 +635,16 @@ NSTimer *durationTimer;
                 kTextHeight = ht;
             }
         }
+    }
+    else
+    {
+        // Subtitle is nil, we can move the title to center and remove it from superView
+        kTextHeight = 0.0f;
+        kWindowHeight -= _viewText.frame.size.height;
+        [_viewText removeFromSuperview];
+        
+        // Move up
+        _labelTitle.frame = CGRectMake(12.0f, 37.0f, kWindowWidth - 24.0f, 40.0f);
     }
     
     // Play sound, if necessary
@@ -768,33 +787,6 @@ NSTimer *durationTimer;
 - (CGRect)mainScreenFrame
 {
     return [UIScreen mainScreen].bounds;
-}
-
-- (void)resizeAlertIfNeeded
-{
-    _labelTitle.frame = CGRectMake(12.0f, (kCircleHeight / 2) + 4.0f, kWindowWidth - 24.0f, 40.0f);
-    _viewText.frame = CGRectMake(12.0f, 70.0f, kWindowWidth - 24.0f, kTextHeight);
-    
-    // Title is nil, we can move the body message to center and remove it from superView
-    if(_labelTitle.text == nil || [_labelTitle.text isEqualToString:@""])
-    {
-        kWindowHeight -= _labelTitle.frame.size.height;
-        [_labelTitle removeFromSuperview];
-        
-        // Move up
-        _viewText.frame = CGRectMake(12.0f, kCircleHeight - 20, kWindowWidth - 24.0f, kTextHeight);
-    }
-    
-    // Subtitle is nil, we can move the title to center and remove it from superView
-    if(_viewText.text == nil || [_viewText.text isEqualToString:@""])
-    {
-        kTextHeight = 0.0f;
-        kWindowHeight -= _viewText.frame.size.height;
-        [_viewText removeFromSuperview];
-        
-        // Move up
-        _labelTitle.frame = CGRectMake(12.0f, 37.0f, kWindowWidth - 24.0f, 40.0f);
-    }
 }
 
 #pragma mark - Background Effects
