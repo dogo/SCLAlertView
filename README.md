@@ -180,7 +180,8 @@ typedef NS_ENUM(NSInteger, SCLAlertViewShowAnimation)
 typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
 {
     Shadow,
-    Blur
+    Blur,
+    Transparent
 };
 ```
 
