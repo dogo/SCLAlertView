@@ -776,7 +776,7 @@ NSTimer *durationTimer;
 
 - (BOOL)isVisible
 {
-    return (self.backgroundView.alpha && self.view.alpha);
+    return (self.view.alpha);
 }
 
 - (void)alertIsDismissed:(DismissBlock)dismissBlock
@@ -813,6 +813,14 @@ NSTimer *durationTimer;
     _backgroundOpacity = 1.0f;
 }
 
+- (void)makeTransparentBackground
+{
+    _backgroundView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    _backgroundView.backgroundColor = [UIColor clearColor];
+    _backgroundView.alpha = 0.0f;
+    _backgroundOpacity = 1.0f;
+}
+
 - (void)setBackground
 {
     switch (_backgroundType)
@@ -823,6 +831,10 @@ NSTimer *durationTimer;
             
         case Blur:
             [self makeBlurBackground];
+            break;
+            
+        case Transparent:
+            [self makeTransparentBackground];
             break;
     }
 }

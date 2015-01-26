@@ -235,8 +235,10 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     [alert setShowAnimationType:SlideInToCenter];
     [alert setHideAnimationType:SlideOutFromCenter];
     
+    alert.backgroundType = Transparent;
+    
     [alert showWaiting:self title:@"Waiting..."
-            subTitle:@"Blah de blah de blah, blah. Blah de blah de"
+            subTitle:@"You've just displayed this awesome Pop Up View with transparent background"
     closeButtonTitle:nil duration:5.0f];
 }
 
