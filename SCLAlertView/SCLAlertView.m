@@ -179,8 +179,8 @@ NSTimer *durationTimer;
 {
     if(_canAddObservers)
     {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
         _canAddObservers = NO;
     }
 }
@@ -396,7 +396,7 @@ NSTimer *durationTimer;
     return NO;
 }
 
-- (void)keyboardDidShow:(NSNotification *)notification
+- (void)keyboardWillShow:(NSNotification *)notification
 {
     if(_keyboardIsVisible) return;
     
@@ -408,7 +408,7 @@ NSTimer *durationTimer;
     _keyboardIsVisible = YES;
 }
 
--(void)keyboardDidHide:(NSNotification *)notification
+-(void)keyboardWillHide:(NSNotification *)notification
 {
     if(!_keyboardIsVisible) return;
 
