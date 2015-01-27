@@ -52,6 +52,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 @property (nonatomic) CGFloat windowWidth;
 @property (nonatomic) CGFloat circleIconHeight;
 @property (nonatomic) CGFloat subTitleHeight;
+@property (nonatomic) CGFloat subTitleY;
 
 @end
 
@@ -86,6 +87,7 @@ NSTimer *durationTimer;
         kCircleBackgroundTopPosition = -15.0f;
         kCircleHeightBackground = 62.0f;
         kActivityIndicatorHeight = 40.0f;
+        self.subTitleY = 70.0f;
         self.subTitleHeight = 90.0f;
         self.circleIconHeight = 20.0f;
         self.windowWidth = 240.0f;
@@ -149,7 +151,7 @@ NSTimer *durationTimer;
         _viewText.allowsEditingTextAttributes = YES;
         _viewText.textAlignment = NSTextAlignmentCenter;
         _viewText.font = [UIFont fontWithName:_bodyTextFontFamily size:_bodyFontSize];
-        _viewText.frame = CGRectMake(12.0f, 70.0f, _windowWidth - 24.0f, _subTitleHeight);
+        _viewText.frame = CGRectMake(12.0f, _subTitleY, _windowWidth - 24.0f, _subTitleHeight);
         
         if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
         {
@@ -580,9 +582,8 @@ NSTimer *durationTimer;
         // Title is nil, we can move the body message to center and remove it from superView
         self.windowHeight -= _labelTitle.frame.size.height;
         [_labelTitle removeFromSuperview];
-        
-        // Move up
-        _viewText.frame = CGRectMake(12.0f, kCircleHeight - 20, _windowWidth - 24.0f, _subTitleHeight);
+    
+        _subTitleY = kCircleHeight - 20;
     }
 
     // Subtitle
@@ -600,7 +601,7 @@ NSTimer *durationTimer;
         }
         
         // Adjust text view size, if necessary
-        CGSize sz = CGSizeMake(_windowWidth - 24.0f, _subTitleHeight);
+        CGSize sz = CGSizeMake(_windowWidth - 24.0f, CGFLOAT_MAX);
         NSDictionary *attr = @{NSFontAttributeName:self.viewText.font};
         
         if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
@@ -612,7 +613,9 @@ NSTimer *durationTimer;
             {
                 self.windowHeight -= (_subTitleHeight - ht);
                 self.subTitleHeight = ht;
-            }else{
+            }
+            else
+            {
                 self.windowHeight += (ht - _subTitleHeight);
                 self.subTitleHeight = ht;
             }
@@ -626,11 +629,14 @@ NSTimer *durationTimer;
             {
                 self.windowHeight -= (_subTitleHeight - ht);
                 self.subTitleHeight = ht;
-            }else{
+            }
+            else
+            {
                 self.windowHeight += (ht - _subTitleHeight);
                 self.subTitleHeight = ht;
             }
         }
+        _viewText.frame = CGRectMake(12.0f, _subTitleY, _windowWidth - 24.0f, _subTitleHeight);
     }
     else
     {

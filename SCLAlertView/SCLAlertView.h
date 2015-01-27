@@ -162,9 +162,10 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
 
 /** Set SubTitle Height
  *
+ * @deprecated Deprecated since 0.5.2+ .
  * @param value Height of scrollable subtitle text field.
  */
-- (void)setSubTitleHeight:(CGFloat)value;
+- (void)setSubTitleHeight:(CGFloat)value __deprecated;
 
 /** Set Title font family and size
  *
