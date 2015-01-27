@@ -51,7 +51,6 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 @property (nonatomic) CGFloat windowHeight;
 @property (nonatomic) CGFloat windowWidth;
 @property (nonatomic) CGFloat circleIconHeight;
-@property (nonatomic) CGFloat textHeight;
 @property (nonatomic) CGFloat subTitleHeight;
 
 @end
@@ -88,7 +87,6 @@ NSTimer *durationTimer;
         kCircleHeightBackground = 62.0f;
         kActivityIndicatorHeight = 40.0f;
         self.subTitleHeight = 90.0f;
-        self.textHeight = 90.0f;
         self.circleIconHeight = 20.0f;
         self.windowWidth = 240.0f;
         self.windowHeight = 178.0f;
@@ -151,7 +149,7 @@ NSTimer *durationTimer;
         _viewText.allowsEditingTextAttributes = YES;
         _viewText.textAlignment = NSTextAlignmentCenter;
         _viewText.font = [UIFont fontWithName:_bodyTextFontFamily size:_bodyFontSize];
-        _viewText.frame = CGRectMake(12.0f, 70.0f, _windowWidth - 24.0f, _textHeight);        
+        _viewText.frame = CGRectMake(12.0f, 70.0f, _windowWidth - 24.0f, _subTitleHeight);
         
         if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
         {
@@ -249,7 +247,7 @@ NSTimer *durationTimer;
     
     // Text fields
     CGFloat y = (_labelTitle.text == nil) ? (kCircleHeight - 20.0f) : 74.0f;
-    y += _textHeight + 14.0f;
+    y += _subTitleHeight + 14.0f;
     for (UITextField *textField in _inputs)
     {
         textField.frame = CGRectMake(12.0f, y, _windowWidth - 24.0f, 30.0f);
@@ -584,7 +582,7 @@ NSTimer *durationTimer;
         [_labelTitle removeFromSuperview];
         
         // Move up
-        _viewText.frame = CGRectMake(12.0f, kCircleHeight - 20, _windowWidth - 24.0f, _textHeight);
+        _viewText.frame = CGRectMake(12.0f, kCircleHeight - 20, _windowWidth - 24.0f, _subTitleHeight);
     }
 
     // Subtitle
@@ -610,13 +608,13 @@ NSTimer *durationTimer;
             NSString *str = subTitle;
             CGRect r = [str boundingRectWithSize:sz options:NSStringDrawingUsesLineFragmentOrigin attributes:attr context:nil];
             CGFloat ht = ceil(r.size.height);
-            if (ht < _textHeight)
+            if (ht < _subTitleHeight)
             {
-                self.windowHeight -= (_textHeight - ht);
-                self.textHeight = ht;
+                self.windowHeight -= (_subTitleHeight - ht);
+                self.subTitleHeight = ht;
             }else{
-                self.windowHeight += (ht - _textHeight);
-                self.textHeight = ht;
+                self.windowHeight += (ht - _subTitleHeight);
+                self.subTitleHeight = ht;
             }
         }
         else
@@ -624,20 +622,20 @@ NSTimer *durationTimer;
             NSAttributedString *str =[[NSAttributedString alloc] initWithString:subTitle attributes:attr];
             CGRect r = [str boundingRectWithSize:sz options:NSStringDrawingUsesLineFragmentOrigin context:nil];
             CGFloat ht = ceil(r.size.height) + 10.0f;
-            if (ht < _textHeight)
+            if (ht < _subTitleHeight)
             {
-                self.windowHeight -= (_textHeight - ht);
-                self.textHeight = ht;
+                self.windowHeight -= (_subTitleHeight - ht);
+                self.subTitleHeight = ht;
             }else{
-                self.windowHeight += (ht - _textHeight);
-                self.textHeight = ht;
+                self.windowHeight += (ht - _subTitleHeight);
+                self.subTitleHeight = ht;
             }
         }
     }
     else
     {
         // Subtitle is nil, we can move the title to center and remove it from superView
-        self.textHeight = 0.0f;
+        self.subTitleHeight = 0.0f;
         self.windowHeight -= _viewText.frame.size.height;
         [_viewText removeFromSuperview];
         
