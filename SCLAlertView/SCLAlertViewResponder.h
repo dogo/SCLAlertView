@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 AnyKey Entertainment. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 #import "SCLAlertView.h"
 
 @interface SCLAlertViewResponder : NSObject

@@ -10,7 +10,7 @@
 #import "SCLAlertViewResponder.h"
 #import "SCLAlertViewStyleKit.h"
 #import "UIImage+ImageEffects.h"
-#import <AVFoundation/AVFoundation.h>
+@import AVFoundation;
 
 #define UIColorFromRGB(rgbValue) [UIColor \
 colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \

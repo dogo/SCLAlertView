@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 AnyKey Entertainment. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 #import "SCLButton.h"
 
 typedef NSAttributedString* (^SCLAttributedFormatBlock)(NSString *value);
