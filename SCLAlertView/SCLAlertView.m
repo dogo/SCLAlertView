@@ -571,6 +571,12 @@ NSTimer *durationTimer;
             self.circleIconHeight *= 2.0f;
             break;
     }
+    
+    // Custom Alert color
+    if(_customViewColor)
+    {
+        viewColor = _customViewColor;
+    }
 
     // Title
     if([title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0)

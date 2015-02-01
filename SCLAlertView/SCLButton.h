@@ -55,9 +55,9 @@ typedef NS_ENUM(NSInteger, SCLActionType)
  */
 @property (nonatomic, copy) ButtonFormatBlock buttonFormatBlock;
 
-/** TODO
+/** Set SCLButton color.
  *
- * TODO
+ * Set SCLButton color.
  */
 @property (nonatomic, strong) UIColor *defaultBackgroundColor;
 

@@ -136,6 +136,12 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
  */
 @property (nonatomic) SCLAlertViewBackground backgroundType;
 
+/** Set custom color to SCLAlertView.
+ *
+ * SCLAlertView custom color.
+ */
+@property (nonatomic, strong) UIColor *customViewColor;
+
 /** Warns that alerts is gone
  *
  * Warns that alerts is gone using block
