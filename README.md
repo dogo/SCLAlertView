@@ -29,18 +29,6 @@ SCLAlertView *alert = [[SCLAlertView alloc] init];
 [alert showCustom:self image:[UIImage imageNamed:@"git"] color:color title:@"Custom" subTitle:@"Add a custom icon and color for your own type of alert!" closeButtonTitle:@"OK" duration:0.0f]; // Custom
 ```
 
-###Advanced
-```Objective-C
-SCLAlertView *alert = [[SCLAlertView alloc] init];
-
-[alert showTitle:self // Parent view controller
-    title:@"Congratulations" // Title of view
-    subTitle:@"Operation successfully completed." // String of view
-    style:Success // Styles - see below.
-    completeText:@"Done" // Optional button value
-    duration:2.0f]; // Duration to show before closing automatically
-```
-
 ###Add buttons
 ```Objective-C
 SCLAlertView *alert = [[SCLAlertView alloc] init];
@@ -121,6 +109,9 @@ alert.showAnimationType = SlideInFromLeft;
 
 //Set background type (Default is Shadow)
 alert.backgroundType = Blur;
+
+//Overwrite SCLAlertView default color
+alert.customViewColor = [UIColor purpleColor];
 
 //Using sound
 alert.soundURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/right_answer.mp3", [[NSBundle mainBundle] resourcePath]]];
