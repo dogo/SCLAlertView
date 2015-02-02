@@ -139,7 +139,7 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
 /** Set custom color to SCLAlertView.
  *
  * SCLAlertView custom color.
- * (Buttons, circle and text field borders)
+ * (Buttons, top circle and borders)
  */
 @property (nonatomic, strong) UIColor *customViewColor;
 

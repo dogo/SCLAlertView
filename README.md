@@ -110,8 +110,11 @@ alert.showAnimationType = SlideInFromLeft;
 //Set background type (Default is Shadow)
 alert.backgroundType = Blur;
 
-//Overwrite SCLAlertView default color
+//Overwrite SCLAlertView (Buttons, top circle and borders) colors
 alert.customViewColor = [UIColor purpleColor];
+
+//Overwrite SCLAlertView background color
+alert.backgroundViewColor = [UIColor cyanColor];
 
 //Using sound
 alert.soundURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/right_answer.mp3", [[NSBundle mainBundle] resourcePath]]];
