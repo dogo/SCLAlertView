@@ -134,9 +134,6 @@ NSTimer *durationTimer;
         _contentView.layer.masksToBounds = YES;
         _contentView.layer.borderWidth = 0.5f;
         
-		// Circle View Background
-		_circleViewBackground.backgroundColor = [UIColor whiteColor];
-        
         // Background View
         _backgroundView.userInteractionEnabled = YES;
         
@@ -160,10 +157,10 @@ NSTimer *durationTimer;
         }
     
         // Colors
-        _contentView.backgroundColor = [UIColor whiteColor];
-        _labelTitle.textColor = UIColorFromRGB(0x4D4D4D);
-        _viewText.textColor = UIColorFromRGB(0x4D4D4D);
-        _contentView.layer.borderColor = UIColorFromRGB(0xCCCCCC).CGColor;
+        self.backgroundViewColor = [UIColor whiteColor];
+        _labelTitle.textColor = UIColorFromRGB(0x4D4D4D); //Dark Grey
+        _viewText.textColor = UIColorFromRGB(0x4D4D4D); //Dark Grey
+        _contentView.layer.borderColor = UIColorFromRGB(0xCCCCCC).CGColor; //Light Grey
     }
     return self;
 }
@@ -318,6 +315,16 @@ NSTimer *durationTimer;
 {
     self.buttonsFontFamily = buttonsFontFamily;
     self.buttonsFontSize = size;
+}
+
+#pragma mark - Background Color
+
+- (void)setBackgroundViewColor:(UIColor *)backgroundViewColor
+{
+    _backgroundViewColor = backgroundViewColor;
+    _circleViewBackground.backgroundColor = _backgroundViewColor;
+    _contentView.backgroundColor = _backgroundViewColor;
+    _viewText.backgroundColor = _backgroundViewColor;
 }
 
 #pragma mark - Sound

@@ -117,6 +117,8 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
 {
     SCLAlertView *alert = [[SCLAlertView alloc] init];
     
+    alert.backgroundViewColor = [UIColor cyanColor];
+    
     [alert setTitleFontFamily:@"Superclarendon" withSize:20.0f];
     [alert setBodyTextFontFamily:@"TrebuchetMS" withSize:14.0f];
     [alert setButtonsTextFontFamily:@"Baskerville" withSize:14.0f];
@@ -151,7 +153,7 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
         [subTitle addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:redRange];
         
         NSRange greenRange = [value rangeOfString:@"successfully" options:NSCaseInsensitiveSearch];
-        [subTitle addAttribute:NSForegroundColorAttributeName value:[UIColor greenColor] range:greenRange];
+        [subTitle addAttribute:NSForegroundColorAttributeName value:[UIColor brownColor] range:greenRange];
         
         NSRange underline = [value rangeOfString:@"completed" options:NSCaseInsensitiveSearch];
         [subTitle addAttributes:@{NSUnderlineStyleAttributeName:@(NSUnderlineStyleSingle)} range:underline];
