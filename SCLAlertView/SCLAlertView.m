@@ -382,6 +382,24 @@ NSTimer *durationTimer;
     return txt;
 }
 
+- (void)addCustomTextField:(UITextField *)textField
+{
+    // Update view height
+    self.windowHeight += 40.0f;
+    
+    [_contentView addSubview:textField];
+    [_inputs addObject:textField];
+    
+    // If there are other fields in the inputs array, get the previous field and set the
+    // return key type on that to next.
+    if (_inputs.count > 1)
+    {
+        NSUInteger indexOfCurrentField = [_inputs indexOfObject:textField];
+        UITextField *priorField = _inputs[indexOfCurrentField - 1];
+        priorField.returnKeyType = UIReturnKeyNext;
+    }
+}
+
 # pragma mark - UITextFieldDelegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

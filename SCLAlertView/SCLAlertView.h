@@ -173,6 +173,12 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
  */
 - (UITextField *)addTextField:(NSString *)title;
 
+/** Add a custom Text Field
+ *
+ * @param textField The custom textfield provided by the programmer.
+ */
+- (void)addCustomTextField:(UITextField *)textField;
+
 /** Set SubTitle Height
  *
  * @deprecated Deprecated since 0.5.2+ .
