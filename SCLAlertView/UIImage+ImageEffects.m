@@ -302,4 +302,18 @@
     return capturedScreen;
 }
 
++ (UIImage *)convertViewToImage:(UIView *)view
+{
+    UIView *localView = view;
+    CGRect rect = [localView bounds];
+    CGFloat scale = [[UIScreen mainScreen] scale];
+    UIGraphicsBeginImageContextWithOptions(rect.size, YES, scale);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    [localView.layer renderInContext:context];
+    UIImage *capturedScreen = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return capturedScreen;
+}
+
 @end

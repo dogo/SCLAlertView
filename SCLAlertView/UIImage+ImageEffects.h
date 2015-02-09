@@ -106,4 +106,6 @@
 
 + (UIImage *)imageWithColor:(UIColor *)color;
 + (UIImage *)convertViewToImage;
++ (UIImage *)convertViewToImage:(UIView *)view;
+
 @end
