@@ -61,15 +61,16 @@ typedef NS_ENUM(NSInteger, SCLActionType)
  */
 @property (nonatomic, strong) UIColor *defaultBackgroundColor;
 
-/** TODO
+/** Set Target object.
  *
- * TODO
+ * Target is an object that holds the information necessary to send a message to another object when an event occurs.
  */
 @property id target;
 
-/** TODO
+/** Set selector id.
  *
- * TODO
+ * A selector is the name used to select a method to execute for an object, 
+ * or the unique identifier that replaces the name when the source code is compiled.
  */
 @property SEL selector;
 
