@@ -26,7 +26,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #define KEYBOARD_HEIGHT 80
 #define PREDICTION_BAR_HEIGHT 40
 
-@interface SCLAlertView ()  <UITextFieldDelegate>
+@interface SCLAlertView ()  <UITextFieldDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *inputs;
 @property (nonatomic, strong) NSMutableArray *buttons;
@@ -194,6 +194,32 @@ NSTimer *durationTimer;
 }
 
 #pragma mark - View Cycle
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    UINavigationController *navigationController = _rootViewController.navigationController;
+    
+    // Disable iOS 7 back gesture
+    if ([navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)])
+    {
+        navigationController.interactivePopGestureRecognizer.enabled = NO;
+        navigationController.interactivePopGestureRecognizer.delegate = self;
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    UINavigationController *navigationController = _rootViewController.navigationController;
+    
+    // Disable iOS 7 back gesture
+    if ([navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)])
+    {
+        navigationController.interactivePopGestureRecognizer.enabled = YES;
+        navigationController.interactivePopGestureRecognizer.delegate = nil;
+    }
+}
 
 - (void)viewWillLayoutSubviews
 {
