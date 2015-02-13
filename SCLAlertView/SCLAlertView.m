@@ -168,6 +168,7 @@ NSTimer *durationTimer;
 - (void)dealloc
 {
     [self removeObservers];
+    [self enableInteractivePopGesture];
 }
 
 - (void)addObservers
@@ -194,32 +195,6 @@ NSTimer *durationTimer;
 }
 
 #pragma mark - View Cycle
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    UINavigationController *navigationController = _rootViewController.navigationController;
-    
-    // Disable iOS 7 back gesture
-    if ([navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)])
-    {
-        navigationController.interactivePopGestureRecognizer.enabled = NO;
-        navigationController.interactivePopGestureRecognizer.delegate = self;
-    }
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    UINavigationController *navigationController = _rootViewController.navigationController;
-    
-    // Disable iOS 7 back gesture
-    if ([navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)])
-    {
-        navigationController.interactivePopGestureRecognizer.enabled = YES;
-        navigationController.interactivePopGestureRecognizer.delegate = nil;
-    }
-}
 
 - (void)viewWillLayoutSubviews
 {
@@ -318,6 +293,48 @@ NSTimer *durationTimer;
     {
         self.gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
         [_backgroundView addGestureRecognizer:_gestureRecognizer];
+    }
+}
+
+- (void)disableInteractivePopGesture
+{
+    UINavigationController *navigationController;
+    
+    if([_rootViewController isKindOfClass:[UINavigationController class]])
+    {
+        navigationController = ((UINavigationController*)_rootViewController);
+    }
+    else
+    {
+        navigationController = _rootViewController.navigationController;
+    }
+    
+    // Disable iOS 7 back gesture
+    if ([navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)])
+    {
+        navigationController.interactivePopGestureRecognizer.enabled = NO;
+        navigationController.interactivePopGestureRecognizer.delegate = self;
+    }
+}
+
+- (void)enableInteractivePopGesture
+{
+    UINavigationController *navigationController;
+    
+    if([_rootViewController isKindOfClass:[UINavigationController class]])
+    {
+        navigationController = ((UINavigationController*)_rootViewController);
+    }
+    else
+    {
+        navigationController = _rootViewController.navigationController;
+    }
+    
+    // Disable iOS 7 back gesture
+    if ([navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)])
+    {
+        navigationController.interactivePopGestureRecognizer.enabled = YES;
+        navigationController.interactivePopGestureRecognizer.delegate = nil;
     }
 }
 
@@ -563,6 +580,8 @@ NSTimer *durationTimer;
 -(SCLAlertViewResponder *)showTitle:(UIViewController *)vc image:(UIImage *)image color:(UIColor *)color title:(NSString *)title subTitle:(NSString *)subTitle duration:(NSTimeInterval)duration completeText:(NSString *)completeText style:(SCLAlertViewStyle)style
 {
     _rootViewController = vc;
+    
+    [self disableInteractivePopGesture];
     
     self.view.alpha = 0.0f;
     
