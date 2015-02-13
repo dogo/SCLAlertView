@@ -117,7 +117,6 @@ NSTimer *durationTimer;
         _backgroundView = [[UIImageView alloc]initWithFrame:[self mainScreenFrame]];
         _buttons = [[NSMutableArray alloc] init];
         _inputs = [[NSMutableArray alloc] init];
-        _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         
         // Add Subviews
         [self.view addSubview:_contentView];
@@ -125,7 +124,6 @@ NSTimer *durationTimer;
         [self.view addSubview:_circleView];
 
         [_circleView addSubview:_circleIconImageView];
-        [_circleView addSubview:_activityIndicatorView];
         [_contentView addSubview:_labelTitle];
         [_contentView addSubview:_viewText];
         
@@ -243,7 +241,6 @@ NSTimer *durationTimer;
     _circleView.frame = CGRectMake(_windowWidth / 2 - kCircleHeight / 2, kCircleTopPosition, kCircleHeight, kCircleHeight);
     _circleView.layer.cornerRadius = self.circleView.frame.size.height / 2;
     _circleIconImageView.frame = CGRectMake(kCircleHeight / 2 - _circleIconHeight / 2, kCircleHeight / 2 - _circleIconHeight / 2, _circleIconHeight, _circleIconHeight);
-    _activityIndicatorView.frame =CGRectMake(kCircleHeight / 2 - kActivityIndicatorHeight / 2, kCircleHeight / 2 - kActivityIndicatorHeight / 2, kActivityIndicatorHeight, kActivityIndicatorHeight);
     
     // Text fields
     CGFloat y = (_labelTitle.text == nil) ? (kCircleHeight - 20.0f) : 74.0f;
@@ -384,6 +381,16 @@ NSTimer *durationTimer;
 - (void)setSubTitleHeight:(CGFloat)value
 {
     _subTitleHeight = value;
+}
+
+#pragma mark - ActivityIndicator
+
+- (void)addActivityIndicatorView
+{
+    // Add UIActivityIndicatorView
+    _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    _activityIndicatorView.frame = CGRectMake(kCircleHeight / 2 - kActivityIndicatorHeight / 2, kCircleHeight / 2 - kActivityIndicatorHeight / 2, kActivityIndicatorHeight, kActivityIndicatorHeight);
+    [_circleView addSubview:_activityIndicatorView];
 }
 
 #pragma mark - TextField
@@ -841,6 +848,7 @@ NSTimer *durationTimer;
 
 - (void)showWaiting:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
 {
+    [self addActivityIndicatorView];
     [self showTitle:vc image:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Waiting];
 }
 
@@ -988,7 +996,10 @@ NSTimer *durationTimer;
             break;
     }
     
-    [_activityIndicatorView stopAnimating];
+    if(_activityIndicatorView)
+    {
+        [_activityIndicatorView stopAnimating];
+    }
     
     if (self.dismissBlock)
     {
