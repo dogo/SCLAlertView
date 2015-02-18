@@ -766,7 +766,11 @@ NSTimer *durationTimer;
     }
     else
     {
-        self.circleIconImageView.image  = iconImage;
+        if (self.iconTintColor) {
+            self.circleIconImageView.tintColor = self.iconTintColor;
+            iconImage  = [iconImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        }
+        self.circleIconImageView.image = iconImage;
     }
     
     for (UITextField *textField in _inputs)

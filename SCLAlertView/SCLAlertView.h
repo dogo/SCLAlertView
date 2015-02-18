@@ -156,6 +156,12 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
  */
 @property (nonatomic, strong) UIColor *backgroundViewColor;
 
+/** Set custom tint color for icon image.
+ *
+ * SCLAlertView icon tint color
+ */
+@property (nonatomic, strong) UIColor *iconTintColor;
+
 /** Warns that alerts is gone
  *
  * Warns that alerts is gone using block
