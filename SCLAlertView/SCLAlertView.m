@@ -529,6 +529,12 @@ NSTimer *durationTimer;
 - (SCLButton *)addButton:(NSString *)title actionBlock:(SCLActionBlock)action
 {
     SCLButton *btn = [self addButton:title];
+    
+    if (_buttonFormatBlock != nil)
+    {
+        btn.buttonFormatBlock = _buttonFormatBlock;
+    }
+    
     btn.actionType = Block;
     btn.actionBlock = action;
     [btn addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
@@ -760,7 +766,11 @@ NSTimer *durationTimer;
     }
     else
     {
-        self.circleIconImageView.image  = iconImage;
+        if (self.iconTintColor) {
+            self.circleIconImageView.tintColor = self.iconTintColor;
+            iconImage  = [iconImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        }
+        self.circleIconImageView.image = iconImage;
     }
     
     for (UITextField *textField in _inputs)
@@ -770,6 +780,12 @@ NSTimer *durationTimer;
     
     for (SCLButton *btn in _buttons)
     {
+        if (style == Warning)
+        {
+            [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        }
+        btn.defaultBackgroundColor = viewColor;
+        
         if (btn.completeButtonFormatBlock != nil)
         {
             [btn parseConfig:btn.completeButtonFormatBlock()];
@@ -777,14 +793,6 @@ NSTimer *durationTimer;
         else if (btn.buttonFormatBlock != nil)
         {
             [btn parseConfig:btn.buttonFormatBlock()];
-        }
-        else
-        {
-            btn.defaultBackgroundColor = viewColor;
-        }
-        if (style == Warning)
-        {
-            [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         }
     }
     
