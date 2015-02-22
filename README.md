@@ -116,7 +116,6 @@ alert.customViewColor = [UIColor purpleColor];
 //Set custom tint color for icon image.
 alert.iconTintColor = [UIColor purpleColor];
 
-
 //Overwrite SCLAlertView background color
 alert.backgroundViewColor = [UIColor cyanColor];
 
