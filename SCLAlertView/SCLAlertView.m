@@ -209,7 +209,7 @@ NSTimer *durationTimer;
     if (SYSTEM_VERSION_LESS_THAN(@"8.0"))
     {
         // iOS versions before 7.0 did not switch the width and height on device roration
-        if UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])
+        if (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]))
         {
             CGSize ssz = sz;
             sz = CGSizeMake(ssz.height, ssz.width);
