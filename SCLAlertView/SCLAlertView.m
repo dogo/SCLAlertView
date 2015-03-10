@@ -10,18 +10,8 @@
 #import "SCLAlertViewResponder.h"
 #import "SCLAlertViewStyleKit.h"
 #import "UIImage+ImageEffects.h"
+#import "SCLMacros.h"
 @import AVFoundation;
-
-#define UIColorFromRGB(rgbValue) [UIColor \
-colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
-green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
-blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
-
-#define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
-#define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
-#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
-#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
-#define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
 
 #define KEYBOARD_HEIGHT 80
 #define PREDICTION_BAR_HEIGHT 40
@@ -895,7 +885,7 @@ NSTimer *durationTimer;
 
 - (void)makeBlurBackground
 {
-    UIImage *image = ([self isModal]) ? [UIImage convertViewToImage:_rootViewController.view] : [UIImage convertViewToImage];
+    UIImage *image = [UIImage convertViewToImage:_rootViewController.view];
     UIImage *blurSnapshotImage = [image applyBlurWithRadius:5.0f
                                          tintColor:[UIColor colorWithWhite:0.2f
                                                                      alpha:0.7f]

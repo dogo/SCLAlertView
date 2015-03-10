@@ -35,6 +35,7 @@
 		DD0D295B19D902DA00881F53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = SCLAlertViewExample/Info.plist; sourceTree = SOURCE_ROOT; };
 		DD2E172819FA84B800CBAEC3 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
 		DD2E172919FA84B800CBAEC3 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		DD2F03171AAFA4E0007BC507 /* SCLMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCLMacros.h; sourceTree = "<group>"; };
 		DD4BA9C019DED8EF008D73EB /* right_answer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = right_answer.mp3; sourceTree = "<group>"; };
 		DD4BA9C219DEDD8E008D73EB /* SCLAlertView-Objective-C-prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SCLAlertView-Objective-C-prefix.pch"; path = "SCLAlertViewExample/SCLAlertView-Objective-C-prefix.pch"; sourceTree = SOURCE_ROOT; };
 		DD7282B819D6087C00077F54 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = SCLAlertViewExample/Base.lproj/Storyboard.storyboard; sourceTree = SOURCE_ROOT; };
@@ -160,6 +161,7 @@
 				DDB15FDD19D5BCF400173158 /* SCLAlertViewResponder.m */,
 				DDB15FDF19D5D85B00173158 /* SCLAlertViewStyleKit.h */,
 				DDB15FE019D5D85B00173158 /* SCLAlertViewStyleKit.m */,
+				DD2F03171AAFA4E0007BC507 /* SCLMacros.h */,
 			);
 			path = SCLAlertView;
 			sourceTree = "<group>";
