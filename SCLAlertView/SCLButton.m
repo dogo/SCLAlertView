@@ -13,8 +13,9 @@
 - (id)init
 {
     self = [super init];
-    if (self) {
-        // Do something
+    if (self)
+    {
+        [self setup];
     }
     return self;
 }
@@ -22,8 +23,9 @@
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
-    if(self) {
-        // Do something
+    if(self)
+    {
+        [self setup];
     }
     return self;
 }
@@ -31,10 +33,16 @@
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
-    if (self) {
-        // Do something
+    if (self)
+    {
+        [self setup];
     }
     return self;
+}
+
+- (void)setup
+{
+    self.buttonSize = CGSizeMake(240.0f, 35.0f);
 }
 
 - (void)setHighlighted:(BOOL)highlighted
