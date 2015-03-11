@@ -27,7 +27,8 @@ typedef NS_ENUM(NSInteger, SCLAlertViewStyle)
     Info,
     Edit,
     Waiting,
-    Custom
+    Custom,
+    Searching
 };
 
 /** Alert hide animation styles
@@ -336,5 +337,14 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
  */
 - (void)showWaiting:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration;
 
-
+/**
+ *  show tableview alertview
+ *
+ * @param vc The view controller the alert view will be displayed in.
+ * @param title The text displayed on the button.
+ * @param subTitle The subtitle text of the alert view.
+ * @param closeButtonTitle The text for the close button.
+ * @param duration The amount of time the alert will remain on screen until it is automatically dismissed. If automatic dismissal is not desired, set to 0.
+ */
+- (void)showSearching:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration;
 @end

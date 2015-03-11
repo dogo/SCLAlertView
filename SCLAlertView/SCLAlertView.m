@@ -26,7 +26,10 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #define KEYBOARD_HEIGHT 80
 #define PREDICTION_BAR_HEIGHT 40
 
-@interface SCLAlertView ()  <UITextFieldDelegate, UIGestureRecognizerDelegate>
+//列表高度
+#define TABLECELLHEIGHT 40
+
+@interface SCLAlertView ()  <UITextFieldDelegate, UIGestureRecognizerDelegate,UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray *inputs;
 @property (nonatomic, strong) NSMutableArray *buttons;
@@ -41,6 +44,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 @property (nonatomic, strong) NSString *bodyTextFontFamily;
 @property (nonatomic, strong) NSString *buttonsFontFamily;
 @property (nonatomic, strong) UIViewController *rootViewController;
+@property (nonatomic, strong) UITableView *tableview;
 @property (nonatomic, copy) DismissBlock dismissBlock;
 @property (nonatomic) BOOL canAddObservers;
 @property (nonatomic) BOOL keyboardIsVisible;
@@ -159,6 +163,9 @@ NSTimer *durationTimer;
         _labelTitle.textColor = UIColorFromRGB(0x4D4D4D); //Dark Grey
         _viewText.textColor = UIColorFromRGB(0x4D4D4D); //Dark Grey
         _contentView.layer.borderColor = UIColorFromRGB(0xCCCCCC).CGColor; //Light Grey
+        
+        
+
     }
     return self;
 }
@@ -392,7 +399,17 @@ NSTimer *durationTimer;
     _activityIndicatorView.frame = CGRectMake(kCircleHeight / 2 - kActivityIndicatorHeight / 2, kCircleHeight / 2 - kActivityIndicatorHeight / 2, kActivityIndicatorHeight, kActivityIndicatorHeight);
     [_circleView addSubview:_activityIndicatorView];
 }
-
+#pragma mark - add TableView
+-(UITableView *)addTableView{
+    _tableview = [[UITableView alloc] init];
+    _tableview.delegate = self;
+    _tableview.dataSource = self;
+    // Update view height
+    self.windowHeight += (TABLECELLHEIGHT*4);
+    _tableview.frame = CGRectMake(_viewText.frame.origin.x, _viewText.frame.origin.y+_viewText.frame.size.height, _windowWidth - 24.0f, TABLECELLHEIGHT*4);
+    [_contentView addSubview:_tableview];
+    return _tableview;
+}
 #pragma mark - TextField
 
 - (UITextField *)addTextField:(NSString *)title
@@ -647,7 +664,9 @@ NSTimer *durationTimer;
         case Waiting:
             viewColor = UIColorFromRGB(0x6c125d);
             break;
-            
+        case Searching:
+            viewColor = UIColorFromRGB(0x6c125d);
+            break;
         case Custom:
             viewColor = color;
             iconImage = image;
@@ -726,6 +745,12 @@ NSTimer *durationTimer;
             }
         }
         _viewText.frame = CGRectMake(12.0f, _subTitleY, _windowWidth - 24.0f, _subTitleHeight);
+        if (style == Searching) {
+            [self.activityIndicatorView startAnimating];
+            //添加tableview
+            [self addTableView];
+            
+        }
     }
     else
     {
@@ -760,6 +785,7 @@ NSTimer *durationTimer;
     // Alert view color and images
     self.circleView.backgroundColor = viewColor;
     
+  
     if (style == Waiting)
     {
         [self.activityIndicatorView startAnimating];
@@ -772,6 +798,8 @@ NSTimer *durationTimer;
         }
         self.circleIconImageView.image = iconImage;
     }
+    
+    
     
     for (UITextField *textField in _inputs)
     {
@@ -859,7 +887,38 @@ NSTimer *durationTimer;
     [self addActivityIndicatorView];
     [self showTitle:vc image:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Waiting];
 }
+- (void)showSearching:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
+{
+    [self addActivityIndicatorView];
+    [self showTitle:vc image:nil color:nil title:title subTitle:subTitle duration:duration completeText:nil style:Searching];
+}
+#pragma mark - TableView Methods
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 40;
+    
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 5; // or self.items.count;
+}
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Step 1: Check to see if we can reuse a cell from a row that has just rolled off the screen
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    
+    // Step 2: If there are no cells to reuse, create a new one
+    if(cell == nil) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+    
+    // Add a detail view accessory
+    cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+    
+    // Step 3: Set the cell text
+    cell.textLabel.text = [NSString stringWithFormat:@"%ld",(long)indexPath.row];
+    
+    // Step 4: Return the cell
+    return cell;
+}
 #pragma mark - Visibility
 
 - (void)removeTopCircle

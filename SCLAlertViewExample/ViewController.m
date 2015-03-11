@@ -241,7 +241,20 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     
     [alert showWaiting:self title:@"Waiting..."
             subTitle:@"You've just displayed this awesome Pop Up View with transparent background"
-    closeButtonTitle:nil duration:5.0f];
+    closeButtonTitle:@"calcel" duration:0.0f];
+}
+- (IBAction)showSearching:(id)sender {
+    SCLAlertView *alert = [[SCLAlertView alloc] init];
+    
+    [alert setShowAnimationType:SlideInToCenter];
+    [alert setHideAnimationType:SlideOutFromCenter];
+    
+    alert.backgroundType = Transparent;
+//    alert.backgroundViewColor = [UIColor blueColor];
+    [alert showSearching:self title:@"Waiting..."
+              subTitle:@"You've just displayed this awesome Pop Up View with transparent background"
+      closeButtonTitle:@"calcel" duration:0.0f];
+
 }
 
 - (void)firstButton
