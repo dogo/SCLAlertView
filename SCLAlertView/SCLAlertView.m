@@ -30,7 +30,8 @@
 @property (nonatomic, strong) NSString *titleFontFamily;
 @property (nonatomic, strong) NSString *bodyTextFontFamily;
 @property (nonatomic, strong) NSString *buttonsFontFamily;
-@property (nonatomic, strong) UIViewController *rootViewController;
+@property (nonatomic, strong) UIWindow *previousWindow;
+@property (nonatomic, strong) UIWindow *alertWindow;
 @property (nonatomic, copy) DismissBlock dismissBlock;
 @property (nonatomic) BOOL canAddObservers;
 @property (nonatomic) BOOL keyboardIsVisible;
@@ -179,7 +180,7 @@ NSTimer *durationTimer;
 
 - (BOOL)isModal
 {
-    return (_rootViewController != nil && _rootViewController.presentingViewController);
+    return NO;//(_rootViewController != nil && _rootViewController.presentingViewController);
 }
 
 #pragma mark - View Cycle
@@ -191,10 +192,10 @@ NSTimer *durationTimer;
     CGSize sz = [self mainScreenFrame].size;
     
     // Check if the rootViewController is modal, if so we need to get the modal size not the main screen size
-    if([self isModal])
-    {
-        sz = _rootViewController.view.frame.size;
-    }
+//    if([self isModal])
+//    {
+//        sz = _rootViewController.view.frame.size;
+//    }
     
     if (SYSTEM_VERSION_LESS_THAN(@"8.0"))
     {
@@ -288,44 +289,44 @@ NSTimer *durationTimer;
 
 - (void)disableInteractivePopGesture
 {
-    UINavigationController *navigationController;
-    
-    if([_rootViewController isKindOfClass:[UINavigationController class]])
-    {
-        navigationController = ((UINavigationController*)_rootViewController);
-    }
-    else
-    {
-        navigationController = _rootViewController.navigationController;
-    }
-    
-    // Disable iOS 7 back gesture
-    if ([navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)])
-    {
-        navigationController.interactivePopGestureRecognizer.enabled = NO;
-        navigationController.interactivePopGestureRecognizer.delegate = self;
-    }
+//    UINavigationController *navigationController;
+//    
+//    if([_rootViewController isKindOfClass:[UINavigationController class]])
+//    {
+//        navigationController = ((UINavigationController*)_rootViewController);
+//    }
+//    else
+//    {
+//        navigationController = _rootViewController.navigationController;
+//    }
+//    
+//    // Disable iOS 7 back gesture
+//    if ([navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)])
+//    {
+//        navigationController.interactivePopGestureRecognizer.enabled = NO;
+//        navigationController.interactivePopGestureRecognizer.delegate = self;
+//    }
 }
 
 - (void)enableInteractivePopGesture
 {
-    UINavigationController *navigationController;
-    
-    if([_rootViewController isKindOfClass:[UINavigationController class]])
-    {
-        navigationController = ((UINavigationController*)_rootViewController);
-    }
-    else
-    {
-        navigationController = _rootViewController.navigationController;
-    }
-    
-    // Disable iOS 7 back gesture
-    if ([navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)])
-    {
-        navigationController.interactivePopGestureRecognizer.enabled = YES;
-        navigationController.interactivePopGestureRecognizer.delegate = nil;
-    }
+//    UINavigationController *navigationController;
+//    
+//    if([_rootViewController isKindOfClass:[UINavigationController class]])
+//    {
+//        navigationController = ((UINavigationController*)_rootViewController);
+//    }
+//    else
+//    {
+//        navigationController = _rootViewController.navigationController;
+//    }
+//    
+//    // Disable iOS 7 back gesture
+//    if ([navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)])
+//    {
+//        navigationController.interactivePopGestureRecognizer.enabled = YES;
+//        navigationController.interactivePopGestureRecognizer.delegate = nil;
+//    }
 }
 
 #pragma mark - Custom Fonts
@@ -580,9 +581,17 @@ NSTimer *durationTimer;
 
 #pragma mark - Show Alert
 
--(SCLAlertViewResponder *)showTitle:(UIViewController *)vc image:(UIImage *)image color:(UIColor *)color title:(NSString *)title subTitle:(NSString *)subTitle duration:(NSTimeInterval)duration completeText:(NSString *)completeText style:(SCLAlertViewStyle)style
+-(SCLAlertViewResponder *)showTitle:(UIImage *)image color:(UIColor *)color title:(NSString *)title subTitle:(NSString *)subTitle duration:(NSTimeInterval)duration completeText:(NSString *)completeText style:(SCLAlertViewStyle)style
 {
-    _rootViewController = vc;
+    // Save previous window
+    self.previousWindow = [[UIApplication sharedApplication] keyWindow];
+    
+    // Create a new one to show the alert
+    UIWindow *alertWindow = [[UIWindow alloc] initWithFrame:[self mainScreenFrame]];
+    alertWindow.windowLevel = UIWindowLevelAlert;
+    alertWindow.backgroundColor = [UIColor clearColor];
+    alertWindow.rootViewController = self;
+    self.alertWindow = alertWindow;
     
     [self disableInteractivePopGesture];
     
@@ -590,12 +599,10 @@ NSTimer *durationTimer;
     
     [self setBackground];
     
-    self.backgroundView.frame = vc.view.bounds;
+    self.backgroundView.frame = alertWindow.bounds;
     
-    // Add subviews
-    [_rootViewController addChildViewController:self];
-    [_rootViewController.view addSubview:_backgroundView];
-    [_rootViewController.view addSubview:self.view];
+    // Add background subview
+    [alertWindow addSubview:_backgroundView];
 
     // Alert color/icon
     UIColor *viewColor;
@@ -796,6 +803,8 @@ NSTimer *durationTimer;
                                                         userInfo:nil
                                                          repeats:NO];
     }
+    
+    [alertWindow makeKeyAndVisible];
 
     // Show the alert view
     [self showView];
@@ -804,50 +813,50 @@ NSTimer *durationTimer;
     return [[SCLAlertViewResponder alloc] init:self];
 }
 
-- (void)showSuccess:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
+- (void)showSuccess:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
 {
-    [self showTitle:vc image:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Success];
+    [self showTitle:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Success];
 }
 
-- (void)showError:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
+- (void)showError:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
 {
-    [self showTitle:vc image:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Error];
+    [self showTitle:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Error];
 }
 
-- (void)showNotice:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
+- (void)showNotice:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
 {
-    [self showTitle:vc image:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Notice];
+    [self showTitle:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Notice];
 }
 
-- (void)showWarning:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
+- (void)showWarning:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
 {
-    [self showTitle:vc image:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Warning];
+    [self showTitle:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Warning];
 }
 
-- (void)showInfo:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
+- (void)showInfo:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
 {
-    [self showTitle:vc image:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Info];
+    [self showTitle:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Info];
 }
 
-- (void)showEdit:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
+- (void)showEdit:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
 {
-    [self showTitle:vc image:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Edit];
+    [self showTitle:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Edit];
 }
 
-- (void)showTitle:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle style:(SCLAlertViewStyle)style closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
+- (void)showTitle:(NSString *)title subTitle:(NSString *)subTitle style:(SCLAlertViewStyle)style closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
 {
-    [self showTitle:vc image:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:style];
+    [self showTitle:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:style];
 }
 
-- (void)showCustom:(UIViewController *)vc image:(UIImage *)image color:(UIColor *)color title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
+- (void)showCustom:(UIImage *)image color:(UIColor *)color title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
 {
-    [self showTitle:vc image:image color:color title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Custom];
+    [self showTitle:image color:color title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Custom];
 }
 
-- (void)showWaiting:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
+- (void)showWaiting:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
 {
     [self addActivityIndicatorView];
-    [self showTitle:vc image:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Waiting];
+    [self showTitle:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Waiting];
 }
 
 #pragma mark - Visibility
@@ -885,16 +894,16 @@ NSTimer *durationTimer;
 
 - (void)makeBlurBackground
 {
-    UIImage *image = [UIImage convertViewToImage:_rootViewController.view];
-    UIImage *blurSnapshotImage = [image applyBlurWithRadius:5.0f
-                                         tintColor:[UIColor colorWithWhite:0.2f
-                                                                     alpha:0.7f]
-                             saturationDeltaFactor:1.8f
-                                         maskImage:nil];
-    
-    _backgroundView.image = blurSnapshotImage;
-    _backgroundView.alpha = 0.0f;
-    _backgroundOpacity = 1.0f;
+//    UIImage *image = [UIImage convertViewToImage:_rootViewController.view];
+//    UIImage *blurSnapshotImage = [image applyBlurWithRadius:5.0f
+//                                         tintColor:[UIColor colorWithWhite:0.2f
+//                                                                     alpha:0.7f]
+//                             saturationDeltaFactor:1.8f
+//                                         maskImage:nil];
+//    
+//    _backgroundView.image = blurSnapshotImage;
+//    _backgroundView.alpha = 0.0f;
+//    _backgroundOpacity = 1.0f;
 }
 
 - (void)makeTransparentBackground
@@ -1003,6 +1012,10 @@ NSTimer *durationTimer;
     {
         self.dismissBlock();
     }
+    
+    // Restore previous window
+    [self.previousWindow makeKeyAndVisible];
+    self.previousWindow = nil;
 }
 
 #pragma mark - Hide Animations
@@ -1014,8 +1027,7 @@ NSTimer *durationTimer;
         self.view.alpha = 0.0f;
     } completion:^(BOOL completed) {
         [self.backgroundView removeFromSuperview];
-        [self.view removeFromSuperview];
-        [self removeFromParentViewController];
+        self.alertWindow = nil;
     }];
 }
 
