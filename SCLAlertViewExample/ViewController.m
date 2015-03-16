@@ -231,7 +231,8 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     [alert showEdit:@"Validation" subTitle:@"Ensure the data is correct before dismissing!" closeButtonTitle:@"Cancel" duration:0];
 }
 
-- (IBAction)showWaiting:(id)sender {
+- (IBAction)showWaiting:(id)sender
+{
     SCLAlertView *alert = [[SCLAlertView alloc] init];
     
     [alert setShowAnimationType:SlideInToCenter];

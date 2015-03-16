@@ -31,7 +31,7 @@
 @property (nonatomic, strong) NSString *bodyTextFontFamily;
 @property (nonatomic, strong) NSString *buttonsFontFamily;
 @property (nonatomic, strong) UIWindow *previousWindow;
-@property (nonatomic, strong) UIWindow *alertWindow;
+@property (nonatomic, strong) UIWindow *SCLAlertWindow;
 @property (nonatomic, copy) DismissBlock dismissBlock;
 @property (nonatomic) BOOL canAddObservers;
 @property (nonatomic) BOOL keyboardIsVisible;
@@ -591,7 +591,7 @@ NSTimer *durationTimer;
     alertWindow.windowLevel = UIWindowLevelAlert;
     alertWindow.backgroundColor = [UIColor clearColor];
     alertWindow.rootViewController = self;
-    self.alertWindow = alertWindow;
+    self.SCLAlertWindow = alertWindow;
     
     [self disableInteractivePopGesture];
     
@@ -894,16 +894,17 @@ NSTimer *durationTimer;
 
 - (void)makeBlurBackground
 {
-//    UIImage *image = [UIImage convertViewToImage:_rootViewController.view];
-//    UIImage *blurSnapshotImage = [image applyBlurWithRadius:5.0f
-//                                         tintColor:[UIColor colorWithWhite:0.2f
-//                                                                     alpha:0.7f]
-//                             saturationDeltaFactor:1.8f
-//                                         maskImage:nil];
-//    
-//    _backgroundView.image = blurSnapshotImage;
-//    _backgroundView.alpha = 0.0f;
-//    _backgroundOpacity = 1.0f;
+    UIView *appView = [[[[UIApplication sharedApplication] keyWindow] subviews] lastObject];
+    UIImage *image = [UIImage convertViewToImage:appView];
+    UIImage *blurSnapshotImage = [image applyBlurWithRadius:5.0f
+                                         tintColor:[UIColor colorWithWhite:0.2f
+                                                                     alpha:0.7f]
+                             saturationDeltaFactor:1.8f
+                                         maskImage:nil];
+    
+    _backgroundView.image = blurSnapshotImage;
+    _backgroundView.alpha = 0.0f;
+    _backgroundOpacity = 1.0f;
 }
 
 - (void)makeTransparentBackground
@@ -1027,7 +1028,7 @@ NSTimer *durationTimer;
         self.view.alpha = 0.0f;
     } completion:^(BOOL completed) {
         [self.backgroundView removeFromSuperview];
-        self.alertWindow = nil;
+        self.SCLAlertWindow = nil;
     }];
 }
 
@@ -1210,7 +1211,7 @@ NSTimer *durationTimer;
 
 - (void)slideInFromCenter
 {
-    //From
+    //From Frame
     self.view.transform = CGAffineTransformConcat(CGAffineTransformIdentity,
                                 CGAffineTransformMakeScale(3.0f, 3.0f));
     self.view.alpha = 0.0f;
@@ -1218,7 +1219,7 @@ NSTimer *durationTimer;
     [UIView animateWithDuration:0.3f animations:^{
         self.backgroundView.alpha = _backgroundOpacity;
         
-        //To
+        //To Frame
         self.view.transform = CGAffineTransformConcat(CGAffineTransformIdentity,
                                                       CGAffineTransformMakeScale(1.0f, 1.0f));
         self.view.alpha = 1.0f;
@@ -1231,7 +1232,7 @@ NSTimer *durationTimer;
 
 - (void)slideInToCenter
 {
-    //From
+    //From Frame
     self.view.transform = CGAffineTransformConcat(CGAffineTransformIdentity,
                                                   CGAffineTransformMakeScale(0.1f, 0.1f));
     self.view.alpha = 0.0f;
@@ -1239,7 +1240,7 @@ NSTimer *durationTimer;
     [UIView animateWithDuration:0.3f animations:^{
         self.backgroundView.alpha = _backgroundOpacity;
         
-        //To
+        //To Frame
         self.view.transform = CGAffineTransformConcat(CGAffineTransformIdentity,
                                                       CGAffineTransformMakeScale(1.0f, 1.0f));
         self.view.alpha = 1.0f;
