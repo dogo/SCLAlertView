@@ -246,12 +246,9 @@ NSTimer *durationTimer;
     // Buttons
     for (SCLButton *btn in _buttons)
     {
-        btn.frame = CGRectMake(12.0f, y, _windowWidth - 24.0f, btn.buttonSize.height);
+        btn.frame = CGRectMake(12.0f, y, _windowWidth - 24.0f, 35.0f);
         btn.layer.cornerRadius = 3.0f;
-        y += btn.buttonSize.height + 10.0f;
-
-        // Update view height
-        self.windowHeight += btn.buttonSize.height + 10.0f;
+        y += 45.0f;
     }
 }
 
@@ -491,12 +488,15 @@ NSTimer *durationTimer;
 
 - (SCLButton *)addButton:(NSString *)title
 {
+    // Update view height
+    self.windowHeight += 45.0f;
+    
     // Add button
     SCLButton *btn = [[SCLButton alloc] init];
     btn.layer.masksToBounds = YES;
     [btn setTitle:title forState:UIControlStateNormal];
     btn.titleLabel.font = [UIFont fontWithName:_buttonsFontFamily size:_buttonsFontSize];
-    
+
     [_contentView addSubview:btn];
     [_buttons addObject:btn];
     
