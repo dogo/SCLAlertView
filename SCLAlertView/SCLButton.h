@@ -61,12 +61,6 @@ typedef NS_ENUM(NSInteger, SCLActionType)
  */
 @property (nonatomic, strong) UIColor *defaultBackgroundColor;
 
-/** Set SCLButton size.
- *
- * Set SCLButton size.
- */
-@property (nonatomic) CGSize buttonSize;
-
 /** Set Target object.
  *
  * Target is an object that holds the information necessary to send a message to another object when an event occurs.
