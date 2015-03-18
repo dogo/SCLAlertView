@@ -189,13 +189,6 @@ NSTimer *durationTimer;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
-#pragma mark - Modal Validation
-
-- (BOOL)isModal
-{
-    return NO;//(_rootViewController != nil && _rootViewController.presentingViewController);
-}
-
 #pragma mark - View Cycle
 
 - (void)viewWillLayoutSubviews
@@ -203,13 +196,7 @@ NSTimer *durationTimer;
     [super viewWillLayoutSubviews];
     
     CGSize sz = [self mainScreenFrame].size;
-    
-    // Check if the rootViewController is modal, if so we need to get the modal size not the main screen size
-//    if([self isModal])
-//    {
-//        sz = _rootViewController.view.frame.size;
-//    }
-    
+        
     if (SYSTEM_VERSION_LESS_THAN(@"8.0"))
     {
         // iOS versions before 7.0 did not switch the width and height on device roration
@@ -219,16 +206,6 @@ NSTimer *durationTimer;
             sz = CGSizeMake(ssz.height, ssz.width);
         }
     }
-    
-    // Set new background frame
-    CGRect newBackgroundFrame = self.backgroundView.frame;
-    newBackgroundFrame.size = sz;
-    self.backgroundView.frame = newBackgroundFrame;
-    
-    // Set new main frame
-    CGRect newbaseFrame = self.view.frame;
-    newbaseFrame.size = sz;
-    self.view.frame = newbaseFrame;
     
     // Set frames
     {
@@ -255,7 +232,7 @@ NSTimer *durationTimer;
         // Buttons
         for (SCLButton *btn in _buttons)
         {
-            btn.frame = CGRectMake(12.0f, y, btn.frame.size.width - 24.0f, btn.frame.size.height);
+            btn.frame = CGRectMake(12.0f, y, btn.frame.size.width, btn.frame.size.height);
             btn.layer.cornerRadius = 3.0f;
             y += btn.frame.size.height + 10.0f;
         }
