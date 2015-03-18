@@ -255,9 +255,9 @@ NSTimer *durationTimer;
         // Buttons
         for (SCLButton *btn in _buttons)
         {
-            btn.frame = CGRectMake(12.0f, y, _windowWidth - 24.0f, 35.0f);
+            btn.frame = CGRectMake(12.0f, y, _windowWidth - 24.0f, btn.frame.size.height);
             btn.layer.cornerRadius = 3.0f;
-            y += 45.0f;
+            y += btn.frame.size.height + 10.0f;
         }
     }
 }
@@ -742,7 +742,7 @@ NSTimer *durationTimer;
         [_viewText removeFromSuperview];
         
         // Move up
-        _labelTitle.frame = CGRectMake(12.0f, 37.0f, _windowWidth - 24.0f, 40.0f);
+        _labelTitle.frame = CGRectMake(12.0f, 37.0f, _windowWidth - 24.0f, kTitleHeight);
     }
     
     // Play sound, if necessary
