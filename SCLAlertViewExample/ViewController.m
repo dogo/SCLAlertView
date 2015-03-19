@@ -140,6 +140,7 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
         NSMutableDictionary *buttonConfig = [[NSMutableDictionary alloc] init];
         
         buttonConfig[@"backgroundColor"] = [UIColor greenColor];
+        buttonConfig[@"borderColor"] = [UIColor blackColor];
         buttonConfig[@"textColor"] = [UIColor blackColor];
         
         return buttonConfig;
