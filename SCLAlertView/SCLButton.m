@@ -67,6 +67,7 @@
     if (buttonConfig[@"borderColor"])
     {
         self.layer.borderColor = ((UIColor*)buttonConfig[@"borderColor"]).CGColor;
+        self.layer.borderWidth = self.layer.borderWidth ?: 2.0f;
     }
     if (buttonConfig[@"textColor"])
     {
