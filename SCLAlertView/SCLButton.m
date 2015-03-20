@@ -64,14 +64,18 @@
     {
         self.defaultBackgroundColor = buttonConfig[@"backgroundColor"];
     }
-    if (buttonConfig[@"borderColor"])
-    {
-        self.layer.borderColor = ((UIColor*)buttonConfig[@"borderColor"]).CGColor;
-        self.layer.borderWidth = self.layer.borderWidth ?: 2.0f;
-    }
     if (buttonConfig[@"textColor"])
     {
         [self setTitleColor:buttonConfig[@"textColor"] forState:UIControlStateNormal];
+    }
+    if ((buttonConfig[@"borderColor"]) && (buttonConfig[@"borderWidth"]))
+    {
+        self.layer.borderColor = ((UIColor*)buttonConfig[@"borderColor"]).CGColor;
+        self.layer.borderWidth = [buttonConfig[@"borderWidth"] floatValue];
+    }
+    else if (buttonConfig[@"borderWidth"])
+    {
+        self.layer.borderWidth = [buttonConfig[@"borderWidth"] floatValue];
     }
 }
 
