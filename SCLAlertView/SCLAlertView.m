@@ -216,6 +216,7 @@ NSTimer *durationTimer;
         y -= kCircleHeightBackground * 0.6f;
         x = (sz.width - kCircleHeightBackground) / 2;
         _circleViewBackground.frame = CGRectMake(x, y, kCircleHeightBackground, kCircleHeightBackground);
+        _circleIconImageView.frame = CGRectMake(kCircleHeight / 2 - _circleIconHeight / 2, kCircleHeight / 2 - _circleIconHeight / 2, _circleIconHeight, _circleIconHeight);        
     }
     
     // Text fields
