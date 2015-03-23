@@ -40,7 +40,6 @@
 @property (nonatomic) CGFloat buttonsFontSize;
 @property (nonatomic) CGFloat windowHeight;
 @property (nonatomic) CGFloat windowWidth;
-@property (nonatomic) CGFloat circleIconHeight;
 @property (nonatomic) CGFloat subTitleHeight;
 @property (nonatomic) CGFloat subTitleY;
 
@@ -243,8 +242,8 @@ NSTimer *durationTimer;
     _circleViewBackground.frame = CGRectMake(_windowWidth / 2 - kCircleHeightBackground / 2, kCircleBackgroundTopPosition, kCircleHeightBackground, kCircleHeightBackground);
     _circleIconImageView.frame = CGRectMake(kCircleHeight / 2 - _circleIconHeight / 2, kCircleHeight / 2 - _circleIconHeight / 2, _circleIconHeight, _circleIconHeight);
     
-    // Text fields
     {
+        // Text fields
         CGFloat y = (_labelTitle.text == nil) ? (kCircleHeight - 20.0f) : 74.0f;
         y += _subTitleHeight + 14.0f;
         for (UITextField *textField in _inputs)
