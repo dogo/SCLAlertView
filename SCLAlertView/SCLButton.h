@@ -44,14 +44,14 @@ typedef NS_ENUM(NSInteger, SCLActionType)
 /** Set Complete button format block.
  *
  * Holds the complete button format block.
- * Support keys : backgroundColor, borderColor, textColor
+ * Support keys : backgroundColor, borderWidth, borderColor, textColor
  */
 @property (nonatomic, copy) CompleteButtonFormatBlock completeButtonFormatBlock;
 
 /** Set button format block.
  *
  * Holds the button format block.
- * Support keys : backgroundColor, borderColor, textColor
+ * Support keys : backgroundColor, borderWidth, borderColor, textColor
  */
 @property (nonatomic, copy) ButtonFormatBlock buttonFormatBlock;
 
@@ -77,7 +77,7 @@ typedef NS_ENUM(NSInteger, SCLActionType)
 /** Parse button configuration
  *
  * Parse ButtonFormatBlock and CompleteButtonFormatBlock setting custom configuration.
- * Set keys : backgroundColor, borderColor, textColor
+ * Set keys : backgroundColor, borderWidth, borderColor, textColor
  */
 - (void)parseConfig:(NSDictionary *)buttonConfig;
 
