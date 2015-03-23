@@ -207,17 +207,29 @@ NSTimer *durationTimer;
         }
     }
     
-    // Set frames
+    // Set new background frame
+    CGRect newBackgroundFrame = self.backgroundView.frame;
+    newBackgroundFrame.size = sz;
+    self.backgroundView.frame = newBackgroundFrame;
+    
+    // Set new main frame
+    CGRect r;
+    if (self.view.superview != nil)
     {
-        CGFloat x = (sz.width - _windowWidth) / 2;
-        CGFloat y = (sz.height - _windowHeight -  (kCircleHeight / 8)) / 2;
-        
-        _contentView.frame = CGRectMake(x, y, _windowWidth, _windowHeight);
-        y -= kCircleHeightBackground * 0.6f;
-        x = (sz.width - kCircleHeightBackground) / 2;
-        _circleViewBackground.frame = CGRectMake(x, y, kCircleHeightBackground, kCircleHeightBackground);
-        _circleIconImageView.frame = CGRectMake(kCircleHeight / 2 - _circleIconHeight / 2, kCircleHeight / 2 - _circleIconHeight / 2, _circleIconHeight, _circleIconHeight);        
+        // View is showing, position at center of screen
+        r = CGRectMake((sz.width-_windowWidth)/2, (sz.height-_windowHeight)/2, _windowWidth, _windowHeight);
     }
+    else
+    {
+        // View is not visible, position outside screen bounds
+        r = CGRectMake((sz.width-_windowWidth)/2, -_windowHeight, _windowWidth, _windowHeight);
+    }
+    
+    // Set frames
+    self.view.frame = r;
+    _contentView.frame = CGRectMake(0.0f, kCircleHeight / 4, _windowWidth, _windowHeight);
+    _circleViewBackground.frame = CGRectMake(_windowWidth / 2 - kCircleHeightBackground / 2, kCircleBackgroundTopPosition, kCircleHeightBackground, kCircleHeightBackground);
+    _circleIconImageView.frame = CGRectMake(kCircleHeight / 2 - _circleIconHeight / 2, kCircleHeight / 2 - _circleIconHeight / 2, _circleIconHeight, _circleIconHeight);
     
     // Text fields
     {
