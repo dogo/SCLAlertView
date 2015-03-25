@@ -208,6 +208,13 @@ NSTimer *durationTimer;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
+#pragma mark - Modal Validation
+
+- (BOOL)isModal
+{
+    return (_rootViewController != nil && _rootViewController.presentingViewController);
+}
+
 #pragma mark - View Cycle
 
 - (void)viewWillLayoutSubviews
@@ -215,7 +222,13 @@ NSTimer *durationTimer;
     [super viewWillLayoutSubviews];
     
     CGSize sz = [self mainScreenFrame].size;
-        
+    
+    // Check if the rootViewController is modal, if so we need to get the modal size not the main screen size
+    if([self isModal] && !_usingNewWindow)
+    {
+        sz = _rootViewController.view.frame.size;
+    }
+    
     if (SYSTEM_VERSION_LESS_THAN(@"8.0"))
     {
         // iOS versions before 7.0 did not switch the width and height on device roration
