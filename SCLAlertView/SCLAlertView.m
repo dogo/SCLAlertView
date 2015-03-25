@@ -162,9 +162,9 @@ NSTimer *durationTimer;
         
         // Colors
         self.backgroundViewColor = [UIColor whiteColor];
-        _labelTitle.textColor = UIColorFromRGB(0x4D4D4D); //Dark Grey
-        _viewText.textColor = UIColorFromRGB(0x4D4D4D); //Dark Grey
-        _contentView.layer.borderColor = UIColorFromRGB(0xCCCCCC).CGColor; //Light Grey
+        _labelTitle.textColor = UIColorFromHEX(0x4D4D4D); //Dark Grey
+        _viewText.textColor = UIColorFromHEX(0x4D4D4D); //Dark Grey
+        _contentView.layer.borderColor = UIColorFromHEX(0xCCCCCC).CGColor; //Light Grey
     }
     return self;
 }
@@ -663,37 +663,37 @@ NSTimer *durationTimer;
     switch (style)
     {
         case Success:
-            viewColor = UIColorFromRGB(0x22B573);
+            viewColor = UIColorFromHEX(0x22B573);
             iconImage = SCLAlertViewStyleKit.imageOfCheckmark;
             break;
             
         case Error:
-            viewColor = UIColorFromRGB(0xC1272D);
+            viewColor = UIColorFromHEX(0xC1272D);
             iconImage = SCLAlertViewStyleKit.imageOfCross;
             break;
             
         case Notice:
-            viewColor = UIColorFromRGB(0x727375);
+            viewColor = UIColorFromHEX(0x727375);
             iconImage = SCLAlertViewStyleKit.imageOfNotice;
             break;
             
         case Warning:
-            viewColor = UIColorFromRGB(0xFFD110);
+            viewColor = UIColorFromHEX(0xFFD110);
             iconImage = SCLAlertViewStyleKit.imageOfWarning;
             break;
             
         case Info:
-            viewColor = UIColorFromRGB(0x2866BF);
+            viewColor = UIColorFromHEX(0x2866BF);
             iconImage = SCLAlertViewStyleKit.imageOfInfo;
             break;
             
         case Edit:
-            viewColor = UIColorFromRGB(0xA429FF);
+            viewColor = UIColorFromHEX(0xA429FF);
             iconImage = SCLAlertViewStyleKit.imageOfEdit;
             break;
             
         case Waiting:
-            viewColor = UIColorFromRGB(0x6c125d);
+            viewColor = UIColorFromHEX(0x6c125d);
             break;
             
         case Custom:
