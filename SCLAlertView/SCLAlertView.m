@@ -633,26 +633,17 @@ NSTimer *durationTimer;
     {
         // Save previous window
         self.previousWindow = [[UIApplication sharedApplication] keyWindow];
-    }
-    else
-    {
-        _rootViewController = vc;
-        [self disableInteractivePopGesture];
-    }
-    
-    self.view.alpha = 0.0f;
-    
-    [self setBackground];
-    
-    if(_usingNewWindow)
-    {
         self.backgroundView.frame = _SCLAlertWindow.bounds;
-    
+        
         // Add window subview
         [_SCLAlertWindow addSubview:_backgroundView];
     }
     else
     {
+        _rootViewController = vc;
+        
+        [self disableInteractivePopGesture];
+        
         self.backgroundView.frame = vc.view.bounds;
         
         // Add view controller subviews
@@ -660,7 +651,10 @@ NSTimer *durationTimer;
         [_rootViewController.view addSubview:_backgroundView];
         [_rootViewController.view addSubview:self.view];
     }
-
+    
+    self.view.alpha = 0.0f;
+    [self setBackground];
+    
     // Alert color/icon
     UIColor *viewColor;
     UIImage *iconImage;
