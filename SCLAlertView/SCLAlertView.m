@@ -30,11 +30,13 @@
 @property (nonatomic, strong) NSString *titleFontFamily;
 @property (nonatomic, strong) NSString *bodyTextFontFamily;
 @property (nonatomic, strong) NSString *buttonsFontFamily;
+@property (nonatomic, strong) UIViewController *rootViewController;
 @property (nonatomic, strong) UIWindow *previousWindow;
 @property (nonatomic, strong) UIWindow *SCLAlertWindow;
 @property (nonatomic, copy) DismissBlock dismissBlock;
 @property (nonatomic) BOOL canAddObservers;
 @property (nonatomic) BOOL keyboardIsVisible;
+@property (nonatomic) BOOL usingNewWindow;
 @property (nonatomic) CGFloat backgroundOpacity;
 @property (nonatomic) CGFloat titleFontSize;
 @property (nonatomic) CGFloat bodyFontSize;
@@ -87,6 +89,7 @@ NSTimer *durationTimer;
         self.windowWidth = 240.0f;
         self.windowHeight = 178.0f;
         self.shouldDismissOnTapOutside = NO;
+        self.usingNewWindow = NO;
         self.canAddObservers = YES;
         self.keyboardIsVisible = NO;
         self.hideAnimationType = FadeOut;
@@ -162,6 +165,23 @@ NSTimer *durationTimer;
         _labelTitle.textColor = UIColorFromRGB(0x4D4D4D); //Dark Grey
         _viewText.textColor = UIColorFromRGB(0x4D4D4D); //Dark Grey
         _contentView.layer.borderColor = UIColorFromRGB(0xCCCCCC).CGColor; //Light Grey
+    }
+    return self;
+}
+
+- (instancetype)initWithNewWindow
+{
+    self = [self init];
+    if(self)
+    {
+        // Create a new one to show the alert
+        UIWindow *alertWindow = [[UIWindow alloc] initWithFrame:[self mainScreenFrame]];
+        alertWindow.windowLevel = UIWindowLevelAlert;
+        alertWindow.backgroundColor = [UIColor clearColor];
+        alertWindow.rootViewController = self;
+        self.SCLAlertWindow = alertWindow;
+        
+        self.usingNewWindow = YES;
     }
     return self;
 }
@@ -285,44 +305,44 @@ NSTimer *durationTimer;
 
 - (void)disableInteractivePopGesture
 {
-//    UINavigationController *navigationController;
-//    
-//    if([_rootViewController isKindOfClass:[UINavigationController class]])
-//    {
-//        navigationController = ((UINavigationController*)_rootViewController);
-//    }
-//    else
-//    {
-//        navigationController = _rootViewController.navigationController;
-//    }
-//    
-//    // Disable iOS 7 back gesture
-//    if ([navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)])
-//    {
-//        navigationController.interactivePopGestureRecognizer.enabled = NO;
-//        navigationController.interactivePopGestureRecognizer.delegate = self;
-//    }
+    UINavigationController *navigationController;
+    
+    if([_rootViewController isKindOfClass:[UINavigationController class]])
+    {
+        navigationController = ((UINavigationController*)_rootViewController);
+    }
+    else
+    {
+        navigationController = _rootViewController.navigationController;
+    }
+    
+    // Disable iOS 7 back gesture
+    if ([navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)])
+    {
+        navigationController.interactivePopGestureRecognizer.enabled = NO;
+        navigationController.interactivePopGestureRecognizer.delegate = self;
+    }
 }
 
 - (void)enableInteractivePopGesture
 {
-//    UINavigationController *navigationController;
-//    
-//    if([_rootViewController isKindOfClass:[UINavigationController class]])
-//    {
-//        navigationController = ((UINavigationController*)_rootViewController);
-//    }
-//    else
-//    {
-//        navigationController = _rootViewController.navigationController;
-//    }
-//    
-//    // Disable iOS 7 back gesture
-//    if ([navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)])
-//    {
-//        navigationController.interactivePopGestureRecognizer.enabled = YES;
-//        navigationController.interactivePopGestureRecognizer.delegate = nil;
-//    }
+    UINavigationController *navigationController;
+    
+    if([_rootViewController isKindOfClass:[UINavigationController class]])
+    {
+        navigationController = ((UINavigationController*)_rootViewController);
+    }
+    else
+    {
+        navigationController = _rootViewController.navigationController;
+    }
+    
+    // Disable iOS 7 back gesture
+    if ([navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)])
+    {
+        navigationController.interactivePopGestureRecognizer.enabled = YES;
+        navigationController.interactivePopGestureRecognizer.delegate = nil;
+    }
 }
 
 #pragma mark - Custom Fonts
@@ -580,28 +600,39 @@ NSTimer *durationTimer;
 
 #pragma mark - Show Alert
 
--(SCLAlertViewResponder *)showTitle:(UIImage *)image color:(UIColor *)color title:(NSString *)title subTitle:(NSString *)subTitle duration:(NSTimeInterval)duration completeText:(NSString *)completeText style:(SCLAlertViewStyle)style
+-(SCLAlertViewResponder *)showTitle:(UIViewController *)vc image:(UIImage *)image color:(UIColor *)color title:(NSString *)title subTitle:(NSString *)subTitle duration:(NSTimeInterval)duration completeText:(NSString *)completeText style:(SCLAlertViewStyle)style
 {
-    // Save previous window
-    self.previousWindow = [[UIApplication sharedApplication] keyWindow];
-    
-    // Create a new one to show the alert
-    UIWindow *alertWindow = [[UIWindow alloc] initWithFrame:[self mainScreenFrame]];
-    alertWindow.windowLevel = UIWindowLevelAlert;
-    alertWindow.backgroundColor = [UIColor clearColor];
-    alertWindow.rootViewController = self;
-    self.SCLAlertWindow = alertWindow;
-    
-    [self disableInteractivePopGesture];
+    if(_usingNewWindow)
+    {
+        // Save previous window
+        self.previousWindow = [[UIApplication sharedApplication] keyWindow];
+    }
+    else
+    {
+        _rootViewController = vc;
+        [self disableInteractivePopGesture];
+    }
     
     self.view.alpha = 0.0f;
     
     [self setBackground];
     
-    self.backgroundView.frame = alertWindow.bounds;
+    if(_usingNewWindow)
+    {
+        self.backgroundView.frame = _SCLAlertWindow.bounds;
     
-    // Add background subview
-    [alertWindow addSubview:_backgroundView];
+        // Add window subview
+        [_SCLAlertWindow addSubview:_backgroundView];
+    }
+    else
+    {
+        self.backgroundView.frame = vc.view.bounds;
+        
+        // Add view controller subviews
+        [_rootViewController addChildViewController:self];
+        [_rootViewController.view addSubview:_backgroundView];
+        [_rootViewController.view addSubview:self.view];
+    }
 
     // Alert color/icon
     UIColor *viewColor;
@@ -802,8 +833,11 @@ NSTimer *durationTimer;
                                                         userInfo:nil
                                                          repeats:NO];
     }
-    
-    [alertWindow makeKeyAndVisible];
+   
+    if(_usingNewWindow)
+    {
+        [_SCLAlertWindow makeKeyAndVisible];
+    }
 
     // Show the alert view
     [self showView];
@@ -812,50 +846,50 @@ NSTimer *durationTimer;
     return [[SCLAlertViewResponder alloc] init:self];
 }
 
-- (void)showSuccess:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
+- (void)showSuccess:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
 {
-    [self showTitle:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Success];
+    [self showTitle:vc image:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Success];
 }
 
-- (void)showError:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
+- (void)showError:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
 {
-    [self showTitle:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Error];
+    [self showTitle:vc image:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Error];
 }
 
-- (void)showNotice:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
+- (void)showNotice:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
 {
-    [self showTitle:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Notice];
+    [self showTitle:vc image:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Notice];
 }
 
-- (void)showWarning:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
+- (void)showWarning:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
 {
-    [self showTitle:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Warning];
+    [self showTitle:vc image:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Warning];
 }
 
-- (void)showInfo:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
+- (void)showInfo:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
 {
-    [self showTitle:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Info];
+    [self showTitle:vc image:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Info];
 }
 
-- (void)showEdit:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
+- (void)showEdit:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
 {
-    [self showTitle:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Edit];
+    [self showTitle:vc image:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Edit];
 }
 
-- (void)showTitle:(NSString *)title subTitle:(NSString *)subTitle style:(SCLAlertViewStyle)style closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
+- (void)showTitle:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle style:(SCLAlertViewStyle)style closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
 {
-    [self showTitle:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:style];
+    [self showTitle:vc image:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:style];
 }
 
-- (void)showCustom:(UIImage *)image color:(UIColor *)color title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
+- (void)showCustom:(UIViewController *)vc image:(UIImage *)image color:(UIColor *)color title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
 {
-    [self showTitle:image color:color title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Custom];
+    [self showTitle:vc image:image color:color title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Custom];
 }
 
-- (void)showWaiting:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
+- (void)showWaiting:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
 {
     [self addActivityIndicatorView];
-    [self showTitle:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Waiting];
+    [self showTitle:vc image:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Waiting];
 }
 
 #pragma mark - Visibility
@@ -893,7 +927,7 @@ NSTimer *durationTimer;
 
 - (void)makeBlurBackground
 {
-    UIView *appView = [[[[UIApplication sharedApplication] keyWindow] subviews] lastObject];
+    UIView *appView = (_usingNewWindow) ? [[[[UIApplication sharedApplication] keyWindow] subviews] lastObject] : _rootViewController.view;
     UIImage *image = [UIImage convertViewToImage:appView];
     UIImage *blurSnapshotImage = [image applyBlurWithRadius:5.0f
                                          tintColor:[UIColor colorWithWhite:0.2f
@@ -1013,9 +1047,12 @@ NSTimer *durationTimer;
         self.dismissBlock();
     }
     
-    // Restore previous window
-    [self.previousWindow makeKeyAndVisible];
-    self.previousWindow = nil;
+    if(_usingNewWindow)
+    {
+        // Restore previous window
+        [self.previousWindow makeKeyAndVisible];
+        self.previousWindow = nil;
+    }
 }
 
 #pragma mark - Hide Animations
@@ -1027,7 +1064,15 @@ NSTimer *durationTimer;
         self.view.alpha = 0.0f;
     } completion:^(BOOL completed) {
         [self.backgroundView removeFromSuperview];
-        self.SCLAlertWindow = nil;
+        if(_usingNewWindow)
+        {
+            self.SCLAlertWindow = nil;
+        }
+        else
+        {
+            [self.view removeFromSuperview];
+            [self removeFromParentViewController];
+        }
     }];
 }
 

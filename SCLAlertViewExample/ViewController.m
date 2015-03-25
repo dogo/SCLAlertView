@@ -36,7 +36,7 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
 
 - (IBAction)showSuccess:(id)sender
 {
-    SCLAlertView *alert = [[SCLAlertView alloc] init];
+    SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
     
     SCLButton *button = [alert addButton:@"First Button" target:self selector:@selector(firstButton)];
     
@@ -58,14 +58,14 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     
     alert.soundURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/right_answer.mp3", [[NSBundle mainBundle] resourcePath]]];
 
-    [alert showSuccess:kSuccessTitle subTitle:kSubtitle closeButtonTitle:kButtonTitle duration:0.0f];
+    [alert showSuccess:self title:kSuccessTitle subTitle:kSubtitle closeButtonTitle:kButtonTitle duration:0.0f];
 }
 
 - (IBAction)showError:(id)sender
 {
     SCLAlertView *alert = [[SCLAlertView alloc] init];
     
-    [alert showError:@"Hold On..."
+    [alert showError:self title:@"Hold On..."
             subTitle:@"You have not saved your Submission yet. Please save the Submission before accessing the Responses list. Blah de blah de blah, blah. Blah de blah de blah, blah.Blah de blah de blah, blah.Blah de blah de blah, blah.Blah de blah de blah, blah.Blah de blah de blah, blah."
     closeButtonTitle:@"OK" duration:0.0f];
 }
@@ -76,14 +76,14 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     
     alert.backgroundType = Blur;
     
-    [alert showNotice:kNoticeTitle subTitle:@"You've just displayed this awesome Pop Up View with blur effect" closeButtonTitle:kButtonTitle duration:0.0f];
+    [alert showNotice:self title:kNoticeTitle subTitle:@"You've just displayed this awesome Pop Up View with blur effect" closeButtonTitle:kButtonTitle duration:0.0f];
 }
 
 - (IBAction)showWarning:(id)sender
 {
     SCLAlertView *alert = [[SCLAlertView alloc] init];
     
-    [alert showWarning:kWarningTitle subTitle:kSubtitle closeButtonTitle:kButtonTitle duration:0.0f];
+    [alert showWarning:self title:kWarningTitle subTitle:kSubtitle closeButtonTitle:kButtonTitle duration:0.0f];
 }
 
 - (IBAction)showInfo:(id)sender
@@ -96,7 +96,7 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
         NSLog(@"SCLAlertView dismissed!");
     }];
     
-    [alert showInfo:kInfoTitle subTitle:kSubtitle closeButtonTitle:kButtonTitle duration:0.0f];
+    [alert showInfo:self title:kInfoTitle subTitle:kSubtitle closeButtonTitle:kButtonTitle duration:0.0f];
 }
 
 - (IBAction)showEdit:(id)sender
@@ -109,7 +109,7 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
         NSLog(@"Text value: %@", textField.text);
     }];
     
-    [alert showEdit:kInfoTitle subTitle:kSubtitle closeButtonTitle:kButtonTitle duration:0.0f];
+    [alert showEdit:self title:kInfoTitle subTitle:kSubtitle closeButtonTitle:kButtonTitle duration:0.0f];
 }
 
 - (IBAction)showAdvanced:(id)sender
@@ -162,14 +162,14 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
         return subTitle;
     };
 
-    [alert showTitle:@"Congratulations" subTitle:kAttributeTitle style:Success closeButtonTitle:@"Done" duration:0.0f];
+    [alert showTitle:self title:@"Congratulations" subTitle:kAttributeTitle style:Success closeButtonTitle:@"Done" duration:0.0f];
 }
 
 - (IBAction)showWithDuration:(id)sender
 {
     SCLAlertView *alert = [[SCLAlertView alloc] init];
     
-    [alert showNotice:kNoticeTitle subTitle:@"You've just displayed this awesome Pop Up View with 5 seconds duration" closeButtonTitle:nil duration:5.0f];
+    [alert showNotice:self title:kNoticeTitle subTitle:@"You've just displayed this awesome Pop Up View with 5 seconds duration" closeButtonTitle:nil duration:5.0f];
 }
 
 - (IBAction)showCustom:(id)sender
@@ -177,7 +177,7 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     SCLAlertView *alert = [[SCLAlertView alloc] init];
     
     UIColor *color = [UIColor colorWithRed:65.0/255.0 green:64.0/255.0 blue:144.0/255.0 alpha:1.0];
-    [alert showCustom:[UIImage imageNamed:@"git"] color:color title:@"Custom" subTitle:@"Add a custom icon and color for your own type of alert!" closeButtonTitle:@"OK" duration:0.0f];
+    [alert showCustom:self image:[UIImage imageNamed:@"git"] color:color title:@"Custom" subTitle:@"Add a custom icon and color for your own type of alert!" closeButtonTitle:@"OK" duration:0.0f];
 }
 
 - (IBAction)showValidation:(id)sender
@@ -229,7 +229,7 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
         [[[UIAlertView alloc] initWithTitle:@"Great Job!" message:@"Thanks for playing." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
     }];
     
-    [alert showEdit:@"Validation" subTitle:@"Ensure the data is correct before dismissing!" closeButtonTitle:@"Cancel" duration:0];
+    [alert showEdit:self title:@"Validation" subTitle:@"Ensure the data is correct before dismissing!" closeButtonTitle:@"Cancel" duration:0];
 }
 
 - (IBAction)showWaiting:(id)sender
@@ -241,7 +241,7 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     
     alert.backgroundType = Transparent;
     
-    [alert showWaiting:@"Waiting..."
+    [alert showWaiting:self title:@"Waiting..."
             subTitle:@"You've just displayed this awesome Pop Up View with transparent background"
     closeButtonTitle:nil duration:5.0f];
 }

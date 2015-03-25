@@ -168,6 +168,12 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
  */
 @property (nonatomic) CGFloat circleIconHeight;
 
+/** Initialize SCLAlertView using a new window.
+ *
+ * Init with new window
+ */
+- (instancetype)initWithNewWindow;
+
 /** Warns that alerts is gone
  *
  * Warns that alerts is gone using block
@@ -257,70 +263,78 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
 
 /** Show Success SCLAlertView
  *
+ * @param vc The view controller the alert view will be displayed in.
  * @param title The text displayed on the button.
  * @param subTitle The subtitle text of the alert view.
  * @param closeButtonTitle The text for the close button.
  * @param duration The amount of time the alert will remain on screen until it is automatically dismissed. If automatic dismissal is not desired, set to 0.
  */
-- (void)showSuccess:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration;
+- (void)showSuccess:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration;
 
 /** Show Error SCLAlertView
  *
+ * @param vc The view controller the alert view will be displayed in.
  * @param title The text displayed on the button.
  * @param subTitle The subtitle text of the alert view.
  * @param closeButtonTitle The text for the close button.
  * @param duration The amount of time the alert will remain on screen until it is automatically dismissed. If automatic dismissal is not desired, set to 0.
  */
-- (void)showError:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration;
+- (void)showError:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration;
 
 /** Show Notice SCLAlertView
  *
+ * @param vc The view controller the alert view will be displayed in.
  * @param title The text displayed on the button.
  * @param subTitle The subtitle text of the alert view.
  * @param closeButtonTitle The text for the close button.
  * @param duration The amount of time the alert will remain on screen until it is automatically dismissed. If automatic dismissal is not desired, set to 0.
  */
-- (void)showNotice:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration;
+- (void)showNotice:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration;
 
 /** Show Warning SCLAlertView
  *
+ * @param vc The view controller the alert view will be displayed in.
  * @param title The text displayed on the button.
  * @param subTitle The subtitle text of the alert view.
  * @param closeButtonTitle The text for the close button.
  * @param duration The amount of time the alert will remain on screen until it is automatically dismissed. If automatic dismissal is not desired, set to 0.
  */
-- (void)showWarning:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration;
+- (void)showWarning:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration;
 
 /** Show Info SCLAlertView
  *
+ * @param vc The view controller the alert view will be displayed in.
  * @param title The text displayed on the button.
  * @param subTitle The subtitle text of the alert view.
  * @param closeButtonTitle The text for the close button.
  * @param duration The amount of time the alert will remain on screen until it is automatically dismissed. If automatic dismissal is not desired, set to 0.
  */
-- (void)showInfo:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration;
+- (void)showInfo:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration;
 
 /** Show Edit SCLAlertView
  *
+ * @param vc The view controller the alert view will be displayed in.
  * @param title The text displayed on the button.
  * @param subTitle The subtitle text of the alert view.
  * @param closeButtonTitle The text for the close button.
  * @param duration The amount of time the alert will remain on screen until it is automatically dismissed. If automatic dismissal is not desired, set to 0.
  */
-- (void)showEdit:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration;
+- (void)showEdit:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration;
 
 /** Show Title SCLAlertView using a predefined type
  *
+ * @param vc The view controller the alert view will be displayed in.
  * @param title The text displayed on the button.
  * @param subTitle The subtitle text of the alert view.
  * @param style One of predefined SCLAlertView styles.
  * @param closeButtonTitle The text for the close button.
  * @param duration The amount of time the alert will remain on screen until it is automatically dismissed. If automatic dismissal is not desired, set to 0.
  */
-- (void)showTitle:(NSString *)title subTitle:(NSString *)subTitle style:(SCLAlertViewStyle)style closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration;
+- (void)showTitle:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle style:(SCLAlertViewStyle)style closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration;
 
 /** Shows a custom SCLAlertView without using a predefined type, allowing for a custom image and color to be specified.
  *
+ * @param vc The view controller the alert view will be displayed in.
  * @param image A UIImage object to be used as the icon for the alert view.
  * @param color A UIColor object to be used to tint the background of the icon circle and the buttons.
  * @param title The title text of the alert view.
@@ -328,16 +342,17 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
  * @param closeButtonTitle The text for the close button.
  * @param duration The amount of time the alert will remain on screen until it is automatically dismissed. If automatic dismissal is not desired, set to 0.
  */
-- (void)showCustom:(UIImage *)image color:(UIColor *)color title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration;
+- (void)showCustom:(UIViewController *)vc image:(UIImage *)image color:(UIColor *)color title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration;
 
 /** Show Waiting SCLAlertView with UIActityIndicator.
  *
+ * @param vc The view controller the alert view will be displayed in.
  * @param title The text displayed on the button.
  * @param subTitle The subtitle text of the alert view.
  * @param closeButtonTitle The text for the close button.
  * @param duration The amount of time the alert will remain on screen until it is automatically dismissed. If automatic dismissal is not desired, set to 0.
  */
-- (void)showWaiting:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration;
+- (void)showWaiting:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration;
 
 
 @end
