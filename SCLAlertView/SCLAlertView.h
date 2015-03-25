@@ -68,7 +68,7 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
 {
     Shadow,
     Blur,
-    Transparent    
+    Transparent
 };
 
 /** Title Label
@@ -110,7 +110,7 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
 
 /** Set Complete button format block.
  *
- * Holds the button format block. 
+ * Holds the button format block.
  * Support keys : backgroundColor, borderWidth, borderColor, textColor
  */
 @property (nonatomic, copy) CompleteButtonFormatBlock completeButtonFormatBlock;

@@ -1,7 +1,7 @@
 /*
-     File: UIImage+ImageEffects.m
+ File: UIImage+ImageEffects.m
  Abstract: This is a category of UIImage that adds methods to apply blur and tint effects to an image. This is the code you’ll want to look out to find out how to use vImage to efficiently calculate a blur.
-  Version: 1.0
+ Version: 1.0
  
  Disclaimer: IMPORTANT:  This Apple software is supplied to you by Apple
  Inc. ("Apple") in consideration of your agreement to the following
@@ -160,7 +160,7 @@
         NSLog (@"*** error: maskImage must be backed by a CGImage: %@", maskImage);
         return nil;
     }
-
+    
     CGRect imageRect = { CGPointZero, self.size };
     UIImage *effectImage = self;
     
@@ -172,13 +172,13 @@
         CGContextScaleCTM(effectInContext, 1.0, -1.0);
         CGContextTranslateCTM(effectInContext, 0, -self.size.height);
         CGContextDrawImage(effectInContext, imageRect, self.CGImage);
-
+        
         vImage_Buffer effectInBuffer;
         effectInBuffer.data     = CGBitmapContextGetData(effectInContext);
         effectInBuffer.width    = CGBitmapContextGetWidth(effectInContext);
         effectInBuffer.height   = CGBitmapContextGetHeight(effectInContext);
         effectInBuffer.rowBytes = CGBitmapContextGetBytesPerRow(effectInContext);
-    
+        
         UIGraphicsBeginImageContextWithOptions(self.size, NO, [[UIScreen mainScreen] scale]);
         CGContextRef effectOutContext = UIGraphicsGetCurrentContext();
         vImage_Buffer effectOutBuffer;
@@ -186,20 +186,20 @@
         effectOutBuffer.width    = CGBitmapContextGetWidth(effectOutContext);
         effectOutBuffer.height   = CGBitmapContextGetHeight(effectOutContext);
         effectOutBuffer.rowBytes = CGBitmapContextGetBytesPerRow(effectOutContext);
-
+        
         if (hasBlur) {
             // A description of how to compute the box kernel width from the Gaussian
             // radius (aka standard deviation) appears in the SVG spec:
             // http://www.w3.org/TR/SVG/filters.html#feGaussianBlurElement
-            // 
+            //
             // For larger values of 's' (s >= 2.0), an approximation can be used: Three
             // successive box-blurs build a piece-wise quadratic convolution kernel, which
             // approximates the Gaussian kernel to within roughly 3%.
             //
             // let d = floor(s * 3*sqrt(2*pi)/4 + 0.5)
-            // 
+            //
             // ... if d is odd, use three box-blurs of size 'd', centered on the output pixel.
-            // 
+            //
             CGFloat inputRadius = blurRadius * [[UIScreen mainScreen] scale];
             uint32_t radius = floor(inputRadius * 3. * sqrt(2 * M_PI) / 4 + 0.5);
             if (radius % 2 != 1) {
@@ -235,21 +235,21 @@
         if (!effectImageBuffersAreSwapped)
             effectImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
-
+        
         if (effectImageBuffersAreSwapped)
             effectImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
     }
-
+    
     // Set up output context.
     UIGraphicsBeginImageContextWithOptions(self.size, NO, [[UIScreen mainScreen] scale]);
     CGContextRef outputContext = UIGraphicsGetCurrentContext();
     CGContextScaleCTM(outputContext, 1.0, -1.0);
     CGContextTranslateCTM(outputContext, 0, -self.size.height);
-
+    
     // Draw base image.
     CGContextDrawImage(outputContext, imageRect, self.CGImage);
-
+    
     // Draw effect image.
     if (hasBlur) {
         CGContextSaveGState(outputContext);
@@ -259,7 +259,7 @@
         CGContextDrawImage(outputContext, imageRect, effectImage.CGImage);
         CGContextRestoreGState(outputContext);
     }
-
+    
     // Add in color tint.
     if (tintColor) {
         CGContextSaveGState(outputContext);
@@ -267,11 +267,11 @@
         CGContextFillRect(outputContext, imageRect);
         CGContextRestoreGState(outputContext);
     }
-
+    
     // Output image is ready.
     UIImage *outputImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-
+    
     return outputImage;
 }
 

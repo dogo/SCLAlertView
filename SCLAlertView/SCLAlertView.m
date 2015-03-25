@@ -103,7 +103,7 @@ NSTimer *durationTimer;
         _titleFontSize = 20.0f;
         _bodyFontSize = 14.0f;
         _buttonsFontSize = 14.0f;
-
+        
         // Init
         _labelTitle = [[UILabel alloc] init];
         _viewText = [[UITextView alloc] init];
@@ -120,9 +120,9 @@ NSTimer *durationTimer;
         [self.view addSubview:_circleViewBackground];
         
         // Background View
-        _backgroundView.userInteractionEnabled = YES;        
+        _backgroundView.userInteractionEnabled = YES;
         
-		// Content View
+        // Content View
         _contentView.backgroundColor = [UIColor whiteColor];
         _contentView.layer.cornerRadius = 5.0f;
         _contentView.layer.masksToBounds = YES;
@@ -159,7 +159,7 @@ NSTimer *durationTimer;
             _viewText.textContainerInset = UIEdgeInsetsZero;
             _viewText.textContainer.lineFragmentPadding = 0;
         }
-    
+        
         // Colors
         self.backgroundViewColor = [UIColor whiteColor];
         _labelTitle.textColor = UIColorFromRGB(0x4D4D4D); //Dark Grey
@@ -305,7 +305,7 @@ NSTimer *durationTimer;
     if (_shouldDismissOnTapOutside)
     {
         BOOL hide = _shouldDismissOnTapOutside;
-
+        
         for(UITextField *txt in _inputs)
         {
             // Check if there is any keyboard on screen and dismiss
@@ -521,7 +521,7 @@ NSTimer *durationTimer;
 -(void)keyboardWillHide:(NSNotification *)notification
 {
     if(!_keyboardIsVisible) return;
-
+    
     [UIView animateWithDuration:0.2f animations:^{
         CGRect f = self.view.frame;
         f.origin.y += KEYBOARD_HEIGHT + PREDICTION_BAR_HEIGHT;
@@ -542,7 +542,7 @@ NSTimer *durationTimer;
     btn.layer.masksToBounds = YES;
     [btn setTitle:title forState:UIControlStateNormal];
     btn.titleLabel.font = [UIFont fontWithName:_buttonsFontFamily size:_buttonsFontSize];
-
+    
     [_contentView addSubview:btn];
     [_buttons addObject:btn];
     
@@ -575,7 +575,7 @@ NSTimer *durationTimer;
     btn.actionType = Block;
     btn.actionBlock = action;
     [btn addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
-
+    
     return btn;
 }
 
@@ -658,7 +658,7 @@ NSTimer *durationTimer;
     // Alert color/icon
     UIColor *viewColor;
     UIImage *iconImage;
-
+    
     // Icon style
     switch (style)
     {
@@ -666,27 +666,27 @@ NSTimer *durationTimer;
             viewColor = UIColorFromRGB(0x22B573);
             iconImage = SCLAlertViewStyleKit.imageOfCheckmark;
             break;
-
+            
         case Error:
             viewColor = UIColorFromRGB(0xC1272D);
             iconImage = SCLAlertViewStyleKit.imageOfCross;
             break;
-
+            
         case Notice:
             viewColor = UIColorFromRGB(0x727375);
             iconImage = SCLAlertViewStyleKit.imageOfNotice;
             break;
-
+            
         case Warning:
             viewColor = UIColorFromRGB(0xFFD110);
             iconImage = SCLAlertViewStyleKit.imageOfWarning;
             break;
-
+            
         case Info:
             viewColor = UIColorFromRGB(0x2866BF);
             iconImage = SCLAlertViewStyleKit.imageOfInfo;
             break;
-
+            
         case Edit:
             viewColor = UIColorFromRGB(0xA429FF);
             iconImage = SCLAlertViewStyleKit.imageOfEdit;
@@ -708,7 +708,7 @@ NSTimer *durationTimer;
     {
         viewColor = _customViewColor;
     }
-
+    
     // Title
     if([title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0)
     {
@@ -719,10 +719,10 @@ NSTimer *durationTimer;
         // Title is nil, we can move the body message to center and remove it from superView
         self.windowHeight -= _labelTitle.frame.size.height;
         [_labelTitle removeFromSuperview];
-    
+        
         _subTitleY = kCircleHeight - 20;
     }
-
+    
     // Subtitle
     if([subTitle stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0)
     {
@@ -798,13 +798,13 @@ NSTimer *durationTimer;
             [_audioPlayer play];
         }
     }
-
+    
     // Add button, if necessary
     if(completeText != nil)
     {
         [self addDoneButtonWithTitle:completeText];
     }
-
+    
     // Alert view color and images
     self.circleView.backgroundColor = viewColor;
     
@@ -849,20 +849,20 @@ NSTimer *durationTimer;
     {
         [durationTimer invalidate];
         durationTimer = [NSTimer scheduledTimerWithTimeInterval:duration
-                                                          target:self
-                                                        selector:@selector(hideView)
-                                                        userInfo:nil
-                                                         repeats:NO];
+                                                         target:self
+                                                       selector:@selector(hideView)
+                                                       userInfo:nil
+                                                        repeats:NO];
     }
-   
+    
     if(_usingNewWindow)
     {
         [_SCLAlertWindow makeKeyAndVisible];
     }
-
+    
     // Show the alert view
     [self showView];
-
+    
     // Chainable objects
     return [[SCLAlertViewResponder alloc] init:self];
 }
@@ -1001,10 +1001,10 @@ NSTimer *durationTimer;
     UIView *appView = (_usingNewWindow) ? [[[[UIApplication sharedApplication] keyWindow] subviews] lastObject] : _rootViewController.view;
     UIImage *image = [UIImage convertViewToImage:appView];
     UIImage *blurSnapshotImage = [image applyBlurWithRadius:5.0f
-                                         tintColor:[UIColor colorWithWhite:0.2f
-                                                                     alpha:0.7f]
-                             saturationDeltaFactor:1.8f
-                                         maskImage:nil];
+                                                  tintColor:[UIColor colorWithWhite:0.2f
+                                                                              alpha:0.7f]
+                                      saturationDeltaFactor:1.8f
+                                                  maskImage:nil];
     
     _backgroundView.image = blurSnapshotImage;
     _backgroundView.alpha = 0.0f;
@@ -1328,7 +1328,7 @@ NSTimer *durationTimer;
 {
     //From Frame
     self.view.transform = CGAffineTransformConcat(CGAffineTransformIdentity,
-                                CGAffineTransformMakeScale(3.0f, 3.0f));
+                                                  CGAffineTransformMakeScale(3.0f, 3.0f));
     self.view.alpha = 0.0f;
     
     [UIView animateWithDuration:0.3f animations:^{
