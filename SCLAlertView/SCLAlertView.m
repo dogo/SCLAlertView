@@ -687,8 +687,8 @@ NSTimer *durationTimer;
         }
         else
         {
-            _viewText.attributedText = self.attributedFormatBlock(subTitle);
             self.viewText.font = [UIFont fontWithName:_bodyTextFontFamily size:_bodyFontSize];
+            _viewText.attributedText = self.attributedFormatBlock(subTitle);
         }
         
         // Adjust text view size, if necessary
@@ -697,8 +697,14 @@ NSTimer *durationTimer;
         
         if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
         {
-            NSString *str = subTitle;
-            CGRect r = [str boundingRectWithSize:sz options:NSStringDrawingUsesLineFragmentOrigin attributes:attr context:nil];
+            CGRect r = CGRectNull;
+            if(_attributedFormatBlock == nil) {
+                NSString *str = subTitle;
+                r = [str boundingRectWithSize:sz options:NSStringDrawingUsesLineFragmentOrigin attributes:attr context:nil];
+            } else {
+                r = [_viewText.attributedText boundingRectWithSize:sz options:NSStringDrawingUsesLineFragmentOrigin context:nil];
+            }
+            
             CGFloat ht = ceil(r.size.height);
             if (ht < _subTitleHeight)
             {
