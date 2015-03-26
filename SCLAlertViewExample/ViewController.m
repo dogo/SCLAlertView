@@ -36,7 +36,7 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
 
 - (IBAction)showSuccess:(id)sender
 {
-    SCLAlertView *alert = [[SCLAlertView alloc] init];
+    SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
     
     SCLButton *button = [alert addButton:@"First Button" target:self selector:@selector(firstButton)];
     
@@ -58,7 +58,7 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     
     alert.soundURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/right_answer.mp3", [[NSBundle mainBundle] resourcePath]]];
 
-    [alert showSuccess:self title:kSuccessTitle subTitle:kSubtitle closeButtonTitle:kButtonTitle duration:0.0f];
+    [alert showSuccess:kSuccessTitle subTitle:kSubtitle closeButtonTitle:kButtonTitle duration:0.0f];
 }
 
 - (IBAction)showError:(id)sender
@@ -232,7 +232,8 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     [alert showEdit:self title:@"Validation" subTitle:@"Ensure the data is correct before dismissing!" closeButtonTitle:@"Cancel" duration:0];
 }
 
-- (IBAction)showWaiting:(id)sender {
+- (IBAction)showWaiting:(id)sender
+{
     SCLAlertView *alert = [[SCLAlertView alloc] init];
     
     [alert setShowAnimationType:SlideInToCenter];

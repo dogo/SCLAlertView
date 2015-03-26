@@ -31,9 +31,12 @@
 @property (nonatomic, strong) NSString *bodyTextFontFamily;
 @property (nonatomic, strong) NSString *buttonsFontFamily;
 @property (nonatomic, strong) UIViewController *rootViewController;
+@property (nonatomic, strong) UIWindow *previousWindow;
+@property (nonatomic, strong) UIWindow *SCLAlertWindow;
 @property (nonatomic, copy) DismissBlock dismissBlock;
 @property (nonatomic) BOOL canAddObservers;
 @property (nonatomic) BOOL keyboardIsVisible;
+@property (nonatomic) BOOL usingNewWindow;
 @property (nonatomic) CGFloat backgroundOpacity;
 @property (nonatomic) CGFloat titleFontSize;
 @property (nonatomic) CGFloat bodyFontSize;
@@ -86,6 +89,7 @@ NSTimer *durationTimer;
         self.windowWidth = 240.0f;
         self.windowHeight = 178.0f;
         self.shouldDismissOnTapOutside = NO;
+        self.usingNewWindow = NO;
         self.canAddObservers = YES;
         self.keyboardIsVisible = NO;
         self.hideAnimationType = FadeOut;
@@ -99,7 +103,7 @@ NSTimer *durationTimer;
         _titleFontSize = 20.0f;
         _bodyFontSize = 14.0f;
         _buttonsFontSize = 14.0f;
-
+        
         // Init
         _labelTitle = [[UILabel alloc] init];
         _viewText = [[UITextView alloc] init];
@@ -116,9 +120,9 @@ NSTimer *durationTimer;
         [self.view addSubview:_circleViewBackground];
         
         // Background View
-        _backgroundView.userInteractionEnabled = YES;        
+        _backgroundView.userInteractionEnabled = YES;
         
-		// Content View
+        // Content View
         _contentView.backgroundColor = [UIColor whiteColor];
         _contentView.layer.cornerRadius = 5.0f;
         _contentView.layer.masksToBounds = YES;
@@ -155,12 +159,29 @@ NSTimer *durationTimer;
             _viewText.textContainerInset = UIEdgeInsetsZero;
             _viewText.textContainer.lineFragmentPadding = 0;
         }
-    
+        
         // Colors
         self.backgroundViewColor = [UIColor whiteColor];
-        _labelTitle.textColor = UIColorFromRGB(0x4D4D4D); //Dark Grey
-        _viewText.textColor = UIColorFromRGB(0x4D4D4D); //Dark Grey
-        _contentView.layer.borderColor = UIColorFromRGB(0xCCCCCC).CGColor; //Light Grey
+        _labelTitle.textColor = UIColorFromHEX(0x4D4D4D); //Dark Grey
+        _viewText.textColor = UIColorFromHEX(0x4D4D4D); //Dark Grey
+        _contentView.layer.borderColor = UIColorFromHEX(0xCCCCCC).CGColor; //Light Grey
+    }
+    return self;
+}
+
+- (instancetype)initWithNewWindow
+{
+    self = [self init];
+    if(self)
+    {
+        // Create a new one to show the alert
+        UIWindow *alertWindow = [[UIWindow alloc] initWithFrame:[self mainScreenFrame]];
+        alertWindow.windowLevel = UIWindowLevelAlert;
+        alertWindow.backgroundColor = [UIColor clearColor];
+        alertWindow.rootViewController = self;
+        self.SCLAlertWindow = alertWindow;
+        
+        self.usingNewWindow = YES;
     }
     return self;
 }
@@ -203,7 +224,7 @@ NSTimer *durationTimer;
     CGSize sz = [self mainScreenFrame].size;
     
     // Check if the rootViewController is modal, if so we need to get the modal size not the main screen size
-    if([self isModal])
+    if([self isModal] && !_usingNewWindow)
     {
         sz = _rootViewController.view.frame.size;
     }
@@ -218,29 +239,43 @@ NSTimer *durationTimer;
         }
     }
     
-    // Set new background frame
-    CGRect newBackgroundFrame = self.backgroundView.frame;
-    newBackgroundFrame.size = sz;
-    self.backgroundView.frame = newBackgroundFrame;
-    
-    // Set new main frame
-    CGRect r;
-    if (self.view.superview != nil)
+    if(!_usingNewWindow)
     {
-        // View is showing, position at center of screen
-        r = CGRectMake((sz.width-_windowWidth)/2, (sz.height-_windowHeight)/2, _windowWidth, _windowHeight);
+        // Set new background frame
+        CGRect newBackgroundFrame = self.backgroundView.frame;
+        newBackgroundFrame.size = sz;
+        self.backgroundView.frame = newBackgroundFrame;
+        
+        // Set new main frame
+        CGRect r;
+        if (self.view.superview != nil)
+        {
+            // View is showing, position at center of screen
+            r = CGRectMake((sz.width-_windowWidth)/2, (sz.height-_windowHeight)/2, _windowWidth, _windowHeight);
+        }
+        else
+        {
+            // View is not visible, position outside screen bounds
+            r = CGRectMake((sz.width-_windowWidth)/2, -_windowHeight, _windowWidth, _windowHeight);
+        }
+        
+        // Set frames
+        self.view.frame = r;
+        _contentView.frame = CGRectMake(0.0f, kCircleHeight / 4, _windowWidth, _windowHeight);
+        _circleViewBackground.frame = CGRectMake(_windowWidth / 2 - kCircleHeightBackground / 2, kCircleBackgroundTopPosition, kCircleHeightBackground, kCircleHeightBackground);
+        _circleIconImageView.frame = CGRectMake(kCircleHeight / 2 - _circleIconHeight / 2, kCircleHeight / 2 - _circleIconHeight / 2, _circleIconHeight, _circleIconHeight);
     }
     else
     {
-        // View is not visible, position outside screen bounds
-        r = CGRectMake((sz.width-_windowWidth)/2, -_windowHeight, _windowWidth, _windowHeight);
+        CGFloat x = (sz.width - _windowWidth) / 2;
+        CGFloat y = (sz.height - _windowHeight -  (kCircleHeight / 8)) / 2;
+        
+        _contentView.frame = CGRectMake(x, y, _windowWidth, _windowHeight);
+        y -= kCircleHeightBackground * 0.6f;
+        x = (sz.width - kCircleHeightBackground) / 2;
+        _circleViewBackground.frame = CGRectMake(x, y, kCircleHeightBackground, kCircleHeightBackground);
+        _circleIconImageView.frame = CGRectMake(kCircleHeight / 2 - _circleIconHeight / 2, kCircleHeight / 2 - _circleIconHeight / 2, _circleIconHeight, _circleIconHeight);
     }
-    
-    // Set frames
-    self.view.frame = r;
-    _contentView.frame = CGRectMake(0.0f, kCircleHeight / 4, _windowWidth, _windowHeight);
-    _circleViewBackground.frame = CGRectMake(_windowWidth / 2 - kCircleHeightBackground / 2, kCircleBackgroundTopPosition, kCircleHeightBackground, kCircleHeightBackground);
-    _circleIconImageView.frame = CGRectMake(kCircleHeight / 2 - _circleIconHeight / 2, kCircleHeight / 2 - _circleIconHeight / 2, _circleIconHeight, _circleIconHeight);
     
     {
         // Text fields
@@ -270,7 +305,7 @@ NSTimer *durationTimer;
     if (_shouldDismissOnTapOutside)
     {
         BOOL hide = _shouldDismissOnTapOutside;
-
+        
         for(UITextField *txt in _inputs)
         {
             // Check if there is any keyboard on screen and dismiss
@@ -486,7 +521,7 @@ NSTimer *durationTimer;
 -(void)keyboardWillHide:(NSNotification *)notification
 {
     if(!_keyboardIsVisible) return;
-
+    
     [UIView animateWithDuration:0.2f animations:^{
         CGRect f = self.view.frame;
         f.origin.y += KEYBOARD_HEIGHT + PREDICTION_BAR_HEIGHT;
@@ -507,7 +542,7 @@ NSTimer *durationTimer;
     btn.layer.masksToBounds = YES;
     [btn setTitle:title forState:UIControlStateNormal];
     btn.titleLabel.font = [UIFont fontWithName:_buttonsFontFamily size:_buttonsFontSize];
-
+    
     [_contentView addSubview:btn];
     [_buttons addObject:btn];
     
@@ -540,7 +575,7 @@ NSTimer *durationTimer;
     btn.actionType = Block;
     btn.actionBlock = action;
     [btn addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
-
+    
     return btn;
 }
 
@@ -594,60 +629,71 @@ NSTimer *durationTimer;
 
 -(SCLAlertViewResponder *)showTitle:(UIViewController *)vc image:(UIImage *)image color:(UIColor *)color title:(NSString *)title subTitle:(NSString *)subTitle duration:(NSTimeInterval)duration completeText:(NSString *)completeText style:(SCLAlertViewStyle)style
 {
-    _rootViewController = vc;
-    
-    [self disableInteractivePopGesture];
+    if(_usingNewWindow)
+    {
+        // Save previous window
+        self.previousWindow = [[UIApplication sharedApplication] keyWindow];
+        self.backgroundView.frame = _SCLAlertWindow.bounds;
+        
+        // Add window subview
+        [_SCLAlertWindow addSubview:_backgroundView];
+    }
+    else
+    {
+        _rootViewController = vc;
+        
+        [self disableInteractivePopGesture];
+        
+        self.backgroundView.frame = vc.view.bounds;
+        
+        // Add view controller subviews
+        [_rootViewController addChildViewController:self];
+        [_rootViewController.view addSubview:_backgroundView];
+        [_rootViewController.view addSubview:self.view];
+    }
     
     self.view.alpha = 0.0f;
-    
     [self setBackground];
     
-    self.backgroundView.frame = vc.view.bounds;
-    
-    // Add subviews
-    [_rootViewController addChildViewController:self];
-    [_rootViewController.view addSubview:_backgroundView];
-    [_rootViewController.view addSubview:self.view];
-
     // Alert color/icon
     UIColor *viewColor;
     UIImage *iconImage;
-
+    
     // Icon style
     switch (style)
     {
         case Success:
-            viewColor = UIColorFromRGB(0x22B573);
+            viewColor = UIColorFromHEX(0x22B573);
             iconImage = SCLAlertViewStyleKit.imageOfCheckmark;
             break;
-
+            
         case Error:
-            viewColor = UIColorFromRGB(0xC1272D);
+            viewColor = UIColorFromHEX(0xC1272D);
             iconImage = SCLAlertViewStyleKit.imageOfCross;
             break;
-
+            
         case Notice:
-            viewColor = UIColorFromRGB(0x727375);
+            viewColor = UIColorFromHEX(0x727375);
             iconImage = SCLAlertViewStyleKit.imageOfNotice;
             break;
-
+            
         case Warning:
-            viewColor = UIColorFromRGB(0xFFD110);
+            viewColor = UIColorFromHEX(0xFFD110);
             iconImage = SCLAlertViewStyleKit.imageOfWarning;
             break;
-
+            
         case Info:
-            viewColor = UIColorFromRGB(0x2866BF);
+            viewColor = UIColorFromHEX(0x2866BF);
             iconImage = SCLAlertViewStyleKit.imageOfInfo;
             break;
-
+            
         case Edit:
-            viewColor = UIColorFromRGB(0xA429FF);
+            viewColor = UIColorFromHEX(0xA429FF);
             iconImage = SCLAlertViewStyleKit.imageOfEdit;
             break;
             
         case Waiting:
-            viewColor = UIColorFromRGB(0x6c125d);
+            viewColor = UIColorFromHEX(0x6c125d);
             break;
             
         case Custom:
@@ -662,7 +708,7 @@ NSTimer *durationTimer;
     {
         viewColor = _customViewColor;
     }
-
+    
     // Title
     if([title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0)
     {
@@ -673,10 +719,10 @@ NSTimer *durationTimer;
         // Title is nil, we can move the body message to center and remove it from superView
         self.windowHeight -= _labelTitle.frame.size.height;
         [_labelTitle removeFromSuperview];
-    
+        
         _subTitleY = kCircleHeight - 20;
     }
-
+    
     // Subtitle
     if([subTitle stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0)
     {
@@ -758,13 +804,13 @@ NSTimer *durationTimer;
             [_audioPlayer play];
         }
     }
-
+    
     // Add button, if necessary
     if(completeText != nil)
     {
         [self addDoneButtonWithTitle:completeText];
     }
-
+    
     // Alert view color and images
     self.circleView.backgroundColor = viewColor;
     
@@ -809,18 +855,25 @@ NSTimer *durationTimer;
     {
         [durationTimer invalidate];
         durationTimer = [NSTimer scheduledTimerWithTimeInterval:duration
-                                                          target:self
-                                                        selector:@selector(hideView)
-                                                        userInfo:nil
-                                                         repeats:NO];
+                                                         target:self
+                                                       selector:@selector(hideView)
+                                                       userInfo:nil
+                                                        repeats:NO];
     }
-
+    
+    if(_usingNewWindow)
+    {
+        [_SCLAlertWindow makeKeyAndVisible];
+    }
+    
     // Show the alert view
     [self showView];
-
+    
     // Chainable objects
     return [[SCLAlertViewResponder alloc] init:self];
 }
+
+#pragma mark - Show using UIViewController
 
 - (void)showSuccess:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
 {
@@ -868,6 +921,54 @@ NSTimer *durationTimer;
     [self showTitle:vc image:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Waiting];
 }
 
+#pragma mark - Show using new window
+
+- (void)showSuccess:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
+{
+    [self showTitle:nil image:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Success];
+}
+
+- (void)showError:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
+{
+    [self showTitle:nil image:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Error];
+}
+
+- (void)showNotice:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
+{
+    [self showTitle:nil image:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Notice];
+}
+
+- (void)showWarning:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
+{
+    [self showTitle:nil image:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Warning];
+}
+
+- (void)showInfo:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
+{
+    [self showTitle:nil image:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Info];
+}
+
+- (void)showEdit:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
+{
+    [self showTitle:nil image:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Edit];
+}
+
+- (void)showTitle:(NSString *)title subTitle:(NSString *)subTitle style:(SCLAlertViewStyle)style closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
+{
+    [self showTitle:nil image:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:style];
+}
+
+- (void)showCustom:(UIImage *)image color:(UIColor *)color title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
+{
+    [self showTitle:nil image:image color:color title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Custom];
+}
+
+- (void)showWaiting:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
+{
+    [self addActivityIndicatorView];
+    [self showTitle:nil image:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Waiting];
+}
+
 #pragma mark - Visibility
 
 - (void)removeTopCircle
@@ -903,12 +1004,13 @@ NSTimer *durationTimer;
 
 - (void)makeBlurBackground
 {
-    UIImage *image = [UIImage convertViewToImage:_rootViewController.view];
+    UIView *appView = (_usingNewWindow) ? [[[[UIApplication sharedApplication] keyWindow] subviews] lastObject] : _rootViewController.view;
+    UIImage *image = [UIImage convertViewToImage:appView];
     UIImage *blurSnapshotImage = [image applyBlurWithRadius:5.0f
-                                         tintColor:[UIColor colorWithWhite:0.2f
-                                                                     alpha:0.7f]
-                             saturationDeltaFactor:1.8f
-                                         maskImage:nil];
+                                                  tintColor:[UIColor colorWithWhite:0.2f
+                                                                              alpha:0.7f]
+                                      saturationDeltaFactor:1.8f
+                                                  maskImage:nil];
     
     _backgroundView.image = blurSnapshotImage;
     _backgroundView.alpha = 0.0f;
@@ -1021,6 +1123,13 @@ NSTimer *durationTimer;
     {
         self.dismissBlock();
     }
+    
+    if(_usingNewWindow)
+    {
+        // Restore previous window
+        [self.previousWindow makeKeyAndVisible];
+        self.previousWindow = nil;
+    }
 }
 
 #pragma mark - Hide Animations
@@ -1032,8 +1141,15 @@ NSTimer *durationTimer;
         self.view.alpha = 0.0f;
     } completion:^(BOOL completed) {
         [self.backgroundView removeFromSuperview];
-        [self.view removeFromSuperview];
-        [self removeFromParentViewController];
+        if(_usingNewWindow)
+        {
+            self.SCLAlertWindow = nil;
+        }
+        else
+        {
+            [self.view removeFromSuperview];
+            [self removeFromParentViewController];
+        }
     }];
 }
 
@@ -1216,15 +1332,15 @@ NSTimer *durationTimer;
 
 - (void)slideInFromCenter
 {
-    //From
+    //From Frame
     self.view.transform = CGAffineTransformConcat(CGAffineTransformIdentity,
-                                CGAffineTransformMakeScale(3.0f, 3.0f));
+                                                  CGAffineTransformMakeScale(3.0f, 3.0f));
     self.view.alpha = 0.0f;
     
     [UIView animateWithDuration:0.3f animations:^{
         self.backgroundView.alpha = _backgroundOpacity;
         
-        //To
+        //To Frame
         self.view.transform = CGAffineTransformConcat(CGAffineTransformIdentity,
                                                       CGAffineTransformMakeScale(1.0f, 1.0f));
         self.view.alpha = 1.0f;
@@ -1237,7 +1353,7 @@ NSTimer *durationTimer;
 
 - (void)slideInToCenter
 {
-    //From
+    //From Frame
     self.view.transform = CGAffineTransformConcat(CGAffineTransformIdentity,
                                                   CGAffineTransformMakeScale(0.1f, 0.1f));
     self.view.alpha = 0.0f;
@@ -1245,7 +1361,7 @@ NSTimer *durationTimer;
     [UIView animateWithDuration:0.3f animations:^{
         self.backgroundView.alpha = _backgroundOpacity;
         
-        //To
+        //To Frame
         self.view.transform = CGAffineTransformConcat(CGAffineTransformIdentity,
                                                       CGAffineTransformMakeScale(1.0f, 1.0f));
         self.view.alpha = 1.0f;

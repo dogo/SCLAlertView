@@ -69,7 +69,7 @@ typedef NS_ENUM(NSInteger, SCLActionType)
 
 /** Set selector id.
  *
- * A selector is the name used to select a method to execute for an object, 
+ * A selector is the name used to select a method to execute for an object,
  * or the unique identifier that replaces the name when the source code is compiled.
  */
 @property SEL selector;
