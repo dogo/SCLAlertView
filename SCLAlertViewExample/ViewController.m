@@ -46,7 +46,7 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
         
         buttonConfig[@"backgroundColor"] = [UIColor whiteColor];
         buttonConfig[@"textColor"] = [UIColor blackColor];
-        buttonConfig[@"borderWidth"] = [NSNumber numberWithFloat:2.0f];
+        buttonConfig[@"borderWidth"] = @2.0f;
         buttonConfig[@"borderColor"] = [UIColor greenColor];
         
         return buttonConfig;
