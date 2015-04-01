@@ -312,7 +312,7 @@
     {
         //Optimized/fast method for rendering a UIView as image on iOS 7 and later versions.
         UIGraphicsBeginImageContextWithOptions(view.bounds.size, YES, scale);
-        [view drawViewHierarchyInRect:view.bounds afterScreenUpdates:YES];
+        [view drawViewHierarchyInRect:view.bounds afterScreenUpdates:NO];
         capturedScreen = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
     }
