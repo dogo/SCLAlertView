@@ -84,7 +84,10 @@ NSTimer *durationTimer;
         kTitleTop = 24.0f;
         kTitleHeight = 40.0f;
         self.subTitleY = 70.0f;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
         self.subTitleHeight = 90.0f;
+#pragma clang diagnostic pop
         self.circleIconHeight = 20.0f;
         self.windowWidth = 240.0f;
         self.windowHeight = 178.0f;
@@ -755,12 +758,18 @@ NSTimer *durationTimer;
             if (ht < _subTitleHeight)
             {
                 self.windowHeight -= (_subTitleHeight - ht);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
                 self.subTitleHeight = ht;
+#pragma clang diagnostic pop
             }
             else
             {
                 self.windowHeight += (ht - _subTitleHeight);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
                 self.subTitleHeight = ht;
+#pragma clang diagnostic pop
             }
         }
         else
@@ -771,12 +780,18 @@ NSTimer *durationTimer;
             if (ht < _subTitleHeight)
             {
                 self.windowHeight -= (_subTitleHeight - ht);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
                 self.subTitleHeight = ht;
+#pragma clang diagnostic pop
             }
             else
             {
                 self.windowHeight += (ht - _subTitleHeight);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
                 self.subTitleHeight = ht;
+#pragma clang diagnostic pop
             }
         }
         _viewText.frame = CGRectMake(12.0f, _subTitleY, _windowWidth - 24.0f, _subTitleHeight);
@@ -784,7 +799,10 @@ NSTimer *durationTimer;
     else
     {
         // Subtitle is nil, we can move the title to center and remove it from superView
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
         self.subTitleHeight = 0.0f;
+#pragma clang diagnostic pop
         self.windowHeight -= _viewText.frame.size.height;
         [_viewText removeFromSuperview];
         
