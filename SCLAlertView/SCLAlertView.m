@@ -1007,7 +1007,12 @@ NSTimer *durationTimer;
 
 - (CGRect)mainScreenFrame
 {
-    return [UIScreen mainScreen].bounds;
+    return [self isAppExtension] ? _extensionBounds : [UIScreen mainScreen].bounds;
+}
+
+- (BOOL)isAppExtension
+{
+    return [[[NSBundle mainBundle] executablePath] containsString:@".appex/"];
 }
 
 #pragma mark - Background Effects

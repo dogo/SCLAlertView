@@ -168,6 +168,12 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
  */
 @property (nonatomic) CGFloat circleIconHeight;
 
+/** Set SCLAlertView extension bounds.
+ *
+ * Set new bounds (EXTENSION ONLY)
+ */
+@property (nonatomic) CGRect extensionBounds;
+
 /** Initialize SCLAlertView using a new window.
  *
  * Init with new window
