@@ -81,4 +81,9 @@ typedef NS_ENUM(NSInteger, SCLActionType)
  */
 - (void)parseConfig:(NSDictionary *)buttonConfig;
 
+/** Init method
+ *
+ */
+- (instancetype)initWithWindowWidth:(CGFloat)windowWidth;
+
 @end
