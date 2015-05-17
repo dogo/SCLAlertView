@@ -16,6 +16,7 @@
 #define KEYBOARD_HEIGHT 80
 #define PREDICTION_BAR_HEIGHT 40
 #define DEFAULT_WINDOW_WIDTH 240
+#define EXTRA_PIXEL_HEIGHT 2
 
 @interface SCLAlertView ()  <UITextFieldDelegate, UIGestureRecognizerDelegate>
 
@@ -91,19 +92,22 @@ NSTimer *durationTimer;
     return self;
 }
 
-- (instancetype)initWithNewWindowWithWidth:(CGFloat)windowWidth
+- (instancetype)initWithNewWindow
+{
+    self = [self initWithNewWindowWidth:DEFAULT_WINDOW_WIDTH];
+    if(self)
+    {
+        [self setupNewWindow];
+    }
+    return self;
+}
+
+- (instancetype)initWithNewWindowWidth:(CGFloat)windowWidth
 {
     self = [self initWithWindowWidth:windowWidth];
     if(self)
     {
-        // Create a new one to show the alert
-        UIWindow *alertWindow = [[UIWindow alloc] initWithFrame:[self mainScreenFrame]];
-        alertWindow.windowLevel = UIWindowLevelAlert;
-        alertWindow.backgroundColor = [UIColor clearColor];
-        alertWindow.rootViewController = self;
-        self.SCLAlertWindow = alertWindow;
-        
-        self.usingNewWindow = YES;
+        [self setupNewWindow];
     }
     return self;
 }
@@ -227,6 +231,18 @@ NSTimer *durationTimer;
     _labelTitle.textColor = UIColorFromHEX(0x4D4D4D); //Dark Grey
     _viewText.textColor = UIColorFromHEX(0x4D4D4D); //Dark Grey
     _contentView.layer.borderColor = UIColorFromHEX(0xCCCCCC).CGColor; //Light Grey
+}
+
+- (void)setupNewWindow
+{
+    // Create a new one to show the alert
+    UIWindow *alertWindow = [[UIWindow alloc] initWithFrame:[self mainScreenFrame]];
+    alertWindow.windowLevel = UIWindowLevelAlert;
+    alertWindow.backgroundColor = [UIColor clearColor];
+    alertWindow.rootViewController = self;
+    self.SCLAlertWindow = alertWindow;
+    
+    self.usingNewWindow = YES;
 }
 
 #pragma mark - Modal Validation
@@ -772,7 +788,7 @@ NSTimer *durationTimer;
                 r = [_viewText.attributedText boundingRectWithSize:sz options:NSStringDrawingUsesLineFragmentOrigin context:nil];
             }
             
-            CGFloat ht = ceil(r.size.height);
+            CGFloat ht = ceil(r.size.height + EXTRA_PIXEL_HEIGHT);
             if (ht < _subTitleHeight)
             {
                 self.windowHeight -= (_subTitleHeight - ht);

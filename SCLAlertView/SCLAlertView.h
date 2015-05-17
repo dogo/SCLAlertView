@@ -181,12 +181,18 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
  */
 - (instancetype)initWithWindowWidth:(CGFloat)windowWidth;
 
+/** Initialize SCLAlertView using a new window.
+ *
+ * Init with new window
+ */
+- (instancetype)initWithNewWindow;
+
 
 /** Initialize SCLAlertView using a new window.
  *
  * Init with new window
  */
-- (instancetype)initWithNewWindowWithWidth:(CGFloat)windowWidth;
+- (instancetype)initWithNewWindowWidth:(CGFloat)windowWidth;
 
 /** Warns that alerts is gone
  *
