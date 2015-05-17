@@ -57,7 +57,8 @@ typedef NS_ENUM(NSInteger, SCLAlertViewShowAnimation)
     SlideInFromLeft,
     SlideInFromRight,
     SlideInFromCenter,
-    SlideInToCenter
+    SlideInToCenter,
+    SlideInFromTopWithBounce
 };
 
 /** Alert background styles
@@ -174,11 +175,24 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
  */
 @property (nonatomic) CGRect extensionBounds;
 
+/** Initialize SCLAlertView using current window
+ *
+ * Init in current window
+ */
+- (instancetype)initWithWindowWidth:(CGFloat)windowWidth;
+
 /** Initialize SCLAlertView using a new window.
  *
  * Init with new window
  */
 - (instancetype)initWithNewWindow;
+
+
+/** Initialize SCLAlertView using a new window.
+ *
+ * Init with new window
+ */
+- (instancetype)initWithNewWindowWidth:(CGFloat)windowWidth;
 
 /** Warns that alerts is gone
  *

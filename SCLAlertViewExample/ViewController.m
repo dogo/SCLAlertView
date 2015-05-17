@@ -36,7 +36,8 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
 
 - (IBAction)showSuccess:(id)sender
 {
-    SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+    SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindowWidth:300.0];
+    [alert setShowAnimationType:SlideInFromTopWithBounce];
     
     SCLButton *button = [alert addButton:@"First Button" target:self selector:@selector(firstButton)];
     

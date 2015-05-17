@@ -7,6 +7,8 @@
 //
 
 #import "SCLButton.h"
+#define MARGIN_BUTTON 12.0f
+#define DEFAULT_WINDOW_WIDTH 240
 
 @implementation SCLButton
 
@@ -15,7 +17,17 @@
     self = [super init];
     if (self)
     {
-        [self setup];
+        [self setupWithWindowWidth:DEFAULT_WINDOW_WIDTH];
+    }
+    return self;
+}
+
+- (instancetype)initWithWindowWidth:(CGFloat)windowWidth
+{
+    self = [super init];
+    if (self)
+    {
+        [self setupWithWindowWidth:windowWidth];
     }
     return self;
 }
@@ -25,7 +37,7 @@
     self = [super initWithCoder:aDecoder];
     if(self)
     {
-        [self setup];
+        [self setupWithWindowWidth:DEFAULT_WINDOW_WIDTH];
     }
     return self;
 }
@@ -35,14 +47,14 @@
     self = [super initWithFrame:frame];
     if (self)
     {
-        [self setup];
+        [self setupWithWindowWidth:DEFAULT_WINDOW_WIDTH];
     }
     return self;
 }
 
-- (void)setup
+- (void)setupWithWindowWidth:(CGFloat)windowWidth
 {
-    self.frame = CGRectMake(0.0f, 0.0f, 216.0f, 35.0f);
+    self.frame = CGRectMake(0.0f, 0.0f, windowWidth - (MARGIN_BUTTON * 2), 35.0f);
 }
 
 - (void)setHighlighted:(BOOL)highlighted
