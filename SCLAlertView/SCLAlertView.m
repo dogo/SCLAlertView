@@ -1266,25 +1266,47 @@ NSTimer *durationTimer;
 
 - (void)slideInFromTop
 {
-    //From Frame
-    CGRect frame = self.backgroundView.frame;
-    frame.origin.y = -self.backgroundView.frame.size.height;
-    self.view.frame = frame;
-    
-    [UIView animateWithDuration:0.3f animations:^{
-        self.backgroundView.alpha = _backgroundOpacity;
-        
-        //To Frame
+    if (SYSTEM_VERSION_LESS_THAN(@"7.0"))
+    {
+        //From Frame
         CGRect frame = self.backgroundView.frame;
-        frame.origin.y = 0.0f;
+        frame.origin.y = -self.backgroundView.frame.size.height;
         self.view.frame = frame;
         
-        self.view.alpha = 1.0f;
-    } completion:^(BOOL completed) {
-        [UIView animateWithDuration:0.2f animations:^{
-            self.view.center = _backgroundView.center;
+        [UIView animateWithDuration:0.3f animations:^{
+            self.backgroundView.alpha = _backgroundOpacity;
+            
+            //To Frame
+            CGRect frame = self.backgroundView.frame;
+            frame.origin.y = 0.0f;
+            self.view.frame = frame;
+            
+            self.view.alpha = 1.0f;
+        } completion:^(BOOL completed) {
+            [UIView animateWithDuration:0.2f animations:^{
+                self.view.center = _backgroundView.center;
+            }];
         }];
-    }];
+    }
+    else {
+        //From Frame
+        CGRect frame = self.backgroundView.frame;
+        frame.origin.y = -self.backgroundView.frame.size.height;
+        self.view.frame = frame;
+        
+        [UIView animateWithDuration:0.5f delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:0.5f options:0 animations:^{
+            self.backgroundView.alpha = _backgroundOpacity;
+            
+            //To Frame
+            CGRect frame = self.backgroundView.frame;
+            frame.origin.y = 0.0f;
+            self.view.frame = frame;
+            
+            self.view.alpha = 1.0f;
+        } completion:^(BOOL finished) {
+            // nothing
+        }];
+    }
 }
 
 - (void)slideInFromBottom
