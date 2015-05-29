@@ -751,10 +751,10 @@ NSTimer *durationTimer;
                 NSString *str = subTitle;
                 r = [str boundingRectWithSize:sz options:NSStringDrawingUsesLineFragmentOrigin attributes:attr context:nil];
             } else {
-                r = [_viewText.attributedText boundingRectWithSize:sz options:NSStringDrawingUsesLineFragmentOrigin context:nil];
+                r = [_viewText.attributedText boundingRectWithSize:sz options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
             }
             
-            CGFloat ht = ceil(r.size.height);
+            CGFloat ht = ceilf(r.size.height);
             if (ht < _subTitleHeight)
             {
                 self.windowHeight -= (_subTitleHeight - ht);
@@ -775,8 +775,8 @@ NSTimer *durationTimer;
         else
         {
             NSAttributedString *str =[[NSAttributedString alloc] initWithString:subTitle attributes:attr];
-            CGRect r = [str boundingRectWithSize:sz options:NSStringDrawingUsesLineFragmentOrigin context:nil];
-            CGFloat ht = ceil(r.size.height) + 10.0f;
+            CGRect r = [str boundingRectWithSize:sz options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
+            CGFloat ht = ceilf(r.size.height) + 10.0f;
             if (ht < _subTitleHeight)
             {
                 self.windowHeight -= (_subTitleHeight - ht);
