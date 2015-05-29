@@ -34,9 +34,11 @@
 @property (nonatomic, strong) UIWindow *previousWindow;
 @property (nonatomic, strong) UIWindow *SCLAlertWindow;
 @property (nonatomic, copy) DismissBlock dismissBlock;
+@property (nonatomic, weak) id <UIGestureRecognizerDelegate> restoreInteractivePopGestureDelegate;
 @property (nonatomic) BOOL canAddObservers;
 @property (nonatomic) BOOL keyboardIsVisible;
 @property (nonatomic) BOOL usingNewWindow;
+@property (nonatomic) BOOL restoreInteractivePopGestureEnabled;
 @property (nonatomic) CGFloat backgroundOpacity;
 @property (nonatomic) CGFloat titleFontSize;
 @property (nonatomic) CGFloat bodyFontSize;
@@ -192,7 +194,7 @@ NSTimer *durationTimer;
 - (void)dealloc
 {
     [self removeObservers];
-    [self enableInteractivePopGesture];
+    [self restoreInteractivePopGesture];
 }
 
 - (void)addObservers
@@ -349,12 +351,14 @@ NSTimer *durationTimer;
     // Disable iOS 7 back gesture
     if ([navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)])
     {
+        _restoreInteractivePopGestureEnabled = navigationController.interactivePopGestureRecognizer.enabled;
+        _restoreInteractivePopGestureDelegate = navigationController.interactivePopGestureRecognizer.delegate;
         navigationController.interactivePopGestureRecognizer.enabled = NO;
         navigationController.interactivePopGestureRecognizer.delegate = self;
     }
 }
 
-- (void)enableInteractivePopGesture
+- (void)restoreInteractivePopGesture
 {
     UINavigationController *navigationController;
     
@@ -367,11 +371,11 @@ NSTimer *durationTimer;
         navigationController = _rootViewController.navigationController;
     }
     
-    // Disable iOS 7 back gesture
+    // Restore iOS 7 back gesture
     if ([navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)])
-    {
-        navigationController.interactivePopGestureRecognizer.enabled = YES;
-        navigationController.interactivePopGestureRecognizer.delegate = nil;
+        {
+        _restoreInteractivePopGestureEnabled = navigationController.interactivePopGestureRecognizer.enabled;
+        _restoreInteractivePopGestureDelegate = navigationController.interactivePopGestureRecognizer.delegate;
     }
 }
 
