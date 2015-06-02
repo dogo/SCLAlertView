@@ -93,7 +93,11 @@
  5/3/2013
  */
 
+#if defined(__has_feature) && __has_feature(modules)
 @import UIKit;
+#else
+#import <UIKit/UIKit.h>
+#endif
 
 @interface UIImage (ImageEffects)
 

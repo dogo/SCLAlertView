@@ -96,7 +96,11 @@
 #import "UIImage+ImageEffects.h"
 #import "SCLMacros.h"
 
+#if defined(__has_feature) && __has_feature(modules)
 @import Accelerate;
+#else
+#import <Accelerate/Accelerate.h>
+#endif
 #import <float.h>
 
 
