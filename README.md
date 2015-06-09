@@ -141,6 +141,9 @@ alert.iconTintColor = [UIColor purpleColor];
 //Overwrite SCLAlertView background color
 alert.backgroundViewColor = [UIColor cyanColor];
 
+//Returns if the alert is visible or not.
+alert.isVisible;
+
 //Using sound
 alert.soundURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/right_answer.mp3", [[NSBundle mainBundle] resourcePath]]];
 ```
