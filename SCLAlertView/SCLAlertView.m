@@ -22,6 +22,7 @@
 #define KEYBOARD_HEIGHT 80
 #define PREDICTION_BAR_HEIGHT 40
 #define ADD_BUTTON_PADDING 10.0f
+#define DEFAULT_WINDOW_WIDTH 240
 
 @interface SCLAlertView ()  <UITextFieldDelegate, UIGestureRecognizerDelegate>
 
@@ -85,116 +86,37 @@ SCLTimerDisplay *buttonTimer;
     self = [super init];
     if (self)
     {
-        // Default values
-        kCircleTopPosition = -12.0f;
-        kCircleBackgroundTopPosition = -15.0f;
-        kCircleHeight = 56.0f;
-        kCircleHeightBackground = 62.0f;
-        kActivityIndicatorHeight = 40.0f;
-        kTitleTop = 24.0f;
-        kTitleHeight = 40.0f;
-        self.subTitleY = 70.0f;
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-        self.subTitleHeight = 90.0f;
-#pragma clang diagnostic pop
-        self.circleIconHeight = 20.0f;
-        self.windowWidth = 240.0f;
-        self.windowHeight = 178.0f;
-        self.shouldDismissOnTapOutside = NO;
-        self.usingNewWindow = NO;
-        self.canAddObservers = YES;
-        self.keyboardIsVisible = NO;
-        self.hideAnimationType = FadeOut;
-        self.showAnimationType = SlideInFromTop;
-        self.backgroundType = Shadow;
-        
-        // Font
-        _titleFontFamily = @"HelveticaNeue";
-        _bodyTextFontFamily = @"HelveticaNeue";
-        _buttonsFontFamily = @"HelveticaNeue-Bold";
-        _titleFontSize = 20.0f;
-        _bodyFontSize = 14.0f;
-        _buttonsFontSize = 14.0f;
-        
-        // Init
-        _labelTitle = [[UILabel alloc] init];
-        _viewText = [[UITextView alloc] init];
-        _contentView = [[UIView alloc] init];
-        _circleView = [[UIView alloc] init];
-        _circleViewBackground = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, kCircleHeightBackground, kCircleHeightBackground)];
-        _circleIconImageView = [[UIImageView alloc] init];
-        _backgroundView = [[UIImageView alloc]initWithFrame:[self mainScreenFrame]];
-        _buttons = [[NSMutableArray alloc] init];
-        _inputs = [[NSMutableArray alloc] init];
-        
-        // Add Subviews
-        [self.view addSubview:_contentView];
-        [self.view addSubview:_circleViewBackground];
-        
-        // Background View
-        _backgroundView.userInteractionEnabled = YES;
-        
-        // Content View
-        _contentView.backgroundColor = [UIColor whiteColor];
-        _contentView.layer.cornerRadius = 5.0f;
-        _contentView.layer.masksToBounds = YES;
-        _contentView.layer.borderWidth = 0.5f;
-        [_contentView addSubview:_labelTitle];
-        [_contentView addSubview:_viewText];
-        
-        // Circle View
-        _circleViewBackground.backgroundColor = [UIColor whiteColor];
-        _circleViewBackground.layer.cornerRadius = _circleViewBackground.frame.size.height / 2;
-        CGFloat x = (kCircleHeightBackground - kCircleHeight) / 2;
-        _circleView.frame = CGRectMake(x, x, kCircleHeight, kCircleHeight);
-        _circleView.layer.cornerRadius = _circleView.frame.size.height / 2;
-        x = (kCircleHeight - _circleIconHeight) / 2;
-        _circleIconImageView.frame = CGRectMake(x, x, _circleIconHeight, _circleIconHeight);
-        [_circleViewBackground addSubview:_circleView];
-        [_circleView addSubview:_circleIconImageView];
-        
-        // Title
-        _labelTitle.numberOfLines = 1;
-        _labelTitle.textAlignment = NSTextAlignmentCenter;
-        _labelTitle.font = [UIFont fontWithName:_titleFontFamily size:_titleFontSize];
-        _labelTitle.frame = CGRectMake(12.0f, kTitleTop, _windowWidth - 24.0f, kTitleHeight);
-        
-        // View text
-        _viewText.editable = NO;
-        _viewText.allowsEditingTextAttributes = YES;
-        _viewText.textAlignment = NSTextAlignmentCenter;
-        _viewText.font = [UIFont fontWithName:_bodyTextFontFamily size:_bodyFontSize];
-        _viewText.frame = CGRectMake(12.0f, _subTitleY, _windowWidth - 24.0f, _subTitleHeight);
-        
-        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
-        {
-            _viewText.textContainerInset = UIEdgeInsetsZero;
-            _viewText.textContainer.lineFragmentPadding = 0;
-        }
-        
-        // Colors
-        self.backgroundViewColor = [UIColor whiteColor];
-        _labelTitle.textColor = UIColorFromHEX(0x4D4D4D); //Dark Grey
-        _viewText.textColor = UIColorFromHEX(0x4D4D4D); //Dark Grey
-        _contentView.layer.borderColor = UIColorFromHEX(0xCCCCCC).CGColor; //Light Grey
+        [self setupViewWindowWidth:DEFAULT_WINDOW_WIDTH];
+    }
+    return self;
+}
+
+- (instancetype)initWithWindowWidth:(CGFloat)windowWidth
+{
+    self = [super init];
+    if (self)
+    {
+        [self setupViewWindowWidth:windowWidth];
     }
     return self;
 }
 
 - (instancetype)initWithNewWindow
 {
-    self = [self init];
+    self = [self initWithWindowWidth:DEFAULT_WINDOW_WIDTH];
     if(self)
     {
-        // Create a new one to show the alert
-        UIWindow *alertWindow = [[UIWindow alloc] initWithFrame:[self mainScreenFrame]];
-        alertWindow.windowLevel = UIWindowLevelAlert;
-        alertWindow.backgroundColor = [UIColor clearColor];
-        alertWindow.rootViewController = self;
-        self.SCLAlertWindow = alertWindow;
-        
-        self.usingNewWindow = YES;
+        [self setupNewWindow];
+    }
+    return self;
+}
+
+- (instancetype)initWithNewWindowWidth:(CGFloat)windowWidth
+{
+    self = [self initWithWindowWidth:windowWidth];
+    if(self)
+    {
+        [self setupNewWindow];
     }
     return self;
 }
@@ -219,6 +141,117 @@ SCLTimerDisplay *buttonTimer;
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
+
+#pragma mark - Setup view
+
+- (void)setupViewWindowWidth:(CGFloat)windowWidth
+{
+    // Default values
+    kCircleTopPosition = -12.0f;
+    kCircleBackgroundTopPosition = -15.0f;
+    kCircleHeight = 56.0f;
+    kCircleHeightBackground = 62.0f;
+    kActivityIndicatorHeight = 40.0f;
+    kTitleTop = 24.0f;
+    kTitleHeight = 40.0f;
+    self.subTitleY = 70.0f;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    self.subTitleHeight = 90.0f;
+#pragma clang diagnostic pop
+    self.circleIconHeight = 20.0f;
+    self.windowWidth = windowWidth;
+    self.windowHeight = 178.0f;
+    self.shouldDismissOnTapOutside = NO;
+    self.usingNewWindow = NO;
+    self.canAddObservers = YES;
+    self.keyboardIsVisible = NO;
+    self.hideAnimationType = FadeOut;
+    self.showAnimationType = SlideInFromTop;
+    self.backgroundType = Shadow;
+    
+    // Font
+    _titleFontFamily = @"HelveticaNeue";
+    _bodyTextFontFamily = @"HelveticaNeue";
+    _buttonsFontFamily = @"HelveticaNeue-Bold";
+    _titleFontSize = 20.0f;
+    _bodyFontSize = 14.0f;
+    _buttonsFontSize = 14.0f;
+    
+    // Init
+    _labelTitle = [[UILabel alloc] init];
+    _viewText = [[UITextView alloc] init];
+    _contentView = [[UIView alloc] init];
+    _circleView = [[UIView alloc] init];
+    _circleViewBackground = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, kCircleHeightBackground, kCircleHeightBackground)];
+    _circleIconImageView = [[UIImageView alloc] init];
+    _backgroundView = [[UIImageView alloc]initWithFrame:[self mainScreenFrame]];
+    _buttons = [[NSMutableArray alloc] init];
+    _inputs = [[NSMutableArray alloc] init];
+    
+    // Add Subviews
+    [self.view addSubview:_contentView];
+    [self.view addSubview:_circleViewBackground];
+    
+    // Background View
+    _backgroundView.userInteractionEnabled = YES;
+    
+    // Content View
+    _contentView.backgroundColor = [UIColor whiteColor];
+    _contentView.layer.cornerRadius = 5.0f;
+    _contentView.layer.masksToBounds = YES;
+    _contentView.layer.borderWidth = 0.5f;
+    [_contentView addSubview:_labelTitle];
+    [_contentView addSubview:_viewText];
+    
+    // Circle View
+    _circleViewBackground.backgroundColor = [UIColor whiteColor];
+    _circleViewBackground.layer.cornerRadius = _circleViewBackground.frame.size.height / 2;
+    CGFloat x = (kCircleHeightBackground - kCircleHeight) / 2;
+    _circleView.frame = CGRectMake(x, x, kCircleHeight, kCircleHeight);
+    _circleView.layer.cornerRadius = _circleView.frame.size.height / 2;
+    x = (kCircleHeight - _circleIconHeight) / 2;
+    _circleIconImageView.frame = CGRectMake(x, x, _circleIconHeight, _circleIconHeight);
+    [_circleViewBackground addSubview:_circleView];
+    [_circleView addSubview:_circleIconImageView];
+    
+    // Title
+    _labelTitle.numberOfLines = 1;
+    _labelTitle.textAlignment = NSTextAlignmentCenter;
+    _labelTitle.font = [UIFont fontWithName:_titleFontFamily size:_titleFontSize];
+    _labelTitle.frame = CGRectMake(12.0f, kTitleTop, _windowWidth - 24.0f, kTitleHeight);
+    
+    // View text
+    _viewText.editable = NO;
+    _viewText.allowsEditingTextAttributes = YES;
+    _viewText.textAlignment = NSTextAlignmentCenter;
+    _viewText.font = [UIFont fontWithName:_bodyTextFontFamily size:_bodyFontSize];
+    _viewText.frame = CGRectMake(12.0f, _subTitleY, _windowWidth - 24.0f, _subTitleHeight);
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
+    {
+        _viewText.textContainerInset = UIEdgeInsetsZero;
+        _viewText.textContainer.lineFragmentPadding = 0;
+    }
+    
+    // Colors
+    self.backgroundViewColor = [UIColor whiteColor];
+    _labelTitle.textColor = UIColorFromHEX(0x4D4D4D); //Dark Grey
+    _viewText.textColor = UIColorFromHEX(0x4D4D4D); //Dark Grey
+    _contentView.layer.borderColor = UIColorFromHEX(0xCCCCCC).CGColor; //Light Grey
+}
+
+- (void)setupNewWindow
+{
+    // Create a new one to show the alert
+    UIWindow *alertWindow = [[UIWindow alloc] initWithFrame:[self mainScreenFrame]];
+    alertWindow.windowLevel = UIWindowLevelAlert;
+    alertWindow.backgroundColor = [UIColor clearColor];
+    alertWindow.rootViewController = self;
+    self.SCLAlertWindow = alertWindow;
+    
+    self.usingNewWindow = YES;
 }
 
 #pragma mark - Modal Validation
@@ -555,7 +588,7 @@ SCLTimerDisplay *buttonTimer;
 - (SCLButton *)addButton:(NSString *)title
 {
     // Add button
-    SCLButton *btn = [[SCLButton alloc] init];
+    SCLButton *btn = [[SCLButton alloc] initWithWindowWidth:self.windowWidth];
     btn.layer.masksToBounds = YES;
     [btn setTitle:title forState:UIControlStateNormal];
     btn.titleLabel.font = [UIFont fontWithName:_buttonsFontFamily size:_buttonsFontSize];

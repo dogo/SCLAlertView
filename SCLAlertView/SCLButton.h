@@ -93,4 +93,9 @@ typedef NS_ENUM(NSInteger, SCLActionType)
  */
 @property (nonatomic) SCLTimerDisplay *timer;
 
+/** Init method
+ *
+ */
+- (instancetype)initWithWindowWidth:(CGFloat)windowWidth;
+
 @end
