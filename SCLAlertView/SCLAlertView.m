@@ -758,7 +758,7 @@ NSTimer *durationTimer;
             CGRect r = CGRectNull;
             if(_attributedFormatBlock == nil) {
                 NSString *str = subTitle;
-                r = [str boundingRectWithSize:sz options:NSStringDrawingUsesLineFragmentOrigin attributes:attr context:nil];
+                r = [str boundingRectWithSize:sz options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attr context:nil];
             } else {
                 r = [_viewText.attributedText boundingRectWithSize:sz options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
             }
