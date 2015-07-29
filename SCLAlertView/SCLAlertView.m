@@ -1179,6 +1179,7 @@ NSTimer *durationTimer;
         [self.backgroundView removeFromSuperview];
         if(_usingNewWindow)
         {
+            [self.SCLAlertWindow resignKeyWindow];
             [self.SCLAlertWindow setHidden:YES];
         }
         else
