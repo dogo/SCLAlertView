@@ -8,6 +8,8 @@
 
 #import "SCLButton.h"
 
+#define MIN_HEIGHT 35.0f
+
 @implementation SCLButton
 
 - (instancetype)init
@@ -43,6 +45,20 @@
 - (void)setup
 {
     self.frame = CGRectMake(0.0f, 0.0f, 216.0f, 35.0f);
+    self.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    self.titleLabel.textAlignment = NSTextAlignmentCenter;
+}
+
+-(void)setTitle:(NSString *)title forState:(UIControlState)state
+{
+    [super setTitle:title forState:state];
+    self.titleLabel.numberOfLines = 0;
+    // Update title frame.
+    [self.titleLabel sizeToFit];
+    // Get height needed to display title label completely
+    CGFloat buttonHeight = MAX(self.titleLabel.frame.size.height, MIN_HEIGHT);
+    // Update button frame
+    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, buttonHeight);
 }
 
 - (void)setHighlighted:(BOOL)highlighted
