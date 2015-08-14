@@ -20,6 +20,7 @@
 
 #define KEYBOARD_HEIGHT 80
 #define PREDICTION_BAR_HEIGHT 40
+#define ADD_BUTTON_PADDING 10.0f
 
 @interface SCLAlertView ()  <UITextFieldDelegate, UIGestureRecognizerDelegate>
 
@@ -546,14 +547,14 @@ NSTimer *durationTimer;
 
 - (SCLButton *)addButton:(NSString *)title
 {
-    // Update view height
-    self.windowHeight += 45.0f;
-    
     // Add button
     SCLButton *btn = [[SCLButton alloc] init];
     btn.layer.masksToBounds = YES;
     [btn setTitle:title forState:UIControlStateNormal];
     btn.titleLabel.font = [UIFont fontWithName:_buttonsFontFamily size:_buttonsFontSize];
+    
+    // Update view height
+    self.windowHeight += (btn.frame.size.height + ADD_BUTTON_PADDING);
     
     [_contentView addSubview:btn];
     [_buttons addObject:btn];
