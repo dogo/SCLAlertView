@@ -10,6 +10,7 @@
 #import "SCLAlertViewResponder.h"
 #import "SCLAlertViewStyleKit.h"
 #import "UIImage+ImageEffects.h"
+#import "SCLTimerDisplay.h"
 #import "SCLMacros.h"
 
 #if defined(__has_feature) && __has_feature(modules)
@@ -68,6 +69,7 @@ CGFloat kTitleHeight;
 
 // Timer
 NSTimer *durationTimer;
+SCLTimerDisplay *buttonTimer;
 
 #pragma mark - Initialization
 
@@ -613,6 +615,9 @@ NSTimer *durationTimer;
 
 - (void)buttonTapped:(SCLButton *)btn
 {
+    // Cancel Countdown timer
+    [buttonTimer cancelTimer];
+    
     // If the button has a validation block, and the validation block returns NO, validation
     // failed, so we should bail.
     if (btn.validationBlock && !btn.validationBlock()) {
@@ -637,6 +642,17 @@ NSTimer *durationTimer;
     {
         NSLog(@"Unknown action type for button");
     }
+}
+
+#pragma mark - Button Timer
+
+- (void)addTimerToButton:(NSInteger)buttonIndex
+{
+    buttonIndex = MAX(buttonIndex, 0);
+    buttonIndex = MIN(buttonIndex, [_buttons count]);
+    
+    buttonTimer = [[SCLTimerDisplay alloc] initWithOrigin:CGPointMake(5, 5) radius:13 lineWidth:4];
+    buttonTimer.buttonIndex = buttonIndex;
 }
 
 #pragma mark - Show Alert
@@ -886,11 +902,23 @@ NSTimer *durationTimer;
     if (duration > 0)
     {
         [durationTimer invalidate];
-        durationTimer = [NSTimer scheduledTimerWithTimeInterval:duration
-                                                         target:self
-                                                       selector:@selector(hideView)
-                                                       userInfo:nil
-                                                        repeats:NO];
+        
+        if (buttonTimer && [_buttons count] > 0) {
+            
+            SCLButton *btn = [_buttons objectAtIndex:buttonTimer.buttonIndex];
+            btn.timer = buttonTimer;
+            [buttonTimer startTimerWithTimeLimit:duration completed:^{
+                [self buttonTapped:btn];
+            }];
+        }
+        else
+        {
+            durationTimer = [NSTimer scheduledTimerWithTimeInterval:duration
+                                                             target:self
+                                                           selector:@selector(hideView)
+                                                           userInfo:nil
+                                                            repeats:NO];
+        }
     }
     
     if(_usingNewWindow)

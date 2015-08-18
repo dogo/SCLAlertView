@@ -220,6 +220,12 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
  */
 - (void)addCustomTextField:(UITextField *)textField;
 
+/** Add Timer Display
+ *
+ * @param buttonIndex The index of the button to add the timer display to.
+ */
+- (void)addTimerToButton:(NSInteger)buttonIndex;
+
 /** Set SubTitle Height
  *
  * @deprecated Deprecated since 0.5.2+ .
