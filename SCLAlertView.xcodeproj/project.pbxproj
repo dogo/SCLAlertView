@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		572BB1471B8383B3002DEE38 /* SCLTimerDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = 572BB1461B8383B3002DEE38 /* SCLTimerDisplay.m */; };
 		DD2E172A19FA84B800CBAEC3 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2E172919FA84B800CBAEC3 /* UIImage+ImageEffects.m */; };
 		DD4BA9C119DED8EF008D73EB /* right_answer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DD4BA9C019DED8EF008D73EB /* right_answer.mp3 */; };
 		DD7282B919D6087C00077F54 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD7282B719D6087C00077F54 /* Storyboard.storyboard */; };
@@ -32,6 +33,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		572BB1451B8383B3002DEE38 /* SCLTimerDisplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLTimerDisplay.h; sourceTree = "<group>"; };
+		572BB1461B8383B3002DEE38 /* SCLTimerDisplay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLTimerDisplay.m; sourceTree = "<group>"; };
 		DD0D295B19D902DA00881F53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = SCLAlertViewExample/Info.plist; sourceTree = SOURCE_ROOT; };
 		DD2E172819FA84B800CBAEC3 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
 		DD2E172919FA84B800CBAEC3 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
@@ -162,6 +165,8 @@
 				DDB15FDF19D5D85B00173158 /* SCLAlertViewStyleKit.h */,
 				DDB15FE019D5D85B00173158 /* SCLAlertViewStyleKit.m */,
 				DD2F03171AAFA4E0007BC507 /* SCLMacros.h */,
+				572BB1451B8383B3002DEE38 /* SCLTimerDisplay.h */,
+				572BB1461B8383B3002DEE38 /* SCLTimerDisplay.m */,
 			);
 			path = SCLAlertView;
 			sourceTree = "<group>";
@@ -270,6 +275,7 @@
 				DDB15FCB19D5B88A00173158 /* ViewController.m in Sources */,
 				DDB15FD419D5B8DB00173158 /* main.m in Sources */,
 				DDB15FE119D5D85B00173158 /* SCLAlertViewStyleKit.m in Sources */,
+				572BB1471B8383B3002DEE38 /* SCLTimerDisplay.m in Sources */,
 				DDB15FD719D5B96500173158 /* SCLAlertView.m in Sources */,
 				DDB15FDB19D5BAA000173158 /* SCLButton.m in Sources */,
 				DDB15FCA19D5B88A00173158 /* AppDelegate.m in Sources */,

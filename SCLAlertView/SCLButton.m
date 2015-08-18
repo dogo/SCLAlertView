@@ -7,6 +7,7 @@
 //
 
 #import "SCLButton.h"
+#import "SCLTimerDisplay.h"
 
 #define MIN_HEIGHT 35.0f
 
@@ -70,6 +71,14 @@
 - (void)setDefaultBackgroundColor:(UIColor *)defaultBackgroundColor
 {
     self.backgroundColor = _defaultBackgroundColor = defaultBackgroundColor;
+}
+
+- (void)setTimer:(SCLTimerDisplay *)timer
+{
+    _timer = timer;
+    [self addSubview:timer];
+    [timer updateFrame:self.frame.size];
+    timer.color = self.titleLabel.textColor;
 }
 
 #pragma mark - Button Apperance
