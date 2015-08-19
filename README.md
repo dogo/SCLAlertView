@@ -11,7 +11,8 @@ Animated Alert View written in Swift but ported to Objective-C, which can be use
 ![BackgroundImage](https://raw.githubusercontent.com/dogo/SCLAlertView/master/ScreenShots/ScreenShot2.png) 
 ![BackgroundImage](https://raw.githubusercontent.com/dogo/SCLAlertView/master/ScreenShots/ScreenShot3.png)_ 
 ![BackgroundImage](https://raw.githubusercontent.com/dogo/SCLAlertView/master/ScreenShots/ScreenShot4.png) 
-![BackgroundImage](https://raw.githubusercontent.com/dogo/SCLAlertView/master/ScreenShots/ScreenShot5.png) 
+![BackgroundImage](https://raw.githubusercontent.com/dogo/SCLAlertView/master/ScreenShots/ScreenShot5.png)_
+![BackgroundImage](https://raw.githubusercontent.com/dogo/SCLAlertView/master/ScreenShots/ScreenShot6.png)
 
 ###Easy to use
 ```Objective-C
@@ -74,6 +75,21 @@ SCLAlertView *alert = [[SCLAlertView alloc] init];
 
 [alert showSuccess:self title:@"Button View" subTitle:@"This alert view has buttons" closeButtonTitle:@"Done" duration:0.0f];
 ```
+
+###Add button timer
+```Objective-C
+//The index of the button to add the timer display to.
+[alert addTimerToButtonIndex:0];
+```
+
+Example:
+
+```Objective-C
+SCLAlertView *alert = [[SCLAlertView alloc] init];
+[alert addTimerToButtonIndex:0];
+[alert showInfo:self title:@"Countdown Timer" subTitle:@"This alert has a duration set, and a countdown timer on the Dismiss button to show how long is left." closeButtonTitle:@"Dismiss" duration:10.0f];
+```
+
 
 ###Add Text Attributes
 ```Objective-C
