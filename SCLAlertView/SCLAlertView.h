@@ -224,7 +224,7 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
  *
  * @param buttonIndex The index of the button to add the timer display to.
  */
-- (void)addTimerToButton:(NSInteger)buttonIndex;
+- (void)addTimerToButtonIndex:(NSInteger)buttonIndex;
 
 /** Set SubTitle Height
  *

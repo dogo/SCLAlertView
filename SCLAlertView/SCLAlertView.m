@@ -533,7 +533,7 @@ SCLTimerDisplay *buttonTimer;
     _keyboardIsVisible = YES;
 }
 
--(void)keyboardWillHide:(NSNotification *)notification
+- (void)keyboardWillHide:(NSNotification *)notification
 {
     if(!_keyboardIsVisible) return;
     
@@ -646,7 +646,7 @@ SCLTimerDisplay *buttonTimer;
 
 #pragma mark - Button Timer
 
-- (void)addTimerToButton:(NSInteger)buttonIndex
+- (void)addTimerToButtonIndex:(NSInteger)buttonIndex
 {
     buttonIndex = MAX(buttonIndex, 0);
     buttonIndex = MIN(buttonIndex, [_buttons count]);
@@ -657,7 +657,7 @@ SCLTimerDisplay *buttonTimer;
 
 #pragma mark - Show Alert
 
--(SCLAlertViewResponder *)showTitle:(UIViewController *)vc image:(UIImage *)image color:(UIColor *)color title:(NSString *)title subTitle:(NSString *)subTitle duration:(NSTimeInterval)duration completeText:(NSString *)completeText style:(SCLAlertViewStyle)style
+- (SCLAlertViewResponder *)showTitle:(UIViewController *)vc image:(UIImage *)image color:(UIColor *)color title:(NSString *)title subTitle:(NSString *)subTitle duration:(NSTimeInterval)duration completeText:(NSString *)completeText style:(SCLAlertViewStyle)style
 {
     if(_usingNewWindow)
     {

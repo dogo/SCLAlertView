@@ -50,7 +50,7 @@
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
 }
 
--(void)setTitle:(NSString *)title forState:(UIControlState)state
+- (void)setTitle:(NSString *)title forState:(UIControlState)state
 {
     [super setTitle:title forState:state];
     self.titleLabel.numberOfLines = 0;

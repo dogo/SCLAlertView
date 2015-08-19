@@ -55,10 +55,10 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     [alert addButton:@"Second Button" actionBlock:^(void) {
         NSLog(@"Second button tapped");
     }];
-    [alert addTimerToButton:0];
+
     alert.soundURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/right_answer.mp3", [[NSBundle mainBundle] resourcePath]]];
 
-    [alert showSuccess:kSuccessTitle subTitle:kSubtitle closeButtonTitle:kButtonTitle duration:10.0f];
+    [alert showSuccess:kSuccessTitle subTitle:kSubtitle closeButtonTitle:kButtonTitle duration:0.0f];
 }
 
 - (IBAction)showError:(id)sender
@@ -249,7 +249,7 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
 - (IBAction)showCountdown:(id)sender
 {
     SCLAlertView *alert = [[SCLAlertView alloc] init];
-    [alert addTimerToButton:0];
+    [alert addTimerToButtonIndex:0];
     [alert showInfo:self title:@"Countdown Timer"
             subTitle:@"This alert has a duration set, and a countdown timer on the Dismiss button to show how long is left."
     closeButtonTitle:@"Dismiss" duration:10.0f];

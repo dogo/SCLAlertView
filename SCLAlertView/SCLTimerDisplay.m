@@ -68,19 +68,19 @@
     [aPath stroke];
 }
 
--(void)startTimerWithTimeLimit:(int)tl completed:(SCLActionBlock)completed
+- (void)startTimerWithTimeLimit:(int)tl completed:(SCLActionBlock)completed
 {
     timerLimit = tl;
     timer = [NSTimer scheduledTimerWithTimeInterval:TIMER_STEP target:self selector:@selector(updateTimerButton:) userInfo:nil repeats:YES];
     completedBlock = completed;
 }
 
--(void)cancelTimer
+- (void)cancelTimer
 {
     [timer invalidate];
 }
 
--(void)stopTimer
+- (void)stopTimer
 {
     [timer invalidate];
     if (completedBlock != nil) {
@@ -88,7 +88,7 @@
     }
 }
 
--(void)updateTimerButton:(NSTimer *)timer
+- (void)updateTimerButton:(NSTimer *)timer
 {
     currentTime += TIMER_STEP;
     currentAngle = (currentTime/timerLimit) * 360 + START_DEGREE_OFFSET;
