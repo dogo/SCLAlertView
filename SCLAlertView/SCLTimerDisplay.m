@@ -8,6 +8,12 @@
 
 #import "SCLTimerDisplay.h"
 
+@interface SCLTimerDisplay ()
+
+@property (strong, nonatomic) UILabel *countLabel;
+
+@end
+
 @implementation SCLTimerDisplay
 
 #define DEGREES_TO_RADIANS(degrees)  ((M_PI * degrees)/ 180)
@@ -42,6 +48,15 @@
         lineWidth = width;
         self.color = [UIColor whiteColor];
         self.userInteractionEnabled = NO;
+        
+        // Add count label
+        _countLabel = [[UILabel alloc] init];
+        _countLabel.textColor = [UIColor whiteColor];
+        _countLabel.backgroundColor = [UIColor clearColor];
+        _countLabel.font = [UIFont fontWithName: @"HelveticaNeue-Bold" size:12.0f];
+        _countLabel.textAlignment = NSTextAlignmentCenter;
+        _countLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+        [self addSubview:_countLabel];
     }
     return self;
 }
@@ -54,6 +69,7 @@
     CGFloat originY = (size.height - (2*r))/2;
     
     self.frame = CGRectMake(originX, originY, r*2, r*2);
+    self.countLabel.frame = CGRectMake(0, 0, r*2, r*2);
 }
 
 - (void)drawRect:(CGRect)rect
@@ -66,6 +82,8 @@
     [self.color setStroke];
     aPath.lineWidth = lineWidth;
     [aPath stroke];
+    
+    _countLabel.text = [NSString stringWithFormat:@"%d", (int)currentTime];
 }
 
 - (void)startTimerWithTimeLimit:(int)tl completed:(SCLActionBlock)completed
