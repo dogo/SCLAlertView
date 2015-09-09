@@ -1191,6 +1191,10 @@ SCLTimerDisplay *buttonTimer;
     
     if(_usingNewWindow)
     {
+        // Remove current window
+        [_SCLAlertWindow setHidden:YES];
+        _SCLAlertWindow = nil;
+        
         // Restore previous window
         [self.previousWindow makeKeyAndVisible];
         self.previousWindow = nil;
