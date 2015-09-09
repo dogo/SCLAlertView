@@ -28,14 +28,14 @@
     if (self)
     {
         self.backgroundColor = [UIColor clearColor];
-        currentAngle = 0;
+        currentAngle = 0.0f;
     }
     return self;
 }
 
 - (instancetype)initWithOrigin:(CGPoint)origin radius:(CGFloat)r
 {
-    return [self initWithOrigin:(CGPoint)origin radius:r lineWidth:5];
+    return [self initWithOrigin:(CGPoint)origin radius:r lineWidth:5.0f];
 }
 
 - (instancetype)initWithOrigin:(CGPoint)origin radius:(CGFloat)r lineWidth:(CGFloat)width
@@ -91,6 +91,7 @@
     timerLimit = tl;
     timer = [NSTimer scheduledTimerWithTimeInterval:TIMER_STEP target:self selector:@selector(updateTimerButton:) userInfo:nil repeats:YES];
     completedBlock = completed;
+    _countLabel.textColor = _color;
 }
 
 - (void)cancelTimer
@@ -111,7 +112,7 @@
     currentTime += TIMER_STEP;
     currentAngle = (currentTime/timerLimit) * 360 + START_DEGREE_OFFSET;
     
-    if(currentAngle >= (360+START_DEGREE_OFFSET)){
+    if(currentAngle >= (360 + START_DEGREE_OFFSET)) {
         [self stopTimer];
     }
     [self setNeedsDisplay];
