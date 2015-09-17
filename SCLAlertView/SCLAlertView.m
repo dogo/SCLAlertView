@@ -339,7 +339,7 @@ SCLTimerDisplay *buttonTimer;
     if(_shouldDismissOnTapOutside)
     {
         self.gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
-        [_usingNewWindow ? _SCLAlertWindow: _backgroundView addGestureRecognizer:_gestureRecognizer];
+        [_usingNewWindow ? _SCLAlertWindow : _backgroundView addGestureRecognizer:_gestureRecognizer];
     }
 }
 
