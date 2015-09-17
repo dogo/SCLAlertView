@@ -223,8 +223,9 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
 /** Add Timer Display
  *
  * @param buttonIndex The index of the button to add the timer display to.
+ * @param reverse Convert timer to countdown.
  */
-- (void)addTimerToButtonIndex:(NSInteger)buttonIndex;
+- (void)addTimerToButtonIndex:(NSInteger)buttonIndex reverse:(BOOL)reverse;
 
 /** Set SubTitle Height
  *

@@ -646,13 +646,14 @@ SCLTimerDisplay *buttonTimer;
 
 #pragma mark - Button Timer
 
-- (void)addTimerToButtonIndex:(NSInteger)buttonIndex
+- (void)addTimerToButtonIndex:(NSInteger)buttonIndex reverse:(BOOL)reverse
 {
     buttonIndex = MAX(buttonIndex, 0);
     buttonIndex = MIN(buttonIndex, [_buttons count]);
     
     buttonTimer = [[SCLTimerDisplay alloc] initWithOrigin:CGPointMake(5, 5) radius:13 lineWidth:4];
     buttonTimer.buttonIndex = buttonIndex;
+    buttonTimer.reverse = reverse;
 }
 
 #pragma mark - Show Alert

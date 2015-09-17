@@ -88,6 +88,10 @@
 
 - (void)startTimerWithTimeLimit:(int)tl completed:(SCLActionBlock)completed
 {
+    if (_reverse)
+    {
+        currentTime = tl;
+    }
     timerLimit = tl;
     timer = [NSTimer scheduledTimerWithTimeInterval:TIMER_STEP target:self selector:@selector(updateTimerButton:) userInfo:nil repeats:YES];
     completedBlock = completed;
@@ -109,11 +113,22 @@
 
 - (void)updateTimerButton:(NSTimer *)timer
 {
-    currentTime += TIMER_STEP;
-    currentAngle = (currentTime/timerLimit) * 360 + START_DEGREE_OFFSET;
-    
-    if(currentAngle >= (360 + START_DEGREE_OFFSET)) {
-        [self stopTimer];
+    if (_reverse)
+    {
+        currentTime -= TIMER_STEP;
+        currentAngle = (currentTime/timerLimit) * 360 + START_DEGREE_OFFSET;        
+        
+        if(currentTime <= 0) {
+            [self stopTimer];
+        }
+    }
+    else {
+        currentTime += TIMER_STEP;
+        currentAngle = (currentTime/timerLimit) * 360 + START_DEGREE_OFFSET;
+
+        if(currentAngle >= (360 + START_DEGREE_OFFSET)) {
+            [self stopTimer];
+        }
     }
     [self setNeedsDisplay];
 }

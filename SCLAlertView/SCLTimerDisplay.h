@@ -21,8 +21,9 @@
 }
 
 @property CGFloat currentAngle;
-@property (nonatomic) UIColor *color;
 @property NSInteger buttonIndex;
+@property (nonatomic) UIColor *color;
+@property (nonatomic) BOOL reverse;
 
 - (instancetype)initWithOrigin:(CGPoint)origin radius:(CGFloat)r;
 - (instancetype)initWithOrigin:(CGPoint)origin radius:(CGFloat)r lineWidth:(CGFloat)width;

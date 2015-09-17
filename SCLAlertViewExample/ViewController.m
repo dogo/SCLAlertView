@@ -246,10 +246,10 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     closeButtonTitle:nil duration:5.0f];
 }
 
-- (IBAction)showCountdown:(id)sender
+- (IBAction)showTimer:(id)sender
 {
     SCLAlertView *alert = [[SCLAlertView alloc] init];
-    [alert addTimerToButtonIndex:0];
+    [alert addTimerToButtonIndex:0 reverse:YES];
     [alert showInfo:self title:@"Countdown Timer"
             subTitle:@"This alert has a duration set, and a countdown timer on the Dismiss button to show how long is left."
     closeButtonTitle:@"Dismiss" duration:10.0f];
