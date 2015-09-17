@@ -56,7 +56,7 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
         NSLog(@"Second button tapped");
     }];
 
-    alert.soundURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/right_answer.mp3", [[NSBundle mainBundle] resourcePath]]];
+    alert.soundURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/right_answer.mp3", [NSBundle mainBundle].resourcePath]];
 
     [alert showSuccess:kSuccessTitle subTitle:kSubtitle closeButtonTitle:kButtonTitle duration:0.0f];
 }
@@ -205,7 +205,7 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
             return NO;
         }
         
-        NSInteger evenFieldEntry = [evenField.text integerValue];
+        NSInteger evenFieldEntry = (evenField.text).integerValue;
         BOOL evenFieldPassedValidation = evenFieldEntry % 2 == 0;
         
         if (!evenFieldPassedValidation)
@@ -215,7 +215,7 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
             return NO;
         }
         
-        NSInteger oddFieldEntry = [oddField.text integerValue];
+        NSInteger oddFieldEntry = (oddField.text).integerValue;
         BOOL oddFieldPassedValidation = oddFieldEntry % 2 == 1;
         
         if (!oddFieldPassedValidation)
@@ -236,8 +236,8 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
 {
     SCLAlertView *alert = [[SCLAlertView alloc] init];
     
-    [alert setShowAnimationType:SlideInToCenter];
-    [alert setHideAnimationType:SlideOutFromCenter];
+    alert.showAnimationType = SlideInToCenter;
+    alert.hideAnimationType = SlideOutFromCenter;
     
     alert.backgroundType = Transparent;
     

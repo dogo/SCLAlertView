@@ -245,7 +245,7 @@ SCLTimerDisplay *buttonTimer;
     if (SYSTEM_VERSION_LESS_THAN(@"8.0"))
     {
         // iOS versions before 7.0 did not switch the width and height on device roration
-        if (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]))
+        if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation))
         {
             CGSize ssz = sz;
             sz = CGSizeMake(ssz.height, ssz.width);
@@ -322,7 +322,7 @@ SCLTimerDisplay *buttonTimer;
         for(UITextField *txt in _inputs)
         {
             // Check if there is any keyboard on screen and dismiss
-            if ([txt isEditing])
+            if (txt.editing)
             {
                 [txt resignFirstResponder];
                 hide = NO;
@@ -508,7 +508,7 @@ SCLTimerDisplay *buttonTimer;
 {
     // If this is the last object in the inputs array, resign first responder
     // as the form is at the end.
-    if (textField == [_inputs lastObject])
+    if (textField == _inputs.lastObject)
     {
         [textField resignFirstResponder];
     }
@@ -663,7 +663,7 @@ SCLTimerDisplay *buttonTimer;
     if(_usingNewWindow)
     {
         // Save previous window
-        self.previousWindow = [[UIApplication sharedApplication] keyWindow];
+        self.previousWindow = [UIApplication sharedApplication].keyWindow;
         self.backgroundView.frame = _SCLAlertWindow.bounds;
         
         // Add window subview
@@ -904,9 +904,9 @@ SCLTimerDisplay *buttonTimer;
     {
         [durationTimer invalidate];
         
-        if (buttonTimer && [_buttons count] > 0) {
+        if (buttonTimer && _buttons.count > 0) {
             
-            SCLButton *btn = [_buttons objectAtIndex:buttonTimer.buttonIndex];
+            SCLButton *btn = _buttons[buttonTimer.buttonIndex];
             btn.timer = buttonTimer;
             [buttonTimer startTimerWithTimeLimit:duration completed:^{
                 [self buttonTapped:btn];
@@ -1055,7 +1055,7 @@ SCLTimerDisplay *buttonTimer;
 
 - (BOOL)isAppExtension
 {
-    return [[[NSBundle mainBundle] executablePath] rangeOfString:@".appex/"].location != NSNotFound;
+    return [[NSBundle mainBundle].executablePath rangeOfString:@".appex/"].location != NSNotFound;
 }
 
 #pragma mark - Background Effects
@@ -1070,7 +1070,7 @@ SCLTimerDisplay *buttonTimer;
 
 - (void)makeBlurBackground
 {
-    UIView *appView = (_usingNewWindow) ? [[[[UIApplication sharedApplication] keyWindow] subviews] lastObject] : _rootViewController.view;
+    UIView *appView = (_usingNewWindow) ? [UIApplication sharedApplication].keyWindow.subviews.lastObject : _rootViewController.view;
     UIImage *image = [UIImage convertViewToImage:appView];
     UIImage *blurSnapshotImage = [image applyBlurWithRadius:5.0f
                                                   tintColor:[UIColor colorWithWhite:0.2f
