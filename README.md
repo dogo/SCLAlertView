@@ -79,14 +79,14 @@ SCLAlertView *alert = [[SCLAlertView alloc] init];
 ###Add button timer
 ```Objective-C
 //The index of the button to add the timer display to.
-[alert addTimerToButtonIndex:0];
+[alert addTimerToButtonIndex:0 reverse:NO];
 ```
 
 Example:
 
 ```Objective-C
 SCLAlertView *alert = [[SCLAlertView alloc] init];
-[alert addTimerToButtonIndex:0];
+[alert addTimerToButtonIndex:0 reverse:YES];
 [alert showInfo:self title:@"Countdown Timer" subTitle:@"This alert has a duration set, and a countdown timer on the Dismiss button to show how long is left." closeButtonTitle:@"Dismiss" duration:10.0f];
 ```
 
