@@ -12,6 +12,7 @@
 #import <UIKit/UIKit.h>
 #endif
 #import "SCLButton.h"
+#import "SCLTextView.h"
 
 typedef NSAttributedString* (^SCLAttributedFormatBlock)(NSString *value);
 typedef void (^DismissBlock)(void);
@@ -212,7 +213,7 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
  *
  * @param title The text displayed on the textfield.
  */
-- (UITextField *)addTextField:(NSString *)title;
+- (SCLTextView *)addTextField:(NSString *)title;
 
 /** Add a custom Text Field
  *

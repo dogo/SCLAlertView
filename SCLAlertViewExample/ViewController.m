@@ -103,7 +103,7 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
 {
     SCLAlertView *alert = [[SCLAlertView alloc] init];
     
-    UITextField *textField = [alert addTextField:@"Enter your name"];
+    SCLTextView *textField = [alert addTextField:@"Enter your name"];
     
     [alert addButton:@"Show Name" actionBlock:^(void) {
         NSLog(@"Text value: %@", textField.text);
@@ -128,7 +128,7 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
         NSLog(@"Second button tapped");
     }];
     
-    UITextField *textField = [alert addTextField:@"Enter your name"];
+    SCLTextView *textField = [alert addTextField:@"Enter your name"];
     
     [alert addButton:@"Show Name" actionBlock:^(void) {
         NSLog(@"Text value: %@", textField.text);
@@ -184,10 +184,10 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
 {
     SCLAlertView *alert = [[SCLAlertView alloc] init];
     
-    UITextField *evenField = [alert addTextField:@"Enter an even number"];
+    SCLTextView *evenField = [alert addTextField:@"Enter an even number"];
     evenField.keyboardType = UIKeyboardTypeNumberPad;
     
-    UITextField *oddField = [alert addTextField:@"Enter an odd number"];
+    SCLTextView *oddField = [alert addTextField:@"Enter an odd number"];
     oddField.keyboardType = UIKeyboardTypeNumberPad;
     
     [alert addButton:@"Test Validation" validationBlock:^BOOL{

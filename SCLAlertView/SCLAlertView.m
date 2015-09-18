@@ -294,11 +294,11 @@ SCLTimerDisplay *buttonTimer;
         // Text fields
         CGFloat y = (_labelTitle.text == nil) ? (kCircleHeight - 20.0f) : 74.0f;
         y += _subTitleHeight + 14.0f;
-        for (UITextField *textField in _inputs)
+        for (SCLTextView *textField in _inputs)
         {
-            textField.frame = CGRectMake(12.0f, y, _windowWidth - 24.0f, 30.0f);
+            textField.frame = CGRectMake(12.0f, y, _windowWidth - 24.0f, textField.frame.size.height);
             textField.layer.cornerRadius = 3.0f;
-            y += 40.0f;
+            y += textField.frame.size.height + 10.0f;
         }
         
         // Buttons
@@ -319,7 +319,7 @@ SCLTimerDisplay *buttonTimer;
     {
         BOOL hide = _shouldDismissOnTapOutside;
         
-        for(UITextField *txt in _inputs)
+        for(SCLTextView *txt in _inputs)
         {
             // Check if there is any keyboard on screen and dismiss
             if (txt.editing)
@@ -447,23 +447,17 @@ SCLTimerDisplay *buttonTimer;
 
 #pragma mark - TextField
 
-- (UITextField *)addTextField:(NSString *)title
+- (SCLTextView *)addTextField:(NSString *)title
 {
     [self addObservers];
     
-    // Update view height
-    self.windowHeight += 40.0f;
-    
     // Add text field
-    UITextField *txt = [[UITextField alloc] init];
-    txt.delegate = self;
-    txt.returnKeyType = UIReturnKeyDone;
-    txt.borderStyle = UITextBorderStyleRoundedRect;
+    SCLTextView *txt = [[SCLTextView alloc] init];
     txt.font = [UIFont fontWithName:_bodyTextFontFamily size:_bodyFontSize];
-    txt.autocapitalizationType = UITextAutocapitalizationTypeWords;
-    txt.clearButtonMode = UITextFieldViewModeWhileEditing;
-    txt.layer.masksToBounds = YES;
-    txt.layer.borderWidth = 1.0f;
+    txt.delegate = self;
+    
+    // Update view height
+    self.windowHeight += txt.bounds.size.height + 10.0f;
     
     if (title != nil)
     {
@@ -478,7 +472,7 @@ SCLTimerDisplay *buttonTimer;
     if (_inputs.count > 1)
     {
         NSUInteger indexOfCurrentField = [_inputs indexOfObject:txt];
-        UITextField *priorField = _inputs[indexOfCurrentField - 1];
+        SCLTextView *priorField = _inputs[indexOfCurrentField - 1];
         priorField.returnKeyType = UIReturnKeyNext;
     }
     return txt;
@@ -487,7 +481,7 @@ SCLTimerDisplay *buttonTimer;
 - (void)addCustomTextField:(UITextField *)textField
 {
     // Update view height
-    self.windowHeight += 40.0f;
+    self.windowHeight += textField.bounds.size.height + 10.0f;
     
     [_contentView addSubview:textField];
     [_inputs addObject:textField];
@@ -873,7 +867,7 @@ SCLTimerDisplay *buttonTimer;
         self.circleIconImageView.image = iconImage;
     }
     
-    for (UITextField *textField in _inputs)
+    for (SCLTextView *textField in _inputs)
     {
         textField.layer.borderColor = viewColor.CGColor;
     }

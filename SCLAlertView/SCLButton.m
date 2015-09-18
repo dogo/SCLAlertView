@@ -45,7 +45,7 @@
 
 - (void)setup
 {
-    self.frame = CGRectMake(0.0f, 0.0f, 216.0f, 35.0f);
+    self.frame = CGRectMake(0.0f, 0.0f, 216.0f, MIN_HEIGHT);
     self.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
 }
