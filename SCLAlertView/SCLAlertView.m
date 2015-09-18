@@ -155,7 +155,7 @@ SCLTimerDisplay *buttonTimer;
         [_circleView addSubview:_circleIconImageView];
         
         // Title
-        _labelTitle.numberOfLines = 1;
+        _labelTitle.numberOfLines = 0;
         _labelTitle.textAlignment = NSTextAlignmentCenter;
         _labelTitle.font = [UIFont fontWithName:_titleFontFamily size:_titleFontSize];
         _labelTitle.frame = CGRectMake(12.0f, kTitleTop, _windowWidth - 24.0f, kTitleHeight);
