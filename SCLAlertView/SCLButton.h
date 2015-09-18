@@ -24,9 +24,9 @@ typedef NSDictionary* (^ButtonFormatBlock)(void);
 // Action Types
 typedef NS_ENUM(NSInteger, SCLActionType)
 {
-    None,
-    Selector,
-    Block
+    SCLNone,
+    SCLSelector,
+    SCLBlock
 };
 
 /** Set button action type.
