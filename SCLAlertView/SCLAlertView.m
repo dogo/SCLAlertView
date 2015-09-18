@@ -587,7 +587,7 @@ SCLTimerDisplay *buttonTimer;
         btn.buttonFormatBlock = _buttonFormatBlock;
     }
     
-    btn.actionType = Block;
+    btn.actionType = SCLBlock;
     btn.actionBlock = action;
     [btn addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -605,7 +605,7 @@ SCLTimerDisplay *buttonTimer;
 - (SCLButton *)addButton:(NSString *)title target:(id)target selector:(SEL)selector
 {
     SCLButton *btn = [self addButton:title];
-    btn.actionType = Selector;
+    btn.actionType = SCLSelector;
     btn.target = target;
     btn.selector = selector;
     [btn addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
@@ -628,12 +628,12 @@ SCLTimerDisplay *buttonTimer;
         [self hideView];
     }
 
-    if (btn.actionType == Block)
+    if (btn.actionType == SCLBlock)
     {
         if (btn.actionBlock)
             btn.actionBlock();
     }
-    else if (btn.actionType == Selector)
+    else if (btn.actionType == SCLSelector)
     {
         UIControl *ctrl = [[UIControl alloc] init];
         [ctrl sendAction:btn.selector to:btn.target forEvent:nil];
