@@ -311,6 +311,17 @@ SCLTimerDisplay *buttonTimer;
     }
 }
 
+#pragma mark - UIViewController
+- (BOOL)prefersStatusBarHidden
+{
+  return self.statusBarHidden;
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+  return self.statusBarStyle;
+}
+
 #pragma mark - Handle gesture
 
 - (void)handleTap:(UITapGestureRecognizer *)gesture
