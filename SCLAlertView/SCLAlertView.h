@@ -179,6 +179,18 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
  */
 @property (nonatomic) CGRect extensionBounds;
 
+/** Set status bar hidden.
+ *
+ * Status bar hidden
+ */
+@property (nonatomic) BOOL statusBarHidden;
+
+/** Set status bar style.
+ *
+ * Status bar style
+ */
+@property (nonatomic) UIStatusBarStyle statusBarStyle;
+
 /** Initialize SCLAlertView using a new window.
  *
  * Init with new window
