@@ -342,6 +342,7 @@ SCLTimerDisplay *buttonTimer;
 }
 
 #pragma mark - UIViewController
+
 - (BOOL)prefersStatusBarHidden
 {
   return self.statusBarHidden;

@@ -199,7 +199,7 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
 
 /** Initialize SCLAlertView using a new window.
  *
- * Init with new window
+ * Init with new window with custom width
  */
 - (instancetype)initWithNewWindowWidth:(CGFloat)windowWidth;
 
