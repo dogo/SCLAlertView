@@ -807,15 +807,16 @@ SCLTimerDisplay *buttonTimer;
         // Adjust text view size, if necessary
         CGSize sz = CGSizeMake(_windowWidth - 24.0f, CGFLOAT_MAX);
         NSDictionary *attr = @{NSFontAttributeName:self.viewText.font};
+        NSStringDrawingOptions options = NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading | NSStringDrawingUsesDeviceMetrics;
         
         if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
         {
             CGRect r = CGRectNull;
             if(_attributedFormatBlock == nil) {
                 NSString *str = subTitle;
-                r = [str boundingRectWithSize:sz options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attr context:nil];
+                r = [str boundingRectWithSize:sz options:options attributes:attr context:nil];
             } else {
-                r = [_viewText.attributedText boundingRectWithSize:sz options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
+                r = [_viewText.attributedText boundingRectWithSize:sz options:options context:nil];
             }
             
             CGFloat ht = ceilf(r.size.height);
@@ -833,7 +834,7 @@ SCLTimerDisplay *buttonTimer;
         else
         {
             NSAttributedString *str =[[NSAttributedString alloc] initWithString:subTitle attributes:attr];
-            CGRect r = [str boundingRectWithSize:sz options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
+            CGRect r = [str boundingRectWithSize:sz options:options context:nil];
             CGFloat ht = ceilf(r.size.height) + 10.0f;
             if (ht < _subTitleHeight)
             {
