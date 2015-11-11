@@ -1071,7 +1071,7 @@ SCLTimerDisplay *buttonTimer;
 
 - (CGRect)mainScreenFrame
 {
-    return [self isAppExtension] ? _extensionBounds : [UIScreen mainScreen].bounds;
+    return [self isAppExtension] ? _extensionBounds : [UIApplication sharedApplication].keyWindow.bounds;
 }
 
 - (BOOL)isAppExtension
