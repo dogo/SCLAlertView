@@ -230,6 +230,7 @@ SCLTimerDisplay *buttonTimer;
     {
         _viewText.textContainerInset = UIEdgeInsetsZero;
         _viewText.textContainer.lineFragmentPadding = 0;
+        self.automaticallyAdjustsScrollViewInsets = NO;
     }
     
     // Colors
