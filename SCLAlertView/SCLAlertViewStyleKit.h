@@ -58,6 +58,12 @@
  *
  * TODO
  */
++ (UIImage*)imageOfQuestion;
+
+/** TODO
+ *
+ * TODO
+ */
 + (void)drawCheckmark;
 
 /** TODO
@@ -89,5 +95,11 @@
  * TODO
  */
 + (void)drawEdit;
+
+/** TODO
+ *
+ * TODO
+ */
++ (void)drawQuestion;
 
 @end
