@@ -230,6 +230,7 @@ SCLTimerDisplay *buttonTimer;
     {
         _viewText.textContainerInset = UIEdgeInsetsZero;
         _viewText.textContainer.lineFragmentPadding = 0;
+        self.automaticallyAdjustsScrollViewInsets = NO;
     }
     
     // Colors
@@ -763,6 +764,11 @@ SCLTimerDisplay *buttonTimer;
             viewColor = UIColorFromHEX(0x6c125d);
             break;
             
+        case Question:
+            viewColor = UIColorFromHEX(0x727375);
+            iconImage = SCLAlertViewStyleKit.imageOfQuestion;
+            break;
+            
         case Custom:
             viewColor = color;
             iconImage = image;
@@ -1004,6 +1010,12 @@ SCLTimerDisplay *buttonTimer;
     [self showTitle:vc image:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Waiting];
 }
 
+- (void)showQuestion:(UIViewController *)vc title:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
+{
+    [self showTitle:vc image:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Question];
+}
+
+
 #pragma mark - Show using new window
 
 - (void)showSuccess:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
@@ -1050,6 +1062,11 @@ SCLTimerDisplay *buttonTimer;
 {
     [self addActivityIndicatorView];
     [self showTitle:nil image:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Waiting];
+}
+
+- (void)showQuestion:(NSString *)title subTitle:(NSString *)subTitle closeButtonTitle:(NSString *)closeButtonTitle duration:(NSTimeInterval)duration
+{
+    [self showTitle:nil image:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:Question];
 }
 
 #pragma mark - Visibility

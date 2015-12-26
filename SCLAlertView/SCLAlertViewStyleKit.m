@@ -22,6 +22,7 @@ static UIImage *imageOfNotice = nil;
 static UIImage *imageOfWarning = nil;
 static UIImage *imageOfInfo = nil;
 static UIImage *imageOfEdit = nil;
+static UIImage *imageOfQuestion = nil;
 
 #pragma mark - Initialization
 
@@ -235,6 +236,39 @@ static UIImage *imageOfEdit = nil;
     [editPathPath fill];
 }
 
++ (void)drawQuestion
+{
+    // Color Declarations
+    UIColor *color = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
+    
+    // Questionmark Shape Drawing
+    UIBezierPath *questionShapePath = [[UIBezierPath alloc] init];
+    [questionShapePath moveToPoint: CGPointMake(33.75, 54.1)];
+    [questionShapePath addLineToPoint: CGPointMake(44.15, 54.1)];
+    [questionShapePath addLineToPoint: CGPointMake(44.15, 47.5)];
+    [questionShapePath addCurveToPoint: CGPointMake(51.85, 37.2) controlPoint1: CGPointMake(44.15, 42.9) controlPoint2: CGPointMake(46.75, 41.2)];
+    [questionShapePath addCurveToPoint: CGPointMake(61.95, 19.9) controlPoint1: CGPointMake(59.05, 31.6) controlPoint2: CGPointMake(61.95, 28.5)];
+    [questionShapePath addCurveToPoint: CGPointMake(41.45, 2.8) controlPoint1: CGPointMake(61.95, 7.6) controlPoint2: CGPointMake(52.85, 2.8)];
+    [questionShapePath addCurveToPoint: CGPointMake(25.05, 5.8) controlPoint1: CGPointMake(34.75, 2.8) controlPoint2: CGPointMake(29.65, 3.8)];
+    [questionShapePath addLineToPoint: CGPointMake(25.05, 14.4)];
+    [questionShapePath addCurveToPoint: CGPointMake(38.15, 12.3) controlPoint1: CGPointMake(29.15, 13.2) controlPoint2: CGPointMake(32.35, 12.3)];
+    [questionShapePath addCurveToPoint: CGPointMake(49.65, 20.8) controlPoint1: CGPointMake(45.65, 12.3) controlPoint2: CGPointMake(49.65, 14.4)];
+    [questionShapePath addCurveToPoint: CGPointMake(43.65, 31.7) controlPoint1: CGPointMake(49.65, 26) controlPoint2: CGPointMake(47.95, 28.4)];
+    [questionShapePath addCurveToPoint: CGPointMake(33.75, 46.6) controlPoint1: CGPointMake(37.15, 36.9) controlPoint2: CGPointMake(33.75, 39.7)];
+    [questionShapePath addLineToPoint: CGPointMake(33.75, 54.1)];
+    [questionShapePath closePath];
+    
+    [questionShapePath moveToPoint: CGPointMake(33.15, 75.4)];
+    [questionShapePath addLineToPoint: CGPointMake(45.35, 75.4)];
+    [questionShapePath addLineToPoint: CGPointMake(45.35, 63.7)];
+    [questionShapePath addLineToPoint: CGPointMake(33.15, 63.7)];
+    [questionShapePath addLineToPoint: CGPointMake(33.15, 75.4)];
+    [questionShapePath closePath];
+    
+    [color setFill];
+    [questionShapePath fill];
+}
+
 #pragma mark - Images
 
 + (UIImage*)imageOfCheckmark
@@ -326,6 +360,21 @@ static UIImage *imageOfEdit = nil;
     UIGraphicsEndImageContext();
     
     return imageOfEdit;
+}
+
++ (UIImage*)imageOfQuestion
+{
+    if (imageOfQuestion != nil)
+    {
+        return imageOfQuestion;
+    }
+    
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(80, 80), NO, 0);
+    [SCLAlertViewStyleKit drawQuestion];
+    imageOfQuestion = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return imageOfQuestion;
 }
 
 @end
