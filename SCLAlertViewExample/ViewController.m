@@ -255,6 +255,13 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     closeButtonTitle:@"Dismiss" duration:10.0f];
 }
 
+- (IBAction)showQuestion:(id)sender
+{
+    SCLAlertView *alert = [[SCLAlertView alloc] init];
+    
+    [alert showQuestion:self title:@"Question?" subTitle:kSubtitle closeButtonTitle:@"Dismiss" duration:0.0f];
+}
+
 - (void)firstButton
 {
     NSLog(@"First button tapped");
