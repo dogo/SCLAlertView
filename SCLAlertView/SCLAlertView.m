@@ -55,6 +55,8 @@
 @property (nonatomic) CGFloat windowWidth;
 @property (nonatomic) CGFloat subTitleHeight;
 @property (nonatomic) CGFloat subTitleY;
+/** soundID */
+@property(nonatomic,assign) SystemSoundID soundID;
 
 @end
 
@@ -468,7 +470,20 @@ SCLTimerDisplay *buttonTimer;
 {
     NSError *error;
     _soundURL = soundURL;
-    _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:_soundURL error:&error];
+    //_audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:_soundURL error:&error];
+    
+    //DisposeSound
+    AudioServicesDisposeSystemSoundID(_soundID);
+
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)_soundURL,&_soundID);
+    
+    AudioServicesPlaySystemSoundWithCompletion(_soundID, ^{
+        //call When Sound play to the end
+        
+    });
+
+    //PlaySound
+    AudioServicesPlaySystemSound(_soundID);
 }
 
 #pragma mark - Subtitle Height
