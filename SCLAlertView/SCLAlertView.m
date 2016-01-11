@@ -1192,7 +1192,7 @@ SCLTimerDisplay *buttonTimer;
             break;
     }
     
-    if(_activityIndicatorView)
+    if (_activityIndicatorView)
     {
         [_activityIndicatorView stopAnimating];
     }
@@ -1202,11 +1202,18 @@ SCLTimerDisplay *buttonTimer;
         self.dismissBlock();
     }
     
-    if(_usingNewWindow)
+    if (_usingNewWindow)
     {
         // Restore previous window
         [self.previousWindow makeKeyAndVisible];
         self.previousWindow = nil;
+    }
+    
+    for (SCLButton *btn in _buttons)
+    {
+        btn.actionBlock = nil;
+        btn.target = nil;
+        btn.selector = nil;
     }
 }
 
@@ -1219,7 +1226,7 @@ SCLTimerDisplay *buttonTimer;
         self.view.alpha = 0.0f;
     } completion:^(BOOL completed) {
         [self.backgroundView removeFromSuperview];
-        if(_usingNewWindow)
+        if (_usingNewWindow)
         {
             // Remove current window            
             [self.SCLAlertWindow setHidden:YES];
