@@ -660,10 +660,6 @@ SCLTimerDisplay *buttonTimer;
     if (btn.validationBlock && !btn.validationBlock()) {
         return;
     }
-    if([self isVisible])
-    {
-        [self hideView];
-    }
 
     if (btn.actionType == SCLBlock)
     {
@@ -678,6 +674,11 @@ SCLTimerDisplay *buttonTimer;
     else
     {
         NSLog(@"Unknown action type for button");
+    }
+    
+    if([self isVisible])
+    {
+        [self hideView];
     }
 }
 
