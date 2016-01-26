@@ -3,7 +3,7 @@
 //  SCLAlertView
 //
 //  Created by Diogo Autilio on 9/26/14.
-//  Copyright (c) 2014 AnyKey Entertainment. All rights reserved.
+//  Copyright (c) 2014-2016 AnyKey Entertainment. All rights reserved.
 //
 
 #import "SCLAlertView.h"
@@ -40,7 +40,7 @@
 @property (nonatomic, strong) NSString *buttonsFontFamily;
 @property (nonatomic, strong) UIWindow *previousWindow;
 @property (nonatomic, strong) UIWindow *SCLAlertWindow;
-@property (nonatomic, copy) DismissBlock dismissBlock;
+@property (nonatomic, copy) SCLDismissBlock dismissBlock;
 @property (nonatomic, weak) UIViewController *rootViewController;
 @property (nonatomic, weak) id<UIGestureRecognizerDelegate> restoreInteractivePopGestureDelegate;
 @property (nonatomic) BOOL canAddObservers;
@@ -906,8 +906,8 @@ SCLTimerDisplay *buttonTimer;
     {
         [durationTimer invalidate];
         
-        if (buttonTimer && _buttons.count > 0) {
-            
+        if (buttonTimer && _buttons.count > 0)
+        {
             SCLButton *btn = _buttons[buttonTimer.buttonIndex];
             btn.timer = buttonTimer;
             [buttonTimer startTimerWithTimeLimit:duration completed:^{
@@ -1056,7 +1056,7 @@ SCLTimerDisplay *buttonTimer;
     return (self.view.alpha);
 }
 
-- (void)alertIsDismissed:(DismissBlock)dismissBlock
+- (void)alertIsDismissed:(SCLDismissBlock)dismissBlock
 {
     self.dismissBlock = dismissBlock;
 }

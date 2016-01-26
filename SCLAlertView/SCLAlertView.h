@@ -3,7 +3,7 @@
 //  SCLAlertView
 //
 //  Created by Diogo Autilio on 9/26/14.
-//  Copyright (c) 2014 AnyKey Entertainment. All rights reserved.
+//  Copyright (c) 2014-2016 AnyKey Entertainment. All rights reserved.
 //
 
 #if defined(__has_feature) && __has_feature(modules)
@@ -15,7 +15,7 @@
 #import "SCLTextView.h"
 
 typedef NSAttributedString* (^SCLAttributedFormatBlock)(NSString *value);
-typedef void (^DismissBlock)(void);
+typedef void (^SCLDismissBlock)(void);
 
 @interface SCLAlertView : UIViewController
 
@@ -208,7 +208,7 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
  *
  * Warns that alerts is gone using block
  */
-- (void)alertIsDismissed:(DismissBlock)dismissBlock;
+- (void)alertIsDismissed:(SCLDismissBlock)dismissBlock;
 
 /** Hide SCLAlertView
  *
