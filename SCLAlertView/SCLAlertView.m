@@ -1061,6 +1061,17 @@ SCLTimerDisplay *buttonTimer;
     self.dismissBlock = dismissBlock;
 }
 
+- (SCLForceHideBlock)forceHideBlock:(SCLForceHideBlock)forceHideBlock
+{
+    _forceHideBlock = forceHideBlock;
+    
+    if (_forceHideBlock)
+    {
+        [self hideView];
+    }
+    return _forceHideBlock;
+}
+
 - (CGRect)mainScreenFrame
 {
     return [self isAppExtension] ? _extensionBounds : [UIApplication sharedApplication].keyWindow.bounds;

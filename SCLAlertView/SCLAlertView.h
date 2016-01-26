@@ -16,6 +16,7 @@
 
 typedef NSAttributedString* (^SCLAttributedFormatBlock)(NSString *value);
 typedef void (^SCLDismissBlock)(void);
+typedef void (^SCLForceHideBlock)(void);
 
 @interface SCLAlertView : UIViewController
 
@@ -127,6 +128,12 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
  * Support keys : backgroundColor, borderWidth, borderColor, textColor
  */
 @property (nonatomic, copy) ButtonFormatBlock buttonFormatBlock;
+
+/** Set force hide block.
+ *
+ * When set force hideview method invocation.
+ */
+@property (nonatomic, copy) SCLForceHideBlock forceHideBlock;
 
 /** Hide animation type
  *
