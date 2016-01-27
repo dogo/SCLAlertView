@@ -123,6 +123,7 @@ alert.attributedFormatBlock = ^NSAttributedString* (NSString *value)
 
 [alert showSuccess:self title:@"Button View" subTitle:@"Attributed string operation successfully completed." closeButtonTitle:@"Done" duration:0.0f];
 ```
+
 ###Add a text field
 ```Objective-C
 SCLAlertView *alert = [[SCLAlertView alloc] init];
@@ -142,7 +143,19 @@ SCLAlertView *alert = [[SCLAlertView alloc] init];
     
 [alert showWaiting:self title:@"Waiting..." subTitle:@"Blah de blah de blah, blah. Blah de blah de" closeButtonTitle:nil duration:5.0f];
 ```
-
+###Add a switch button
+```Objective-C
+SCLAlertView *alert = [[SCLAlertView alloc] init];
+    
+SCLSwitchView *switchView = [alert addSwitchViewWithLabel:@"Don't show again".uppercaseString];
+switchView.tintColor = [UIColor brownColor];
+    
+[alert addButton:@"Done" actionBlock:^(void) {
+    NSLog(@"Show again? %@", switchView.isSelected ? @"-No": @"-Yes");
+}];
+    
+[alert showCustom:self image:[UIImage imageNamed:@"switch"] color:[UIColor brownColor] title:kInfoTitle subTitle:kSubtitle closeButtonTitle:nil duration:0.0f];
+```
 
 ###SCLAlertView properties
 ```Objective-C

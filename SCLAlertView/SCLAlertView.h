@@ -13,6 +13,7 @@
 #endif
 #import "SCLButton.h"
 #import "SCLTextView.h"
+#import "SCLSwitchView.h"
 
 typedef NSAttributedString* (^SCLAttributedFormatBlock)(NSString *value);
 typedef void (^SCLDismissBlock)(void);
@@ -246,6 +247,12 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
  * @param textField The custom textfield provided by the programmer.
  */
 - (void)addCustomTextField:(UITextField *)textField;
+
+/** Add a switch view
+ *
+ * @param label The label displayed for the switch.
+ */
+- (SCLSwitchView *)addSwitchViewWithLabel:(NSString *)label;
 
 /** Add Timer Display
  *

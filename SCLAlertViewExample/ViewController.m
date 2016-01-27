@@ -262,6 +262,19 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     [alert showQuestion:self title:@"Question?" subTitle:kSubtitle closeButtonTitle:@"Dismiss" duration:0.0f];
 }
 
+- (IBAction)showSwitch:(id)sender {
+    SCLAlertView *alert = [[SCLAlertView alloc] init];
+    
+    SCLSwitchView *switchView = [alert addSwitchViewWithLabel:@"Don't show again".uppercaseString];
+    switchView.tintColor = [UIColor brownColor];
+    
+    [alert addButton:@"Done" actionBlock:^(void) {
+        NSLog(@"Show again? %@", switchView.isSelected ? @"-No": @"-Yes");
+    }];
+    
+    [alert showCustom:self image:[UIImage imageNamed:@"switch"] color:[UIColor brownColor] title:kInfoTitle subTitle:kSubtitle closeButtonTitle:nil duration:0.0f];
+}
+
 - (void)firstButton
 {
     NSLog(@"First button tapped");

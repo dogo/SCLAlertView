@@ -498,6 +498,27 @@ SCLTimerDisplay *buttonTimer;
     [_circleView addSubview:_activityIndicatorView];
 }
 
+#pragma mark - SwitchView
+
+- (SCLSwitchView *)addSwitchViewWithLabel:(NSString *)label
+{
+    // Add switch view
+    SCLSwitchView *switchView = [[SCLSwitchView alloc] initWithFrame:CGRectMake(0, 0, self.windowWidth, 31.0f)];
+    
+    // Update view height
+    self.windowHeight += switchView.bounds.size.height + 10.0f;
+    
+    if (label != nil)
+    {
+        switchView.labelText = label;
+    }
+    
+    [_contentView addSubview:switchView];
+    [_inputs addObject:switchView];
+    
+    return switchView;
+}
+
 #pragma mark - TextField
 
 - (SCLTextView *)addTextField:(NSString *)title
