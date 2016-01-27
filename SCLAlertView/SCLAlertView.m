@@ -33,7 +33,6 @@
 @property (nonatomic, strong) UIView *circleViewBackground;
 @property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, strong) UIImageView *backgroundView;
-@property (nonatomic, strong) AVAudioPlayer *audioPlayer;
 @property (nonatomic, strong) UITapGestureRecognizer *gestureRecognizer;
 @property (nonatomic, strong) NSString *titleFontFamily;
 @property (nonatomic, strong) NSString *bodyTextFontFamily;
@@ -41,6 +40,7 @@
 @property (nonatomic, strong) UIWindow *previousWindow;
 @property (nonatomic, strong) UIWindow *SCLAlertWindow;
 @property (nonatomic, copy) SCLDismissBlock dismissBlock;
+@property (nonatomic, assign) SystemSoundID soundID;
 @property (nonatomic, weak) UIViewController *rootViewController;
 @property (nonatomic, weak) id<UIGestureRecognizerDelegate> restoreInteractivePopGestureDelegate;
 @property (nonatomic) BOOL canAddObservers;
@@ -55,8 +55,6 @@
 @property (nonatomic) CGFloat windowWidth;
 @property (nonatomic) CGFloat subTitleHeight;
 @property (nonatomic) CGFloat subTitleY;
-/** soundID */
-@property(nonatomic,assign) SystemSoundID soundID;
 
 @end
 
@@ -468,18 +466,15 @@ SCLTimerDisplay *buttonTimer;
 
 - (void)setSoundURL:(NSURL *)soundURL
 {
-    NSError *error;
     _soundURL = soundURL;
-    //_audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:_soundURL error:&error];
     
     //DisposeSound
     AudioServicesDisposeSystemSoundID(_soundID);
 
-    AudioServicesCreateSystemSoundID((__bridge CFURLRef)_soundURL,&_soundID);
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)_soundURL, &_soundID);
     
     AudioServicesPlaySystemSoundWithCompletion(_soundID, ^{
         //call When Sound play to the end
-        
     });
 
     //PlaySound
@@ -854,20 +849,7 @@ SCLTimerDisplay *buttonTimer;
         // Move up
         _labelTitle.frame = CGRectMake(12.0f, 37.0f, _windowWidth - 24.0f, kTitleHeight);
     }
-    
-    // Play sound, if necessary
-    if(_soundURL != nil)
-    {
-        if (_audioPlayer == nil)
-        {
-            NSLog(@"You need to set your sound file first");
-        }
-        else
-        {
-            [_audioPlayer play];
-        }
-    }
-    
+        
     // Add button, if necessary
     if(completeText != nil)
     {
