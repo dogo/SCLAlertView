@@ -272,13 +272,15 @@ SCLTimerDisplay *buttonTimer;
     // Check for larger top circle icon flag
     if (_useLargerIcon) {
         // TODO: recalculate using kCircleHeightBackground = 122.0f
-        kCircleBackgroundTopPosition = -15.0f;
-        kCircleHeight = 56.0f;
-        kCircleHeightBackground = 62.0f;
-        kTitleTop = 24.0f;
-        self.subTitleY = 70.0f;
-        self.circleIconHeight = 20.0f;
-        self.windowHeight = 178.0f;
+        kCircleBackgroundTopPosition = -30.0f; // -15.0f;
+        kCircleHeight = 116.0f; // 56.0f;
+        kCircleHeightBackground = 122.0f; // 62.0f;
+        kTitleTop = 84.0f; // 24.0f;
+        self.subTitleY = 130.0f; // 70.0f;
+        self.circleIconHeight = 80.0f; // 20.0f;
+        self.windowHeight = 238.0f; // 178.0f;
+        
+        _circleViewBackground.layer.cornerRadius = _circleViewBackground.frame.size.height / 2;
     }
     
     // Check if the rootViewController is modal, if so we need to get the modal size not the main screen size
@@ -321,6 +323,9 @@ SCLTimerDisplay *buttonTimer;
         self.view.frame = r;
         _contentView.frame = CGRectMake(0.0f, kCircleHeight / 4, _windowWidth, _windowHeight);
         _circleViewBackground.frame = CGRectMake(_windowWidth / 2 - kCircleHeightBackground / 2, kCircleBackgroundTopPosition, kCircleHeightBackground, kCircleHeightBackground);
+        CGFloat x = (kCircleHeightBackground - kCircleHeight) / 2;
+        _circleView.frame = CGRectMake(x, x, kCircleHeight, kCircleHeight);
+        _circleView.layer.cornerRadius = _circleView.frame.size.height / 2;
         _circleIconImageView.frame = CGRectMake(kCircleHeight / 2 - _circleIconHeight / 2, kCircleHeight / 2 - _circleIconHeight / 2, _circleIconHeight, _circleIconHeight);
     }
     else
