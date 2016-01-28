@@ -150,7 +150,6 @@ SCLTimerDisplay *buttonTimer;
 - (void)setupViewWindowWidth:(CGFloat)windowWidth
 {
     // Default values
-    kCircleTopPosition = -12.0f;
     kCircleBackgroundTopPosition = -15.0f;
     kCircleHeight = 56.0f;
     kCircleHeightBackground = 62.0f;
@@ -269,6 +268,18 @@ SCLTimerDisplay *buttonTimer;
     [super viewWillLayoutSubviews];
     
     CGSize sz = [self mainScreenFrame].size;
+    
+    // Check for larger top circle icon flag
+    if (_useLargerIcon) {
+        // TODO: recalculate using kCircleHeightBackground = 122.0f
+        kCircleBackgroundTopPosition = -15.0f;
+        kCircleHeight = 56.0f;
+        kCircleHeightBackground = 62.0f;
+        kTitleTop = 24.0f;
+        self.subTitleY = 70.0f;
+        self.circleIconHeight = 20.0f;
+        self.windowHeight = 178.0f;
+    }
     
     // Check if the rootViewController is modal, if so we need to get the modal size not the main screen size
     if([self isModal] && !_usingNewWindow)

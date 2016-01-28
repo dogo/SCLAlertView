@@ -85,6 +85,13 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
  * (Default: YES)
  */
 @property BOOL tintTopCircle;
+
+/** Use larger icon
+ *
+ * A boolean value that determines whether to make the SCLAlertView top circle icon larger.
+ * (Default: NO)
+ */
+@property BOOL useLargerIcon;
     
 /** Title Label
  *
