@@ -86,6 +86,7 @@ SCLTimerDisplay *buttonTimer;
     self = [super init];
     if (self)
     {
+        _tintTopCircle = YES;
         [self setupViewWindowWidth:DEFAULT_WINDOW_WIDTH];
     }
     return self;
@@ -96,6 +97,7 @@ SCLTimerDisplay *buttonTimer;
     self = [super init];
     if (self)
     {
+        _tintTopCircle = YES;
         [self setupViewWindowWidth:windowWidth];
     }
     return self;
@@ -106,6 +108,7 @@ SCLTimerDisplay *buttonTimer;
     self = [self initWithWindowWidth:DEFAULT_WINDOW_WIDTH];
     if(self)
     {
+        _tintTopCircle = YES;
         [self setupNewWindow];
     }
     return self;
@@ -116,6 +119,7 @@ SCLTimerDisplay *buttonTimer;
     self = [self initWithWindowWidth:windowWidth];
     if(self)
     {
+        _tintTopCircle = YES;
         [self setupNewWindow];
     }
     return self;
@@ -346,12 +350,12 @@ SCLTimerDisplay *buttonTimer;
 
 - (BOOL)prefersStatusBarHidden
 {
-  return self.statusBarHidden;
+    return self.statusBarHidden;
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
-  return self.statusBarStyle;
+    return self.statusBarStyle;
 }
 
 #pragma mark - Handle gesture
@@ -470,13 +474,13 @@ SCLTimerDisplay *buttonTimer;
     
     //DisposeSound
     AudioServicesDisposeSystemSoundID(_soundID);
-
+    
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)_soundURL, &_soundID);
     
     AudioServicesPlaySystemSoundWithCompletion(_soundID, ^{
         //call When Sound play to the end
     });
-
+    
     //PlaySound
     AudioServicesPlaySystemSound(_soundID);
 }
@@ -691,7 +695,7 @@ SCLTimerDisplay *buttonTimer;
     if (btn.validationBlock && !btn.validationBlock()) {
         return;
     }
-
+    
     if (btn.actionType == SCLBlock)
     {
         if (btn.actionBlock)
@@ -870,7 +874,7 @@ SCLTimerDisplay *buttonTimer;
         // Move up
         _labelTitle.frame = CGRectMake(12.0f, 37.0f, _windowWidth - 24.0f, kTitleHeight);
     }
-        
+    
     // Add button, if necessary
     if(completeText != nil)
     {
@@ -878,7 +882,7 @@ SCLTimerDisplay *buttonTimer;
     }
     
     // Alert view color and images
-    self.circleView.backgroundColor = viewColor;
+    self.circleView.backgroundColor = self.tintTopCircle ? viewColor : _backgroundViewColor;
     
     if (style == Waiting)
     {
@@ -1258,7 +1262,7 @@ SCLTimerDisplay *buttonTimer;
         [self.backgroundView removeFromSuperview];
         if (_usingNewWindow)
         {
-            // Remove current window            
+            // Remove current window
             [self.SCLAlertWindow setHidden:YES];
             self.SCLAlertWindow = nil;
         }

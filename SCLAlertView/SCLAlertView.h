@@ -19,7 +19,7 @@ typedef NSAttributedString* (^SCLAttributedFormatBlock)(NSString *value);
 typedef void (^SCLDismissBlock)(void);
 typedef void (^SCLForceHideBlock)(void);
 
-@interface SCLAlertView : UIViewController
+@interface SCLAlertView : UIViewController 
 
 /** Alert Styles
  *
@@ -79,6 +79,13 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
     Transparent
 };
 
+/** Tint top circle
+ *
+ * A boolean value that determines whether to tint the SCLAlertView top circle.
+ * (Default: YES)
+ */
+@property BOOL tintTopCircle;
+    
 /** Title Label
  *
  * The text displayed as title.

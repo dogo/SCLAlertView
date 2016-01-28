@@ -264,6 +264,8 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
 
 - (IBAction)showSwitch:(id)sender {
     SCLAlertView *alert = [[SCLAlertView alloc] init];
+    alert.tintTopCircle = NO;
+    alert.iconTintColor = [UIColor brownColor];
     
     SCLSwitchView *switchView = [alert addSwitchViewWithLabel:@"Don't show again".uppercaseString];
     switchView.tintColor = [UIColor brownColor];
