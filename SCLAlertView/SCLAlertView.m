@@ -195,26 +195,6 @@ SCLTimerDisplay *buttonTimer;
     // Background View
     _backgroundView.userInteractionEnabled = YES;
     
-    // Content View
-    _contentView.backgroundColor = [UIColor whiteColor];
-    _contentView.layer.cornerRadius = 5.0f;
-    _contentView.layer.masksToBounds = YES;
-    _contentView.layer.borderWidth = 0.5f;
-    [_contentView addSubview:_labelTitle];
-    [_contentView addSubview:_viewText];
-    
-    // Circle View
-    _tintTopCircle = YES;
-    _circleViewBackground.backgroundColor = [UIColor whiteColor];
-    _circleViewBackground.layer.cornerRadius = _circleViewBackground.frame.size.height / 2;
-    CGFloat x = (kCircleHeightBackground - kCircleHeight) / 2;
-    _circleView.frame = CGRectMake(x, x, kCircleHeight, kCircleHeight);
-    _circleView.layer.cornerRadius = _circleView.frame.size.height / 2;
-    x = (kCircleHeight - _circleIconHeight) / 2;
-    _circleIconImageView.frame = CGRectMake(x, x, _circleIconHeight, _circleIconHeight);
-    [_circleViewBackground addSubview:_circleView];
-    [_circleView addSubview:_circleIconImageView];
-    
     // Title
     _labelTitle.numberOfLines = 1;
     _labelTitle.textAlignment = NSTextAlignmentCenter;
@@ -234,6 +214,26 @@ SCLTimerDisplay *buttonTimer;
         _viewText.textContainer.lineFragmentPadding = 0;
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
+    
+    // Content View
+    _contentView.backgroundColor = [UIColor whiteColor];
+    _contentView.layer.cornerRadius = 5.0f;
+    _contentView.layer.masksToBounds = YES;
+    _contentView.layer.borderWidth = 0.5f;
+    [_contentView addSubview:_labelTitle];
+    [_contentView addSubview:_viewText];
+    
+    // Circle View
+    _tintTopCircle = YES;
+    _circleViewBackground.backgroundColor = [UIColor whiteColor];
+    _circleViewBackground.layer.cornerRadius = _circleViewBackground.frame.size.height / 2;
+    CGFloat x = (kCircleHeightBackground - kCircleHeight) / 2;
+    _circleView.frame = CGRectMake(x, x, kCircleHeight, kCircleHeight);
+    _circleView.layer.cornerRadius = _circleView.frame.size.height / 2;
+    x = (kCircleHeight - _circleIconHeight) / 2;
+    _circleIconImageView.frame = CGRectMake(x, x, _circleIconHeight, _circleIconHeight);
+    [_circleViewBackground addSubview:_circleView];
+    [_circleView addSubview:_circleIconImageView];
     
     // Colors
     self.backgroundViewColor = [UIColor whiteColor];
@@ -271,14 +271,12 @@ SCLTimerDisplay *buttonTimer;
     
     // Check for larger top circle icon flag
     if (_useLargerIcon) {
-        // TODO: recalculate using kCircleHeightBackground = 122.0f
         kCircleBackgroundTopPosition = -30.0f; // -15.0f;
         kCircleHeight = 116.0f; // 56.0f;
         kCircleHeightBackground = 122.0f; // 62.0f;
-        kTitleTop = 84.0f; // 24.0f;
-        self.subTitleY = 130.0f; // 70.0f;
+        kTitleTop = 61.0f; // 24.0f;
         self.circleIconHeight = 80.0f; // 20.0f;
-        self.windowHeight = 238.0f; // 178.0f;
+        self.windowHeight = 244.0f; // 178.0f;
         
         _circleViewBackground.layer.cornerRadius = _circleViewBackground.frame.size.height / 2;
     }
@@ -331,7 +329,7 @@ SCLTimerDisplay *buttonTimer;
     else
     {
         CGFloat x = (sz.width - _windowWidth) / 2;
-        CGFloat y = (sz.height - _windowHeight -  (kCircleHeight / 8)) / 2;
+        CGFloat y = (sz.height - _windowHeight - (kCircleHeight / 8)) / 2;
         
         _contentView.frame = CGRectMake(x, y, _windowWidth, _windowHeight);
         y -= kCircleHeightBackground * 0.6f;
@@ -340,24 +338,26 @@ SCLTimerDisplay *buttonTimer;
         _circleIconImageView.frame = CGRectMake(kCircleHeight / 2 - _circleIconHeight / 2, kCircleHeight / 2 - _circleIconHeight / 2, _circleIconHeight, _circleIconHeight);
     }
     
+    // Labels
+    _labelTitle.frame = CGRectMake(12.0f, kTitleTop, _windowWidth - 24.0f, kTitleHeight);
+    _viewText.frame = CGRectMake(12.0f,  kTitleTop + _labelTitle.frame.size.height, _windowWidth - 24.0f, _subTitleHeight);
+    
+    // Text fields
+    CGFloat y = (_labelTitle.text == nil) ? kTitleTop : kTitleTop + _labelTitle.frame.size.height;
+    y += _subTitleHeight + 14.0f;
+    for (SCLTextView *textField in _inputs)
     {
-        // Text fields
-        CGFloat y = (_labelTitle.text == nil) ? (kCircleHeight - 20.0f) : 74.0f;
-        y += _subTitleHeight + 14.0f;
-        for (SCLTextView *textField in _inputs)
-        {
-            textField.frame = CGRectMake(12.0f, y, _windowWidth - 24.0f, textField.frame.size.height);
-            textField.layer.cornerRadius = 3.0f;
-            y += textField.frame.size.height + 10.0f;
-        }
-        
-        // Buttons
-        for (SCLButton *btn in _buttons)
-        {
-            btn.frame = CGRectMake(12.0f, y, btn.frame.size.width, btn.frame.size.height);
-            btn.layer.cornerRadius = 3.0f;
-            y += btn.frame.size.height + 10.0f;
-        }
+        textField.frame = CGRectMake(12.0f, y, _windowWidth - 24.0f, textField.frame.size.height);
+        textField.layer.cornerRadius = 3.0f;
+        y += textField.frame.size.height + 10.0f;
+    }
+    
+    // Buttons
+    for (SCLButton *btn in _buttons)
+    {
+        btn.frame = CGRectMake(12.0f, y, btn.frame.size.width, btn.frame.size.height);
+        btn.layer.cornerRadius = 3.0f;
+        y += btn.frame.size.height + 10.0f;
     }
 }
 
