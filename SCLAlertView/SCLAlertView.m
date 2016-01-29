@@ -86,7 +86,6 @@ SCLTimerDisplay *buttonTimer;
     self = [super init];
     if (self)
     {
-        _tintTopCircle = YES;
         [self setupViewWindowWidth:DEFAULT_WINDOW_WIDTH];
     }
     return self;
@@ -97,7 +96,6 @@ SCLTimerDisplay *buttonTimer;
     self = [super init];
     if (self)
     {
-        _tintTopCircle = YES;
         [self setupViewWindowWidth:windowWidth];
     }
     return self;
@@ -108,7 +106,6 @@ SCLTimerDisplay *buttonTimer;
     self = [self initWithWindowWidth:DEFAULT_WINDOW_WIDTH];
     if(self)
     {
-        _tintTopCircle = YES;
         [self setupNewWindow];
     }
     return self;
@@ -119,7 +116,6 @@ SCLTimerDisplay *buttonTimer;
     self = [self initWithWindowWidth:windowWidth];
     if(self)
     {
-        _tintTopCircle = YES;
         [self setupNewWindow];
     }
     return self;
@@ -207,6 +203,7 @@ SCLTimerDisplay *buttonTimer;
     [_contentView addSubview:_viewText];
     
     // Circle View
+    _tintTopCircle = YES;
     _circleViewBackground.backgroundColor = [UIColor whiteColor];
     _circleViewBackground.layer.cornerRadius = _circleViewBackground.frame.size.height / 2;
     CGFloat x = (kCircleHeightBackground - kCircleHeight) / 2;
