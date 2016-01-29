@@ -15,8 +15,10 @@
 
 #if defined(__has_feature) && __has_feature(modules)
 @import AVFoundation;
+@import AudioToolbox;
 #else
 #import <AVFoundation/AVFoundation.h>
+#import <AudioToolbox/AudioToolbox.h>
 #endif
 
 #define KEYBOARD_HEIGHT 80
