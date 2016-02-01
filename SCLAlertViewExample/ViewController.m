@@ -263,7 +263,7 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
 }
 
 - (IBAction)showSwitch:(id)sender {
-    SCLAlertView *alert = [[SCLAlertView alloc] init];
+    SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
     alert.tintTopCircle = NO;
     alert.iconTintColor = [UIColor brownColor];
     alert.useLargerIcon = YES;
@@ -271,9 +271,14 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     SCLSwitchView *switchView = [alert addSwitchViewWithLabel:@"Don't show again".uppercaseString];
     switchView.tintColor = [UIColor brownColor];
     
-    [alert addButton:@"Done" actionBlock:^(void) {
-        NSLog(@"Show again? %@", switchView.isSelected ? @"-No": @"-Yes");
-    }];
+    SCLButton *button = [alert addButton:@"Done" target:self selector:@selector(firstButton)];
+    
+    button.buttonFormatBlock = ^NSDictionary* (void) {
+        NSMutableDictionary *buttonConfig = [[NSMutableDictionary alloc] init];
+        buttonConfig[@"cornerRadius"] = @"17.5f";
+        
+        return buttonConfig;
+    };
     
     [alert showCustom:self image:[UIImage imageNamed:@"switch"] color:[UIColor brownColor] title:kInfoTitle subTitle:kSubtitle closeButtonTitle:nil duration:0.0f];
 }
