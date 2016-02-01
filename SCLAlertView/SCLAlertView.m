@@ -193,6 +193,7 @@ SCLTimerDisplay *buttonTimer;
     [self.view addSubview:_circleViewBackground];
     
     // Circle View
+    _tintTopCircle = YES;
     _circleViewBackground.backgroundColor = [UIColor whiteColor];
     _circleViewBackground.layer.cornerRadius = _circleViewBackground.frame.size.height / 2;
     CGFloat x = (kCircleHeightBackground - kCircleHeight) / 2;
