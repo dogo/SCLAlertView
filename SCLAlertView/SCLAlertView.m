@@ -344,6 +344,7 @@ SCLTimerDisplay *buttonTimer;
         _contentView.frame = CGRectMake(x, y, _windowWidth, _windowHeight);
         y -= kCircleHeightBackground / 2;
         x = (sz.width - kCircleHeightBackground) / 2;
+        _circleView.layer.cornerRadius = _circleView.frame.size.height / 2;        
         _circleViewBackground.frame = CGRectMake(x, y, kCircleHeightBackground, kCircleHeightBackground);
         _circleIconImageView.frame = CGRectMake(kCircleHeight / 2 - _circleIconHeight / 2, kCircleHeight / 2 - _circleIconHeight / 2, _circleIconHeight, _circleIconHeight);
         kTitleTop = _useLargerIcon ? kTitleTop : kTitleTop + 4.0f;
