@@ -274,13 +274,21 @@ SCLTimerDisplay *buttonTimer;
     
     // Check for larger top circle icon flag
     if (_useLargerIcon) {
-        _circleIconHeight = 80.0f;
+        // Adjust icon
+        _circleIconHeight = 70.0f;
         _circleViewBackground.layer.cornerRadius = _circleViewBackground.frame.size.height / 2;
         
-        kCircleBackgroundTopPosition = -30.0f;
-        kCircleHeight = 116.0f;
+        // Adjust coordinate variables for larger sized top circle
+        kCircleBackgroundTopPosition = -61.0f;
+        kCircleHeight = 106.0f;
         kCircleHeightBackground = 122.0f;
         kTitleTop = _tintTopCircle ? kCircleHeightBackground / 2: _circleIconHeight / 2 + 8.0f;
+        
+        // Reposition inner circle appropriately
+        CGFloat x = (kCircleHeightBackground - kCircleHeight) / 2;
+        _circleView.frame = CGRectMake(x, x, kCircleHeight, kCircleHeight);
+    } else {
+        kCircleBackgroundTopPosition = -(kCircleHeightBackground / 2);
     }
     
     // Check if the rootViewController is modal, if so we need to get the modal size not the main screen size
@@ -321,12 +329,12 @@ SCLTimerDisplay *buttonTimer;
         
         // Set frames
         self.view.frame = r;
-        _contentView.frame = CGRectMake(0.0f, kCircleHeight / 4, _windowWidth, _windowHeight);
+        _contentView.frame = CGRectMake(0.0f, 0.0f, _windowWidth, _windowHeight);
         _circleViewBackground.frame = CGRectMake(_windowWidth / 2 - kCircleHeightBackground / 2, kCircleBackgroundTopPosition, kCircleHeightBackground, kCircleHeightBackground);
-        CGFloat x = (kCircleHeightBackground - kCircleHeight) / 2;
-        _circleView.frame = CGRectMake(x, x, kCircleHeight, kCircleHeight);
         _circleView.layer.cornerRadius = _circleView.frame.size.height / 2;
         _circleIconImageView.frame = CGRectMake(kCircleHeight / 2 - _circleIconHeight / 2, kCircleHeight / 2 - _circleIconHeight / 2, _circleIconHeight, _circleIconHeight);
+        kTitleTop = _useLargerIcon ? kTitleTop : kTitleTop + 4.0f;
+        _labelTitle.frame = CGRectMake(12.0f, kTitleTop, _windowWidth - 24.0f, kTitleHeight);
     }
     else
     {
@@ -334,15 +342,15 @@ SCLTimerDisplay *buttonTimer;
         CGFloat y = (sz.height - _windowHeight - (kCircleHeight / 8)) / 2;
         
         _contentView.frame = CGRectMake(x, y, _windowWidth, _windowHeight);
-        y -= kCircleHeightBackground * 0.6f;
+        y -= kCircleHeightBackground / 2;
         x = (sz.width - kCircleHeightBackground) / 2;
         _circleViewBackground.frame = CGRectMake(x, y, kCircleHeightBackground, kCircleHeightBackground);
         _circleIconImageView.frame = CGRectMake(kCircleHeight / 2 - _circleIconHeight / 2, kCircleHeight / 2 - _circleIconHeight / 2, _circleIconHeight, _circleIconHeight);
+        kTitleTop = _useLargerIcon ? kTitleTop : kTitleTop + 4.0f;
+        _labelTitle.frame = CGRectMake(12.0f + self.contentView.frame.origin.x, kTitleTop + self.contentView.frame.origin.y, _windowWidth - 24.0f, kTitleHeight);
     }
     
     // Labels
-    kTitleTop = _useLargerIcon ? kTitleTop : kTitleTop + 4.0f;
-    _labelTitle.frame = CGRectMake(12.0f, kTitleTop, _windowWidth - 24.0f, kTitleHeight);
     _viewText.frame = CGRectMake(12.0f,  kTitleTop + _labelTitle.frame.size.height, _windowWidth - 24.0f, _subTitleHeight);
     
     // Text fields
