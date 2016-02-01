@@ -232,12 +232,11 @@ SCLTimerDisplay *buttonTimer;
     _contentView.layer.cornerRadius = 5.0f;
     _contentView.layer.masksToBounds = YES;
     _contentView.layer.borderWidth = 0.5f;
+    [_contentView addSubview:_viewText];    
 
     CGRect position = [self.contentView convertRect:self.labelTitle.frame toView:self.view];
     _labelTitle.frame = position;
     [self.view addSubview:_labelTitle];
-
-    [_contentView addSubview:_viewText];
     
     // Colors
     self.backgroundViewColor = [UIColor whiteColor];
