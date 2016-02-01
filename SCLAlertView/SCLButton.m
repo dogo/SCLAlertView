@@ -117,9 +117,10 @@
     {
         self.layer.borderWidth = [buttonConfig[@"borderWidth"] floatValue];
     }
-    else if(buttonConfig[@"cornerRadius"])
+    else if (buttonConfig[@"cornerRadius"])
     {
-        self.layer.cornerRadius = [buttonConfig[@"cornerRadius"] floatValue];
+        NSString *stringValue = buttonConfig[@"cornerRadius"];
+        self.layer.cornerRadius = stringValue.floatValue;
     }
 }
 
