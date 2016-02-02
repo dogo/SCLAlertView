@@ -33,7 +33,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4U1-31-wBg">
-                                                <rect key="frame" x="262" y="50" width="76" height="30"/>
+                                                <rect key="frame" x="262" y="48" width="76" height="30"/>
                                                 <state key="normal" title="Show Error">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -42,7 +42,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QYK-Po-EUn">
-                                                <rect key="frame" x="257" y="90" width="87" height="30"/>
+                                                <rect key="frame" x="257" y="86" width="87" height="30"/>
                                                 <state key="normal" title="Show Notice">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -51,7 +51,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c2J-Bd-hKP">
-                                                <rect key="frame" x="251" y="130" width="99" height="30"/>
+                                                <rect key="frame" x="251" y="124" width="99" height="30"/>
                                                 <state key="normal" title="Show Warning">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -60,7 +60,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cKc-Im-7MS">
-                                                <rect key="frame" x="266" y="170" width="68" height="30"/>
+                                                <rect key="frame" x="266" y="162" width="68" height="30"/>
                                                 <state key="normal" title="Show Info">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -69,7 +69,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mww-Jw-0ao">
-                                                <rect key="frame" x="266" y="210" width="69" height="30"/>
+                                                <rect key="frame" x="266" y="200" width="69" height="30"/>
                                                 <state key="normal" title="Show Edit">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -78,7 +78,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ID-0w-GrU">
-                                                <rect key="frame" x="245" y="250" width="110" height="30"/>
+                                                <rect key="frame" x="245" y="238" width="110" height="30"/>
                                                 <state key="normal" title="Show Advanced">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -87,7 +87,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w0L-ki-asc">
-                                                <rect key="frame" x="232" y="290" width="136" height="30"/>
+                                                <rect key="frame" x="232" y="276" width="136" height="30"/>
                                                 <state key="normal" title="Show With Duration">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -96,7 +96,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DRS-IB-vIQ">
-                                                <rect key="frame" x="253" y="330" width="95" height="30"/>
+                                                <rect key="frame" x="253" y="314" width="95" height="30"/>
                                                 <state key="normal" title="Show Custom">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -105,7 +105,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XBG-LD-1eZ">
-                                                <rect key="frame" x="246" y="370" width="109" height="30"/>
+                                                <rect key="frame" x="246" y="352" width="109" height="30"/>
                                                 <state key="normal" title="Show Validation">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -114,7 +114,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fs5-sr-WWC">
-                                                <rect key="frame" x="254" y="410" width="93" height="30"/>
+                                                <rect key="frame" x="254" y="390" width="93" height="30"/>
                                                 <state key="normal" title="Show Waiting">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -123,7 +123,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Leu-lo-T4a">
-                                                <rect key="frame" x="259" y="450" width="82" height="30"/>
+                                                <rect key="frame" x="259" y="428" width="82" height="30"/>
                                                 <state key="normal" title="Show Timer">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -132,7 +132,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D2w-Gh-y6B">
-                                                <rect key="frame" x="248" y="490" width="104" height="30"/>
+                                                <rect key="frame" x="248" y="466" width="104" height="30"/>
                                                 <state key="normal" title="Show Question"/>
                                                 <connections>
                                                     <action selector="showQuestion:" destination="Ohq-jH-G4R" eventType="touchUpInside" id="Uxe-EB-NJt"/>
@@ -141,42 +141,51 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="4U1-31-wBg" firstAttribute="top" secondItem="7sB-cQ-cdn" secondAttribute="bottom" constant="10" id="1Fl-zk-DBr"/>
-                                            <constraint firstItem="fs5-sr-WWC" firstAttribute="top" secondItem="XBG-LD-1eZ" secondAttribute="bottom" constant="10" id="2FZ-3k-wCI"/>
-                                            <constraint firstItem="DRS-IB-vIQ" firstAttribute="top" secondItem="w0L-ki-asc" secondAttribute="bottom" constant="10" id="2Vn-Cr-8cy"/>
-                                            <constraint firstItem="QYK-Po-EUn" firstAttribute="top" secondItem="4U1-31-wBg" secondAttribute="bottom" constant="10" id="4Zr-O2-6uX"/>
+                                            <constraint firstItem="4U1-31-wBg" firstAttribute="top" secondItem="7sB-cQ-cdn" secondAttribute="bottom" constant="8" id="1Fl-zk-DBr"/>
+                                            <constraint firstItem="fs5-sr-WWC" firstAttribute="top" secondItem="XBG-LD-1eZ" secondAttribute="bottom" constant="8" id="2FZ-3k-wCI"/>
+                                            <constraint firstItem="DRS-IB-vIQ" firstAttribute="top" secondItem="w0L-ki-asc" secondAttribute="bottom" constant="8" id="2Vn-Cr-8cy"/>
+                                            <constraint firstItem="QYK-Po-EUn" firstAttribute="top" secondItem="4U1-31-wBg" secondAttribute="bottom" constant="8" id="4Zr-O2-6uX"/>
                                             <constraint firstItem="XBG-LD-1eZ" firstAttribute="centerX" secondItem="o4j-iF-Dfb" secondAttribute="centerX" id="9mn-Zt-RL0"/>
                                             <constraint firstItem="D2w-Gh-y6B" firstAttribute="centerX" secondItem="o4j-iF-Dfb" secondAttribute="centerX" id="DEd-aX-vgZ"/>
                                             <constraint firstItem="8ID-0w-GrU" firstAttribute="centerX" secondItem="o4j-iF-Dfb" secondAttribute="centerX" id="GW6-v4-Om3"/>
                                             <constraint firstItem="mww-Jw-0ao" firstAttribute="centerX" secondItem="o4j-iF-Dfb" secondAttribute="centerX" id="H6n-3I-AcW"/>
-                                            <constraint firstItem="Leu-lo-T4a" firstAttribute="top" secondItem="fs5-sr-WWC" secondAttribute="bottom" constant="10" id="I6u-PH-ydH"/>
+                                            <constraint firstItem="Leu-lo-T4a" firstAttribute="top" secondItem="fs5-sr-WWC" secondAttribute="bottom" constant="8" id="I6u-PH-ydH"/>
                                             <constraint firstItem="fs5-sr-WWC" firstAttribute="centerX" secondItem="o4j-iF-Dfb" secondAttribute="centerX" id="If1-0m-moB"/>
-                                            <constraint firstItem="D2w-Gh-y6B" firstAttribute="top" secondItem="Leu-lo-T4a" secondAttribute="bottom" constant="10" id="IjN-4W-X7O"/>
-                                            <constraint firstItem="mww-Jw-0ao" firstAttribute="top" secondItem="cKc-Im-7MS" secondAttribute="bottom" constant="10" id="KKz-EE-T5e"/>
+                                            <constraint firstItem="D2w-Gh-y6B" firstAttribute="top" secondItem="Leu-lo-T4a" secondAttribute="bottom" constant="8" id="IjN-4W-X7O"/>
+                                            <constraint firstItem="mww-Jw-0ao" firstAttribute="top" secondItem="cKc-Im-7MS" secondAttribute="bottom" constant="8" id="KKz-EE-T5e"/>
                                             <constraint firstItem="4U1-31-wBg" firstAttribute="centerX" secondItem="o4j-iF-Dfb" secondAttribute="centerX" id="KYC-BK-buG"/>
-                                            <constraint firstItem="8ID-0w-GrU" firstAttribute="top" secondItem="mww-Jw-0ao" secondAttribute="bottom" constant="10" id="PIC-Op-mbH"/>
+                                            <constraint firstItem="8ID-0w-GrU" firstAttribute="top" secondItem="mww-Jw-0ao" secondAttribute="bottom" constant="8" id="PIC-Op-mbH"/>
                                             <constraint firstItem="QYK-Po-EUn" firstAttribute="centerX" secondItem="o4j-iF-Dfb" secondAttribute="centerX" id="PZE-hZ-bgV"/>
                                             <constraint firstItem="7sB-cQ-cdn" firstAttribute="top" secondItem="o4j-iF-Dfb" secondAttribute="top" constant="10" id="UCD-jL-npr"/>
                                             <constraint firstItem="Leu-lo-T4a" firstAttribute="centerX" secondItem="o4j-iF-Dfb" secondAttribute="centerX" id="UPX-WB-bMu"/>
                                             <constraint firstItem="7sB-cQ-cdn" firstAttribute="centerX" secondItem="o4j-iF-Dfb" secondAttribute="centerX" id="bMD-vT-a87"/>
                                             <constraint firstItem="cKc-Im-7MS" firstAttribute="centerX" secondItem="o4j-iF-Dfb" secondAttribute="centerX" id="dFz-x9-hKU"/>
-                                            <constraint firstItem="cKc-Im-7MS" firstAttribute="top" secondItem="c2J-Bd-hKP" secondAttribute="bottom" constant="10" id="dcH-LZ-arZ"/>
+                                            <constraint firstItem="cKc-Im-7MS" firstAttribute="top" secondItem="c2J-Bd-hKP" secondAttribute="bottom" constant="8" id="dcH-LZ-arZ"/>
                                             <constraint firstItem="c2J-Bd-hKP" firstAttribute="centerX" secondItem="o4j-iF-Dfb" secondAttribute="centerX" id="eRj-Dd-dyq"/>
-                                            <constraint firstItem="w0L-ki-asc" firstAttribute="top" secondItem="8ID-0w-GrU" secondAttribute="bottom" constant="10" id="gUa-TP-IHe"/>
+                                            <constraint firstItem="w0L-ki-asc" firstAttribute="top" secondItem="8ID-0w-GrU" secondAttribute="bottom" constant="8" id="gUa-TP-IHe"/>
                                             <constraint firstItem="w0L-ki-asc" firstAttribute="centerX" secondItem="o4j-iF-Dfb" secondAttribute="centerX" id="i7F-Y5-SdY"/>
-                                            <constraint firstItem="XBG-LD-1eZ" firstAttribute="top" secondItem="DRS-IB-vIQ" secondAttribute="bottom" constant="10" id="l85-xi-e5g"/>
-                                            <constraint firstItem="c2J-Bd-hKP" firstAttribute="top" secondItem="QYK-Po-EUn" secondAttribute="bottom" constant="10" id="usg-Y9-WRC"/>
+                                            <constraint firstItem="XBG-LD-1eZ" firstAttribute="top" secondItem="DRS-IB-vIQ" secondAttribute="bottom" constant="8" id="l85-xi-e5g"/>
+                                            <constraint firstItem="c2J-Bd-hKP" firstAttribute="top" secondItem="QYK-Po-EUn" secondAttribute="bottom" constant="8" id="usg-Y9-WRC"/>
                                             <constraint firstItem="DRS-IB-vIQ" firstAttribute="centerX" secondItem="o4j-iF-Dfb" secondAttribute="centerX" id="v9i-Uz-vde"/>
                                         </constraints>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yhK-gL-Uxt">
+                                        <rect key="frame" x="256" y="504" width="88" height="30"/>
+                                        <state key="normal" title="Show Switch"/>
+                                        <connections>
+                                            <action selector="showSwitch:" destination="Ohq-jH-G4R" eventType="touchUpInside" id="4iQ-FM-yN0"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="o4j-iF-Dfb" firstAttribute="top" secondItem="BP9-ao-PJ6" secondAttribute="top" id="ExI-oE-jbe"/>
                                     <constraint firstAttribute="trailing" secondItem="o4j-iF-Dfb" secondAttribute="trailing" id="LKV-Qp-AAW"/>
                                     <constraint firstAttribute="bottom" secondItem="o4j-iF-Dfb" secondAttribute="bottom" id="Oz5-V7-yrS"/>
+                                    <constraint firstItem="yhK-gL-Uxt" firstAttribute="top" secondItem="D2w-Gh-y6B" secondAttribute="bottom" constant="8" id="UeL-tJ-Am8"/>
                                     <constraint firstItem="o4j-iF-Dfb" firstAttribute="centerX" secondItem="BP9-ao-PJ6" secondAttribute="centerX" id="Wkx-k0-MQV"/>
                                     <constraint firstItem="o4j-iF-Dfb" firstAttribute="leading" secondItem="BP9-ao-PJ6" secondAttribute="leading" id="wGl-fz-0VH"/>
                                     <constraint firstItem="o4j-iF-Dfb" firstAttribute="centerY" secondItem="BP9-ao-PJ6" secondAttribute="centerY" id="yuj-L6-0eZ"/>
+                                    <constraint firstItem="yhK-gL-Uxt" firstAttribute="centerX" secondItem="o4j-iF-Dfb" secondAttribute="centerX" id="zIF-Ar-Rrf"/>
                                 </constraints>
                             </scrollView>
                         </subviews>

@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		572BB1471B8383B3002DEE38 /* SCLTimerDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = 572BB1461B8383B3002DEE38 /* SCLTimerDisplay.m */; };
-		DD24453C1BAC383600892117 /* SCLTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD24453B1BAC383600892117 /* SCLTextView.m */; settings = {ASSET_TAGS = (); }; };
+		CF6FB1241C5926FC009715F3 /* SCLSwitchView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6FB1231C5926FC009715F3 /* SCLSwitchView.m */; };
+		DD24453C1BAC383600892117 /* SCLTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD24453B1BAC383600892117 /* SCLTextView.m */; };
 		DD2E172A19FA84B800CBAEC3 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2E172919FA84B800CBAEC3 /* UIImage+ImageEffects.m */; };
 		DD4BA9C119DED8EF008D73EB /* right_answer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DD4BA9C019DED8EF008D73EB /* right_answer.mp3 */; };
 		DD7282B919D6087C00077F54 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD7282B719D6087C00077F54 /* Storyboard.storyboard */; };
@@ -36,6 +37,8 @@
 /* Begin PBXFileReference section */
 		572BB1451B8383B3002DEE38 /* SCLTimerDisplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLTimerDisplay.h; sourceTree = "<group>"; };
 		572BB1461B8383B3002DEE38 /* SCLTimerDisplay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLTimerDisplay.m; sourceTree = "<group>"; };
+		CF6FB1221C5926FC009715F3 /* SCLSwitchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLSwitchView.h; sourceTree = "<group>"; };
+		CF6FB1231C5926FC009715F3 /* SCLSwitchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLSwitchView.m; sourceTree = "<group>"; };
 		DD0D295B19D902DA00881F53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = SCLAlertViewExample/Info.plist; sourceTree = SOURCE_ROOT; };
 		DD24453A1BAC383600892117 /* SCLTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLTextView.h; sourceTree = "<group>"; };
 		DD24453B1BAC383600892117 /* SCLTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLTextView.m; sourceTree = "<group>"; };
@@ -172,6 +175,8 @@
 				572BB1461B8383B3002DEE38 /* SCLTimerDisplay.m */,
 				DD24453A1BAC383600892117 /* SCLTextView.h */,
 				DD24453B1BAC383600892117 /* SCLTextView.m */,
+				CF6FB1221C5926FC009715F3 /* SCLSwitchView.h */,
+				CF6FB1231C5926FC009715F3 /* SCLSwitchView.m */,
 			);
 			path = SCLAlertView;
 			sourceTree = "<group>";
@@ -279,6 +284,7 @@
 				DD2E172A19FA84B800CBAEC3 /* UIImage+ImageEffects.m in Sources */,
 				DDB15FCB19D5B88A00173158 /* ViewController.m in Sources */,
 				DDB15FD419D5B8DB00173158 /* main.m in Sources */,
+				CF6FB1241C5926FC009715F3 /* SCLSwitchView.m in Sources */,
 				DDB15FE119D5D85B00173158 /* SCLAlertViewStyleKit.m in Sources */,
 				DD24453C1BAC383600892117 /* SCLTextView.m in Sources */,
 				572BB1471B8383B3002DEE38 /* SCLTimerDisplay.m in Sources */,

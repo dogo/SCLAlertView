@@ -13,6 +13,7 @@ Animated Alert View written in Swift but ported to Objective-C, which can be use
 ![BackgroundImage](https://raw.githubusercontent.com/dogo/SCLAlertView/master/ScreenShots/ScreenShot4.png) 
 ![BackgroundImage](https://raw.githubusercontent.com/dogo/SCLAlertView/master/ScreenShots/ScreenShot5.png)_
 ![BackgroundImage](https://raw.githubusercontent.com/dogo/SCLAlertView/master/ScreenShots/ScreenShot6.png)
+![BackgroundImage](https://raw.githubusercontent.com/dogo/SCLAlertView/master/ScreenShots/ScreenShot7.png)
 
 ###Easy to use
 ```Objective-C
@@ -29,6 +30,8 @@ SCLAlertView *alert = [[SCLAlertView alloc] init];
 [alert showEdit:self title:@"Hello Edit" subTitle:@"This is a more descriptive info text with a edit textbox" closeButtonTitle:@"Done" duration:0.0f]; // Edit
 [alert showCustom:self image:[UIImage imageNamed:@"git"] color:color title:@"Custom" subTitle:@"Add a custom icon and color for your own type of alert!" closeButtonTitle:@"OK" duration:0.0f]; // Custom
 [alert showWaiting:self title:@"Waiting..." subTitle:@"Blah de blah de blah, blah. Blah de blah de" closeButtonTitle:nil duration:5.0f];
+[alert showQuestion:self title:@"Question?" subTitle:kSubtitle closeButtonTitle:@"Dismiss" duration:0.0f];
+
 
 // Using custom alert width
 SCLAlertView *alert = [[SCLAlertView alloc] initWithWindowWidth:300.0f];
@@ -49,6 +52,7 @@ SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
 [alert showEdit:@"Hello Edit" subTitle:@"This is a more descriptive info text with a edit textbox" closeButtonTitle:@"Done" duration:0.0f]; // Edit
 [alert showCustom:[UIImage imageNamed:@"git"] color:color title:@"Custom" subTitle:@"Add a custom icon and color for your own type of alert!" closeButtonTitle:@"OK" duration:0.0f]; // Custom
 [alert showWaiting:@"Waiting..." subTitle:@"Blah de blah de blah, blah. Blah de blah de" closeButtonTitle:nil duration:5.0f];
+[alert showQuestion:@"Question?" subTitle:kSubtitle closeButtonTitle:@"Dismiss" duration:0.0f];
 
 // Using custom alert width
 SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindowWidth:300.0f];
@@ -119,6 +123,7 @@ alert.attributedFormatBlock = ^NSAttributedString* (NSString *value)
 
 [alert showSuccess:self title:@"Button View" subTitle:@"Attributed string operation successfully completed." closeButtonTitle:@"Done" duration:0.0f];
 ```
+
 ###Add a text field
 ```Objective-C
 SCLAlertView *alert = [[SCLAlertView alloc] init];
@@ -138,7 +143,19 @@ SCLAlertView *alert = [[SCLAlertView alloc] init];
     
 [alert showWaiting:self title:@"Waiting..." subTitle:@"Blah de blah de blah, blah. Blah de blah de" closeButtonTitle:nil duration:5.0f];
 ```
-
+###Add a switch button
+```Objective-C
+SCLAlertView *alert = [[SCLAlertView alloc] init];
+    
+SCLSwitchView *switchView = [alert addSwitchViewWithLabel:@"Don't show again".uppercaseString];
+switchView.tintColor = [UIColor brownColor];
+    
+[alert addButton:@"Done" actionBlock:^(void) {
+    NSLog(@"Show again? %@", switchView.isSelected ? @"-No": @"-Yes");
+}];
+    
+[alert showCustom:self image:[UIImage imageNamed:@"switch"] color:[UIColor brownColor] title:kInfoTitle subTitle:kSubtitle closeButtonTitle:nil duration:0.0f];
+```
 
 ###SCLAlertView properties
 ```Objective-C
@@ -189,6 +206,7 @@ typedef NS_ENUM(NSInteger, SCLAlertViewStyle)
     Info,
     Edit,
     Waiting,
+    Question,    
     Custom
 };
 ```

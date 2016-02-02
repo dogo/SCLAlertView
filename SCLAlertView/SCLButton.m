@@ -3,7 +3,7 @@
 //  SCLAlertView
 //
 //  Created by Diogo Autilio on 9/26/14.
-//  Copyright (c) 2014 AnyKey Entertainment. All rights reserved.
+//  Copyright (c) 2014-2016 AnyKey Entertainment. All rights reserved.
 //
 
 #import "SCLButton.h"
@@ -60,6 +60,7 @@
     self.frame = CGRectMake(0.0f, 0.0f, windowWidth - (MARGIN_BUTTON * 2), MIN_HEIGHT);
     self.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.layer.cornerRadius = 3.0f;
 }
 
 - (void)setTitle:(NSString *)title forState:(UIControlState)state
@@ -107,6 +108,10 @@
     if (buttonConfig[@"textColor"])
     {
         [self setTitleColor:buttonConfig[@"textColor"] forState:UIControlStateNormal];
+    }
+    if (buttonConfig[@"cornerRadius"])
+    {
+        self.layer.cornerRadius = [buttonConfig[@"cornerRadius"] floatValue];
     }
     if ((buttonConfig[@"borderColor"]) && (buttonConfig[@"borderWidth"]))
     {

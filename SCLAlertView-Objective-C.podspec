@@ -9,6 +9,7 @@ Pod::Spec.new do |spec|
   spec.author             = { "Diogo Autilio" => "diautilio@gmail.com" }
   spec.social_media_url   = "http://twitter.com/di_autilio"
   spec.platform           = :ios
+  spec.frameworks         = "Foundation", "AudioToolbox"
   spec.ios.deployment_target = '6.0'
   spec.source             = { :git => "https://github.com/dogo/SCLAlertView.git", :tag => spec.version.to_s }
   spec.source_files       = "SCLAlertView/*"

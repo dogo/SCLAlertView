@@ -3,7 +3,7 @@
 //  SCLAlertView
 //
 //  Created by Diogo Autilio on 9/26/14.
-//  Copyright (c) 2014 AnyKey Entertainment. All rights reserved.
+//  Copyright (c) 2014-2016 AnyKey Entertainment. All rights reserved.
 //
 
 #if defined(__has_feature) && __has_feature(modules)
@@ -13,11 +13,13 @@
 #endif
 #import "SCLButton.h"
 #import "SCLTextView.h"
+#import "SCLSwitchView.h"
 
 typedef NSAttributedString* (^SCLAttributedFormatBlock)(NSString *value);
-typedef void (^DismissBlock)(void);
+typedef void (^SCLDismissBlock)(void);
+typedef void (^SCLForceHideBlock)(void);
 
-@interface SCLAlertView : UIViewController
+@interface SCLAlertView : UIViewController 
 
 /** Alert Styles
  *
@@ -77,6 +79,26 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
     Transparent
 };
 
+/** Content view corner radius
+ *
+ * A float value that replaces the standard content viuew corner radius.
+ */
+@property CGFloat cornerRadius;
+
+/** Tint top circle
+ *
+ * A boolean value that determines whether to tint the SCLAlertView top circle.
+ * (Default: YES)
+ */
+@property BOOL tintTopCircle;
+
+/** Use larger icon
+ *
+ * A boolean value that determines whether to make the SCLAlertView top circle icon larger.
+ * (Default: NO)
+ */
+@property BOOL useLargerIcon;
+    
 /** Title Label
  *
  * The text displayed as title.
@@ -127,6 +149,12 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
  * Support keys : backgroundColor, borderWidth, borderColor, textColor
  */
 @property (nonatomic, copy) ButtonFormatBlock buttonFormatBlock;
+
+/** Set force hide block.
+ *
+ * When set force hideview method invocation.
+ */
+@property (nonatomic, copy) SCLForceHideBlock forceHideBlock;
 
 /** Hide animation type
  *
@@ -208,7 +236,7 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
  *
  * Warns that alerts is gone using block
  */
-- (void)alertIsDismissed:(DismissBlock)dismissBlock;
+- (void)alertIsDismissed:(SCLDismissBlock)dismissBlock;
 
 /** Hide SCLAlertView
  *
@@ -239,6 +267,12 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
  * @param textField The custom textfield provided by the programmer.
  */
 - (void)addCustomTextField:(UITextField *)textField;
+
+/** Add a switch view
+ *
+ * @param label The label displayed for the switch.
+ */
+- (SCLSwitchView *)addSwitchViewWithLabel:(NSString *)label;
 
 /** Add Timer Display
  *
