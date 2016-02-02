@@ -60,6 +60,7 @@
     self.frame = CGRectMake(0.0f, 0.0f, windowWidth - (MARGIN_BUTTON * 2), MIN_HEIGHT);
     self.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.layer.cornerRadius = 3.0f;
 }
 
 - (void)setTitle:(NSString *)title forState:(UIControlState)state
@@ -119,8 +120,7 @@
     }
     else if (buttonConfig[@"cornerRadius"])
     {
-        NSString *stringValue = buttonConfig[@"cornerRadius"];
-        self.layer.cornerRadius = stringValue.floatValue;
+        self.layer.cornerRadius = [buttonConfig[@"cornerRadius"] floatValue];
     }
 }
 

@@ -368,7 +368,6 @@ SCLTimerDisplay *buttonTimer;
     for (SCLButton *btn in _buttons)
     {
         btn.frame = CGRectMake(12.0f, y, btn.frame.size.width, btn.frame.size.height);
-        btn.layer.cornerRadius = 3.0f;
         y += btn.frame.size.height + 10.0f;
     }
     
