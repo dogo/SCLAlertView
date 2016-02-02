@@ -109,6 +109,10 @@
     {
         [self setTitleColor:buttonConfig[@"textColor"] forState:UIControlStateNormal];
     }
+    if (buttonConfig[@"cornerRadius"])
+    {
+        self.layer.cornerRadius = [buttonConfig[@"cornerRadius"] floatValue];
+    }
     if ((buttonConfig[@"borderColor"]) && (buttonConfig[@"borderWidth"]))
     {
         self.layer.borderColor = ((UIColor*)buttonConfig[@"borderColor"]).CGColor;
@@ -117,10 +121,6 @@
     else if (buttonConfig[@"borderWidth"])
     {
         self.layer.borderWidth = [buttonConfig[@"borderWidth"] floatValue];
-    }
-    else if (buttonConfig[@"cornerRadius"])
-    {
-        self.layer.cornerRadius = [buttonConfig[@"cornerRadius"] floatValue];
     }
 }
 
