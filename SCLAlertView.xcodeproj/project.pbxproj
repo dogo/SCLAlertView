@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		572BB1471B8383B3002DEE38 /* SCLTimerDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = 572BB1461B8383B3002DEE38 /* SCLTimerDisplay.m */; };
 		CF6FB1241C5926FC009715F3 /* SCLSwitchView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6FB1231C5926FC009715F3 /* SCLSwitchView.m */; };
+		DD06C22D1C64EAE500E6F6B0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD06C22C1C64EAE500E6F6B0 /* UIKit.framework */; };
+		DD06C22F1C64EAF600E6F6B0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD06C22E1C64EAF600E6F6B0 /* AudioToolbox.framework */; };
+		DD06C2331C64EB1A00E6F6B0 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD06C2321C64EB1A00E6F6B0 /* Accelerate.framework */; };
+		DD06C2371C64EB9200E6F6B0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD06C2361C64EB9200E6F6B0 /* CoreGraphics.framework */; };
 		DD24453C1BAC383600892117 /* SCLTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD24453B1BAC383600892117 /* SCLTextView.m */; };
 		DD2E172A19FA84B800CBAEC3 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2E172919FA84B800CBAEC3 /* UIImage+ImageEffects.m */; };
 		DD4BA9C119DED8EF008D73EB /* right_answer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DD4BA9C019DED8EF008D73EB /* right_answer.mp3 */; };
@@ -39,6 +43,12 @@
 		572BB1461B8383B3002DEE38 /* SCLTimerDisplay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLTimerDisplay.m; sourceTree = "<group>"; };
 		CF6FB1221C5926FC009715F3 /* SCLSwitchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLSwitchView.h; sourceTree = "<group>"; };
 		CF6FB1231C5926FC009715F3 /* SCLSwitchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLSwitchView.m; sourceTree = "<group>"; };
+		DD06C22C1C64EAE500E6F6B0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		DD06C22E1C64EAF600E6F6B0 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		DD06C2301C64EB0400E6F6B0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		DD06C2321C64EB1A00E6F6B0 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		DD06C2341C64EB5900E6F6B0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		DD06C2361C64EB9200E6F6B0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		DD0D295B19D902DA00881F53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = SCLAlertViewExample/Info.plist; sourceTree = SOURCE_ROOT; };
 		DD24453A1BAC383600892117 /* SCLTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLTextView.h; sourceTree = "<group>"; };
 		DD24453B1BAC383600892117 /* SCLTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLTextView.m; sourceTree = "<group>"; };
@@ -73,6 +83,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD06C2371C64EB9200E6F6B0 /* CoreGraphics.framework in Frameworks */,
+				DD06C2331C64EB1A00E6F6B0 /* Accelerate.framework in Frameworks */,
+				DD06C22F1C64EAF600E6F6B0 /* AudioToolbox.framework in Frameworks */,
+				DD06C22D1C64EAE500E6F6B0 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +100,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DD06C2381C64EC5D00E6F6B0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DD06C2361C64EB9200E6F6B0 /* CoreGraphics.framework */,
+				DD06C2341C64EB5900E6F6B0 /* QuartzCore.framework */,
+				DD06C2321C64EB1A00E6F6B0 /* Accelerate.framework */,
+				DD06C2301C64EB0400E6F6B0 /* Foundation.framework */,
+				DD06C22E1C64EAF600E6F6B0 /* AudioToolbox.framework */,
+				DD06C22C1C64EAE500E6F6B0 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		DD4BA9BF19DED8EF008D73EB /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +129,7 @@
 				DDB15F9F19D5B7C600173158 /* SCLAlertViewExample */,
 				DDB15FB919D5B7C600173158 /* SCLAlertViewTests */,
 				DDB15F9E19D5B7C600173158 /* Products */,
+				DD06C2381C64EC5D00E6F6B0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};

@@ -7,7 +7,11 @@
 //
 //  Taken from https://stackoverflow.com/questions/11783439/uibutton-with-timer
 
+#if defined(__has_feature) && __has_feature(modules)
+@import UIKit;
+#else
 #import <UIKit/UIKit.h>
+#endif
 #import "SCLButton.h"
 
 @interface SCLTimerDisplay : UIView{
