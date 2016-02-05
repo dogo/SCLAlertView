@@ -509,10 +509,6 @@ SCLTimerDisplay *buttonTimer;
     
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)_soundURL, &_soundID);
     
-    AudioServicesPlaySystemSoundWithCompletion(_soundID, ^{
-        //call When Sound play to the end
-    });
-    
     //PlaySound
     AudioServicesPlaySystemSound(_soundID);
 }
