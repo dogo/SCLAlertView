@@ -177,14 +177,25 @@ alert.customViewColor = [UIColor purpleColor];
 //Set custom tint color for icon image.
 alert.iconTintColor = [UIColor purpleColor];
 
+//Override top circle tint color with background color
+alert.tintTopCircle = NO;
+
+//Set custom corner radius for SCLAlertView
+alert.cornerRadius = 13.0f;
+
 //Overwrite SCLAlertView background color
 alert.backgroundViewColor = [UIColor cyanColor];
 
 //Returns if the alert is visible or not.
 alert.isVisible;
 
+//Make the top circle icon larger
+alert.useLargerIcon = YES;
+
 //Using sound
 alert.soundURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/right_answer.mp3", [[NSBundle mainBundle] resourcePath]]];
+
+
 ```
 
 ###Helpers
