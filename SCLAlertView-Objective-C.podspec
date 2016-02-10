@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = "SCLAlertView-Objective-C"
-  spec.version      = "0.8.2"
+  spec.version      = "0.9.0"
   spec.summary      = "Beautiful animated Alert View. Written in Swift but ported to Objective-C"
   spec.homepage     = "https://github.com/dogo/SCLAlertView"
   spec.screenshots  = "https://raw.githubusercontent.com/dogo/SCLAlertView/master/ScreenShots/ScreenShot.png", "https://raw.githubusercontent.com/dogo/SCLAlertView/master/ScreenShots/ScreenShot2.png"
