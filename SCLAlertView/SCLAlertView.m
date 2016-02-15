@@ -351,11 +351,9 @@ SCLTimerDisplay *buttonTimer;
         _labelTitle.frame = CGRectMake(12.0f + self.contentView.frame.origin.x, kTitleTop + self.contentView.frame.origin.y, _windowWidth - 24.0f, kTitleHeight);
     }
     
-    // Labels
-    _viewText.frame = CGRectMake(12.0f,  kTitleTop + _labelTitle.frame.size.height, _windowWidth - 24.0f, _subTitleHeight);
-    
     // Text fields
     CGFloat y = (_labelTitle.text == nil) ? kTitleTop : kTitleTop + _labelTitle.frame.size.height;
+    _viewText.frame = CGRectMake(12.0f, y, _windowWidth - 24.0f, _subTitleHeight);
     y += _subTitleHeight + 14.0f;
     for (SCLTextView *textField in _inputs)
     {
