@@ -256,6 +256,12 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
  */
 - (void)removeTopCircle;
 
+/** Add a custom UIView
+ *
+ * @param customView UIView object to be added above the first SCLButton.
+ */
+- (UIView *)addCustomView:(UIView *)customView;
+
 /** Add Text Field
  *
  * @param title The text displayed on the textfield.

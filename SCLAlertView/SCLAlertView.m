@@ -29,6 +29,7 @@
 @interface SCLAlertView ()  <UITextFieldDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *inputs;
+@property (nonatomic, strong) NSMutableArray *customViews;
 @property (nonatomic, strong) NSMutableArray *buttons;
 @property (nonatomic, strong) UIImageView *circleIconImageView;
 @property (nonatomic, strong) UIView *circleView;
@@ -187,6 +188,7 @@ SCLTimerDisplay *buttonTimer;
     _backgroundView = [[UIImageView alloc]initWithFrame:[self mainScreenFrame]];
     _buttons = [[NSMutableArray alloc] init];
     _inputs = [[NSMutableArray alloc] init];
+    _customViews = [[NSMutableArray alloc] init];
     
     // Add Subviews
     [self.view addSubview:_contentView];
@@ -362,6 +364,13 @@ SCLTimerDisplay *buttonTimer;
         y += textField.frame.size.height + 10.0f;
     }
     
+    // Custom views
+    for (UIView *view in _customViews)
+    {
+        view.frame = CGRectMake(12.0f, y, view.frame.size.width, view.frame.size.height);
+        y += view.frame.size.height + 10.0f;
+    }
+    
     // Buttons
     for (SCLButton *btn in _buttons)
     {
@@ -526,6 +535,19 @@ SCLTimerDisplay *buttonTimer;
     _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     _activityIndicatorView.frame = CGRectMake(kCircleHeight / 2 - kActivityIndicatorHeight / 2, kCircleHeight / 2 - kActivityIndicatorHeight / 2, kActivityIndicatorHeight, kActivityIndicatorHeight);
     [_circleView addSubview:_activityIndicatorView];
+}
+
+#pragma mark - UICustomView
+
+- (UIView *)addCustomView:(UIView *)customView
+{
+    // Update view height
+    self.windowHeight += customView.bounds.size.height + 10.0f;
+    
+    [_contentView addSubview:customView];
+    [_customViews addObject:customView];
+    
+    return customView;
 }
 
 #pragma mark - SwitchView
