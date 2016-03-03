@@ -203,6 +203,7 @@ SCLTimerDisplay *buttonTimer;
     _circleView.layer.cornerRadius = _circleView.frame.size.height / 2;
     x = (kCircleHeight - _circleIconHeight) / 2;
     _circleIconImageView.frame = CGRectMake(x, x, _circleIconHeight, _circleIconHeight);
+    _circleIconImageView.contentMode = UIViewContentModeScaleAspectFill;    
     [_circleViewBackground addSubview:_circleView];
     [_circleView addSubview:_circleIconImageView];
     
