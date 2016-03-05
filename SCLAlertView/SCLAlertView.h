@@ -476,7 +476,7 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
 @interface SCLAlertViewBuilder : NSObject
 
 #pragma mark - Parameters
-@property (copy, nonatomic, readonly) SCLAlertView *alertView;
+@property (strong, nonatomic, readonly) SCLAlertView *alertView;
 
 #pragma mark - Init
 - (instancetype)init;

@@ -1568,7 +1568,7 @@ SCLTimerDisplay *buttonTimer;
 
 @interface SCLAlertViewBuilder()
 
-@property (copy, nonatomic) SCLAlertView *alertView;
+@property (strong, nonatomic) SCLAlertView *alertView;
 
 @end
 
