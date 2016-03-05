@@ -1956,7 +1956,7 @@ SCLTimerDisplay *buttonTimer;
 @end
 
 @interface SCLAlertViewShowBuilder()
-@property(copy, nonatomic) UIViewController *parameterViewController;
+@property(strong, nonatomic) UIViewController *parameterViewController;
 @property(copy, nonatomic) UIImage *parameterImage;
 @property(copy, nonatomic) UIColor *parameterColor;
 @property(copy, nonatomic) NSString *parameterTitle;
@@ -2065,11 +2065,15 @@ SCLTimerDisplay *buttonTimer;
 }
 
 - (void)showAlertView:(SCLAlertView *)alertView {
+    [self showAlertView:alertView onViewController:self.parameterViewController];
+}
+
+- (void)showAlertView:(SCLAlertView *)alertView onViewController:(UIViewController *)controller {
     if (self.parameterImage || self.parameterColor) {
-        [alertView showTitle:self.parameterViewController image:self.parameterImage color:self.parameterColor title:self.parameterTitle subTitle:self.parameterSubTitle duration:self.parameterDuration completeText:@"" style:self.parameterStyle];
+        [alertView showTitle:controller image:self.parameterImage color:self.parameterColor title:self.parameterTitle subTitle:self.parameterSubTitle duration:self.parameterDuration completeText:@"" style:self.parameterStyle];
     }
     else {
-        [alertView showTitle:self.parameterViewController title:self.parameterTitle subTitle:self.parameterSubTitle style:self.parameterStyle closeButtonTitle:self.parameterCloseButtonTitle duration:self.parameterDuration];
+        [alertView showTitle:controller title:self.parameterTitle subTitle:self.parameterSubTitle style:self.parameterStyle closeButtonTitle:self.parameterCloseButtonTitle duration:self.parameterDuration];
     }
 }
 

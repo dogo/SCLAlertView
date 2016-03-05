@@ -448,7 +448,7 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
 
 @interface SCLAlertViewShowBuilder : NSObject
 
-@property(copy, nonatomic, readonly) UIViewController *parameterViewController;
+@property(strong, nonatomic, readonly) UIViewController *parameterViewController;
 @property(copy, nonatomic, readonly) UIImage *parameterImage;
 @property(copy, nonatomic, readonly) UIColor *parameterColor;
 @property(copy, nonatomic, readonly) NSString *parameterTitle;
@@ -470,6 +470,7 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
 @property(copy, nonatomic, readonly) SCLAlertViewShowBuilder *(^duration)(NSTimeInterval duration);
 
 - (void)showAlertView:(SCLAlertView *)alertView;
+- (void)showAlertView:(SCLAlertView *)alertView onViewController:(UIViewController *)controller;
 @end
 
 @interface SCLAlertViewBuilder : NSObject
@@ -520,8 +521,5 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
 @property(copy, nonatomic) SCLAlertViewBuilder *(^addButtonWithActionBlock)(NSString *title, SCLActionBlock action);
 @property(copy, nonatomic) SCLAlertViewBuilder *(^addButtonWithValidationBlock)(NSString *title, SCLValidationBlock validationBlock, SCLActionBlock action);
 @property(copy, nonatomic) SCLAlertViewBuilder *(^addButtonWithTarget)(NSString *title, id target, SEL selector);
-
-#pragma mark - Show Builder
-@property(copy, nonatomic) SCLAlertViewBuilder *(^showBuilder)(void(^showBuilder)(SCLAlertViewShowBuilder *builder));
 
 @end
