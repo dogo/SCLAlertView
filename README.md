@@ -15,6 +15,21 @@ Animated Alert View written in Swift but ported to Objective-C, which can be use
 ![BackgroundImage](https://raw.githubusercontent.com/dogo/SCLAlertView/master/ScreenShots/ScreenShot6.png)
 ![BackgroundImage](https://raw.githubusercontent.com/dogo/SCLAlertView/master/ScreenShots/ScreenShot7.png)
 
+###Modern
+
+```Objective-C
+//Fluent style
+
+SCLAlertViewBuilder *builder = [SCLAlertViewBuilder new]
+.addButtonWithActionBlock(@"Send", ^{ /*work here*/ });
+SCLAlertViewShowBuilder *showBuilder = [SCLAlertViewShowBuilder new]
+.style(Warning)
+.title(@"Title")
+.subTitle(@"Subtitle")
+.duration(0);
+[showBuilder showAlertView:builder.alertView onViewController:self.window.rootViewController];
+```
+
 ###Easy to use
 ```Objective-C
 // Get started

@@ -1565,3 +1565,516 @@ SCLTimerDisplay *buttonTimer;
 }
 
 @end
+
+@interface SCLAlertViewBuilder()
+
+@property (strong, nonatomic) SCLAlertView *alertView;
+
+@end
+
+@implementation SCLAlertViewBuilder
+
+#pragma mark - Init
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.alertView = [[SCLAlertView alloc] init];
+    }
+    return self;
+}
+- (instancetype)initWithNewWindow {
+    self = [super init];
+    if (self) {
+        self.alertView = [[SCLAlertView alloc] initWithNewWindow];
+    }
+    return self;
+}
+
+- (instancetype)initWithNewWindowWidth:(CGFloat)width {
+    self = [super init];
+    if (self) {
+        self.alertView = [[SCLAlertView alloc] initWithNewWindowWidth:width];
+    }
+    return self;
+}
+
+#pragma mark - Properties
+- (SCLAlertViewBuilder *(^) (CGFloat cornerRadius))cornerRadius {
+    if (!_cornerRadius) {
+        __weak typeof(self) weakSelf = self;
+        _cornerRadius = ^(CGFloat cornerRadius) {
+            weakSelf.alertView.cornerRadius = cornerRadius;
+            return weakSelf;
+        };
+    }
+    return _cornerRadius;
+}
+
+- (SCLAlertViewBuilder *(^) (BOOL tintTopCircle))tintTopCircle {
+    if (!_tintTopCircle) {
+        __weak typeof(self) weakSelf = self;
+        _tintTopCircle = ^(BOOL tintTopCircle) {
+            weakSelf.alertView.tintTopCircle = tintTopCircle;
+            return weakSelf;
+        };
+    }
+    return _tintTopCircle;
+}
+- (SCLAlertViewBuilder *(^) (BOOL useLargerIcon))useLargerIcon {
+    if (!_useLargerIcon) {
+        __weak typeof(self) weakSelf = self;
+        _useLargerIcon = ^(BOOL useLargerIcon) {
+            weakSelf.alertView.useLargerIcon = useLargerIcon;
+            return weakSelf;
+        };
+    }
+    return _useLargerIcon;
+}
+- (SCLAlertViewBuilder *(^) (UILabel *labelTitle))labelTitle {
+    if (!_labelTitle) {
+        __weak typeof(self) weakSelf = self;
+        _labelTitle = ^(UILabel *labelTitle) {
+            weakSelf.alertView.labelTitle = labelTitle;
+            return weakSelf;
+        };
+    }
+    return _labelTitle;
+}
+- (SCLAlertViewBuilder *(^) (UITextView *viewText))viewText {
+    if (!_viewText) {
+        __weak typeof(self) weakSelf = self;
+        _viewText = ^(UITextView *viewText) {
+            weakSelf.alertView.viewText = viewText;
+            return weakSelf;
+        };
+    }
+    return _viewText;
+}
+- (SCLAlertViewBuilder *(^) (UIActivityIndicatorView *activityIndicatorView))activityIndicatorView {
+    if (!_activityIndicatorView) {
+        __weak typeof(self) weakSelf = self;
+        _activityIndicatorView = ^(UIActivityIndicatorView *activityIndicatorView) {
+            weakSelf.alertView.activityIndicatorView = activityIndicatorView;
+            return weakSelf;
+        };
+    }
+    return _activityIndicatorView;
+}
+- (SCLAlertViewBuilder *(^) (BOOL shouldDismissOnTapOutside))shouldDismissOnTapOutside {
+    if (!_shouldDismissOnTapOutside) {
+        __weak typeof(self) weakSelf = self;
+        _shouldDismissOnTapOutside = ^(BOOL shouldDismissOnTapOutside) {
+            weakSelf.alertView.shouldDismissOnTapOutside = shouldDismissOnTapOutside;
+            return weakSelf;
+        };
+    }
+    return _shouldDismissOnTapOutside;
+}
+- (SCLAlertViewBuilder *(^) (NSURL *soundURL))soundURL {
+    if (!_soundURL) {
+        __weak typeof(self) weakSelf = self;
+        _soundURL = ^(NSURL *soundURL) {
+            weakSelf.alertView.soundURL = soundURL;
+            return weakSelf;
+        };
+    }
+    return _soundURL;
+}
+- (SCLAlertViewBuilder *(^) (SCLAttributedFormatBlock attributedFormatBlock))attributedFormatBlock {
+    if (!_attributedFormatBlock) {
+        __weak typeof(self) weakSelf = self;
+        _attributedFormatBlock = ^(SCLAttributedFormatBlock attributedFormatBlock) {
+            weakSelf.alertView.attributedFormatBlock = attributedFormatBlock;
+            return weakSelf;
+        };
+    }
+    return _attributedFormatBlock;
+}
+- (SCLAlertViewBuilder *(^) (CompleteButtonFormatBlock completeButtonFormatBlock))completeButtonFormatBlock {
+    if (!_completeButtonFormatBlock) {
+        __weak typeof(self) weakSelf = self;
+        _completeButtonFormatBlock = ^(CompleteButtonFormatBlock completeButtonFormatBlock) {
+            weakSelf.alertView.completeButtonFormatBlock = completeButtonFormatBlock;
+            return weakSelf;
+        };
+    }
+    return _completeButtonFormatBlock;
+}
+- (SCLAlertViewBuilder *(^) (ButtonFormatBlock buttonFormatBlock))buttonFormatBlock {
+    if (!_buttonFormatBlock) {
+        __weak typeof(self) weakSelf = self;
+        _buttonFormatBlock = ^(ButtonFormatBlock buttonFormatBlock) {
+            weakSelf.alertView.buttonFormatBlock = buttonFormatBlock;
+            return weakSelf;
+        };
+    }
+    return _buttonFormatBlock;
+}
+- (SCLAlertViewBuilder *(^) (SCLForceHideBlock forceHideBlock))forceHideBlock {
+    if (!_forceHideBlock) {
+        __weak typeof(self) weakSelf = self;
+        _forceHideBlock = ^(SCLForceHideBlock forceHideBlock) {
+            weakSelf.alertView.forceHideBlock = forceHideBlock;
+            return weakSelf;
+        };
+    }
+    return _forceHideBlock;
+}
+- (SCLAlertViewBuilder *(^) (SCLAlertViewHideAnimation hideAnimationType))hideAnimationType {
+    if (!_hideAnimationType) {
+        __weak typeof(self) weakSelf = self;
+        _hideAnimationType = ^(SCLAlertViewHideAnimation hideAnimationType) {
+            weakSelf.alertView.hideAnimationType = hideAnimationType;
+            return weakSelf;
+        };
+    }
+    return _hideAnimationType;
+}
+- (SCLAlertViewBuilder *(^) (SCLAlertViewShowAnimation showAnimationType))showAnimationType {
+    if (!_showAnimationType) {
+        __weak typeof(self) weakSelf = self;
+        _showAnimationType = ^(SCLAlertViewShowAnimation showAnimationType) {
+            weakSelf.alertView.showAnimationType = showAnimationType;
+            return weakSelf;
+        };
+    }
+    return _showAnimationType;
+}
+- (SCLAlertViewBuilder *(^) (SCLAlertViewBackground backgroundType))backgroundType {
+    if (!_backgroundType) {
+        __weak typeof(self) weakSelf = self;
+        _backgroundType = ^(SCLAlertViewBackground backgroundType) {
+            weakSelf.alertView.backgroundType = backgroundType;
+            return weakSelf;
+        };
+    }
+    return _backgroundType;
+}
+- (SCLAlertViewBuilder *(^) (UIColor *customViewColor))customViewColor {
+    if (!_customViewColor) {
+        __weak typeof(self) weakSelf = self;
+        _customViewColor = ^(UIColor *customViewColor) {
+            weakSelf.alertView.customViewColor = customViewColor;
+            return weakSelf;
+        };
+    }
+    return _customViewColor;
+}
+- (SCLAlertViewBuilder *(^) (UIColor *backgroundViewColor))backgroundViewColor {
+    if (!_backgroundViewColor) {
+        __weak typeof(self) weakSelf = self;
+        _backgroundViewColor = ^(UIColor *backgroundViewColor) {
+            weakSelf.alertView.backgroundViewColor = backgroundViewColor;
+            return weakSelf;
+        };
+    }
+    return _backgroundViewColor;
+}
+- (SCLAlertViewBuilder *(^) (UIColor *iconTintColor))iconTintColor {
+    if (!_iconTintColor) {
+        __weak typeof(self) weakSelf = self;
+        _iconTintColor = ^(UIColor *iconTintColor) {
+            weakSelf.alertView.iconTintColor = iconTintColor;
+            return weakSelf;
+        };
+    }
+    return _iconTintColor;
+}
+- (SCLAlertViewBuilder *(^) (CGFloat circleIconHeight))circleIconHeight {
+    if (!_circleIconHeight) {
+        __weak typeof(self) weakSelf = self;
+        _circleIconHeight = ^(CGFloat circleIconHeight) {
+            weakSelf.alertView.circleIconHeight = circleIconHeight;
+            return weakSelf;
+        };
+    }
+    return _circleIconHeight;
+}
+- (SCLAlertViewBuilder *(^) (CGRect extensionBounds))extensionBounds {
+    if (!_extensionBounds) {
+        __weak typeof(self) weakSelf = self;
+        _extensionBounds = ^(CGRect extensionBounds) {
+            weakSelf.alertView.extensionBounds = extensionBounds;
+            return weakSelf;
+        };
+    }
+    return _extensionBounds;
+}
+- (SCLAlertViewBuilder *(^) (BOOL statusBarHidden))statusBarHidden {
+    if (!_statusBarHidden) {
+        __weak typeof(self) weakSelf = self;
+        _statusBarHidden = ^(BOOL statusBarHidden) {
+            weakSelf.alertView.statusBarHidden = statusBarHidden;
+            return weakSelf;
+        };
+    }
+    return _statusBarHidden;
+}
+- (SCLAlertViewBuilder *(^) (UIStatusBarStyle statusBarStyle))statusBarStyle {
+    if (!_statusBarStyle) {
+        __weak typeof(self) weakSelf = self;
+        _statusBarStyle = ^(UIStatusBarStyle statusBarStyle) {
+            weakSelf.alertView.statusBarStyle = statusBarStyle;
+            return weakSelf;
+        };
+    }
+    return _statusBarStyle;
+}
+
+#pragma mark - Custom Setters
+-(SCLAlertViewBuilder *(^) (SCLDismissBlock dismissBlock))alertIsDismissed {
+    if (!_alertIsDismissed) {
+        __weak typeof(self) weakSelf = self;
+        _alertIsDismissed = ^(SCLDismissBlock dismissBlock) {
+            [weakSelf.alertView alertIsDismissed:dismissBlock];
+            return weakSelf;
+        };
+    }
+    return _alertIsDismissed;
+}
+-(SCLAlertViewBuilder *(^) (void))removeTopCircle {
+    if (!_removeTopCircle) {
+        __weak typeof(self) weakSelf = self;
+        _removeTopCircle = ^(void) {
+            [weakSelf.alertView removeTopCircle];
+            return weakSelf;
+        };
+    }
+    return _removeTopCircle;
+}
+-(SCLAlertViewBuilder *(^) (UIView *view))addCustomView {
+    if (!_addCustomView) {
+        __weak typeof(self) weakSelf = self;
+        _addCustomView = ^(UIView *view) {
+            [weakSelf.alertView addCustomView:view];
+            return weakSelf;
+        };
+    }
+    return _addCustomView;
+}
+-(SCLAlertViewBuilder *(^) (NSString *title))addTextField {
+    if (!_addTextField) {
+        __weak typeof(self) weakSelf = self;
+        _addTextField = ^(NSString *title) {
+            [weakSelf.alertView addTextField:title];
+            return weakSelf;
+        };
+    }
+    return _addTextField;
+}
+-(SCLAlertViewBuilder *(^) (UITextField *textField))addCustomTextField {
+    if (!_addCustomTextField) {
+        __weak typeof(self) weakSelf = self;
+        _addCustomTextField = ^(UITextField *textField) {
+            [weakSelf.alertView addCustomTextField:textField];
+            return weakSelf;
+        };
+    }
+    return _addCustomTextField;
+}
+-(SCLAlertViewBuilder *(^) (NSString *title))addSwitchViewWithLabelTitle {
+    if (!_addSwitchViewWithLabelTitle) {
+        __weak typeof(self) weakSelf = self;
+        _addSwitchViewWithLabelTitle = ^(NSString *title) {
+            [weakSelf.alertView addSwitchViewWithLabel:title];
+            return weakSelf;
+        };
+    }
+    return _addSwitchViewWithLabelTitle;
+}
+-(SCLAlertViewBuilder *(^) (NSInteger buttonIndex, BOOL reverse))addTimerToButtonIndex {
+    if (!_addTimerToButtonIndex) {
+        __weak typeof(self) weakSelf = self;
+        _addTimerToButtonIndex = ^(NSInteger buttonIndex, BOOL reverse) {
+            [weakSelf.alertView addTimerToButtonIndex:buttonIndex reverse:reverse];
+            return weakSelf;
+        };
+    }
+    return _addTimerToButtonIndex;
+}
+-(SCLAlertViewBuilder *(^) (NSString *titleFontFamily, CGFloat size))setTitleFontFamily {
+    if (!_setTitleFontFamily) {
+        __weak typeof(self) weakSelf = self;
+        _setTitleFontFamily = ^(NSString *titleFontFamily, CGFloat size) {
+            [weakSelf.alertView setTitleFontFamily:titleFontFamily withSize:size];
+            return weakSelf;
+        };
+    }
+    return _setTitleFontFamily;
+}
+-(SCLAlertViewBuilder *(^) (NSString *bodyTextFontFamily, CGFloat size))setBodyTextFontFamily {
+    if (!_setBodyTextFontFamily) {
+        __weak typeof(self) weakSelf = self;
+        _setBodyTextFontFamily = ^(NSString *bodyTextFontFamily, CGFloat size) {
+            [weakSelf.alertView setBodyTextFontFamily:bodyTextFontFamily withSize:size];
+            return weakSelf;
+        };
+    }
+    return _setBodyTextFontFamily;
+}
+-(SCLAlertViewBuilder *(^) (NSString *buttonsFontFamily, CGFloat size))setButtonsTextFontFamily {
+    if (!_setButtonsTextFontFamily) {
+        __weak typeof(self) weakSelf = self;
+        _setButtonsTextFontFamily = ^(NSString *buttonsFontFamily, CGFloat size) {
+            [weakSelf.alertView setButtonsTextFontFamily:buttonsFontFamily withSize:size];
+            return weakSelf;
+        };
+    }
+    return _setButtonsTextFontFamily;
+}
+-(SCLAlertViewBuilder *(^) (NSString *title, SCLActionBlock action))addButtonWithActionBlock {
+    if (!_addButtonWithActionBlock) {
+        __weak typeof(self) weakSelf = self;
+        _addButtonWithActionBlock = ^(NSString *title, SCLActionBlock action) {
+            [weakSelf.alertView addButton:title actionBlock:action];
+            return weakSelf;
+        };
+    }
+    return _addButtonWithActionBlock;
+}
+-(SCLAlertViewBuilder *(^) (NSString *title, SCLValidationBlock validationBlock, SCLActionBlock action))addButtonWithValidationBlock {
+    if (!_addButtonWithValidationBlock) {
+        __weak typeof(self) weakSelf = self;
+        _addButtonWithValidationBlock = ^(NSString *title, SCLValidationBlock validationBlock, SCLActionBlock action) {
+            [weakSelf.alertView addButton:title validationBlock:validationBlock actionBlock:action];
+            return weakSelf;
+        };
+    }
+    return _addButtonWithValidationBlock;
+}
+-(SCLAlertViewBuilder *(^) (NSString *title, id target, SEL selector))addButtonWithTarget {
+    if (!_addButtonWithTarget) {
+        __weak typeof(self) weakSelf = self;
+        _addButtonWithTarget = ^(NSString *title, id target, SEL selector) {
+            [weakSelf.alertView addButton:title target:target selector:selector];
+            return weakSelf;
+        };
+    }
+    return _addButtonWithTarget;
+}
+
+@end
+
+@interface SCLAlertViewShowBuilder()
+@property(strong, nonatomic) UIViewController *parameterViewController;
+@property(copy, nonatomic) UIImage *parameterImage;
+@property(copy, nonatomic) UIColor *parameterColor;
+@property(copy, nonatomic) NSString *parameterTitle;
+@property(copy, nonatomic) NSString *parameterSubTitle;
+@property(copy, nonatomic) NSString *parameterCompleteText;
+@property(assign, nonatomic) SCLAlertViewStyle parameterStyle;
+@property(copy, nonatomic) NSString *parameterCloseButtonTitle;
+@property(assign, nonatomic) NSTimeInterval parameterDuration;
+
+#pragma mark - Setters
+@property(copy, nonatomic) SCLAlertViewShowBuilder *(^viewController)(UIViewController *viewController);
+@property(copy, nonatomic) SCLAlertViewShowBuilder *(^image)(UIImage *image);
+@property(copy, nonatomic) SCLAlertViewShowBuilder *(^color)(UIColor *color);
+@property(copy, nonatomic) SCLAlertViewShowBuilder *(^title)(NSString *title);
+@property(copy, nonatomic) SCLAlertViewShowBuilder *(^subTitle)(NSString *subTitle);
+@property(copy, nonatomic) SCLAlertViewShowBuilder *(^completeText)(NSString *completeText);
+@property(copy, nonatomic) SCLAlertViewShowBuilder *(^style)(SCLAlertViewStyle style);
+@property(copy, nonatomic) SCLAlertViewShowBuilder *(^closeButtonTitle)(NSString *closeButtonTitle);
+@property(copy, nonatomic) SCLAlertViewShowBuilder *(^duration)(NSTimeInterval duration);
+@end
+
+@implementation SCLAlertViewShowBuilder
+
+
+#pragma mark - Setters
+-(SCLAlertViewShowBuilder *(^)(UIViewController *viewController))viewController {
+    if (!_viewController) {
+        __weak typeof(self) weakSelf = self;
+        _viewController = ^(UIViewController *viewController){
+            weakSelf.parameterViewController = viewController;
+            return weakSelf;
+        };
+    }
+    return _viewController;
+}
+-(SCLAlertViewShowBuilder *(^)(UIImage *image))image {
+    if (!_image) {
+        __weak typeof(self) weakSelf = self;
+        _image = ^(UIImage *image) {
+            weakSelf.parameterImage = image;
+            return weakSelf;
+        };
+    }
+    return _image;
+}
+-(SCLAlertViewShowBuilder *(^)(UIColor *color))color {
+    if (!_color) {
+        __weak typeof(self) weakSelf = self;
+        _color = ^(UIColor *color) {
+            weakSelf.parameterColor = color;
+            return weakSelf;
+        };
+    }
+    return _color;
+}
+-(SCLAlertViewShowBuilder *(^)(NSString *title))title {
+    if (!_title) {
+        __weak typeof(self) weakSelf = self;
+        _title = ^(NSString *title){
+            weakSelf.parameterTitle = title;
+            return weakSelf;
+        };
+    }
+    return _title;
+}
+-(SCLAlertViewShowBuilder *(^)(NSString *subTitle))subTitle {
+    if (!_subTitle) {
+        __weak typeof(self) weakSelf = self;
+        _subTitle = ^(NSString *subTitle){
+            weakSelf.parameterSubTitle = subTitle;
+            return weakSelf;
+        };
+    }
+    return _subTitle;
+}
+
+-(SCLAlertViewShowBuilder *(^)(SCLAlertViewStyle style))style {
+    if (!_style) {
+        __weak typeof(self) weakSelf = self;
+        _style = ^(SCLAlertViewStyle style){
+            weakSelf.parameterStyle = style;
+            return weakSelf;
+        };
+    }
+    return _style;
+}
+-(SCLAlertViewShowBuilder *(^)(NSString *closeButtonTitle))closeButtonTitle {
+    if (!_closeButtonTitle) {
+        __weak typeof(self) weakSelf = self;
+        _closeButtonTitle = ^(NSString *closeButtonTitle){
+            weakSelf.parameterCloseButtonTitle = closeButtonTitle;
+            return weakSelf;
+        };
+    }
+    return _closeButtonTitle;
+}
+-(SCLAlertViewShowBuilder *(^)(NSTimeInterval duration))duration {
+    if (!_duration) {
+        __weak typeof(self) weakSelf = self;
+        _duration = ^(NSTimeInterval duration){
+            weakSelf.parameterDuration = duration;
+            return weakSelf;
+        };
+    }
+    return _duration;
+}
+
+- (void)showAlertView:(SCLAlertView *)alertView {
+    [self showAlertView:alertView onViewController:self.parameterViewController];
+}
+
+- (void)showAlertView:(SCLAlertView *)alertView onViewController:(UIViewController *)controller {
+    if (self.parameterImage || self.parameterColor) {
+        [alertView showTitle:controller image:self.parameterImage color:self.parameterColor title:self.parameterTitle subTitle:self.parameterSubTitle duration:self.parameterDuration completeText:@"" style:self.parameterStyle];
+    }
+    else {
+        [alertView showTitle:controller title:self.parameterTitle subTitle:self.parameterSubTitle style:self.parameterStyle closeButtonTitle:self.parameterCloseButtonTitle duration:self.parameterDuration];
+    }
+}
+
+@end
