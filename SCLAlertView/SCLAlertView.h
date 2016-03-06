@@ -448,7 +448,7 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
 
 @interface SCLAlertViewShowBuilder : NSObject
 
-@property(strong, nonatomic, readonly) UIViewController *parameterViewController;
+@property(weak, nonatomic, readonly) UIViewController *parameterViewController;
 @property(copy, nonatomic, readonly) UIImage *parameterImage;
 @property(copy, nonatomic, readonly) UIColor *parameterColor;
 @property(copy, nonatomic, readonly) NSString *parameterTitle;
@@ -471,6 +471,7 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
 
 - (void)showAlertView:(SCLAlertView *)alertView;
 - (void)showAlertView:(SCLAlertView *)alertView onViewController:(UIViewController *)controller;
+@property(copy, nonatomic, readonly) void (^show)(SCLAlertView *view, UIViewController *controller);
 @end
 
 @interface SCLALertViewTextFieldBuilder : NSObject

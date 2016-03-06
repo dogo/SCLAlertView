@@ -28,6 +28,8 @@ SCLAlertViewShowBuilder *showBuilder = [SCLAlertViewShowBuilder new]
 .subTitle(@"Subtitle")
 .duration(0);
 [showBuilder showAlertView:builder.alertView onViewController:self.window.rootViewController];
+// or even
+showBuilder.show(builder.alertView, self.window.rootViewController);
 ```
 
 ####Complex
