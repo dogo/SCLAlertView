@@ -473,6 +473,30 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
 - (void)showAlertView:(SCLAlertView *)alertView onViewController:(UIViewController *)controller;
 @end
 
+@interface SCLALertViewTextFieldBuilder : NSObject
+
+#pragma mark - Available later after adding
+@property(weak, nonatomic, readonly) SCLTextView *textField;
+
+#pragma mark - Setters
+@property(copy, nonatomic, readonly) SCLALertViewTextFieldBuilder *(^title) (NSString *title);
+
+@end
+
+@interface SCLALertViewButtonBuilder : NSObject
+
+#pragma mark - Available later after adding
+@property(weak, nonatomic, readonly) SCLButton *button;
+
+#pragma mark - Setters
+@property(copy, nonatomic, readonly) SCLALertViewButtonBuilder *(^title) (NSString *title);
+@property(copy, nonatomic, readonly) SCLALertViewButtonBuilder *(^target) (id target);
+@property(copy, nonatomic, readonly) SCLALertViewButtonBuilder *(^selector) (SEL selector);
+@property(copy, nonatomic, readonly) SCLALertViewButtonBuilder *(^actionBlock) (void(^actionBlock)(void));
+@property(copy, nonatomic, readonly) SCLALertViewButtonBuilder *(^validationBlock) (BOOL(^validationBlock)(void));
+
+@end
+
 @interface SCLAlertViewBuilder : NSObject
 
 #pragma mark - Parameters
@@ -521,5 +545,9 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
 @property(copy, nonatomic) SCLAlertViewBuilder *(^addButtonWithActionBlock)(NSString *title, SCLActionBlock action);
 @property(copy, nonatomic) SCLAlertViewBuilder *(^addButtonWithValidationBlock)(NSString *title, SCLValidationBlock validationBlock, SCLActionBlock action);
 @property(copy, nonatomic) SCLAlertViewBuilder *(^addButtonWithTarget)(NSString *title, id target, SEL selector);
+
+#pragma mark - Builders
+@property(copy, nonatomic) SCLAlertViewBuilder *(^addButtonWithBuilder)(SCLALertViewButtonBuilder *builder);
+@property(copy, nonatomic) SCLAlertViewBuilder *(^addTextFieldWithBuilder)(SCLALertViewTextFieldBuilder *builder);
 
 @end
