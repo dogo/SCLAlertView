@@ -310,6 +310,7 @@ SCLTimerDisplay *buttonTimer;
         }
     }
     
+    CGFloat titleTop = _useLargerIcon ? kTitleTop : kTitleTop + 4.0f;
     if(!_usingNewWindow)
     {
         // Set new background frame
@@ -336,8 +337,7 @@ SCLTimerDisplay *buttonTimer;
         _circleViewBackground.frame = CGRectMake(_windowWidth / 2 - kCircleHeightBackground / 2, kCircleBackgroundTopPosition, kCircleHeightBackground, kCircleHeightBackground);
         _circleView.layer.cornerRadius = _circleView.frame.size.height / 2;
         _circleIconImageView.frame = CGRectMake(kCircleHeight / 2 - _circleIconHeight / 2, kCircleHeight / 2 - _circleIconHeight / 2, _circleIconHeight, _circleIconHeight);
-        kTitleTop = _useLargerIcon ? kTitleTop : kTitleTop + 4.0f;
-        _labelTitle.frame = CGRectMake(12.0f, kTitleTop, _windowWidth - 24.0f, kTitleHeight);
+        _labelTitle.frame = CGRectMake(12.0f, titleTop, _windowWidth - 24.0f, kTitleHeight);
     }
     else
     {
@@ -350,12 +350,11 @@ SCLTimerDisplay *buttonTimer;
         _circleView.layer.cornerRadius = _circleView.frame.size.height / 2;        
         _circleViewBackground.frame = CGRectMake(x, y, kCircleHeightBackground, kCircleHeightBackground);
         _circleIconImageView.frame = CGRectMake(kCircleHeight / 2 - _circleIconHeight / 2, kCircleHeight / 2 - _circleIconHeight / 2, _circleIconHeight, _circleIconHeight);
-        kTitleTop = _useLargerIcon ? kTitleTop : kTitleTop + 4.0f;
-        _labelTitle.frame = CGRectMake(12.0f + self.contentView.frame.origin.x, kTitleTop + self.contentView.frame.origin.y, _windowWidth - 24.0f, kTitleHeight);
+        _labelTitle.frame = CGRectMake(12.0f + self.contentView.frame.origin.x, titleTop + self.contentView.frame.origin.y, _windowWidth - 24.0f, kTitleHeight);
     }
     
     // Text fields
-    CGFloat y = (_labelTitle.text == nil) ? kTitleTop : kTitleTop + _labelTitle.frame.size.height;
+    CGFloat y = (_labelTitle.text == nil) ? titleTop : titleTop + _labelTitle.frame.size.height;
     _viewText.frame = CGRectMake(12.0f, y, _windowWidth - 24.0f, _subTitleHeight);
     y += _subTitleHeight + 14.0f;
     for (SCLTextView *textField in _inputs)
