@@ -2036,7 +2036,7 @@ SCLTimerDisplay *buttonTimer;
     if (!_completeText) {
         __weak typeof(self) weakSelf = self;
         _completeText = ^(NSString *completeText){
-            weakSelf.parametercompleteText = completeText;
+            weakSelf.parameterCompleteText = completeText;
             return weakSelf;
         };
     }
