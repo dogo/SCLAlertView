@@ -30,6 +30,43 @@ SCLAlertViewShowBuilder *showBuilder = [SCLAlertViewShowBuilder new]
 [showBuilder showAlertView:builder.alertView onViewController:self.window.rootViewController];
 ```
 
+####Complex
+```Objective-C
+    NSString *title = @"Title";
+    NSString *message = @"Message";
+    NSString *cancel = @"Cancel";
+    NSString *done = @"Done";
+    
+    SCLALertViewTextFieldBuilder *textField = [SCLALertViewTextFieldBuilder new].title(@"Code");
+    SCLALertViewButtonBuilder *doneButton = [SCLALertViewButtonBuilder new].title(done)
+    .validationBlock(^BOOL{
+        NSString *code = [textField.textField.text copy];
+        return [code isVisible];
+    })
+    .actionBlock(^{
+        NSString *code = [textField.textField.text copy];
+        [self confirmPhoneNumberWithCode:code];
+    });
+    
+    SCLAlertViewBuilder *builder = [SCLAlertViewBuilder new]
+    .showAnimationType(FadeIn)
+    .hideAnimationType(FadeOut)
+    .shouldDismissOnTapOutside(NO)
+    .addTextFieldWithBuilder(textField)
+    .addButtonWithBuilder(doneButton);
+    
+    SCLAlertViewShowBuilder *showBuilder = [SCLAlertViewShowBuilder new]
+    .style(Custom)
+    .image([SCLAlertViewStyleKit imageOfInfo])
+    .color([UIColor blueColor])
+    .title(title)
+    .subTitle(message)
+    .closeButtonTitle(cancel)
+    .duration(0.0f);
+
+    [showBuilder showAlertView:builder.alertView onViewController:self];
+```
+
 ###Easy to use
 ```Objective-C
 // Get started
