@@ -155,7 +155,7 @@ SCLTimerDisplay *buttonTimer;
     kCircleHeight = 56.0f;
     kCircleHeightBackground = 62.0f;
     kActivityIndicatorHeight = 40.0f;
-    kTitleTop = 24.0f;
+    kTitleTop = 30.0f;
     kTitleHeight = 40.0f;
     self.subTitleY = 70.0f;
     self.subTitleHeight = 90.0f;
@@ -285,7 +285,6 @@ SCLTimerDisplay *buttonTimer;
         kCircleBackgroundTopPosition = -61.0f;
         kCircleHeight = 106.0f;
         kCircleHeightBackground = 122.0f;
-        kTitleTop = _tintTopCircle ? kCircleHeightBackground / 2: _circleIconHeight / 2 + 8.0f;
         
         // Reposition inner circle appropriately
         CGFloat x = (kCircleHeightBackground - kCircleHeight) / 2;
@@ -310,6 +309,7 @@ SCLTimerDisplay *buttonTimer;
         }
     }
     
+    CGFloat titleTop = _useLargerIcon ? kTitleTop : kTitleTop + 4.0f;
     if(!_usingNewWindow)
     {
         // Set new background frame
@@ -336,7 +336,6 @@ SCLTimerDisplay *buttonTimer;
         _circleViewBackground.frame = CGRectMake(_windowWidth / 2 - kCircleHeightBackground / 2, kCircleBackgroundTopPosition, kCircleHeightBackground, kCircleHeightBackground);
         _circleView.layer.cornerRadius = _circleView.frame.size.height / 2;
         _circleIconImageView.frame = CGRectMake(kCircleHeight / 2 - _circleIconHeight / 2, kCircleHeight / 2 - _circleIconHeight / 2, _circleIconHeight, _circleIconHeight);
-        kTitleTop = _useLargerIcon ? kTitleTop : kTitleTop + 4.0f;
         _labelTitle.frame = CGRectMake(12.0f, kTitleTop, _windowWidth - 24.0f, kTitleHeight);
     }
     else
@@ -350,12 +349,11 @@ SCLTimerDisplay *buttonTimer;
         _circleView.layer.cornerRadius = _circleView.frame.size.height / 2;        
         _circleViewBackground.frame = CGRectMake(x, y, kCircleHeightBackground, kCircleHeightBackground);
         _circleIconImageView.frame = CGRectMake(kCircleHeight / 2 - _circleIconHeight / 2, kCircleHeight / 2 - _circleIconHeight / 2, _circleIconHeight, _circleIconHeight);
-        kTitleTop = _useLargerIcon ? kTitleTop : kTitleTop + 4.0f;
         _labelTitle.frame = CGRectMake(12.0f + self.contentView.frame.origin.x, kTitleTop + self.contentView.frame.origin.y, _windowWidth - 24.0f, kTitleHeight);
     }
     
     // Text fields
-    CGFloat y = (_labelTitle.text == nil) ? kTitleTop : kTitleTop + _labelTitle.frame.size.height;
+    CGFloat y = (_labelTitle.text == nil) ? titleTop : titleTop + _labelTitle.frame.size.height;
     _viewText.frame = CGRectMake(12.0f, y, _windowWidth - 24.0f, _subTitleHeight);
     y += _subTitleHeight + 14.0f;
     for (SCLTextView *textField in _inputs)
@@ -1566,6 +1564,106 @@ SCLTimerDisplay *buttonTimer;
 
 @end
 
+@interface SCLALertViewTextFieldBuilder()
+#pragma mark - Parameters
+@property(copy, nonatomic) NSString *parameterTitle;
+
+#pragma mark - Available later after adding
+@property(weak, nonatomic) SCLTextView *textField;
+
+#pragma mark - Setters
+@property(copy, nonatomic) SCLALertViewTextFieldBuilder *(^title) (NSString *title);
+@end
+
+@implementation SCLALertViewTextFieldBuilder
+-(SCLALertViewTextFieldBuilder *(^) (NSString *title))title {
+    if (!_title) {
+        __weak typeof(self) weakSelf = self;
+        _title = ^(NSString *title){
+            weakSelf.parameterTitle = title;
+            return weakSelf;
+        };
+    }
+    return _title;
+}
+@end
+
+@interface SCLALertViewButtonBuilder()
+
+#pragma mark - Parameters
+@property(copy, nonatomic) NSString *parameterTitle;
+@property(weak, nonatomic) id parameterTarget;
+@property(assign, nonatomic) SEL parameterSelector;
+@property(copy, nonatomic) void(^parameterActionBlock)(void);
+@property(copy, nonatomic) BOOL(^parameterValidationBlock)(void);
+
+#pragma mark - Available later after adding
+@property(weak, nonatomic) SCLButton *button;
+
+#pragma mark - Setters
+@property(copy, nonatomic) SCLALertViewButtonBuilder *(^title) (NSString *title);
+@property(copy, nonatomic) SCLALertViewButtonBuilder *(^target) (id target);
+@property(copy, nonatomic) SCLALertViewButtonBuilder *(^selector) (SEL selector);
+@property(copy, nonatomic) SCLALertViewButtonBuilder *(^actionBlock) (void(^actionBlock)(void));
+@property(copy, nonatomic) SCLALertViewButtonBuilder *(^validationBlock) (BOOL(^validationBlock)(void));
+
+@end
+
+@implementation SCLALertViewButtonBuilder
+-(SCLALertViewButtonBuilder *(^) (NSString *title))title {
+    if (!_title) {
+        __weak typeof(self) weakSelf = self;
+        _title = ^(NSString *title){
+            weakSelf.parameterTitle = title;
+            return weakSelf;
+        };
+    }
+    return _title;
+}
+-(SCLALertViewButtonBuilder *(^) (id target))target {
+    if (!_target) {
+        __weak typeof(self) weakSelf = self;
+        _target = ^(id target){
+            weakSelf.parameterTarget = target;
+            return weakSelf;
+        };
+    }
+    return _target;
+}
+-(SCLALertViewButtonBuilder *(^) (SEL selector))selector {
+    if (!_selector) {
+        __weak typeof(self) weakSelf = self;
+        _selector = ^(SEL selector){
+            weakSelf.parameterSelector = selector;
+            return weakSelf;
+        };
+    }
+    return _selector;
+}
+-(SCLALertViewButtonBuilder *(^) (void(^actionBlock)(void)))actionBlock {
+    if (!_actionBlock) {
+        __weak typeof(self) weakSelf = self;
+        _actionBlock = ^(void(^actionBlock)(void)){
+            weakSelf.parameterActionBlock = actionBlock;
+            return weakSelf;
+        };
+    }
+    return _actionBlock;
+}
+-(SCLALertViewButtonBuilder *(^) (BOOL(^validationBlock)(void)))validationBlock {
+    if (!_validationBlock) {
+        __weak typeof(self) weakSelf = self;
+        _validationBlock = ^(BOOL(^validationBlock)(void)){
+            weakSelf.parameterValidationBlock = validationBlock;
+            return weakSelf;
+        };
+    }
+    return _validationBlock;
+}
+@end
+
+
+
 @interface SCLAlertViewBuilder()
 
 @property (strong, nonatomic) SCLAlertView *alertView;
@@ -1953,6 +2051,37 @@ SCLTimerDisplay *buttonTimer;
     return _addButtonWithTarget;
 }
 
+#pragma mark - Builders
+-(SCLAlertViewBuilder *(^)(SCLALertViewButtonBuilder *builder))addButtonWithBuilder {
+    if (!_addButtonWithBuilder) {
+        __weak typeof(self) weakSelf = self;
+        _addButtonWithBuilder = ^(SCLALertViewButtonBuilder *builder){
+            SCLButton *button = nil;
+            if (builder.parameterTarget && builder.parameterSelector) {
+                button = [weakSelf.alertView addButton:builder.parameterTitle target:builder.parameterTarget selector:builder.parameterSelector];
+            }
+            else if (builder.parameterValidationBlock && builder.parameterActionBlock) {
+                button = [weakSelf.alertView addButton:builder.parameterTitle validationBlock:builder.parameterValidationBlock actionBlock:builder.parameterActionBlock];
+            }
+            else if (builder.parameterActionBlock) {
+                button = [weakSelf.alertView addButton:builder.parameterTitle actionBlock:builder.parameterActionBlock];
+            }
+            builder.button = button;
+            return weakSelf; 
+        };
+    }
+    return _addButtonWithBuilder;
+}
+-(SCLAlertViewBuilder *(^)(SCLALertViewTextFieldBuilder *builder))addTextFieldWithBuilder {
+    if (!_addTextFieldWithBuilder) {
+        __weak typeof(self) weakSelf = self;
+        _addTextFieldWithBuilder = ^(SCLALertViewTextFieldBuilder *builder){
+            builder.textField = [weakSelf.alertView addTextField:builder.parameterTitle];
+            return weakSelf;
+        };
+    }
+    return _addTextFieldWithBuilder;
+}
 @end
 
 @interface SCLAlertViewShowBuilder()
@@ -2032,6 +2161,16 @@ SCLTimerDisplay *buttonTimer;
     }
     return _subTitle;
 }
+-(SCLAlertViewShowBuilder *(^)(NSString *completeText))completeText {
+    if (!_completeText) {
+        __weak typeof(self) weakSelf = self;
+        _completeText = ^(NSString *completeText){
+            weakSelf.parameterCompleteText = completeText;
+            return weakSelf;
+        };
+    }
+    return _completeText;
+}
 
 -(SCLAlertViewShowBuilder *(^)(SCLAlertViewStyle style))style {
     if (!_style) {
@@ -2070,7 +2209,7 @@ SCLTimerDisplay *buttonTimer;
 
 - (void)showAlertView:(SCLAlertView *)alertView onViewController:(UIViewController *)controller {
     if (self.parameterImage || self.parameterColor) {
-        [alertView showTitle:controller image:self.parameterImage color:self.parameterColor title:self.parameterTitle subTitle:self.parameterSubTitle duration:self.parameterDuration completeText:@"" style:self.parameterStyle];
+        [alertView showTitle:controller image:self.parameterImage color:self.parameterColor title:self.parameterTitle subTitle:self.parameterSubTitle duration:self.parameterDuration completeText:self.parameterCloseButtonTitle style:self.parameterStyle];
     }
     else {
         [alertView showTitle:controller title:self.parameterTitle subTitle:self.parameterSubTitle style:self.parameterStyle closeButtonTitle:self.parameterCloseButtonTitle duration:self.parameterDuration];
