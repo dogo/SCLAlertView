@@ -1566,6 +1566,106 @@ SCLTimerDisplay *buttonTimer;
 
 @end
 
+@interface SCLALertViewTextFieldBuilder()
+#pragma mark - Parameters
+@property(copy, nonatomic) NSString *parameterTitle;
+
+#pragma mark - Available later after adding
+@property(weak, nonatomic) SCLTextView *field;
+
+#pragma mark - Setters
+@property(copy, nonatomic) SCLALertViewTextFieldBuilder *(^title) (NSString *title);
+@end
+
+@implementation SCLALertViewTextFieldBuilder
+-(SCLALertViewTextFieldBuilder *(^) (NSString *title))title {
+    if (!_title) {
+        __weak typeof(self) weakSelf = self;
+        _title = ^(NSString *title){
+            weakSelf.parameterTitle = title;
+            return weakSelf;
+        };
+    }
+    return _title;
+}
+@end
+
+@interface SCLALertViewButtonBuilder()
+
+#pragma mark - Parameters
+@property(copy, nonatomic) NSString *parameterTitle;
+@property(weak, nonatomic) id parameterTarget;
+@property(assign, nonatomic) SEL parameterSelector;
+@property(copy, nonatomic) void(^parameterActionBlock)(void);
+@property(copy, nonatomic) BOOL(^parameterValidationBlock)(void);
+
+#pragma mark - Available later after adding
+@property(weak, nonatomic) SCLButton *button;
+
+#pragma mark - Setters
+@property(copy, nonatomic) SCLALertViewButtonBuilder *(^title) (NSString *title);
+@property(copy, nonatomic) SCLALertViewButtonBuilder *(^target) (id target);
+@property(copy, nonatomic) SCLALertViewButtonBuilder *(^selector) (SEL selector);
+@property(copy, nonatomic) SCLALertViewButtonBuilder *(^actionBlock) (void(^actionBlock)(void));
+@property(copy, nonatomic) SCLALertViewButtonBuilder *(^validationBlock) (BOOL(^validationBlock)(void));
+
+@end
+
+@implementation SCLALertViewButtonBuilder
+-(SCLALertViewButtonBuilder *(^) (id title))title {
+    if (!_title) {
+        __weak typeof(self) weakSelf = self;
+        _title = ^(NSString *title){
+            weakSelf.parameterTarget = title;
+            return weakSelf;
+        };
+    }
+    return _title;
+}
+-(SCLALertViewButtonBuilder *(^) (id target))target {
+    if (!_target) {
+        __weak typeof(self) weakSelf = self;
+        _target = ^(id target){
+            weakSelf.parameterTarget = target;
+            return weakSelf;
+        };
+    }
+    return _target;
+}
+-(SCLALertViewButtonBuilder *(^) (SEL selector))selector {
+    if (!_selector) {
+        __weak typeof(self) weakSelf = self;
+        _selector = ^(SEL selector){
+            weakSelf.parameterSelector = selector;
+            return weakSelf;
+        };
+    }
+    return _selector;
+}
+-(SCLALertViewButtonBuilder *(^) (void(^actionBlock)(void)))actionBlock {
+    if (!_actionBlock) {
+        __weak typeof(self) weakSelf = self;
+        _actionBlock = ^(void(^actionBlock)(void)){
+            weakSelf.parameterActionBlock = actionBlock;
+            return weakSelf;
+        };
+    }
+    return _actionBlock;
+}
+-(SCLALertViewButtonBuilder *(^) (BOOL(^validationBlock)(void)))validationBlock {
+    if (!_validationBlock) {
+        __weak typeof(self) weakSelf = self;
+        _validationBlock = ^(BOOL(^validationBlock)(void)){
+            weakSelf.parameterValidationBlock = validationBlock;
+            return weakSelf;
+        };
+    }
+    return _validationBlock;
+}
+@end
+
+
+
 @interface SCLAlertViewBuilder()
 
 @property (strong, nonatomic) SCLAlertView *alertView;
@@ -1953,6 +2053,37 @@ SCLTimerDisplay *buttonTimer;
     return _addButtonWithTarget;
 }
 
+#pragma mark - Builders
+-(SCLAlertViewBuilder *(^)(SCLALertViewButtonBuilder *builder))addButtonWithBuilder {
+    if (!_addButtonWithBuilder) {
+        __weak typeof(self) weakSelf = self;
+        _addButtonWithBuilder = ^(SCLALertViewButtonBuilder *builder){
+            SCLButton *button = nil;
+            if (builder.parameterTarget && builder.parameterSelector) {
+                button = [weakSelf.alertView addButton:builder.parameterTitle target:builder.parameterTarget selector:builder.parameterSelector];
+            }
+            else if (builder.parameterValidationBlock && builder.parameterActionBlock) {
+                button = [weakSelf.alertView addButton:builder.parameterTitle validationBlock:builder.parameterValidationBlock actionBlock:builder.parameterActionBlock];
+            }
+            else if (builder.parameterActionBlock) {
+                button = [weakSelf.alertView addButton:builder.parameterTitle actionBlock:builder.parameterActionBlock];
+            }
+            builder.button = button;
+            return weakSelf; 
+        };
+    }
+    return _addButtonWithBuilder;
+}
+-(SCLAlertViewBuilder *(^)(SCLALertViewTextFieldBuilder *builder))addTextFieldWithBuilder {
+    if (!_addTextFieldWithBuilder) {
+        __weak typeof(self) weakSelf = self;
+        _addTextFieldWithBuilder = ^(SCLALertViewTextFieldBuilder *builder){
+            builder.field = [weakSelf.alertView addTextField:builder.parameterTitle];
+            return weakSelf;
+        };
+    }
+    return _addTextFieldWithBuilder;
+}
 @end
 
 @interface SCLAlertViewShowBuilder()
