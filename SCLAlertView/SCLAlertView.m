@@ -2032,6 +2032,16 @@ SCLTimerDisplay *buttonTimer;
     }
     return _subTitle;
 }
+-(SCLAlertViewShowBuilder *(^)(NSString *completeText))completeText {
+    if (!_completeText) {
+        __weak typeof(self) weakSelf = self;
+        _completeText = ^(NSString *completeText){
+            weakSelf.parametercompleteText = completeText;
+            return weakSelf;
+        };
+    }
+    return _completeText;
+}
 
 -(SCLAlertViewShowBuilder *(^)(SCLAlertViewStyle style))style {
     if (!_style) {
@@ -2070,7 +2080,7 @@ SCLTimerDisplay *buttonTimer;
 
 - (void)showAlertView:(SCLAlertView *)alertView onViewController:(UIViewController *)controller {
     if (self.parameterImage || self.parameterColor) {
-        [alertView showTitle:controller image:self.parameterImage color:self.parameterColor title:self.parameterTitle subTitle:self.parameterSubTitle duration:self.parameterDuration completeText:@"" style:self.parameterStyle];
+        [alertView showTitle:controller image:self.parameterImage color:self.parameterColor title:self.parameterTitle subTitle:self.parameterSubTitle duration:self.parameterDuration completeText:self.parameterCloseButtonTitle style:self.parameterStyle];
     }
     else {
         [alertView showTitle:controller title:self.parameterTitle subTitle:self.parameterSubTitle style:self.parameterStyle closeButtonTitle:self.parameterCloseButtonTitle duration:self.parameterDuration];
