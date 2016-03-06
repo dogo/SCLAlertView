@@ -2085,7 +2085,7 @@ SCLTimerDisplay *buttonTimer;
 @end
 
 @interface SCLAlertViewShowBuilder()
-@property(strong, nonatomic) UIViewController *parameterViewController;
+@property(weak, nonatomic) UIViewController *parameterViewController;
 @property(copy, nonatomic) UIImage *parameterImage;
 @property(copy, nonatomic) UIColor *parameterColor;
 @property(copy, nonatomic) NSString *parameterTitle;
@@ -2105,6 +2105,9 @@ SCLTimerDisplay *buttonTimer;
 @property(copy, nonatomic) SCLAlertViewShowBuilder *(^style)(SCLAlertViewStyle style);
 @property(copy, nonatomic) SCLAlertViewShowBuilder *(^closeButtonTitle)(NSString *closeButtonTitle);
 @property(copy, nonatomic) SCLAlertViewShowBuilder *(^duration)(NSTimeInterval duration);
+
+#pragma mark - Show
+@property(copy, nonatomic) void (^show)(SCLAlertView *view, UIViewController *controller);
 @end
 
 @implementation SCLAlertViewShowBuilder
@@ -2208,12 +2211,24 @@ SCLTimerDisplay *buttonTimer;
 }
 
 - (void)showAlertView:(SCLAlertView *)alertView onViewController:(UIViewController *)controller {
+    UIViewController *targetController = controller ? controller : self.parameterViewController;
+    
     if (self.parameterImage || self.parameterColor) {
-        [alertView showTitle:controller image:self.parameterImage color:self.parameterColor title:self.parameterTitle subTitle:self.parameterSubTitle duration:self.parameterDuration completeText:self.parameterCloseButtonTitle style:self.parameterStyle];
+        [alertView showTitle:targetController image:self.parameterImage color:self.parameterColor title:self.parameterTitle subTitle:self.parameterSubTitle duration:self.parameterDuration completeText:self.parameterCloseButtonTitle style:self.parameterStyle];
     }
     else {
-        [alertView showTitle:controller title:self.parameterTitle subTitle:self.parameterSubTitle style:self.parameterStyle closeButtonTitle:self.parameterCloseButtonTitle duration:self.parameterDuration];
+        [alertView showTitle:targetController title:self.parameterTitle subTitle:self.parameterSubTitle style:self.parameterStyle closeButtonTitle:self.parameterCloseButtonTitle duration:self.parameterDuration];
     }
+}
+
+- (void (^)(SCLAlertView *view, UIViewController *controller))show {
+    if (!_show) {
+        __weak typeof(self) weakSelf = self;
+        _show = ^(SCLAlertView *view, UIViewController *controller) {
+            [weakSelf showAlertView:view onViewController:controller];
+        };
+    }
+    return _show;
 }
 
 @end
