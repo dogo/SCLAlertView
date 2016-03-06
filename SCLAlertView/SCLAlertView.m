@@ -1612,7 +1612,7 @@ SCLTimerDisplay *buttonTimer;
 @end
 
 @implementation SCLALertViewButtonBuilder
--(SCLALertViewButtonBuilder *(^) (id title))title {
+-(SCLALertViewButtonBuilder *(^) (NSString *title))title {
     if (!_title) {
         __weak typeof(self) weakSelf = self;
         _title = ^(NSString *title){
