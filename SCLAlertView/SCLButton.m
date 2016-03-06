@@ -71,6 +71,9 @@
     // Update title frame.
     [self.titleLabel sizeToFit];
     
+    // Update button frame
+    [self layoutIfNeeded];
+    
     // Get height needed to display title label completely
     CGFloat buttonHeight = MAX(self.titleLabel.frame.size.height, MIN_HEIGHT);
     
