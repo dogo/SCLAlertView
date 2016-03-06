@@ -1571,7 +1571,7 @@ SCLTimerDisplay *buttonTimer;
 @property(copy, nonatomic) NSString *parameterTitle;
 
 #pragma mark - Available later after adding
-@property(weak, nonatomic) SCLTextView *field;
+@property(weak, nonatomic) SCLTextView *textField;
 
 #pragma mark - Setters
 @property(copy, nonatomic) SCLALertViewTextFieldBuilder *(^title) (NSString *title);
@@ -2078,7 +2078,7 @@ SCLTimerDisplay *buttonTimer;
     if (!_addTextFieldWithBuilder) {
         __weak typeof(self) weakSelf = self;
         _addTextFieldWithBuilder = ^(SCLALertViewTextFieldBuilder *builder){
-            builder.field = [weakSelf.alertView addTextField:builder.parameterTitle];
+            builder.textField = [weakSelf.alertView addTextField:builder.parameterTitle];
             return weakSelf;
         };
     }

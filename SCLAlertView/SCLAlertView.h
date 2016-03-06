@@ -476,7 +476,7 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
 @interface SCLALertViewTextFieldBuilder : NSObject
 
 #pragma mark - Available later after adding
-@property(weak, nonatomic, readonly) SCLTextView *field;
+@property(weak, nonatomic, readonly) SCLTextView *textField;
 
 #pragma mark - Setters
 @property(copy, nonatomic, readonly) SCLALertViewTextFieldBuilder *(^title) (NSString *title);
