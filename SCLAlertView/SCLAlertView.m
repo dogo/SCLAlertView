@@ -1616,7 +1616,7 @@ SCLTimerDisplay *buttonTimer;
     if (!_title) {
         __weak typeof(self) weakSelf = self;
         _title = ^(NSString *title){
-            weakSelf.parameterTarget = title;
+            weakSelf.parameterTitle = title;
             return weakSelf;
         };
     }
