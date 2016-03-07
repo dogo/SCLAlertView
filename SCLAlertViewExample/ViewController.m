@@ -47,7 +47,7 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
 {
     SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
     
-    SCLButton *button = [alert addButton:@"You have not saved your Submission yet. Please save the Submission before accessing the Responses list. Blah de blah de blah, blah. Blah de blah de blah, blah.Blah de blah de blah, blah.Blah de blah de blah, blah.Blah de blah de blah, blah.Blah de blah de blah, blah." target:self selector:@selector(firstButton)];
+    SCLButton *button = [alert addButton:@"First Button" target:self selector:@selector(firstButton)];
     
     button.buttonFormatBlock = ^NSDictionary* (void)
     {
