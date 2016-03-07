@@ -454,8 +454,8 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
 @property(copy, nonatomic, readonly) NSString *parameterTitle;
 @property(copy, nonatomic, readonly) NSString *parameterSubTitle;
 @property(copy, nonatomic, readonly) NSString *parameterCompleteText;
-@property(assign, nonatomic, readonly) SCLAlertViewStyle parameterStyle;
 @property(copy, nonatomic, readonly) NSString *parameterCloseButtonTitle;
+@property(assign, nonatomic, readonly) SCLAlertViewStyle parameterStyle;
 @property(assign, nonatomic, readonly) NSTimeInterval parameterDuration;
 
 #pragma mark - Setters

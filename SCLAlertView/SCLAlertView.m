@@ -1575,7 +1575,7 @@ SCLTimerDisplay *buttonTimer;
 @end
 
 @implementation SCLALertViewTextFieldBuilder
--(SCLALertViewTextFieldBuilder *(^) (NSString *title))title {
+- (SCLALertViewTextFieldBuilder *(^) (NSString *title))title {
     if (!_title) {
         __weak typeof(self) weakSelf = self;
         _title = ^(NSString *title){
@@ -1609,7 +1609,7 @@ SCLTimerDisplay *buttonTimer;
 @end
 
 @implementation SCLALertViewButtonBuilder
--(SCLALertViewButtonBuilder *(^) (NSString *title))title {
+- (SCLALertViewButtonBuilder *(^) (NSString *title))title {
     if (!_title) {
         __weak typeof(self) weakSelf = self;
         _title = ^(NSString *title){
@@ -1619,7 +1619,7 @@ SCLTimerDisplay *buttonTimer;
     }
     return _title;
 }
--(SCLALertViewButtonBuilder *(^) (id target))target {
+- (SCLALertViewButtonBuilder *(^) (id target))target {
     if (!_target) {
         __weak typeof(self) weakSelf = self;
         _target = ^(id target){
@@ -1629,7 +1629,7 @@ SCLTimerDisplay *buttonTimer;
     }
     return _target;
 }
--(SCLALertViewButtonBuilder *(^) (SEL selector))selector {
+- (SCLALertViewButtonBuilder *(^) (SEL selector))selector {
     if (!_selector) {
         __weak typeof(self) weakSelf = self;
         _selector = ^(SEL selector){
@@ -1639,7 +1639,7 @@ SCLTimerDisplay *buttonTimer;
     }
     return _selector;
 }
--(SCLALertViewButtonBuilder *(^) (void(^actionBlock)(void)))actionBlock {
+- (SCLALertViewButtonBuilder *(^) (void(^actionBlock)(void)))actionBlock {
     if (!_actionBlock) {
         __weak typeof(self) weakSelf = self;
         _actionBlock = ^(void(^actionBlock)(void)){
@@ -1649,7 +1649,7 @@ SCLTimerDisplay *buttonTimer;
     }
     return _actionBlock;
 }
--(SCLALertViewButtonBuilder *(^) (BOOL(^validationBlock)(void)))validationBlock {
+- (SCLALertViewButtonBuilder *(^) (BOOL(^validationBlock)(void)))validationBlock {
     if (!_validationBlock) {
         __weak typeof(self) weakSelf = self;
         _validationBlock = ^(BOOL(^validationBlock)(void)){
@@ -1662,7 +1662,6 @@ SCLTimerDisplay *buttonTimer;
 @end
 
 
-
 @interface SCLAlertViewBuilder()
 
 @property (strong, nonatomic) SCLAlertView *alertView;
@@ -1672,6 +1671,7 @@ SCLTimerDisplay *buttonTimer;
 @implementation SCLAlertViewBuilder
 
 #pragma mark - Init
+
 - (instancetype)init {
     self = [super init];
     if (self) {
@@ -1919,7 +1919,7 @@ SCLTimerDisplay *buttonTimer;
 }
 
 #pragma mark - Custom Setters
--(SCLAlertViewBuilder *(^) (SCLDismissBlock dismissBlock))alertIsDismissed {
+- (SCLAlertViewBuilder *(^) (SCLDismissBlock dismissBlock))alertIsDismissed {
     if (!_alertIsDismissed) {
         __weak typeof(self) weakSelf = self;
         _alertIsDismissed = ^(SCLDismissBlock dismissBlock) {
@@ -1929,7 +1929,7 @@ SCLTimerDisplay *buttonTimer;
     }
     return _alertIsDismissed;
 }
--(SCLAlertViewBuilder *(^) (void))removeTopCircle {
+- (SCLAlertViewBuilder *(^) (void))removeTopCircle {
     if (!_removeTopCircle) {
         __weak typeof(self) weakSelf = self;
         _removeTopCircle = ^(void) {
@@ -1939,7 +1939,7 @@ SCLTimerDisplay *buttonTimer;
     }
     return _removeTopCircle;
 }
--(SCLAlertViewBuilder *(^) (UIView *view))addCustomView {
+- (SCLAlertViewBuilder *(^) (UIView *view))addCustomView {
     if (!_addCustomView) {
         __weak typeof(self) weakSelf = self;
         _addCustomView = ^(UIView *view) {
@@ -1949,7 +1949,7 @@ SCLTimerDisplay *buttonTimer;
     }
     return _addCustomView;
 }
--(SCLAlertViewBuilder *(^) (NSString *title))addTextField {
+- (SCLAlertViewBuilder *(^) (NSString *title))addTextField {
     if (!_addTextField) {
         __weak typeof(self) weakSelf = self;
         _addTextField = ^(NSString *title) {
@@ -1959,7 +1959,7 @@ SCLTimerDisplay *buttonTimer;
     }
     return _addTextField;
 }
--(SCLAlertViewBuilder *(^) (UITextField *textField))addCustomTextField {
+- (SCLAlertViewBuilder *(^) (UITextField *textField))addCustomTextField {
     if (!_addCustomTextField) {
         __weak typeof(self) weakSelf = self;
         _addCustomTextField = ^(UITextField *textField) {
@@ -1969,7 +1969,7 @@ SCLTimerDisplay *buttonTimer;
     }
     return _addCustomTextField;
 }
--(SCLAlertViewBuilder *(^) (NSString *title))addSwitchViewWithLabelTitle {
+- (SCLAlertViewBuilder *(^) (NSString *title))addSwitchViewWithLabelTitle {
     if (!_addSwitchViewWithLabelTitle) {
         __weak typeof(self) weakSelf = self;
         _addSwitchViewWithLabelTitle = ^(NSString *title) {
@@ -1979,7 +1979,7 @@ SCLTimerDisplay *buttonTimer;
     }
     return _addSwitchViewWithLabelTitle;
 }
--(SCLAlertViewBuilder *(^) (NSInteger buttonIndex, BOOL reverse))addTimerToButtonIndex {
+- (SCLAlertViewBuilder *(^) (NSInteger buttonIndex, BOOL reverse))addTimerToButtonIndex {
     if (!_addTimerToButtonIndex) {
         __weak typeof(self) weakSelf = self;
         _addTimerToButtonIndex = ^(NSInteger buttonIndex, BOOL reverse) {
@@ -1989,7 +1989,7 @@ SCLTimerDisplay *buttonTimer;
     }
     return _addTimerToButtonIndex;
 }
--(SCLAlertViewBuilder *(^) (NSString *titleFontFamily, CGFloat size))setTitleFontFamily {
+- (SCLAlertViewBuilder *(^) (NSString *titleFontFamily, CGFloat size))setTitleFontFamily {
     if (!_setTitleFontFamily) {
         __weak typeof(self) weakSelf = self;
         _setTitleFontFamily = ^(NSString *titleFontFamily, CGFloat size) {
@@ -1999,7 +1999,7 @@ SCLTimerDisplay *buttonTimer;
     }
     return _setTitleFontFamily;
 }
--(SCLAlertViewBuilder *(^) (NSString *bodyTextFontFamily, CGFloat size))setBodyTextFontFamily {
+- (SCLAlertViewBuilder *(^) (NSString *bodyTextFontFamily, CGFloat size))setBodyTextFontFamily {
     if (!_setBodyTextFontFamily) {
         __weak typeof(self) weakSelf = self;
         _setBodyTextFontFamily = ^(NSString *bodyTextFontFamily, CGFloat size) {
@@ -2009,7 +2009,7 @@ SCLTimerDisplay *buttonTimer;
     }
     return _setBodyTextFontFamily;
 }
--(SCLAlertViewBuilder *(^) (NSString *buttonsFontFamily, CGFloat size))setButtonsTextFontFamily {
+- (SCLAlertViewBuilder *(^) (NSString *buttonsFontFamily, CGFloat size))setButtonsTextFontFamily {
     if (!_setButtonsTextFontFamily) {
         __weak typeof(self) weakSelf = self;
         _setButtonsTextFontFamily = ^(NSString *buttonsFontFamily, CGFloat size) {
@@ -2019,7 +2019,7 @@ SCLTimerDisplay *buttonTimer;
     }
     return _setButtonsTextFontFamily;
 }
--(SCLAlertViewBuilder *(^) (NSString *title, SCLActionBlock action))addButtonWithActionBlock {
+- (SCLAlertViewBuilder *(^) (NSString *title, SCLActionBlock action))addButtonWithActionBlock {
     if (!_addButtonWithActionBlock) {
         __weak typeof(self) weakSelf = self;
         _addButtonWithActionBlock = ^(NSString *title, SCLActionBlock action) {
@@ -2029,7 +2029,7 @@ SCLTimerDisplay *buttonTimer;
     }
     return _addButtonWithActionBlock;
 }
--(SCLAlertViewBuilder *(^) (NSString *title, SCLValidationBlock validationBlock, SCLActionBlock action))addButtonWithValidationBlock {
+- (SCLAlertViewBuilder *(^) (NSString *title, SCLValidationBlock validationBlock, SCLActionBlock action))addButtonWithValidationBlock {
     if (!_addButtonWithValidationBlock) {
         __weak typeof(self) weakSelf = self;
         _addButtonWithValidationBlock = ^(NSString *title, SCLValidationBlock validationBlock, SCLActionBlock action) {
@@ -2039,7 +2039,7 @@ SCLTimerDisplay *buttonTimer;
     }
     return _addButtonWithValidationBlock;
 }
--(SCLAlertViewBuilder *(^) (NSString *title, id target, SEL selector))addButtonWithTarget {
+- (SCLAlertViewBuilder *(^) (NSString *title, id target, SEL selector))addButtonWithTarget {
     if (!_addButtonWithTarget) {
         __weak typeof(self) weakSelf = self;
         _addButtonWithTarget = ^(NSString *title, id target, SEL selector) {
@@ -2051,7 +2051,7 @@ SCLTimerDisplay *buttonTimer;
 }
 
 #pragma mark - Builders
--(SCLAlertViewBuilder *(^)(SCLALertViewButtonBuilder *builder))addButtonWithBuilder {
+- (SCLAlertViewBuilder *(^)(SCLALertViewButtonBuilder *builder))addButtonWithBuilder {
     if (!_addButtonWithBuilder) {
         __weak typeof(self) weakSelf = self;
         _addButtonWithBuilder = ^(SCLALertViewButtonBuilder *builder){
@@ -2071,7 +2071,7 @@ SCLTimerDisplay *buttonTimer;
     }
     return _addButtonWithBuilder;
 }
--(SCLAlertViewBuilder *(^)(SCLALertViewTextFieldBuilder *builder))addTextFieldWithBuilder {
+- (SCLAlertViewBuilder *(^)(SCLALertViewTextFieldBuilder *builder))addTextFieldWithBuilder {
     if (!_addTextFieldWithBuilder) {
         __weak typeof(self) weakSelf = self;
         _addTextFieldWithBuilder = ^(SCLALertViewTextFieldBuilder *builder){
@@ -2084,14 +2084,15 @@ SCLTimerDisplay *buttonTimer;
 @end
 
 @interface SCLAlertViewShowBuilder()
+
 @property(weak, nonatomic) UIViewController *parameterViewController;
 @property(copy, nonatomic) UIImage *parameterImage;
 @property(copy, nonatomic) UIColor *parameterColor;
 @property(copy, nonatomic) NSString *parameterTitle;
 @property(copy, nonatomic) NSString *parameterSubTitle;
 @property(copy, nonatomic) NSString *parameterCompleteText;
-@property(assign, nonatomic) SCLAlertViewStyle parameterStyle;
 @property(copy, nonatomic) NSString *parameterCloseButtonTitle;
+@property(assign, nonatomic) SCLAlertViewStyle parameterStyle;
 @property(assign, nonatomic) NSTimeInterval parameterDuration;
 
 #pragma mark - Setters
@@ -2113,7 +2114,7 @@ SCLTimerDisplay *buttonTimer;
 
 
 #pragma mark - Setters
--(SCLAlertViewShowBuilder *(^)(UIViewController *viewController))viewController {
+- (SCLAlertViewShowBuilder *(^)(UIViewController *viewController))viewController {
     if (!_viewController) {
         __weak typeof(self) weakSelf = self;
         _viewController = ^(UIViewController *viewController){
@@ -2123,7 +2124,7 @@ SCLTimerDisplay *buttonTimer;
     }
     return _viewController;
 }
--(SCLAlertViewShowBuilder *(^)(UIImage *image))image {
+- (SCLAlertViewShowBuilder *(^)(UIImage *image))image {
     if (!_image) {
         __weak typeof(self) weakSelf = self;
         _image = ^(UIImage *image) {
@@ -2133,7 +2134,7 @@ SCLTimerDisplay *buttonTimer;
     }
     return _image;
 }
--(SCLAlertViewShowBuilder *(^)(UIColor *color))color {
+- (SCLAlertViewShowBuilder *(^)(UIColor *color))color {
     if (!_color) {
         __weak typeof(self) weakSelf = self;
         _color = ^(UIColor *color) {
@@ -2143,7 +2144,7 @@ SCLTimerDisplay *buttonTimer;
     }
     return _color;
 }
--(SCLAlertViewShowBuilder *(^)(NSString *title))title {
+- (SCLAlertViewShowBuilder *(^)(NSString *title))title {
     if (!_title) {
         __weak typeof(self) weakSelf = self;
         _title = ^(NSString *title){
@@ -2153,7 +2154,7 @@ SCLTimerDisplay *buttonTimer;
     }
     return _title;
 }
--(SCLAlertViewShowBuilder *(^)(NSString *subTitle))subTitle {
+- (SCLAlertViewShowBuilder *(^)(NSString *subTitle))subTitle {
     if (!_subTitle) {
         __weak typeof(self) weakSelf = self;
         _subTitle = ^(NSString *subTitle){
@@ -2163,7 +2164,7 @@ SCLTimerDisplay *buttonTimer;
     }
     return _subTitle;
 }
--(SCLAlertViewShowBuilder *(^)(NSString *completeText))completeText {
+- (SCLAlertViewShowBuilder *(^)(NSString *completeText))completeText {
     if (!_completeText) {
         __weak typeof(self) weakSelf = self;
         _completeText = ^(NSString *completeText){
@@ -2174,7 +2175,7 @@ SCLTimerDisplay *buttonTimer;
     return _completeText;
 }
 
--(SCLAlertViewShowBuilder *(^)(SCLAlertViewStyle style))style {
+- (SCLAlertViewShowBuilder *(^)(SCLAlertViewStyle style))style {
     if (!_style) {
         __weak typeof(self) weakSelf = self;
         _style = ^(SCLAlertViewStyle style){
@@ -2184,7 +2185,7 @@ SCLTimerDisplay *buttonTimer;
     }
     return _style;
 }
--(SCLAlertViewShowBuilder *(^)(NSString *closeButtonTitle))closeButtonTitle {
+- (SCLAlertViewShowBuilder *(^)(NSString *closeButtonTitle))closeButtonTitle {
     if (!_closeButtonTitle) {
         __weak typeof(self) weakSelf = self;
         _closeButtonTitle = ^(NSString *closeButtonTitle){
@@ -2194,7 +2195,7 @@ SCLTimerDisplay *buttonTimer;
     }
     return _closeButtonTitle;
 }
--(SCLAlertViewShowBuilder *(^)(NSTimeInterval duration))duration {
+- (SCLAlertViewShowBuilder *(^)(NSTimeInterval duration))duration {
     if (!_duration) {
         __weak typeof(self) weakSelf = self;
         _duration = ^(NSTimeInterval duration){
