@@ -309,7 +309,6 @@ SCLTimerDisplay *buttonTimer;
         }
     }
     
-    CGFloat titleTop = _useLargerIcon ? kTitleTop : kTitleTop + 4.0f;
     if(!_usingNewWindow)
     {
         // Set new background frame
@@ -353,7 +352,7 @@ SCLTimerDisplay *buttonTimer;
     }
     
     // Text fields
-    CGFloat y = (_labelTitle.text == nil) ? titleTop : titleTop + _labelTitle.frame.size.height;
+    CGFloat y = (_labelTitle.text == nil) ? kTitleTop : kTitleTop + _labelTitle.frame.size.height;
     _viewText.frame = CGRectMake(12.0f, y, _windowWidth - 24.0f, _subTitleHeight);
     y += _subTitleHeight + 14.0f;
     for (SCLTextView *textField in _inputs)
