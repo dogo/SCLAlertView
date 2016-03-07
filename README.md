@@ -15,10 +15,9 @@ Animated Alert View written in Swift but ported to Objective-C, which can be use
 ![BackgroundImage](https://raw.githubusercontent.com/dogo/SCLAlertView/master/ScreenShots/ScreenShot6.png)
 ![BackgroundImage](https://raw.githubusercontent.com/dogo/SCLAlertView/master/ScreenShots/ScreenShot7.png)
 
-###Modern
+###Fluent style
 
 ```Objective-C
-//Fluent style
 
 SCLAlertViewBuilder *builder = [SCLAlertViewBuilder new]
 .addButtonWithActionBlock(@"Send", ^{ /*work here*/ });
@@ -197,6 +196,7 @@ SCLAlertView *alert = [[SCLAlertView alloc] init];
     
 [alert showWaiting:self title:@"Waiting..." subTitle:@"Blah de blah de blah, blah. Blah de blah de" closeButtonTitle:nil duration:5.0f];
 ```
+
 ###Add a switch button
 ```Objective-C
 SCLAlertView *alert = [[SCLAlertView alloc] init];
@@ -209,6 +209,18 @@ switchView.tintColor = [UIColor brownColor];
 }];
     
 [alert showCustom:self image:[UIImage imageNamed:@"switch"] color:[UIColor brownColor] title:kInfoTitle subTitle:kSubtitle closeButtonTitle:nil duration:0.0f];
+```
+
+###Add custom view
+```Objective-C
+SCLAlertView *alert = [[SCLAlertView alloc] init];
+
+UIView *customView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 215.0f, 80.0f)];
+customView.backgroundColor = [UIColor redColor];
+
+[alert addCustomView:customView];
+
+[alert showNotice:self title:@"Title" subTitle:@"This alert view shows a custom view" closeButtonTitle:@"Done" duration:0.0f];
 ```
 
 ###SCLAlertView properties
