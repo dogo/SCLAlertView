@@ -289,6 +289,10 @@ SCLTimerDisplay *buttonTimer;
         // Reposition inner circle appropriately
         CGFloat x = (kCircleHeightBackground - kCircleHeight) / 2;
         _circleView.frame = CGRectMake(x, x, kCircleHeight, kCircleHeight);
+        if (_labelTitle.text == nil)
+        {
+            kTitleTop = kCircleHeightBackground / 2;
+        }
     } else {
         kCircleBackgroundTopPosition = -(kCircleHeightBackground / 2);
     }
