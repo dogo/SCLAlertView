@@ -169,6 +169,7 @@ SCLTimerDisplay *buttonTimer;
     self.hideAnimationType = FadeOut;
     self.showAnimationType = SlideInFromTop;
     self.backgroundType = Shadow;
+    self.tintTopCircle = YES;
     
     // Font
     _titleFontFamily = @"HelveticaNeue";
@@ -195,15 +196,19 @@ SCLTimerDisplay *buttonTimer;
     [self.view addSubview:_circleViewBackground];
     
     // Circle View
-    _tintTopCircle = YES;
-    _circleViewBackground.backgroundColor = [UIColor whiteColor];
-    _circleViewBackground.layer.cornerRadius = _circleViewBackground.frame.size.height / 2;
     CGFloat x = (kCircleHeightBackground - kCircleHeight) / 2;
     _circleView.frame = CGRectMake(x, x, kCircleHeight, kCircleHeight);
     _circleView.layer.cornerRadius = _circleView.frame.size.height / 2;
+    
+    // Circle Background View
+    _circleViewBackground.backgroundColor = [UIColor whiteColor];
+    _circleViewBackground.layer.cornerRadius = _circleViewBackground.frame.size.height / 2;
     x = (kCircleHeight - _circleIconHeight) / 2;
+    
+    // Circle Image View
     _circleIconImageView.frame = CGRectMake(x, x, _circleIconHeight, _circleIconHeight);
-    _circleIconImageView.contentMode = UIViewContentModeScaleAspectFill;    
+    _circleIconImageView.contentMode = UIViewContentModeScaleAspectFill;
+    
     [_circleViewBackground addSubview:_circleView];
     [_circleView addSubview:_circleIconImageView];
     
@@ -279,7 +284,6 @@ SCLTimerDisplay *buttonTimer;
     if (_useLargerIcon) {
         // Adjust icon
         _circleIconHeight = 70.0f;
-        _circleViewBackground.layer.cornerRadius = _circleViewBackground.frame.size.height / 2;
         
         // Adjust coordinate variables for larger sized top circle
         kCircleBackgroundTopPosition = -61.0f;
@@ -337,6 +341,7 @@ SCLTimerDisplay *buttonTimer;
         self.view.frame = r;
         _contentView.frame = CGRectMake(0.0f, 0.0f, _windowWidth, _windowHeight);
         _circleViewBackground.frame = CGRectMake(_windowWidth / 2 - kCircleHeightBackground / 2, kCircleBackgroundTopPosition, kCircleHeightBackground, kCircleHeightBackground);
+        _circleViewBackground.layer.cornerRadius = _circleViewBackground.frame.size.height / 2;
         _circleView.layer.cornerRadius = _circleView.frame.size.height / 2;
         _circleIconImageView.frame = CGRectMake(kCircleHeight / 2 - _circleIconHeight / 2, kCircleHeight / 2 - _circleIconHeight / 2, _circleIconHeight, _circleIconHeight);
         _labelTitle.frame = CGRectMake(12.0f, kTitleTop, _windowWidth - 24.0f, kTitleHeight);
@@ -351,6 +356,7 @@ SCLTimerDisplay *buttonTimer;
         x = (sz.width - kCircleHeightBackground) / 2;
         _circleView.layer.cornerRadius = _circleView.frame.size.height / 2;        
         _circleViewBackground.frame = CGRectMake(x, y, kCircleHeightBackground, kCircleHeightBackground);
+        _circleViewBackground.layer.cornerRadius = _circleViewBackground.frame.size.height / 2;        
         _circleIconImageView.frame = CGRectMake(kCircleHeight / 2 - _circleIconHeight / 2, kCircleHeight / 2 - _circleIconHeight / 2, _circleIconHeight, _circleIconHeight);
         _labelTitle.frame = CGRectMake(12.0f + self.contentView.frame.origin.x, kTitleTop + self.contentView.frame.origin.y, _windowWidth - 24.0f, kTitleHeight);
     }
@@ -382,6 +388,7 @@ SCLTimerDisplay *buttonTimer;
     
     // Adapt window height according to icon size
     self.windowHeight = _useLargerIcon ? y : self.windowHeight;
+    _contentView.frame = CGRectMake(_contentView.frame.origin.x, _contentView.frame.origin.y, _windowWidth, _windowHeight);
     
     // Adjust corner radius, if a value has been passed
     _contentView.layer.cornerRadius = self.cornerRadius ? self.cornerRadius : 5.0f;
