@@ -50,7 +50,8 @@ typedef NS_ENUM(NSInteger, SCLAlertViewHideAnimation)
     SlideOutToLeft,
     SlideOutToRight,
     SlideOutToCenter,
-    SlideOutFromCenter
+    SlideOutFromCenter,
+    SimplyDisappear
 };
 
 /** Alert show animation styles
@@ -65,7 +66,8 @@ typedef NS_ENUM(NSInteger, SCLAlertViewShowAnimation)
     SlideInFromLeft,
     SlideInFromRight,
     SlideInFromCenter,
-    SlideInToCenter
+    SlideInToCenter,
+    SimplyAppear
 };
 
 /** Alert background styles

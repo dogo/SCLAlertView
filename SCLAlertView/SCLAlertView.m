@@ -1245,6 +1245,10 @@ SCLTimerDisplay *buttonTimer;
         case SlideInToCenter:
             [self slideInToCenter];
             break;
+            
+        case SimplyAppear:
+            [self simplyAppear];
+            break;
     }
 }
 
@@ -1280,6 +1284,10 @@ SCLTimerDisplay *buttonTimer;
             
         case SlideOutFromCenter:
             [self slideOutFromCenter];
+            break;
+        
+        case SimplyDisappear:
+            [self simplyDisappear];
             break;
     }
     
@@ -1398,6 +1406,18 @@ SCLTimerDisplay *buttonTimer;
         [self fadeOut];
     }];
 }
+
+- (void)simplyDisappear
+{
+    self.backgroundView.alpha = _backgroundOpacity;
+    self.view.alpha = 1.0f;
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.backgroundView.alpha = 0.0f;
+        self.view.alpha = 0.0f;
+    });
+}
+
 
 #pragma mark - Show Animations
 
@@ -1571,6 +1591,18 @@ SCLTimerDisplay *buttonTimer;
         }];
     }];
 }
+
+- (void)simplyAppear
+{
+    self.backgroundView.alpha = 0.0f;
+    self.view.alpha = 0.0f;
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.backgroundView.alpha = _backgroundOpacity;
+        self.view.alpha = 1.0f;
+    });
+}
+
 
 @end
 
