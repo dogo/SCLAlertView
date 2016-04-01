@@ -84,7 +84,7 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     SCLAlertView *alert = [[SCLAlertView alloc] init];
     
     alert.backgroundType = Blur;
-    
+    alert.showAnimationType = FadeIn;
     [alert showNotice:self title:kNoticeTitle subTitle:@"You've just displayed this awesome Pop Up View with blur effect" closeButtonTitle:kButtonTitle duration:0.0f];
 }
 
@@ -100,7 +100,7 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     SCLAlertView *alert = [[SCLAlertView alloc] init];
     
     alert.shouldDismissOnTapOutside = YES;
-    
+    alert.showAnimationType = SimplyAppear;
     [alert alertIsDismissed:^{
         NSLog(@"SCLAlertView dismissed!");
     }];
@@ -113,7 +113,7 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     SCLAlertView *alert = [[SCLAlertView alloc] init];
     
     SCLTextView *textField = [alert addTextField:@"Enter your name"];
-    
+    alert.hideAnimationType = SimplyDisappear;
     [alert addButton:@"Show Name" actionBlock:^(void) {
         NSLog(@"Text value: %@", textField.text);
     }];
