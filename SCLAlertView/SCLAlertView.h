@@ -222,6 +222,12 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
  */
 @property (nonatomic) UIStatusBarStyle statusBarStyle;
 
+/** Set horizontal alignment for buttons
+ *
+ * Horizontal aligment instead of vertically if YES
+ */
+@property (nonatomic) BOOL horizontalButtons;
+
 /** Initialize SCLAlertView using a new window.
  *
  * Init with new window
