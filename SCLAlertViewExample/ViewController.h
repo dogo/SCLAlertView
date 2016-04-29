@@ -11,6 +11,7 @@
 @interface ViewController : UIViewController
 
 - (IBAction)showSuccess:(id)sender;
+- (IBAction)showSuccessWithHorizontalButtons:(id)sender;
 - (IBAction)showError:(id)sender;
 - (IBAction)showNotice:(id)sender;
 - (IBAction)showWarning:(id)sender;

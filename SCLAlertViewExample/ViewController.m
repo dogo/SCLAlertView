@@ -70,6 +70,33 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     [alert showSuccess:kSuccessTitle subTitle:kSubtitle closeButtonTitle:kButtonTitle duration:0.0f];
 }
 
+- (IBAction)showSuccessWithHorizontalButtons:(id)sender {
+    SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+    [alert setHorizontalButtons:YES];
+    
+    SCLButton *button = [alert addButton:@"First Button" target:self selector:@selector(firstButton)];
+    
+    button.buttonFormatBlock = ^NSDictionary* (void)
+    {
+        NSMutableDictionary *buttonConfig = [[NSMutableDictionary alloc] init];
+        
+        buttonConfig[@"backgroundColor"] = [UIColor whiteColor];
+        buttonConfig[@"textColor"] = [UIColor blackColor];
+        buttonConfig[@"borderWidth"] = @2.0f;
+        buttonConfig[@"borderColor"] = [UIColor greenColor];
+        
+        return buttonConfig;
+    };
+    
+    [alert addButton:@"Second Button" actionBlock:^(void) {
+        NSLog(@"Second button tapped");
+    }];
+    
+    alert.soundURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/right_answer.mp3", [NSBundle mainBundle].resourcePath]];
+    
+    [alert showSuccess:kSuccessTitle subTitle:kSubtitle closeButtonTitle:kButtonTitle duration:0.0f];
+}
+
 - (IBAction)showError:(id)sender
 {
     SCLAlertView *alert = [[SCLAlertView alloc] init];
