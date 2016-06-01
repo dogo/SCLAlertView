@@ -65,7 +65,7 @@ typedef NS_ENUM(NSInteger, SCLActionType)
  *
  * Set SCLButton color.
  */
-@property (nonatomic, strong) UIColor *defaultBackgroundColor;
+@property (nonatomic, strong) UIColor *defaultBackgroundColor UI_APPEARANCE_SELECTOR;
 
 /** Set Target object.
  *
