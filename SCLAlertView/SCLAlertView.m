@@ -1315,6 +1315,11 @@ SCLTimerDisplay *buttonTimer;
         [_activityIndicatorView stopAnimating];
     }
     
+    if (durationTimer)
+    {
+        [durationTimer invalidate];
+    }
+    
     if (self.dismissBlock)
     {
         self.dismissBlock();
