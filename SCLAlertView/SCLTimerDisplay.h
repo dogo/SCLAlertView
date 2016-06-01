@@ -14,7 +14,7 @@
 #endif
 #import "SCLButton.h"
 
-@interface SCLTimerDisplay : UIView{
+@interface SCLTimerDisplay : UIView {
     CGFloat currentAngle;
     CGFloat currentTime;
     CGFloat timerLimit;

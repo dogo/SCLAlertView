@@ -426,8 +426,8 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     alert.useLargerIcon = YES;
     alert.cornerRadius = 13.0f;
     
-    SCLSwitchView *switchView = [alert addSwitchViewWithLabel:@"Don't show again".uppercaseString];
-    switchView.tintColor = [UIColor brownColor];
+    [alert addSwitchViewWithLabel:@"Don't show again".uppercaseString];
+    [[SCLSwitchView appearance] setTintColor:[UIColor redColor]];
     
     SCLButton *button = [alert addButton:@"Done" target:self selector:@selector(firstButton)];
     
