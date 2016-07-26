@@ -326,12 +326,19 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
 ```
 
 ### Installation
+SCLAlertView-Objective-C is available through :
 
-SCLAlertView-Objective-C is available through [CocoaPods](http://cocoapods.org).
+### [CocoaPods](https://cocoapods.org)
 
 To install add the following line to your Podfile:
 
     pod 'SCLAlertView-Objective-C'
+    
+### [Carthage] (https://github.com/Carthage/Carthage)
+
+```
+TODO
+```    
 
 ### Collaboration
 I tried to build an easy to use API, while beeing flexible enough for multiple variations, but I'm sure there are ways of improving and adding more features, so feel free to collaborate with ideas, issues and/or pull requests.
