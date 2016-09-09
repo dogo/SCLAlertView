@@ -28,28 +28,28 @@
 
 @interface SCLAlertView ()  <UITextFieldDelegate, UIGestureRecognizerDelegate>
 
-@property (nonatomic, strong) NSMutableArray *inputs;
-@property (nonatomic, strong) NSMutableArray *customViews;
-@property (nonatomic, strong) NSMutableArray *buttons;
-@property (nonatomic, strong) UIImageView *circleIconImageView;
-@property (nonatomic, strong) UIView *circleView;
-@property (nonatomic, strong) UIView *circleViewBackground;
-@property (nonatomic, strong) UIView *contentView;
-@property (nonatomic, strong) UIImageView *backgroundView;
-@property (nonatomic, strong) UITapGestureRecognizer *gestureRecognizer;
-@property (nonatomic, strong) NSString *titleFontFamily;
-@property (nonatomic, strong) NSString *bodyTextFontFamily;
-@property (nonatomic, strong) NSString *buttonsFontFamily;
-@property (nonatomic, strong) UIWindow *previousWindow;
-@property (nonatomic, strong) UIWindow *SCLAlertWindow;
-@property (nonatomic, copy) SCLDismissBlock dismissBlock;
-@property (nonatomic, assign) SystemSoundID soundID;
-@property (nonatomic, weak) UIViewController *rootViewController;
-@property (nonatomic, weak) id<UIGestureRecognizerDelegate> restoreInteractivePopGestureDelegate;
-@property (nonatomic) BOOL canAddObservers;
-@property (nonatomic) BOOL keyboardIsVisible;
-@property (nonatomic) BOOL usingNewWindow;
-@property (nonatomic) BOOL restoreInteractivePopGestureEnabled;
+@property (strong, nonatomic) NSMutableArray *inputs;
+@property (strong, nonatomic) NSMutableArray *customViews;
+@property (strong, nonatomic) NSMutableArray *buttons;
+@property (strong, nonatomic) UIImageView *circleIconImageView;
+@property (strong, nonatomic) UIView *circleView;
+@property (strong, nonatomic) UIView *circleViewBackground;
+@property (strong, nonatomic) UIView *contentView;
+@property (strong, nonatomic) UIImageView *backgroundView;
+@property (strong, nonatomic) UITapGestureRecognizer *gestureRecognizer;
+@property (strong, nonatomic) NSString *titleFontFamily;
+@property (strong, nonatomic) NSString *bodyTextFontFamily;
+@property (strong, nonatomic) NSString *buttonsFontFamily;
+@property (strong, nonatomic) UIWindow *previousWindow;
+@property (strong, nonatomic) UIWindow *SCLAlertWindow;
+@property (copy, nonatomic) SCLDismissBlock dismissBlock;
+@property (weak, nonatomic) UIViewController *rootViewController;
+@property (weak, nonatomic) id<UIGestureRecognizerDelegate> restoreInteractivePopGestureDelegate;
+@property (assign, nonatomic) SystemSoundID soundID;
+@property (assign, nonatomic) BOOL canAddObservers;
+@property (assign, nonatomic) BOOL keyboardIsVisible;
+@property (assign, nonatomic) BOOL usingNewWindow;
+@property (assign, nonatomic) BOOL restoreInteractivePopGestureEnabled;
 @property (nonatomic) CGFloat backgroundOpacity;
 @property (nonatomic) CGFloat titleFontSize;
 @property (nonatomic) CGFloat bodyFontSize;
@@ -364,6 +364,11 @@ SCLTimerDisplay *buttonTimer;
     // Text fields
     CGFloat y = (_labelTitle.text == nil) ? kTitleTop : kTitleTop + _labelTitle.frame.size.height;
     _viewText.frame = CGRectMake(12.0f, y, _windowWidth - 24.0f, _subTitleHeight);
+    
+    if (!_labelTitle && !_viewText) {
+        y = 0.0f;
+    }
+
     y += _subTitleHeight + 14.0f;
     for (SCLTextView *textField in _inputs)
     {
@@ -904,6 +909,7 @@ SCLTimerDisplay *buttonTimer;
         // Title is nil, we can move the body message to center and remove it from superView
         self.windowHeight -= _labelTitle.frame.size.height;
         [_labelTitle removeFromSuperview];
+        _labelTitle = nil;
         
         _subTitleY = kCircleHeight - 20;
     }
@@ -946,9 +952,14 @@ SCLTimerDisplay *buttonTimer;
         self.subTitleHeight = 0.0f;
         self.windowHeight -= _viewText.frame.size.height;
         [_viewText removeFromSuperview];
+        _viewText = nil;
         
         // Move up
         _labelTitle.frame = CGRectMake(12.0f, 37.0f, _windowWidth - 24.0f, kTitleHeight);
+    }
+    
+    if (!_labelTitle && !_viewText) {
+        self.windowHeight -= kTitleTop;
     }
     
     // Add button, if necessary
