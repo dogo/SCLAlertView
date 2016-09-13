@@ -70,6 +70,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		44E430DB1D889255002FE849 /* SCLAlertViewFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCLAlertViewFramework.h; sourceTree = "<group>"; };
 		572BB1451B8383B3002DEE38 /* SCLTimerDisplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLTimerDisplay.h; sourceTree = "<group>"; };
 		572BB1461B8383B3002DEE38 /* SCLTimerDisplay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLTimerDisplay.m; sourceTree = "<group>"; };
 		CF6FB1221C5926FC009715F3 /* SCLSwitchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLSwitchView.h; sourceTree = "<group>"; };
@@ -256,6 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				EF994B0C1D47AB1400619DFF /* Info.plist */,
+				44E430DB1D889255002FE849 /* SCLAlertViewFramework.h */,
 			);
 			path = SCLAlertViewFramework;
 			sourceTree = "<group>";
