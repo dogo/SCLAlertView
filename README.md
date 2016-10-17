@@ -23,7 +23,7 @@ Animated Alert View written in Swift but ported to Objective-C, which can be use
 SCLAlertViewBuilder *builder = [SCLAlertViewBuilder new]
 .addButtonWithActionBlock(@"Send", ^{ /*work here*/ });
 SCLAlertViewShowBuilder *showBuilder = [SCLAlertViewShowBuilder new]
-.style(Warning)
+.style(SCLAlertViewStyleWarning)
 .title(@"Title")
 .subTitle(@"Subtitle")
 .duration(0);
@@ -51,14 +51,14 @@ showBuilder.show(builder.alertView, self.window.rootViewController);
     });
     
     SCLAlertViewBuilder *builder = [SCLAlertViewBuilder new]
-    .showAnimationType(FadeIn)
-    .hideAnimationType(FadeOut)
+    .showAnimationType(SCLAlertViewShowAnimationFadeIn)
+    .hideAnimationType(SCLAlertViewHideAnimationFadeOut)
     .shouldDismissOnTapOutside(NO)
     .addTextFieldWithBuilder(textField)
     .addButtonWithBuilder(doneButton);
     
     SCLAlertViewShowBuilder *showBuilder = [SCLAlertViewShowBuilder new]
-    .style(Custom)
+    .style(SCLAlertViewStyleCustom)
     .image([SCLAlertViewStyleKit imageOfInfo])
     .color([UIColor blueColor])
     .title(title)
@@ -229,14 +229,14 @@ customView.backgroundColor = [UIColor redColor];
 //Dismiss on tap outside (Default is NO)
 alert.shouldDismissOnTapOutside = YES;
 
-//Hide animation type (Default is FadeOut)
-alert.hideAnimationType = SlideOutToBottom;
+//Hide animation type (Default is SCLAlertViewHideAnimationFadeOut)
+alert.hideAnimationType = SCLAlertViewHideAnimationSlideOutToBottom;
 
-//Show animation type (Default is SlideInFromTop)
-alert.showAnimationType = SlideInFromLeft;
+//Show animation type (Default is SCLAlertViewShowAnimationSlideInFromTop)
+alert.showAnimationType =  SCLAlertViewShowAnimationSlideInFromLeft;
 
-//Set background type (Default is Shadow)
-alert.backgroundType = Blur;
+//Set background type (Default is SCLAlertViewBackgroundShadow)
+alert.backgroundType = SCLAlertViewBackgroundBlur;
 
 //Overwrite SCLAlertView (Buttons, top circle and borders) colors
 alert.customViewColor = [UIColor purpleColor];
@@ -277,41 +277,43 @@ alert.soundURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/right_an
 ```Objective-C
 typedef NS_ENUM(NSInteger, SCLAlertViewStyle)
 {
-    Success,
-    Error,
-    Notice,
-    Warning,
-    Info,
-    Edit,
-    Waiting,
-    Question,    
-    Custom
+    SCLAlertViewStyleSuccess,
+    SCLAlertViewStyleError,
+    SCLAlertViewStyleNotice,
+    SCLAlertViewStyleWarning,
+    SCLAlertViewStyleInfo,
+    SCLAlertViewStyleEdit,
+    SCLAlertViewStyleWaiting,
+    SCLAlertViewStyleQuestion,
+    SCLAlertViewStyleCustom
 };
 ```
 ####Alert View hide animation styles
 ```Objective-C
 typedef NS_ENUM(NSInteger, SCLAlertViewHideAnimation)
 {
-    FadeOut,
-    SlideOutToBottom,
-    SlideOutToTop,
-    SlideOutToLeft,
-    SlideOutToRight,
-    SlideOutToCenter,
-    SlideOutFromCenter
+    SCLAlertViewHideAnimationFadeOut,
+    SCLAlertViewHideAnimationSlideOutToBottom,
+    SCLAlertViewHideAnimationSlideOutToTop,
+    SCLAlertViewHideAnimationSlideOutToLeft,
+    SCLAlertViewHideAnimationSlideOutToRight,
+    SCLAlertViewHideAnimationSlideOutToCenter,
+    SCLAlertViewHideAnimationSlideOutFromCenter,
+    SCLAlertViewHideAnimationSimplyDisappear
 };
 ```
 ####Alert View show animation styles
 ```Objective-C
 typedef NS_ENUM(NSInteger, SCLAlertViewShowAnimation)
 {
-    FadeIn,
-    SlideInFromBottom,
-    SlideInFromTop,
-    SlideInFromLeft,
-    SlideInFromRight,
-    SlideInFromCenter,
-    SlideInToCenter
+    SCLAlertViewShowAnimationFadeIn,
+    SCLAlertViewShowAnimationSlideInFromBottom,
+    SCLAlertViewShowAnimationSlideInFromTop,
+    SCLAlertViewShowAnimationSlideInFromLeft,
+    SCLAlertViewShowAnimationSlideInFromRight,
+    SCLAlertViewShowAnimationSlideInFromCenter,
+    SCLAlertViewShowAnimationSlideInToCenter,
+    SCLAlertViewShowAnimationSimplyAppear
 };
 ```
 
@@ -319,9 +321,9 @@ typedef NS_ENUM(NSInteger, SCLAlertViewShowAnimation)
 ```Objective-C
 typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
 {
-    Shadow,
-    Blur,
-    Transparent
+    SCLAlertViewBackgroundShadow,
+    SCLAlertViewBackgroundBlur,
+    SCLAlertViewBackgroundTransparent
 };
 ```
 
