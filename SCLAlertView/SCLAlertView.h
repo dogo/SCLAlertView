@@ -27,15 +27,15 @@ typedef void (^SCLForceHideBlock)(void);
  */
 typedef NS_ENUM(NSInteger, SCLAlertViewStyle)
 {
-    Success,
-    Error,
-    Notice,
-    Warning,
-    Info,
-    Edit,
-    Waiting,
-    Question,
-    Custom
+    SCLAlertViewStyleSuccess,
+    SCLAlertViewStyleError,
+    SCLAlertViewStyleNotice,
+    SCLAlertViewStyleWarning,
+    SCLAlertViewStyleInfo,
+    SCLAlertViewStyleEdit,
+    SCLAlertViewStyleWaiting,
+    SCLAlertViewStyleQuestion,
+    SCLAlertViewStyleCustom
 };
 
 /** Alert hide animation styles
@@ -44,14 +44,14 @@ typedef NS_ENUM(NSInteger, SCLAlertViewStyle)
  */
 typedef NS_ENUM(NSInteger, SCLAlertViewHideAnimation)
 {
-    FadeOut,
-    SlideOutToBottom,
-    SlideOutToTop,
-    SlideOutToLeft,
-    SlideOutToRight,
-    SlideOutToCenter,
-    SlideOutFromCenter,
-    SimplyDisappear
+    SCLAlertViewHideAnimationFadeOut,
+    SCLAlertViewHideAnimationSlideOutToBottom,
+    SCLAlertViewHideAnimationSlideOutToTop,
+    SCLAlertViewHideAnimationSlideOutToLeft,
+    SCLAlertViewHideAnimationSlideOutToRight,
+    SCLAlertViewHideAnimationSlideOutToCenter,
+    SCLAlertViewHideAnimationSlideOutFromCenter,
+    SCLAlertViewHideAnimationSimplyDisappear
 };
 
 /** Alert show animation styles
@@ -60,14 +60,14 @@ typedef NS_ENUM(NSInteger, SCLAlertViewHideAnimation)
  */
 typedef NS_ENUM(NSInteger, SCLAlertViewShowAnimation)
 {
-    FadeIn,
-    SlideInFromBottom,
-    SlideInFromTop,
-    SlideInFromLeft,
-    SlideInFromRight,
-    SlideInFromCenter,
-    SlideInToCenter,
-    SimplyAppear
+    SCLAlertViewShowAnimationFadeIn,
+    SCLAlertViewShowAnimationSlideInFromBottom,
+    SCLAlertViewShowAnimationSlideInFromTop,
+    SCLAlertViewShowAnimationSlideInFromLeft,
+    SCLAlertViewShowAnimationSlideInFromRight,
+    SCLAlertViewShowAnimationSlideInFromCenter,
+    SCLAlertViewShowAnimationSlideInToCenter,
+    SCLAlertViewShowAnimationSimplyAppear
 };
 
 /** Alert background styles
@@ -76,9 +76,9 @@ typedef NS_ENUM(NSInteger, SCLAlertViewShowAnimation)
  */
 typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
 {
-    Shadow,
-    Blur,
-    Transparent
+    SCLAlertViewBackgroundShadow,
+    SCLAlertViewBackgroundBlur,
+    SCLAlertViewBackgroundTransparent
 };
 
 /** Content view corner radius
