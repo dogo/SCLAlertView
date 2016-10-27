@@ -132,4 +132,9 @@
     self.switchLabel.text = labelText;
 }
 
+- (void)setSelected:(BOOL)selected
+{
+    self.switchKnob.on = selected;
+}
+
 @end
