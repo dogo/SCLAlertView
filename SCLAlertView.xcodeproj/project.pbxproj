@@ -27,8 +27,6 @@
 		DDB15FDB19D5BAA000173158 /* SCLButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB15FDA19D5BAA000173158 /* SCLButton.m */; };
 		DDB15FDE19D5BCF400173158 /* SCLAlertViewResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB15FDD19D5BCF400173158 /* SCLAlertViewResponder.m */; };
 		DDB15FE119D5D85B00173158 /* SCLAlertViewStyleKit.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB15FE019D5D85B00173158 /* SCLAlertViewStyleKit.m */; };
-		EF994B0F1D47AB1400619DFF /* SCLAlertViewFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF994B081D47AB1400619DFF /* SCLAlertViewFramework.framework */; };
-		EF994B101D47AB1400619DFF /* SCLAlertViewFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EF994B081D47AB1400619DFF /* SCLAlertViewFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EF994B151D47AB4A00619DFF /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2E172919FA84B800CBAEC3 /* UIImage+ImageEffects.m */; };
 		EF994B161D47AB4A00619DFF /* SCLAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB15FD619D5B96500173158 /* SCLAlertView.m */; };
 		EF994B171D47AB4A00619DFF /* SCLButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB15FDA19D5BAA000173158 /* SCLButton.m */; };
@@ -47,28 +45,7 @@
 			remoteGlobalIDString = DDB15F9C19D5B7C600173158;
 			remoteInfo = SCLAlertView;
 		};
-		EF994B0D1D47AB1400619DFF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DDB15F9519D5B7C600173158 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EF994B071D47AB1400619DFF;
-			remoteInfo = SCLAlertViewFramework;
-		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		EF994B141D47AB1400619DFF /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				EF994B101D47AB1400619DFF /* SCLAlertViewFramework.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		44E430DB1D889255002FE849 /* SCLAlertViewFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCLAlertViewFramework.h; sourceTree = "<group>"; };
@@ -122,7 +99,6 @@
 				DD06C2331C64EB1A00E6F6B0 /* Accelerate.framework in Frameworks */,
 				DD06C22F1C64EAF600E6F6B0 /* AudioToolbox.framework in Frameworks */,
 				DD06C22D1C64EAE500E6F6B0 /* UIKit.framework in Frameworks */,
-				EF994B0F1D47AB1400619DFF /* SCLAlertViewFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,12 +260,10 @@
 				DDB15F9919D5B7C600173158 /* Sources */,
 				DDB15F9A19D5B7C600173158 /* Frameworks */,
 				DDB15F9B19D5B7C600173158 /* Resources */,
-				EF994B141D47AB1400619DFF /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				EF994B0E1D47AB1400619DFF /* PBXTargetDependency */,
 			);
 			name = SCLAlertView;
 			productName = SCLAlertView;
@@ -449,11 +423,6 @@
 			isa = PBXTargetDependency;
 			target = DDB15F9C19D5B7C600173158 /* SCLAlertView */;
 			targetProxy = DDB15FB719D5B7C600173158 /* PBXContainerItemProxy */;
-		};
-		EF994B0E1D47AB1400619DFF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = EF994B071D47AB1400619DFF /* SCLAlertViewFramework */;
-			targetProxy = EF994B0D1D47AB1400619DFF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
