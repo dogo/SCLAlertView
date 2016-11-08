@@ -22,43 +22,43 @@
  *
  * TODO
  */
-+ (UIImage*)imageOfCheckmark;
++ (UIImage *)imageOfCheckmark;
 
 /** TODO
  *
  * TODO
  */
-+ (UIImage*)imageOfCross;
++ (UIImage *)imageOfCross;
 
 /** TODO
  *
  * TODO
  */
-+ (UIImage*)imageOfNotice;
++ (UIImage *)imageOfNotice;
 
 /** TODO
  *
  * TODO
  */
-+ (UIImage*)imageOfWarning;
++ (UIImage *)imageOfWarning;
 
 /** TODO
  *
  * TODO
  */
-+ (UIImage*)imageOfInfo;
++ (UIImage *)imageOfInfo;
 
 /** TODO
  *
  * TODO
  */
-+ (UIImage*)imageOfEdit;
++ (UIImage *)imageOfEdit;
 
 /** TODO
  *
  * TODO
  */
-+ (UIImage*)imageOfQuestion;
++ (UIImage *)imageOfQuestion;
 
 /** TODO
  *

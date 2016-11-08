@@ -3,7 +3,7 @@
 //  SCLAlertView
 //
 //  Created by Diogo Autilio on 9/18/15.
-//  Copyright © 2015 AnyKey Entertainment. All rights reserved.
+//  Copyright (c) 2015-2016 AnyKey Entertainment. All rights reserved.
 //
 
 #import "SCLTextView.h"

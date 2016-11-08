@@ -3,7 +3,7 @@
 //  SCLAlertView
 //
 //  Created by Taylor Ryan on 8/18/15.
-//  Copyright (c) 2015 AnyKey Entertainment. All rights reserved.
+//  Copyright (c) 2015-2016 AnyKey Entertainment. All rights reserved.
 //
 
 #import "SCLTimerDisplay.h"
