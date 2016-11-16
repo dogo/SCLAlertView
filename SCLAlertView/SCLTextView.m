@@ -47,7 +47,7 @@
     self.frame = CGRectMake(0.0f, 0.0f, 0.0f, MIN_HEIGHT);
     self.returnKeyType = UIReturnKeyDone;
     self.borderStyle = UITextBorderStyleRoundedRect;
-    self.autocapitalizationType = UITextAutocapitalizationTypeWords;
+    self.autocapitalizationType = UITextAutocapitalizationTypeSentences;
     self.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.layer.masksToBounds = YES;
     self.layer.borderWidth = 1.0f;
