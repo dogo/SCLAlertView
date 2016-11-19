@@ -1355,7 +1355,12 @@ SCLTimerDisplay *buttonTimer;
 
 - (void)fadeOut
 {
-    [UIView animateWithDuration:0.3f animations:^{
+    [self fadeOutWithDuration:0.3f];
+}
+
+- (void)fadeOutWithDuration:(NSTimeInterval)duration
+{
+    [UIView animateWithDuration:duration animations:^{
         self.backgroundView.alpha = 0.0f;
         self.view.alpha = 0.0f;
     } completion:^(BOOL completed) {
@@ -1448,8 +1453,7 @@ SCLTimerDisplay *buttonTimer;
     self.view.alpha = 1.0f;
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        self.backgroundView.alpha = 0.0f;
-        self.view.alpha = 0.0f;
+        [self fadeOutWithDuration:0];
     });
 }
 
