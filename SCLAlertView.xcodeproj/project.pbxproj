@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		08DD3F811DF864530099EC72 /* comic-sans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 08DD3F801DF864530099EC72 /* comic-sans.ttf */; };
+		08DD3F821DF864530099EC72 /* comic-sans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 08DD3F801DF864530099EC72 /* comic-sans.ttf */; };
 		572BB1471B8383B3002DEE38 /* SCLTimerDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = 572BB1461B8383B3002DEE38 /* SCLTimerDisplay.m */; };
 		CF6FB1241C5926FC009715F3 /* SCLSwitchView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6FB1231C5926FC009715F3 /* SCLSwitchView.m */; };
 		DD06C22D1C64EAE500E6F6B0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD06C22C1C64EAE500E6F6B0 /* UIKit.framework */; };
@@ -48,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		08DD3F801DF864530099EC72 /* comic-sans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "comic-sans.ttf"; sourceTree = "<group>"; };
 		44E430DB1D889255002FE849 /* SCLAlertViewFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCLAlertViewFramework.h; sourceTree = "<group>"; };
 		572BB1451B8383B3002DEE38 /* SCLTimerDisplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLTimerDisplay.h; sourceTree = "<group>"; };
 		572BB1461B8383B3002DEE38 /* SCLTimerDisplay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLTimerDisplay.m; sourceTree = "<group>"; };
@@ -184,6 +187,7 @@
 				DDB15FD319D5B8DB00173158 /* main.m */,
 				DD4BA9C219DEDD8E008D73EB /* SCLAlertView-Objective-C-prefix.pch */,
 				DD0D295B19D902DA00881F53 /* Info.plist */,
+				08DD3F801DF864530099EC72 /* comic-sans.ttf */,
 				DD4BA9BF19DED8EF008D73EB /* Sounds */,
 			);
 			name = "Supporting Files";
@@ -355,6 +359,7 @@
 				DD4BA9C119DED8EF008D73EB /* right_answer.mp3 in Resources */,
 				DDB15FD019D5B8BF00173158 /* Images.xcassets in Resources */,
 				DD7282B919D6087C00077F54 /* Storyboard.storyboard in Resources */,
+				08DD3F811DF864530099EC72 /* comic-sans.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,6 +374,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08DD3F821DF864530099EC72 /* comic-sans.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

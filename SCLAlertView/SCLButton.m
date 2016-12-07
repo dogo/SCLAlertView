@@ -133,6 +133,11 @@
     {
         self.layer.borderWidth = [buttonConfig[@"borderWidth"] floatValue];
     }
+    
+    // Add Button custom font with buttonConfig parameters
+    if (buttonConfig[@"font"]) {
+        self.titleLabel.font = buttonConfig[@"font"];
+    }
 }
 
 #pragma mark - Helpers
