@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Ohq-jH-G4R">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Ohq-jH-G4R">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -15,12 +18,14 @@
                         <viewControllerLayoutGuide type="bottom" id="1b4-G7-OgS"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="zXb-fx-bXk">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="720"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="760"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BP9-ao-PJ6">
+                                <rect key="frame" x="0.0" y="20" width="600" height="740"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7sB-cQ-cdn">
+                                        <rect key="frame" x="250" y="8" width="100" height="30"/>
                                         <state key="normal" title="Show Success">
                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -29,6 +34,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ag6-Vj-GRG">
+                                        <rect key="frame" x="213" y="46" width="174" height="30"/>
                                         <state key="normal" title="Show Success Horizontal">
                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -37,6 +43,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4U1-31-wBg">
+                                        <rect key="frame" x="262" y="84" width="76" height="30"/>
                                         <state key="normal" title="Show Error">
                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -45,6 +52,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QYK-Po-EUn">
+                                        <rect key="frame" x="257" y="122" width="87" height="30"/>
                                         <state key="normal" title="Show Notice">
                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -53,6 +61,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c2J-Bd-hKP">
+                                        <rect key="frame" x="251" y="160" width="99" height="30"/>
                                         <state key="normal" title="Show Warning">
                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -61,6 +70,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cKc-Im-7MS">
+                                        <rect key="frame" x="266" y="198" width="68" height="30"/>
                                         <state key="normal" title="Show Info">
                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -69,6 +79,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mww-Jw-0ao">
+                                        <rect key="frame" x="266" y="236" width="69" height="30"/>
                                         <state key="normal" title="Show Edit">
                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -77,6 +88,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uMj-f6-6wK">
+                                        <rect key="frame" x="229" y="274" width="143" height="30"/>
                                         <state key="normal" title="Show Edit Horizontal">
                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -85,6 +97,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ID-0w-GrU">
+                                        <rect key="frame" x="245" y="312" width="110" height="30"/>
                                         <state key="normal" title="Show Advanced">
                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -93,6 +106,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NmI-Rk-qEB">
+                                        <rect key="frame" x="208" y="350" width="184" height="30"/>
                                         <state key="normal" title="Show Advanced Horizontal">
                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -101,6 +115,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w0L-ki-asc">
+                                        <rect key="frame" x="232" y="388" width="136" height="30"/>
                                         <state key="normal" title="Show With Duration">
                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -109,6 +124,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DRS-IB-vIQ">
+                                        <rect key="frame" x="253" y="426" width="95" height="30"/>
                                         <state key="normal" title="Show Custom">
                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -117,6 +133,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XBG-LD-1eZ">
+                                        <rect key="frame" x="246" y="464" width="109" height="30"/>
                                         <state key="normal" title="Show Validation">
                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -125,6 +142,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tzD-FT-qzG">
+                                        <rect key="frame" x="209" y="502" width="183" height="30"/>
                                         <state key="normal" title="Show Validation Horizontal">
                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -133,6 +151,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fs5-sr-WWC">
+                                        <rect key="frame" x="254" y="540" width="93" height="30"/>
                                         <state key="normal" title="Show Waiting">
                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -141,6 +160,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Leu-lo-T4a">
+                                        <rect key="frame" x="259" y="578" width="82" height="30"/>
                                         <state key="normal" title="Show Timer">
                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -149,6 +169,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D2w-Gh-y6B">
+                                        <rect key="frame" x="248" y="616" width="104" height="30"/>
                                         <state key="normal" title="Show Question">
                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -157,6 +178,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yhK-gL-Uxt">
+                                        <rect key="frame" x="256" y="654" width="88" height="30"/>
                                         <state key="normal" title="Show Switch">
                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -164,11 +186,25 @@
                                             <action selector="showSwitch:" destination="Ohq-jH-G4R" eventType="touchUpInside" id="4iQ-FM-yN0"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hWU-7m-rp7">
+                                        <rect key="frame" x="158" y="692" width="285" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="1z6-3x-8M7"/>
+                                            <constraint firstAttribute="width" constant="285" id="X4t-CY-n74"/>
+                                        </constraints>
+                                        <state key="normal" title="Show With Button Custom Font">
+                                            <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="showWithButtonCustom:" destination="Ohq-jH-G4R" eventType="touchUpInside" id="KF6-SJ-jig"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="4U1-31-wBg" firstAttribute="centerX" secondItem="BP9-ao-PJ6" secondAttribute="centerX" id="2ns-qX-CZT"/>
                                     <constraint firstItem="uMj-f6-6wK" firstAttribute="centerX" secondItem="BP9-ao-PJ6" secondAttribute="centerX" id="5nR-8f-OtN"/>
                                     <constraint firstItem="D2w-Gh-y6B" firstAttribute="centerX" secondItem="BP9-ao-PJ6" secondAttribute="centerX" id="6Y2-iY-m9S"/>
+                                    <constraint firstItem="hWU-7m-rp7" firstAttribute="top" secondItem="yhK-gL-Uxt" secondAttribute="bottom" constant="8" id="6bX-Uo-udT"/>
                                     <constraint firstItem="tzD-FT-qzG" firstAttribute="top" secondItem="XBG-LD-1eZ" secondAttribute="bottom" constant="8" id="7Oc-oW-X4d"/>
                                     <constraint firstItem="cKc-Im-7MS" firstAttribute="top" secondItem="c2J-Bd-hKP" secondAttribute="bottom" constant="8" id="AoF-bx-2zZ"/>
                                     <constraint firstItem="XBG-LD-1eZ" firstAttribute="centerX" secondItem="BP9-ao-PJ6" secondAttribute="centerX" id="BDB-yi-3fv"/>
@@ -186,6 +222,7 @@
                                     <constraint firstItem="fs5-sr-WWC" firstAttribute="centerX" secondItem="BP9-ao-PJ6" secondAttribute="centerX" id="TBM-Iu-APp"/>
                                     <constraint firstItem="w0L-ki-asc" firstAttribute="top" secondItem="NmI-Rk-qEB" secondAttribute="bottom" constant="8" id="Tfh-nu-7qg"/>
                                     <constraint firstItem="uMj-f6-6wK" firstAttribute="top" secondItem="mww-Jw-0ao" secondAttribute="bottom" constant="8" id="YVH-3w-69W"/>
+                                    <constraint firstItem="hWU-7m-rp7" firstAttribute="centerX" secondItem="BP9-ao-PJ6" secondAttribute="centerX" id="ZYu-td-DWj"/>
                                     <constraint firstItem="8ID-0w-GrU" firstAttribute="centerX" secondItem="BP9-ao-PJ6" secondAttribute="centerX" id="an8-6s-Bgh"/>
                                     <constraint firstItem="cKc-Im-7MS" firstAttribute="centerX" secondItem="BP9-ao-PJ6" secondAttribute="centerX" id="dkM-KH-Hec"/>
                                     <constraint firstItem="8ID-0w-GrU" firstAttribute="top" secondItem="uMj-f6-6wK" secondAttribute="bottom" constant="8" id="f3F-N5-XVO"/>
@@ -216,14 +253,14 @@
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="600" height="720"/>
+                    <size key="freeformSize" width="600" height="760"/>
                     <connections>
                         <outlet property="scrollView" destination="BP9-ao-PJ6" id="zcy-bQ-Wc1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vz4-cZ-r73" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="500" y="143"/>
+            <point key="canvasLocation" x="499.19999999999999" y="142.1289355322339"/>
         </scene>
     </scenes>
 </document>

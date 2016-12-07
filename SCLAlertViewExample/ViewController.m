@@ -445,4 +445,33 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
 {
     NSLog(@"First button tapped");
 }
+
+- (IBAction)showWithButtonCustom:(id)sender
+{
+    SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+    
+    SCLButton *button = [alert addButton:@"First Button" target:self selector:@selector(firstButton)];
+    
+    button.buttonFormatBlock = ^NSDictionary* (void)
+    {
+        NSMutableDictionary *buttonConfig = [[NSMutableDictionary alloc] init];
+        
+        buttonConfig[@"backgroundColor"] = [UIColor whiteColor];
+        buttonConfig[@"textColor"] = [UIColor blackColor];
+        buttonConfig[@"borderWidth"] = @2.0f;
+        buttonConfig[@"borderColor"] = [UIColor greenColor];
+        buttonConfig[@"font"] = [UIFont fontWithName:@"ComicSansMS" size:13];
+        
+        return buttonConfig;
+    };
+    
+    [alert addButton:@"Second Button" actionBlock:^(void) {
+        NSLog(@"Second button tapped");
+    }];
+    
+    alert.soundURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/right_answer.mp3", [NSBundle mainBundle].resourcePath]];
+    
+    [alert showSuccess:kSuccessTitle subTitle:kSubtitle closeButtonTitle:kButtonTitle duration:0.0f];
+}
+
 @end
