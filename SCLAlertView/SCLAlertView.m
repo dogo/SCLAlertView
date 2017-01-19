@@ -43,6 +43,7 @@
 @property (strong, nonatomic) UIWindow *previousWindow;
 @property (strong, nonatomic) UIWindow *SCLAlertWindow;
 @property (copy, nonatomic) SCLDismissBlock dismissBlock;
+@property (copy, nonatomic) SCLDismissAnimationCompletionBlock dismissAnimationCompletionBlock;
 @property (weak, nonatomic) UIViewController *rootViewController;
 @property (weak, nonatomic) id<UIGestureRecognizerDelegate> restoreInteractivePopGestureDelegate;
 @property (assign, nonatomic) SystemSoundID soundID;
@@ -1170,6 +1171,10 @@ SCLTimerDisplay *buttonTimer;
     self.dismissBlock = dismissBlock;
 }
 
+- (void)alertDissmissAnimationIsCompleted:(SCLDismissAnimationCompletionBlock)dismissAnimationCompletionBlock{
+    self.dismissAnimationCompletionBlock = dismissAnimationCompletionBlock;
+}
+
 - (SCLForceHideBlock)forceHideBlock:(SCLForceHideBlock)forceHideBlock
 {
     _forceHideBlock = forceHideBlock;
@@ -1375,6 +1380,9 @@ SCLTimerDisplay *buttonTimer;
         {
             [self.view removeFromSuperview];
             [self removeFromParentViewController];
+        }
+        if ( _dismissAnimationCompletionBlock ){
+            self.dismissAnimationCompletionBlock();
         }
     }];
 }
@@ -2010,6 +2018,16 @@ SCLTimerDisplay *buttonTimer;
         };
     }
     return _alertIsDismissed;
+}
+-(SCLAlertViewBuilder *(^)(SCLDismissAnimationCompletionBlock))alertDismissAnimationIsCompleted{
+    if (!_alertDismissAnimationIsCompleted) {
+        __weak typeof(self) weakSelf = self;
+        _alertDismissAnimationIsCompleted = ^(SCLDismissAnimationCompletionBlock dismissAnimationCompletionBlock) {
+            [weakSelf.alertView alertDissmissAnimationIsCompleted:dismissAnimationCompletionBlock];
+            return weakSelf;
+        };
+    }
+    return _alertDismissAnimationIsCompleted;
 }
 - (SCLAlertViewBuilder *(^) (void))removeTopCircle {
     if (!_removeTopCircle) {
