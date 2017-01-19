@@ -1171,7 +1171,7 @@ SCLTimerDisplay *buttonTimer;
     self.dismissBlock = dismissBlock;
 }
 
-- (void)alertDissmissAnimationIsCompleted:(SCLDismissAnimationCompletionBlock)dismissAnimationCompletionBlock{
+- (void)alertDismissAnimationIsCompleted:(SCLDismissAnimationCompletionBlock)dismissAnimationCompletionBlock{
     self.dismissAnimationCompletionBlock = dismissAnimationCompletionBlock;
 }
 
@@ -2023,7 +2023,7 @@ SCLTimerDisplay *buttonTimer;
     if (!_alertDismissAnimationIsCompleted) {
         __weak typeof(self) weakSelf = self;
         _alertDismissAnimationIsCompleted = ^(SCLDismissAnimationCompletionBlock dismissAnimationCompletionBlock) {
-            [weakSelf.alertView alertDissmissAnimationIsCompleted:dismissAnimationCompletionBlock];
+            [weakSelf.alertView alertDismissAnimationIsCompleted:dismissAnimationCompletionBlock];
             return weakSelf;
         };
     }

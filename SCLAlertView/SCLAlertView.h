@@ -251,7 +251,7 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
  *
  * Warns that alerts dismiss animation is completed
  */
-- (void)alertDissmissAnimationIsCompleted:(SCLDismissAnimationCompletionBlock)dismissAnimationCompletionBlock;
+- (void)alertDismissAnimationIsCompleted:(SCLDismissAnimationCompletionBlock)dismissAnimationCompletionBlock;
 
 /** Hide SCLAlertView
  *
