@@ -18,6 +18,7 @@
 typedef NSAttributedString* (^SCLAttributedFormatBlock)(NSString *value);
 typedef void (^SCLDismissBlock)(void);
 typedef void (^SCLDismissAnimationCompletionBlock)(void);
+typedef void (^SCLShowAnimationCompletionBlock)(void);
 typedef void (^SCLForceHideBlock)(void);
 
 @interface SCLAlertView : UIViewController 
@@ -252,6 +253,12 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
  * Warns that alerts dismiss animation is completed
  */
 - (void)alertDismissAnimationIsCompleted:(SCLDismissAnimationCompletionBlock)dismissAnimationCompletionBlock;
+
+/** Warns that alerts show animation is completed
+ *
+ * Warns that alerts show animation is completed
+ */
+- (void)alertShowAnimationIsCompleted:(SCLShowAnimationCompletionBlock)showAnimationCompletionBlock;
 
 /** Hide SCLAlertView
  *
@@ -551,6 +558,7 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
 #pragma mark - Custom Setters
 @property(copy, nonatomic) SCLAlertViewBuilder *(^alertIsDismissed) (SCLDismissBlock dismissBlock);
 @property(copy, nonatomic) SCLAlertViewBuilder *(^alertDismissAnimationIsCompleted) (SCLDismissAnimationCompletionBlock dismissAnimationCompletionBlock);
+@property(copy, nonatomic) SCLAlertViewBuilder *(^alertShowAnimationIsCompleted) (SCLShowAnimationCompletionBlock showAnimationCompletionBlock);
 @property(copy, nonatomic) SCLAlertViewBuilder *(^removeTopCircle)(void);
 @property(copy, nonatomic) SCLAlertViewBuilder *(^addCustomView)(UIView *view);
 @property(copy, nonatomic) SCLAlertViewBuilder *(^addTextField)(NSString *title);

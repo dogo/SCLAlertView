@@ -44,6 +44,7 @@
 @property (strong, nonatomic) UIWindow *SCLAlertWindow;
 @property (copy, nonatomic) SCLDismissBlock dismissBlock;
 @property (copy, nonatomic) SCLDismissAnimationCompletionBlock dismissAnimationCompletionBlock;
+@property (copy, nonatomic) SCLShowAnimationCompletionBlock showAnimationCompletionBlock;
 @property (weak, nonatomic) UIViewController *rootViewController;
 @property (weak, nonatomic) id<UIGestureRecognizerDelegate> restoreInteractivePopGestureDelegate;
 @property (assign, nonatomic) SystemSoundID soundID;
@@ -1175,6 +1176,10 @@ SCLTimerDisplay *buttonTimer;
     self.dismissAnimationCompletionBlock = dismissAnimationCompletionBlock;
 }
 
+- (void)alertShowAnimationIsCompleted:(SCLShowAnimationCompletionBlock)showAnimationCompletionBlock{
+    self.showAnimationCompletionBlock = showAnimationCompletionBlock;
+}
+
 - (SCLForceHideBlock)forceHideBlock:(SCLForceHideBlock)forceHideBlock
 {
     _forceHideBlock = forceHideBlock;
@@ -1480,7 +1485,11 @@ SCLTimerDisplay *buttonTimer;
                          self.backgroundView.alpha = _backgroundOpacity;
                          self.view.alpha = 1.0f;
                      }
-                     completion:nil];
+                     completion:^(BOOL finished) {
+                         if ( _showAnimationCompletionBlock ){
+                             self.showAnimationCompletionBlock();
+                         }
+                     }];
 }
 
 - (void)slideInFromTop
@@ -1504,6 +1513,10 @@ SCLTimerDisplay *buttonTimer;
         } completion:^(BOOL completed) {
             [UIView animateWithDuration:0.2f animations:^{
                 self.view.center = _backgroundView.center;
+            } completion:^(BOOL finished) {
+                if ( _showAnimationCompletionBlock ){
+                    self.showAnimationCompletionBlock();
+                }
             }];
         }];
     }
@@ -1523,7 +1536,9 @@ SCLTimerDisplay *buttonTimer;
             
             self.view.alpha = 1.0f;
         } completion:^(BOOL finished) {
-            // nothing
+            if ( _showAnimationCompletionBlock ){
+                self.showAnimationCompletionBlock();
+            }
         }];
     }
 }
@@ -1547,6 +1562,10 @@ SCLTimerDisplay *buttonTimer;
     } completion:^(BOOL completed) {
         [UIView animateWithDuration:0.2f animations:^{
             self.view.center = _backgroundView.center;
+        } completion:^(BOOL finished) {
+            if ( _showAnimationCompletionBlock ){
+                self.showAnimationCompletionBlock();
+            }
         }];
     }];
 }
@@ -1570,6 +1589,10 @@ SCLTimerDisplay *buttonTimer;
     } completion:^(BOOL completed) {
         [UIView animateWithDuration:0.2f animations:^{
             self.view.center = _backgroundView.center;
+        } completion:^(BOOL finished) {
+            if ( _showAnimationCompletionBlock ){
+                self.showAnimationCompletionBlock();
+            }
         }];
     }];
 }
@@ -1593,6 +1616,10 @@ SCLTimerDisplay *buttonTimer;
     } completion:^(BOOL completed) {
         [UIView animateWithDuration:0.2f animations:^{
             self.view.center = _backgroundView.center;
+        } completion:^(BOOL finished) {
+            if ( _showAnimationCompletionBlock ){
+                self.showAnimationCompletionBlock();
+            }
         }];
     }];
 }
@@ -1614,6 +1641,10 @@ SCLTimerDisplay *buttonTimer;
     } completion:^(BOOL completed) {
         [UIView animateWithDuration:0.2f animations:^{
             self.view.center = _backgroundView.center;
+        } completion:^(BOOL finished) {
+            if ( _showAnimationCompletionBlock ){
+                self.showAnimationCompletionBlock();
+            }
         }];
     }];
 }
@@ -1635,6 +1666,10 @@ SCLTimerDisplay *buttonTimer;
     } completion:^(BOOL completed) {
         [UIView animateWithDuration:0.2f animations:^{
             self.view.center = _backgroundView.center;
+        } completion:^(BOOL finished) {
+            if ( _showAnimationCompletionBlock ){
+                self.showAnimationCompletionBlock();
+            }
         }];
     }];
 }
@@ -1647,6 +1682,9 @@ SCLTimerDisplay *buttonTimer;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.backgroundView.alpha = _backgroundOpacity;
         self.view.alpha = 1.0f;
+        if ( _showAnimationCompletionBlock ){
+            self.showAnimationCompletionBlock();
+        }
     });
 }
 
@@ -2028,6 +2066,16 @@ SCLTimerDisplay *buttonTimer;
         };
     }
     return _alertDismissAnimationIsCompleted;
+}
+-(SCLAlertViewBuilder *(^)(SCLShowAnimationCompletionBlock))alertShowAnimationIsCompleted{
+    if (!_alertShowAnimationIsCompleted) {
+        __weak typeof(self) weakSelf = self;
+        _alertShowAnimationIsCompleted = ^(SCLShowAnimationCompletionBlock showAnimationCompletionBlock) {
+            [weakSelf.alertView alertShowAnimationIsCompleted:showAnimationCompletionBlock];
+            return weakSelf;
+        };
+    }
+    return _alertShowAnimationIsCompleted;
 }
 - (SCLAlertViewBuilder *(^) (void))removeTopCircle {
     if (!_removeTopCircle) {
