@@ -11,8 +11,6 @@
 
 @interface ViewController ()
 
-@property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
-
 @end
 
 NSString *kSuccessTitle = @"Congratulations";
@@ -25,23 +23,6 @@ NSString *kButtonTitle = @"Done";
 NSString *kAttributeTitle = @"Attributed string operation successfully completed.";
 
 @implementation ViewController
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-
-    // auto size UIScrollView to fit the content
-    CGRect contentRect = CGRectZero;
-    for (UIView *view in self.scrollView.subviews) {
-        contentRect = CGRectUnion(contentRect, view.frame);
-    }
-    self.scrollView.contentSize = contentRect.size;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
 
 - (IBAction)showSuccess:(id)sender
 {
