@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		08DD3F811DF864530099EC72 /* comic-sans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 08DD3F801DF864530099EC72 /* comic-sans.ttf */; };
-		08DD3F821DF864530099EC72 /* comic-sans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 08DD3F801DF864530099EC72 /* comic-sans.ttf */; };
 		572BB1471B8383B3002DEE38 /* SCLTimerDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = 572BB1461B8383B3002DEE38 /* SCLTimerDisplay.m */; };
 		CF6FB1241C5926FC009715F3 /* SCLSwitchView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6FB1231C5926FC009715F3 /* SCLSwitchView.m */; };
 		DD06C22D1C64EAE500E6F6B0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD06C22C1C64EAE500E6F6B0 /* UIKit.framework */; };
@@ -29,6 +27,7 @@
 		DDB15FDB19D5BAA000173158 /* SCLButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB15FDA19D5BAA000173158 /* SCLButton.m */; };
 		DDB15FDE19D5BCF400173158 /* SCLAlertViewResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB15FDD19D5BCF400173158 /* SCLAlertViewResponder.m */; };
 		DDB15FE119D5D85B00173158 /* SCLAlertViewStyleKit.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB15FE019D5D85B00173158 /* SCLAlertViewStyleKit.m */; };
+		DDB2BA1B1E55D4260009DAC9 /* comic-sans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DDB2BA1A1E55D4260009DAC9 /* comic-sans.ttf */; };
 		EF994B151D47AB4A00619DFF /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2E172919FA84B800CBAEC3 /* UIImage+ImageEffects.m */; };
 		EF994B161D47AB4A00619DFF /* SCLAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB15FD619D5B96500173158 /* SCLAlertView.m */; };
 		EF994B171D47AB4A00619DFF /* SCLButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB15FDA19D5BAA000173158 /* SCLButton.m */; };
@@ -50,7 +49,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		08DD3F801DF864530099EC72 /* comic-sans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "comic-sans.ttf"; sourceTree = "<group>"; };
 		44E430DB1D889255002FE849 /* SCLAlertViewFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCLAlertViewFramework.h; sourceTree = "<group>"; };
 		572BB1451B8383B3002DEE38 /* SCLTimerDisplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLTimerDisplay.h; sourceTree = "<group>"; };
 		572BB1461B8383B3002DEE38 /* SCLTimerDisplay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLTimerDisplay.m; sourceTree = "<group>"; };
@@ -89,6 +87,7 @@
 		DDB15FDD19D5BCF400173158 /* SCLAlertViewResponder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLAlertViewResponder.m; sourceTree = "<group>"; };
 		DDB15FDF19D5D85B00173158 /* SCLAlertViewStyleKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLAlertViewStyleKit.h; sourceTree = "<group>"; };
 		DDB15FE019D5D85B00173158 /* SCLAlertViewStyleKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLAlertViewStyleKit.m; sourceTree = "<group>"; };
+		DDB2BA1A1E55D4260009DAC9 /* comic-sans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "comic-sans.ttf"; sourceTree = "<group>"; };
 		EF994B081D47AB1400619DFF /* SCLAlertViewFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SCLAlertViewFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF994B0C1D47AB1400619DFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -187,7 +186,7 @@
 				DDB15FD319D5B8DB00173158 /* main.m */,
 				DD4BA9C219DEDD8E008D73EB /* SCLAlertView-Objective-C-prefix.pch */,
 				DD0D295B19D902DA00881F53 /* Info.plist */,
-				08DD3F801DF864530099EC72 /* comic-sans.ttf */,
+				DDB2BA191E55D4260009DAC9 /* Fonts */,
 				DD4BA9BF19DED8EF008D73EB /* Sounds */,
 			);
 			name = "Supporting Files";
@@ -233,6 +232,15 @@
 			);
 			path = SCLAlertView;
 			sourceTree = "<group>";
+		};
+		DDB2BA191E55D4260009DAC9 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				DDB2BA1A1E55D4260009DAC9 /* comic-sans.ttf */,
+			);
+			name = Fonts;
+			path = SCLAlertViewExample/Fonts;
+			sourceTree = SOURCE_ROOT;
 		};
 		EF994B091D47AB1400619DFF /* SCLAlertViewFramework */ = {
 			isa = PBXGroup;
@@ -359,7 +367,7 @@
 				DD4BA9C119DED8EF008D73EB /* right_answer.mp3 in Resources */,
 				DDB15FD019D5B8BF00173158 /* Images.xcassets in Resources */,
 				DD7282B919D6087C00077F54 /* Storyboard.storyboard in Resources */,
-				08DD3F811DF864530099EC72 /* comic-sans.ttf in Resources */,
+				DDB2BA1B1E55D4260009DAC9 /* comic-sans.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,7 +382,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				08DD3F821DF864530099EC72 /* comic-sans.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
