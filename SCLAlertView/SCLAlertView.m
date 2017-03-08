@@ -188,7 +188,7 @@ SCLTimerDisplay *buttonTimer;
     _circleView = [[UIView alloc] init];
     _circleViewBackground = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, kCircleHeightBackground, kCircleHeightBackground)];
     _circleIconImageView = [[UIImageView alloc] init];
-    _backgroundView = [[UIImageView alloc]initWithFrame:[self mainScreenFrame]];
+    _backgroundView = [[UIImageView alloc] initWithFrame:[self mainScreenFrame]];
     _buttons = [[NSMutableArray alloc] init];
     _inputs = [[NSMutableArray alloc] init];
     _customViews = [[NSMutableArray alloc] init];
@@ -243,10 +243,7 @@ SCLTimerDisplay *buttonTimer;
     _contentView.layer.masksToBounds = YES;
     _contentView.layer.borderWidth = 0.5f;
     [_contentView addSubview:_viewText];    
-
-    CGRect position = [self.contentView convertRect:self.labelTitle.frame toView:self.view];
-    _labelTitle.frame = position;
-    [self.view addSubview:_labelTitle];
+    [_contentView addSubview:_labelTitle];
     
     // Colors
     self.backgroundViewColor = [UIColor whiteColor];
@@ -360,7 +357,7 @@ SCLTimerDisplay *buttonTimer;
         _circleViewBackground.frame = CGRectMake(x, y, kCircleHeightBackground, kCircleHeightBackground);
         _circleViewBackground.layer.cornerRadius = _circleViewBackground.frame.size.height / 2;        
         _circleIconImageView.frame = CGRectMake(kCircleHeight / 2 - _circleIconHeight / 2, kCircleHeight / 2 - _circleIconHeight / 2, _circleIconHeight, _circleIconHeight);
-        _labelTitle.frame = CGRectMake(12.0f + self.contentView.frame.origin.x, kTitleTop + self.contentView.frame.origin.y, _windowWidth - 24.0f, kTitleHeight);
+        _labelTitle.frame = CGRectMake(12.0f, kTitleTop, _windowWidth - 24.0f, kTitleHeight);
     }
     
     // Text fields
@@ -437,7 +434,10 @@ SCLTimerDisplay *buttonTimer;
                 hide = NO;
             }
         }
-        if(hide)[self hideView];
+        if(hide)
+        {
+            [self hideView];
+        }
     }
 }
 
