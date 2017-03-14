@@ -336,7 +336,7 @@ To install add the following line to your Podfile:
 
     pod 'SCLAlertView-Objective-C'
     
-### [Carthage] (https://github.com/Carthage/Carthage)
+### [Carthage](https://github.com/Carthage/Carthage)
 
 ```
 github "dogo/SCLAlertView"
