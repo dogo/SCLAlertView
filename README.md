@@ -339,7 +339,7 @@ To install add the following line to your Podfile:
 ### [Carthage] (https://github.com/Carthage/Carthage)
 
 ```
-TODO
+github "dogo/SCLAlertView"
 ```    
 
 ### Collaboration
