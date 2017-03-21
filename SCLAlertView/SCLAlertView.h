@@ -89,6 +89,12 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
  */
 @property CGFloat cornerRadius;
 
+/** Content view sidePadding
+ *
+ * A float value that replaces the standard content viuew corner radius.
+ */
+@property CGFloat sidePadding;
+
 /** Tint top circle
  *
  * A boolean value that determines whether to tint the SCLAlertView top circle.
