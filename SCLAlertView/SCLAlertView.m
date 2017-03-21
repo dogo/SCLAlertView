@@ -221,14 +221,14 @@ SCLTimerDisplay *buttonTimer;
     _labelTitle.numberOfLines = 1;
     _labelTitle.textAlignment = NSTextAlignmentCenter;
     _labelTitle.font = [UIFont fontWithName:_titleFontFamily size:_titleFontSize];
-    _labelTitle.frame = CGRectMake(12.0f, kTitleTop, _windowWidth - 24.0f, kTitleHeight);
+    _labelTitle.frame = CGRectMake(self.sidePadding, kTitleTop, _windowWidth - (self.sidePadding*2), kTitleHeight);
     
     // View text
     _viewText.editable = NO;
     _viewText.allowsEditingTextAttributes = YES;
     _viewText.textAlignment = NSTextAlignmentCenter;
     _viewText.font = [UIFont fontWithName:_bodyTextFontFamily size:_bodyFontSize];
-    _viewText.frame = CGRectMake(12.0f, _subTitleY, _windowWidth - 24.0f, _subTitleHeight);
+    _viewText.frame = CGRectMake(self.sidePadding, _subTitleY, _windowWidth - (self.sidePadding*2), _subTitleHeight);
     
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
     {
@@ -343,7 +343,7 @@ SCLTimerDisplay *buttonTimer;
         _circleViewBackground.layer.cornerRadius = _circleViewBackground.frame.size.height / 2;
         _circleView.layer.cornerRadius = _circleView.frame.size.height / 2;
         _circleIconImageView.frame = CGRectMake(kCircleHeight / 2 - _circleIconHeight / 2, kCircleHeight / 2 - _circleIconHeight / 2, _circleIconHeight, _circleIconHeight);
-        _labelTitle.frame = CGRectMake(12.0f, kTitleTop, _windowWidth - 24.0f, kTitleHeight);
+        _labelTitle.frame = CGRectMake(self.sidePadding, kTitleTop, _windowWidth - (self.sidePadding*2), kTitleHeight);
     }
     else
     {
@@ -357,12 +357,12 @@ SCLTimerDisplay *buttonTimer;
         _circleViewBackground.frame = CGRectMake(x, y, kCircleHeightBackground, kCircleHeightBackground);
         _circleViewBackground.layer.cornerRadius = _circleViewBackground.frame.size.height / 2;        
         _circleIconImageView.frame = CGRectMake(kCircleHeight / 2 - _circleIconHeight / 2, kCircleHeight / 2 - _circleIconHeight / 2, _circleIconHeight, _circleIconHeight);
-        _labelTitle.frame = CGRectMake(12.0f, kTitleTop, _windowWidth - 24.0f, kTitleHeight);
+        _labelTitle.frame = CGRectMake(self.sidePadding, kTitleTop, _windowWidth - (self.sidePadding*2), kTitleHeight);
     }
     
     // Text fields
     CGFloat y = (_labelTitle.text == nil) ? kTitleTop : kTitleTop + _labelTitle.frame.size.height;
-    _viewText.frame = CGRectMake(12.0f, y, _windowWidth - 24.0f, _subTitleHeight);
+    _viewText.frame = CGRectMake(self.sidePadding, y, _windowWidth - (self.sidePadding*2), _subTitleHeight);
     
     if (!_labelTitle && !_viewText) {
         y = 0.0f;
@@ -371,7 +371,7 @@ SCLTimerDisplay *buttonTimer;
     y += _subTitleHeight + 14.0f;
     for (SCLTextView *textField in _inputs)
     {
-        textField.frame = CGRectMake(12.0f, y, _windowWidth - 24.0f, textField.frame.size.height);
+        textField.frame = CGRectMake(self.sidePadding, y, _windowWidth - (self.sidePadding*2), textField.frame.size.height);
         textField.layer.cornerRadius = 3.0f;
         y += textField.frame.size.height + 10.0f;
     }
@@ -379,12 +379,12 @@ SCLTimerDisplay *buttonTimer;
     // Custom views
     for (UIView *view in _customViews)
     {
-        view.frame = CGRectMake(12.0f, y, view.frame.size.width, view.frame.size.height);
+        view.frame = CGRectMake(self.sidePadding, y, view.frame.size.width, view.frame.size.height);
         y += view.frame.size.height + 10.0f;
     }
     
     // Buttons
-    CGFloat x = 12.0f;
+    CGFloat x = self.sidePadding;
     for (SCLButton *btn in _buttons)
     {
         btn.frame = CGRectMake(x, y, btn.frame.size.width, btn.frame.size.height);
@@ -403,6 +403,8 @@ SCLTimerDisplay *buttonTimer;
     
     // Adjust corner radius, if a value has been passed
     _contentView.layer.cornerRadius = self.cornerRadius ? self.cornerRadius : 5.0f;
+    
+    self.sidePadding = self.sidePadding ? self.sidePadding : 12.0f;
 }
 
 #pragma mark - UIViewController
@@ -931,7 +933,7 @@ SCLTimerDisplay *buttonTimer;
         }
         
         // Adjust text view size, if necessary
-        CGSize sz = CGSizeMake(_windowWidth - 24.0f, CGFLOAT_MAX);
+        CGSize sz = CGSizeMake(_windowWidth - (self.sidePadding*2), CGFLOAT_MAX);
         
         CGSize size = [_viewText sizeThatFits:sz];
         
@@ -946,7 +948,7 @@ SCLTimerDisplay *buttonTimer;
             self.windowHeight += (ht - _subTitleHeight);
             self.subTitleHeight = ht;
         }
-        _viewText.frame = CGRectMake(12.0f, _subTitleY, _windowWidth - 24.0f, _subTitleHeight);
+        _viewText.frame = CGRectMake(self.sidePadding, _subTitleY, _windowWidth - (self.sidePadding*2), _subTitleHeight);
     }
     else
     {
@@ -957,7 +959,7 @@ SCLTimerDisplay *buttonTimer;
         _viewText = nil;
         
         // Move up
-        _labelTitle.frame = CGRectMake(12.0f, 37.0f, _windowWidth - 24.0f, kTitleHeight);
+        _labelTitle.frame = CGRectMake(self.sidePadding, 37.0f, _windowWidth - (self.sidePadding*2), kTitleHeight);
     }
     
     if (!_labelTitle && !_viewText) {
