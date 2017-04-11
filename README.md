@@ -16,7 +16,7 @@ Animated Alert View written in Swift but ported to Objective-C, which can be use
 ![BackgroundImage](https://raw.githubusercontent.com/dogo/SCLAlertView/master/ScreenShots/ScreenShot6.png)
 ![BackgroundImage](https://raw.githubusercontent.com/dogo/SCLAlertView/master/ScreenShots/ScreenShot7.png)
 
-###Fluent style
+### Fluent style
 
 ```Objective-C
 
@@ -32,7 +32,7 @@ SCLAlertViewShowBuilder *showBuilder = [SCLAlertViewShowBuilder new]
 showBuilder.show(builder.alertView, self.window.rootViewController);
 ```
 
-####Complex
+#### Complex
 ```Objective-C
     NSString *title = @"Title";
     NSString *message = @"Message";
@@ -69,7 +69,7 @@ showBuilder.show(builder.alertView, self.window.rootViewController);
     [showBuilder showAlertView:builder.alertView onViewController:self];
 ```
 
-###Easy to use
+### Easy to use
 ```Objective-C
 // Get started
 SCLAlertView *alert = [[SCLAlertView alloc] init];
@@ -91,7 +91,7 @@ SCLAlertView *alert = [[SCLAlertView alloc] init];
 SCLAlertView *alert = [[SCLAlertView alloc] initWithWindowWidth:300.0f];
 ```
 
-###SCLAlertview in a new window. (No UIViewController)
+### SCLAlertview in a new window. (No UIViewController)
 ```Objective-C
 
 SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
@@ -112,11 +112,11 @@ SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
 SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindowWidth:300.0f];
 ```
 
-###New Window: Known issues
+### New Window: Known issues
 
 1. SCLAlert animation is wrong in landscape. (iOS 6.X and 7.X)
 
-###Add buttons
+### Add buttons
 ```Objective-C
 SCLAlertView *alert = [[SCLAlertView alloc] init];
 
@@ -140,7 +140,7 @@ SCLAlertView *alert = [[SCLAlertView alloc] init];
 [alert showSuccess:self title:@"Button View" subTitle:@"This alert view has buttons" closeButtonTitle:@"Done" duration:0.0f];
 ```
 
-###Add button timer
+### Add button timer
 ```Objective-C
 //The index of the button to add the timer display to.
 [alert addTimerToButtonIndex:0 reverse:NO];
@@ -155,7 +155,7 @@ SCLAlertView *alert = [[SCLAlertView alloc] init];
 ```
 
 
-###Add Text Attributes
+### Add Text Attributes
 ```Objective-C
 SCLAlertView *alert = [[SCLAlertView alloc] init];
 
@@ -178,7 +178,7 @@ alert.attributedFormatBlock = ^NSAttributedString* (NSString *value)
 [alert showSuccess:self title:@"Button View" subTitle:@"Attributed string operation successfully completed." closeButtonTitle:@"Done" duration:0.0f];
 ```
 
-###Add a text field
+### Add a text field
 ```Objective-C
 SCLAlertView *alert = [[SCLAlertView alloc] init];
 
@@ -191,14 +191,14 @@ UITextField *textField = [alert addTextField:@"Enter your name"];
 [alert showEdit:self title:@"Edit View" subTitle:@"This alert view shows a text box" closeButtonTitle:@"Done" duration:0.0f];
 ```
 
-###Indeterminate progress
+### Indeterminate progress
 ```Objective-C
 SCLAlertView *alert = [[SCLAlertView alloc] init];
     
 [alert showWaiting:self title:@"Waiting..." subTitle:@"Blah de blah de blah, blah. Blah de blah de" closeButtonTitle:nil duration:5.0f];
 ```
 
-###Add a switch button
+### Add a switch button
 ```Objective-C
 SCLAlertView *alert = [[SCLAlertView alloc] init];
     
@@ -212,7 +212,7 @@ switchView.tintColor = [UIColor brownColor];
 [alert showCustom:self image:[UIImage imageNamed:@"switch"] color:[UIColor brownColor] title:kInfoTitle subTitle:kSubtitle closeButtonTitle:nil duration:0.0f];
 ```
 
-###Add custom view
+### Add custom view
 ```Objective-C
 SCLAlertView *alert = [[SCLAlertView alloc] init];
 
@@ -224,7 +224,7 @@ customView.backgroundColor = [UIColor redColor];
 [alert showNotice:self title:@"Title" subTitle:@"This alert view shows a custom view" closeButtonTitle:@"Done" duration:0.0f];
 ```
 
-###SCLAlertView properties
+### SCLAlertView properties
 ```Objective-C
 //Dismiss on tap outside (Default is NO)
 alert.shouldDismissOnTapOutside = YES;
@@ -265,7 +265,7 @@ alert.soundURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/right_an
 
 ```
 
-###Helpers
+### Helpers
 ```Objective-C
 //Receiving information that SCLAlertView is dismissed
 [alert alertIsDismissed:^{
@@ -273,7 +273,7 @@ alert.soundURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/right_an
 }];
 ```
 
-####Alert View Styles
+#### Alert View Styles
 ```Objective-C
 typedef NS_ENUM(NSInteger, SCLAlertViewStyle)
 {
@@ -288,7 +288,7 @@ typedef NS_ENUM(NSInteger, SCLAlertViewStyle)
     SCLAlertViewStyleCustom
 };
 ```
-####Alert View hide animation styles
+#### Alert View hide animation styles
 ```Objective-C
 typedef NS_ENUM(NSInteger, SCLAlertViewHideAnimation)
 {
@@ -302,7 +302,7 @@ typedef NS_ENUM(NSInteger, SCLAlertViewHideAnimation)
     SCLAlertViewHideAnimationSimplyDisappear
 };
 ```
-####Alert View show animation styles
+#### Alert View show animation styles
 ```Objective-C
 typedef NS_ENUM(NSInteger, SCLAlertViewShowAnimation)
 {
@@ -317,7 +317,7 @@ typedef NS_ENUM(NSInteger, SCLAlertViewShowAnimation)
 };
 ```
 
-####Alert View background styles
+#### Alert View background styles
 ```Objective-C
 typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
 {
