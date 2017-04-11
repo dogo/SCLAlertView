@@ -316,49 +316,32 @@ SCLTimerDisplay *buttonTimer;
         }
     }
     
-    if(!_usingNewWindow)
+    // Set new background frame
+    CGRect newBackgroundFrame = self.backgroundView.frame;
+    newBackgroundFrame.size = sz;
+    self.backgroundView.frame = newBackgroundFrame;
+    
+    // Set new main frame
+    CGRect r;
+    if (self.view.superview != nil)
     {
-        // Set new background frame
-        CGRect newBackgroundFrame = self.backgroundView.frame;
-        newBackgroundFrame.size = sz;
-        self.backgroundView.frame = newBackgroundFrame;
-        
-        // Set new main frame
-        CGRect r;
-        if (self.view.superview != nil)
-        {
-            // View is showing, position at center of screen
-            r = CGRectMake((sz.width-_windowWidth)/2, (sz.height-_windowHeight)/2, _windowWidth, _windowHeight);
-        }
-        else
-        {
-            // View is not visible, position outside screen bounds
-            r = CGRectMake((sz.width-_windowWidth)/2, -_windowHeight, _windowWidth, _windowHeight);
-        }
-        
-        // Set frames
-        self.view.frame = r;
-        _contentView.frame = CGRectMake(0.0f, 0.0f, _windowWidth, _windowHeight);
-        _circleViewBackground.frame = CGRectMake(_windowWidth / 2 - kCircleHeightBackground / 2, kCircleBackgroundTopPosition, kCircleHeightBackground, kCircleHeightBackground);
-        _circleViewBackground.layer.cornerRadius = _circleViewBackground.frame.size.height / 2;
-        _circleView.layer.cornerRadius = _circleView.frame.size.height / 2;
-        _circleIconImageView.frame = CGRectMake(kCircleHeight / 2 - _circleIconHeight / 2, kCircleHeight / 2 - _circleIconHeight / 2, _circleIconHeight, _circleIconHeight);
-        _labelTitle.frame = CGRectMake(12.0f, kTitleTop, _windowWidth - 24.0f, kTitleHeight);
+        // View is showing, position at center of screen
+        r = CGRectMake((sz.width-_windowWidth)/2, (sz.height-_windowHeight)/2, _windowWidth, _windowHeight);
     }
     else
     {
-        CGFloat x = (sz.width - _windowWidth) / 2;
-        CGFloat y = (sz.height - _windowHeight - (kCircleHeight / 8)) / 2;
-        
-        _contentView.frame = CGRectMake(x, y, _windowWidth, _windowHeight);
-        y -= kCircleHeightBackground / 2;
-        x = (sz.width - kCircleHeightBackground) / 2;
-        _circleView.layer.cornerRadius = _circleView.frame.size.height / 2;        
-        _circleViewBackground.frame = CGRectMake(x, y, kCircleHeightBackground, kCircleHeightBackground);
-        _circleViewBackground.layer.cornerRadius = _circleViewBackground.frame.size.height / 2;        
-        _circleIconImageView.frame = CGRectMake(kCircleHeight / 2 - _circleIconHeight / 2, kCircleHeight / 2 - _circleIconHeight / 2, _circleIconHeight, _circleIconHeight);
-        _labelTitle.frame = CGRectMake(12.0f, kTitleTop, _windowWidth - 24.0f, kTitleHeight);
+        // View is not visible, position outside screen bounds
+        r = CGRectMake((sz.width-_windowWidth)/2, -_windowHeight, _windowWidth, _windowHeight);
     }
+    
+    // Set frames
+    self.view.frame = r;
+    _contentView.frame = CGRectMake(0.0f, 0.0f, _windowWidth, _windowHeight);
+    _circleViewBackground.frame = CGRectMake(_windowWidth / 2 - kCircleHeightBackground / 2, kCircleBackgroundTopPosition, kCircleHeightBackground, kCircleHeightBackground);
+    _circleViewBackground.layer.cornerRadius = _circleViewBackground.frame.size.height / 2;
+    _circleView.layer.cornerRadius = _circleView.frame.size.height / 2;
+    _circleIconImageView.frame = CGRectMake(kCircleHeight / 2 - _circleIconHeight / 2, kCircleHeight / 2 - _circleIconHeight / 2, _circleIconHeight, _circleIconHeight);
+    _labelTitle.frame = CGRectMake(12.0f, kTitleTop, _windowWidth - 24.0f, kTitleHeight);
     
     // Text fields
     CGFloat y = (_labelTitle.text == nil) ? kTitleTop : kTitleTop + _labelTitle.frame.size.height;
@@ -448,7 +431,7 @@ SCLTimerDisplay *buttonTimer;
     if(_shouldDismissOnTapOutside)
     {
         self.gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
-        [_usingNewWindow ? _SCLAlertWindow : _backgroundView addGestureRecognizer:_gestureRecognizer];
+        [_backgroundView addGestureRecognizer:_gestureRecognizer];
     }
 }
 
