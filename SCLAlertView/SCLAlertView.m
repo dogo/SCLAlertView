@@ -1196,7 +1196,7 @@ SCLTimerDisplay *buttonTimer;
 
 - (void)makeBlurBackground
 {
-    UIView *appView = (_usingNewWindow) ? [UIApplication sharedApplication].keyWindow.subviews.lastObject : _rootViewController.view;
+    UIView *appView = (_usingNewWindow) ? [UIApplication sharedApplication].keyWindow : _rootViewController.view;
     UIImage *image = [UIImage convertViewToImage:appView];
     UIImage *blurSnapshotImage = [image applyBlurWithRadius:5.0f
                                                   tintColor:[UIColor colorWithWhite:0.2f
