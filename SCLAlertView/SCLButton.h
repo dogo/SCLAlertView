@@ -104,6 +104,6 @@ typedef NS_ENUM(NSInteger, SCLActionType)
  * @param windowWith The width of the alert.
  * @param numberOfButtons The number of buttons in the alert.
  */
-- (void)adjustWidthWithWindowWidth:(CGFloat)windowWidht numberOfButtons:(NSUInteger)numberOfButtons;
+- (void)adjustWidthWithWindowWidth:(CGFloat)windowWidth numberOfButtons:(NSUInteger)numberOfButtons;
 
 @end
