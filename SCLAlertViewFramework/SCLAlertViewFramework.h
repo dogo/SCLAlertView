@@ -13,3 +13,5 @@ FOUNDATION_EXPORT double SCLAlertViewFrameworkVersionNumber;
 
 //! Project version string for CryptoSwift.
 FOUNDATION_EXPORT const unsigned char SCLAlertViewFrameworkVersionString[];
+
+#import "SCLAlertView.h"
