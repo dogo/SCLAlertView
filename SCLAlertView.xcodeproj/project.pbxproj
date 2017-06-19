@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		572BB1471B8383B3002DEE38 /* SCLTimerDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = 572BB1461B8383B3002DEE38 /* SCLTimerDisplay.m */; };
 		726C8FA61EF803310060F33B /* SCLAlertView.h in Headers */ = {isa = PBXBuildFile; fileRef = DDB15FD819D5B98800173158 /* SCLAlertView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		726C8FA71EF805520060F33B /* SCLButton.h in Headers */ = {isa = PBXBuildFile; fileRef = DDB15FD919D5BAA000173158 /* SCLButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		726C8FA81EF805620060F33B /* SCLTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = DD24453A1BAC383600892117 /* SCLTextView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		726C8FA91EF805650060F33B /* SCLSwitchView.h in Headers */ = {isa = PBXBuildFile; fileRef = CF6FB1221C5926FC009715F3 /* SCLSwitchView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CF6FB1241C5926FC009715F3 /* SCLSwitchView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6FB1231C5926FC009715F3 /* SCLSwitchView.m */; };
 		DD06C22D1C64EAE500E6F6B0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD06C22C1C64EAE500E6F6B0 /* UIKit.framework */; };
 		DD06C22F1C64EAF600E6F6B0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD06C22E1C64EAF600E6F6B0 /* AudioToolbox.framework */; };
@@ -260,6 +263,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				726C8FA61EF803310060F33B /* SCLAlertView.h in Headers */,
+				726C8FA91EF805650060F33B /* SCLSwitchView.h in Headers */,
+				726C8FA81EF805620060F33B /* SCLTextView.h in Headers */,
+				726C8FA71EF805520060F33B /* SCLButton.h in Headers */,
 				DD4B77E41D8C580B00CF97C7 /* SCLAlertViewFramework.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
