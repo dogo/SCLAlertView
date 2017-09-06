@@ -3,7 +3,7 @@
 //  SCLAlertView
 //
 //  Created by André Felipe Santos on 27/01/16.
-//  Copyright (c) 2016-2016 AnyKey Entertainment. All rights reserved.
+//  Copyright (c) 2016-2017 AnyKey Entertainment. All rights reserved.
 //
 
 #if defined(__has_feature) && __has_feature(modules)
