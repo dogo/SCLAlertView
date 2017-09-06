@@ -94,71 +94,71 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
  * A boolean value that determines whether to tint the SCLAlertView top circle.
  * (Default: YES)
  */
-@property BOOL tintTopCircle;
+@property (assign, nonatomic) BOOL tintTopCircle;
 
 /** Use larger icon
  *
  * A boolean value that determines whether to make the SCLAlertView top circle icon larger.
  * (Default: NO)
  */
-@property BOOL useLargerIcon;
+@property (assign, nonatomic) BOOL useLargerIcon;
     
 /** Title Label
  *
  * The text displayed as title.
  */
-@property UILabel *labelTitle;
+@property (strong, nonatomic) UILabel *labelTitle;
 
 /** Text view with the body message
  *
  * Holds the textview.
  */
-@property UITextView *viewText;
+@property (strong, nonatomic) UITextView *viewText;
 
 /** Activity Indicator
  *
  * Holds the activityIndicator.
  */
-@property UIActivityIndicatorView *activityIndicatorView;
+@property (strong, nonatomic) UIActivityIndicatorView *activityIndicatorView;
 
 /** Dismiss on tap outside
  *
  * A boolean value that determines whether to dismiss when tapping outside the SCLAlertView.
  * (Default: NO)
  */
-@property (nonatomic, assign) BOOL shouldDismissOnTapOutside;
+@property (assign, nonatomic) BOOL shouldDismissOnTapOutside;
 
 /** Sound URL
  *
  * Holds the sound NSURL path.
  */
-@property (nonatomic, strong) NSURL *soundURL;
+@property (strong, nonatomic) NSURL *soundURL;
 
 /** Set text attributed format block
  *
  * Holds the attributed string.
  */
-@property (nonatomic, copy) SCLAttributedFormatBlock attributedFormatBlock;
+@property (copy, nonatomic) SCLAttributedFormatBlock attributedFormatBlock;
 
 /** Set Complete button format block.
  *
  * Holds the button format block.
  * Support keys : backgroundColor, borderWidth, borderColor, textColor
  */
-@property (nonatomic, copy) CompleteButtonFormatBlock completeButtonFormatBlock;
+@property (copy, nonatomic) CompleteButtonFormatBlock completeButtonFormatBlock;
 
 /** Set button format block.
  *
  * Holds the button format block.
  * Support keys : backgroundColor, borderWidth, borderColor, textColor
  */
-@property (nonatomic, copy) ButtonFormatBlock buttonFormatBlock;
+@property (copy, nonatomic) ButtonFormatBlock buttonFormatBlock;
 
 /** Set force hide block.
  *
  * When set force hideview method invocation.
  */
-@property (nonatomic, copy) SCLForceHideBlock forceHideBlock;
+@property (copy, nonatomic) SCLForceHideBlock forceHideBlock;
 
 /** Hide animation type
  *
@@ -186,19 +186,19 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
  * SCLAlertView custom color.
  * (Buttons, top circle and borders)
  */
-@property (nonatomic, strong) UIColor *customViewColor;
+@property (strong, nonatomic) UIColor *customViewColor;
 
 /** Set custom color to SCLAlertView background.
  *
  * SCLAlertView background custom color.
  */
-@property (nonatomic, strong) UIColor *backgroundViewColor;
+@property (strong, nonatomic) UIColor *backgroundViewColor;
 
 /** Set custom tint color for icon image.
  *
  * SCLAlertView icon tint color
  */
-@property (nonatomic, strong) UIColor *iconTintColor;
+@property (strong, nonatomic) UIColor *iconTintColor;
 
 /** Set custom circle icon height.
  *

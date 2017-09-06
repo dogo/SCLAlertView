@@ -91,7 +91,7 @@ typedef NS_ENUM(NSInteger, SCLActionType)
  *
  * Holds the button timer, if present.
  */
-@property (nonatomic) SCLTimerDisplay *timer;
+@property (strong, nonatomic) SCLTimerDisplay *timer;
 
 /** Init method
  *

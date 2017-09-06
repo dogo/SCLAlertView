@@ -3,10 +3,11 @@
 //  SCLAlertView
 //
 //  Created by Taylor Ryan on 8/18/15.
-//  Copyright (c) 2015-2016 AnyKey Entertainment. All rights reserved.
+//  Copyright (c) 2015-2017 AnyKey Entertainment. All rights reserved.
 //
 
 #import "SCLTimerDisplay.h"
+#import "SCLMacros.h"
 
 @interface SCLTimerDisplay ()
 
@@ -15,10 +16,6 @@
 @end
 
 @implementation SCLTimerDisplay
-
-#define DEGREES_TO_RADIANS(degrees)  ((M_PI * degrees)/ 180)
-#define TIMER_STEP .01
-#define START_DEGREE_OFFSET -90
 
 @synthesize currentAngle;
 
