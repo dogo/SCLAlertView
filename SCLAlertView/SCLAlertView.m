@@ -184,6 +184,7 @@ SCLTimerDisplay *buttonTimer;
     // Init
     _labelTitle = [[UILabel alloc] init];
     _viewText = [[UITextView alloc] init];
+    _viewText.accessibilityTraits = UIAccessibilityTraitStaticText;
     _contentView = [[UIView alloc] init];
     _circleView = [[UIView alloc] init];
     _circleViewBackground = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, kCircleHeightBackground, kCircleHeightBackground)];
@@ -192,6 +193,7 @@ SCLTimerDisplay *buttonTimer;
     _buttons = [[NSMutableArray alloc] init];
     _inputs = [[NSMutableArray alloc] init];
     _customViews = [[NSMutableArray alloc] init];
+    self.view.accessibilityViewIsModal = YES;
     
     // Add Subviews
     [self.view addSubview:_contentView];
@@ -259,6 +261,7 @@ SCLTimerDisplay *buttonTimer;
     alertWindow.windowLevel = UIWindowLevelAlert;
     alertWindow.backgroundColor = [UIColor clearColor];
     alertWindow.rootViewController = self;
+    alertWindow.accessibilityViewIsModal = YES;
     self.SCLAlertWindow = alertWindow;
     
     self.usingNewWindow = YES;
