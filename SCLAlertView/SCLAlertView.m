@@ -254,23 +254,23 @@ SCLTimerDisplay *buttonTimer;
     _contentView.layer.borderColor = UIColorFromHEX(0xCCCCCC).CGColor; //Light Grey
 }
 
-- (void)setupNewWindow
-{
+- (void)setupNewWindow {
+    // Save previous window
+    self.previousWindow = [UIApplication sharedApplication].keyWindow;
+    
     // Create a new one to show the alert
     UIWindow *alertWindow = [[UIWindow alloc] initWithFrame:[self mainScreenFrame]];
     alertWindow.windowLevel = UIWindowLevelAlert;
     alertWindow.backgroundColor = [UIColor clearColor];
-    alertWindow.rootViewController = self;
+    alertWindow.rootViewController = [UIViewController new];
     alertWindow.accessibilityViewIsModal = YES;
     self.SCLAlertWindow = alertWindow;
-    
     self.usingNewWindow = YES;
 }
 
 #pragma mark - Modal Validation
 
-- (BOOL)isModal
-{
+- (BOOL)isModal {
     return (_rootViewController != nil && _rootViewController.presentingViewController);
 }
 
@@ -295,8 +295,7 @@ SCLTimerDisplay *buttonTimer;
         // Reposition inner circle appropriately
         CGFloat x = (kCircleHeightBackground - kCircleHeight) / 2;
         _circleView.frame = CGRectMake(x, x, kCircleHeight, kCircleHeight);
-        if (_labelTitle.text == nil)
-        {
+        if (_labelTitle.text == nil) {
             kTitleTop = kCircleHeightBackground / 2;
         }
     } else {
@@ -304,41 +303,35 @@ SCLTimerDisplay *buttonTimer;
     }
     
     // Check if the rootViewController is modal, if so we need to get the modal size not the main screen size
-    if([self isModal] && !_usingNewWindow)
-    {
+    if ([self isModal] && !_usingNewWindow) {
         sz = _rootViewController.view.frame.size;
     }
     
-    if (SYSTEM_VERSION_LESS_THAN(@"8.0"))
-    {
+    if (SYSTEM_VERSION_LESS_THAN(@"8.0")) {
         // iOS versions before 7.0 did not switch the width and height on device roration
-        if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation))
-        {
+        if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
             CGSize ssz = sz;
             sz = CGSizeMake(ssz.height, ssz.width);
         }
     }
+    
+    // Set new main frame
+    CGRect r;
+    if (self.view.superview != nil) {
+        // View is showing, position at center of screen
+        r = CGRectMake((sz.width-_windowWidth)/2, (sz.height-_windowHeight)/2, _windowWidth, _windowHeight);
+    } else {
+        // View is not visible, position outside screen bounds
+        r = CGRectMake((sz.width-_windowWidth)/2, -_windowHeight, _windowWidth, _windowHeight);
+    }
+    self.view.frame = r;
     
     // Set new background frame
     CGRect newBackgroundFrame = self.backgroundView.frame;
     newBackgroundFrame.size = sz;
     self.backgroundView.frame = newBackgroundFrame;
     
-    // Set new main frame
-    CGRect r;
-    if (self.view.superview != nil)
-    {
-        // View is showing, position at center of screen
-        r = CGRectMake((sz.width-_windowWidth)/2, (sz.height-_windowHeight)/2, _windowWidth, _windowHeight);
-    }
-    else
-    {
-        // View is not visible, position outside screen bounds
-        r = CGRectMake((sz.width-_windowWidth)/2, -_windowHeight, _windowWidth, _windowHeight);
-    }
-    
     // Set frames
-    self.view.frame = r;
     _contentView.frame = CGRectMake(0.0f, 0.0f, _windowWidth, _windowHeight);
     _circleViewBackground.frame = CGRectMake(_windowWidth / 2 - kCircleHeightBackground / 2, kCircleBackgroundTopPosition, kCircleHeightBackground, kCircleHeightBackground);
     _circleViewBackground.layer.cornerRadius = _circleViewBackground.frame.size.height / 2;
@@ -355,24 +348,21 @@ SCLTimerDisplay *buttonTimer;
     }
 
     y += _subTitleHeight + 14.0f;
-    for (SCLTextView *textField in _inputs)
-    {
+    for (SCLTextView *textField in _inputs) {
         textField.frame = CGRectMake(12.0f, y, _windowWidth - 24.0f, textField.frame.size.height);
         textField.layer.cornerRadius = 3.0f;
         y += textField.frame.size.height + 10.0f;
     }
     
     // Custom views
-    for (UIView *view in _customViews)
-    {
+    for (UIView *view in _customViews) {
         view.frame = CGRectMake(12.0f, y, view.frame.size.width, view.frame.size.height);
         y += view.frame.size.height + 10.0f;
     }
     
     // Buttons
     CGFloat x = 12.0f;
-    for (SCLButton *btn in _buttons)
-    {
+    for (SCLButton *btn in _buttons) {
         btn.frame = CGRectMake(x, y, btn.frame.size.width, btn.frame.size.height);
         
         // Add horizontal or vertical offset acording on _horizontalButtons parameter
@@ -802,17 +792,15 @@ SCLTimerDisplay *buttonTimer;
 
 - (SCLAlertViewResponder *)showTitle:(UIViewController *)vc image:(UIImage *)image color:(UIColor *)color title:(NSString *)title subTitle:(NSString *)subTitle duration:(NSTimeInterval)duration completeText:(NSString *)completeText style:(SCLAlertViewStyle)style
 {
-    if(_usingNewWindow)
-    {
-        // Save previous window
-        self.previousWindow = [UIApplication sharedApplication].keyWindow;
+    if(_usingNewWindow) {
+
         self.backgroundView.frame = _SCLAlertWindow.bounds;
         
         // Add window subview
-        [_SCLAlertWindow addSubview:_backgroundView];
-    }
-    else
-    {
+        [_SCLAlertWindow.rootViewController addChildViewController:self];
+        [_SCLAlertWindow.rootViewController.view addSubview:_backgroundView];
+        [_SCLAlertWindow.rootViewController.view addSubview:self.view];
+    } else {
         _rootViewController = vc;
         
         [self disableInteractivePopGesture];
@@ -1361,16 +1349,13 @@ SCLTimerDisplay *buttonTimer;
         self.view.alpha = 0.0f;
     } completion:^(BOOL completed) {
         [self.backgroundView removeFromSuperview];
-        if (_usingNewWindow)
-        {
+        [self.view removeFromSuperview];
+        [self removeFromParentViewController];
+        
+        if (_usingNewWindow) {
             // Remove current window
             [self.SCLAlertWindow setHidden:YES];
             self.SCLAlertWindow = nil;
-        }
-        else
-        {
-            [self.view removeFromSuperview];
-            [self removeFromParentViewController];
         }
         if ( _dismissAnimationCompletionBlock ){
             self.dismissAnimationCompletionBlock();
