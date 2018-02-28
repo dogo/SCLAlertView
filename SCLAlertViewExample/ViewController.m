@@ -82,8 +82,8 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
 {
     SCLAlertView *alert = [[SCLAlertView alloc] init];
     
-    [alert showError:self title:@"Hold On..."
-            subTitle:@"You have not saved your Submission yet. Please save the Submission before accessing the Responses list. Blah de blah de blah, blah. Blah de blah de blah, blah.Blah de blah de blah, blah.Blah de blah de blah, blah.Blah de blah de blah, blah.Blah de blah de blah, blah."
+    [alert showError:self title:@"An error with two title is presented ..."
+            subTitle:@"You have not saved your Submission yet. Please save the Submission before accessing the Responses list. Blah de blah de blah, blah. Blah de blah de blah, blah.Blah de blah de blah, blah.Blah de blah de blah, blah.Blah de blah de blah, blah.Blah de blah de blah, End."
     closeButtonTitle:@"OK" duration:0.0f];
 }
 

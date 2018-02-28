@@ -58,6 +58,7 @@
 @property (nonatomic) CGFloat buttonsFontSize;
 @property (nonatomic) CGFloat windowHeight;
 @property (nonatomic) CGFloat windowWidth;
+@property (nonatomic) CGFloat titleHeight;
 @property (nonatomic) CGFloat subTitleHeight;
 @property (nonatomic) CGFloat subTitleY;
 
@@ -71,7 +72,6 @@ CGFloat kCircleBackgroundTopPosition;
 CGFloat kCircleHeightBackground;
 CGFloat kActivityIndicatorHeight;
 CGFloat kTitleTop;
-CGFloat kTitleHeight;
 
 // Timer
 NSTimer *durationTimer;
@@ -158,7 +158,7 @@ SCLTimerDisplay *buttonTimer;
     kCircleHeightBackground = 62.0f;
     kActivityIndicatorHeight = 40.0f;
     kTitleTop = 30.0f;
-    kTitleHeight = 40.0f;
+    self.titleHeight = 40.0f;
     self.subTitleY = 70.0f;
     self.subTitleHeight = 90.0f;
     self.circleIconHeight = 20.0f;
@@ -220,10 +220,11 @@ SCLTimerDisplay *buttonTimer;
     _backgroundView.userInteractionEnabled = YES;
     
     // Title
-    _labelTitle.numberOfLines = 1;
+    _labelTitle.numberOfLines = 2;
+    _labelTitle.lineBreakMode = NSLineBreakByWordWrapping;
     _labelTitle.textAlignment = NSTextAlignmentCenter;
     _labelTitle.font = [UIFont fontWithName:_titleFontFamily size:_titleFontSize];
-    _labelTitle.frame = CGRectMake(12.0f, kTitleTop, _windowWidth - 24.0f, kTitleHeight);
+    _labelTitle.frame = CGRectMake(12.0f, kTitleTop, _windowWidth - 24.0f, _titleHeight);
     
     // View text
     _viewText.editable = NO;
@@ -337,10 +338,10 @@ SCLTimerDisplay *buttonTimer;
     _circleViewBackground.layer.cornerRadius = _circleViewBackground.frame.size.height / 2;
     _circleView.layer.cornerRadius = _circleView.frame.size.height / 2;
     _circleIconImageView.frame = CGRectMake(kCircleHeight / 2 - _circleIconHeight / 2, kCircleHeight / 2 - _circleIconHeight / 2, _circleIconHeight, _circleIconHeight);
-    _labelTitle.frame = CGRectMake(12.0f, kTitleTop, _windowWidth - 24.0f, kTitleHeight);
+    _labelTitle.frame = CGRectMake(12.0f, kTitleTop, _windowWidth - 24.0f, _titleHeight);
     
     // Text fields
-    CGFloat y = (_labelTitle.text == nil) ? kTitleTop : kTitleTop + _labelTitle.frame.size.height;
+    CGFloat y = (_labelTitle.text == nil) ? kTitleTop : (_titleHeight - 10.0f) + _labelTitle.frame.size.height;
     _viewText.frame = CGRectMake(12.0f, y, _windowWidth - 24.0f, _subTitleHeight);
     
     if (!_labelTitle && !_viewText) {
@@ -876,12 +877,21 @@ SCLTimerDisplay *buttonTimer;
     }
     
     // Title
-    if([title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0)
-    {
+    if ([title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0) {
         self.labelTitle.text = title;
-    }
-    else
-    {
+        
+        // Adjust text view size, if necessary
+        CGSize sz = CGSizeMake(_windowWidth - 24.0f, CGFLOAT_MAX);
+
+        CGSize size = [_labelTitle sizeThatFits:sz];
+
+        CGFloat ht = ceilf(size.height);
+        if (ht > _titleHeight) {
+            self.windowHeight += (ht - _titleHeight);
+            self.titleHeight = ht;
+            self.subTitleY += 20;
+        }
+    } else {
         // Title is nil, we can move the body message to center and remove it from superView
         self.windowHeight -= _labelTitle.frame.size.height;
         [_labelTitle removeFromSuperview];
@@ -891,15 +901,12 @@ SCLTimerDisplay *buttonTimer;
     }
     
     // Subtitle
-    if([subTitle stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0)
-    {
+    if ([subTitle stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0) {
+        
         // No custom text
-        if (_attributedFormatBlock == nil)
-        {
+        if (_attributedFormatBlock == nil) {
             _viewText.text = subTitle;
-        }
-        else
-        {
+        } else {
             self.viewText.font = [UIFont fontWithName:_bodyTextFontFamily size:_bodyFontSize];
             _viewText.attributedText = self.attributedFormatBlock(subTitle);
         }
@@ -910,20 +917,14 @@ SCLTimerDisplay *buttonTimer;
         CGSize size = [_viewText sizeThatFits:sz];
         
         CGFloat ht = ceilf(size.height);
-        if (ht < _subTitleHeight)
-        {
+        if (ht < _subTitleHeight) {
             self.windowHeight -= (_subTitleHeight - ht);
             self.subTitleHeight = ht;
-        }
-        else
-        {
+        } else {
             self.windowHeight += (ht - _subTitleHeight);
             self.subTitleHeight = ht;
         }
-        _viewText.frame = CGRectMake(12.0f, _subTitleY, _windowWidth - 24.0f, _subTitleHeight);
-    }
-    else
-    {
+    } else {
         // Subtitle is nil, we can move the title to center and remove it from superView
         self.subTitleHeight = 0.0f;
         self.windowHeight -= _viewText.frame.size.height;
@@ -931,7 +932,7 @@ SCLTimerDisplay *buttonTimer;
         _viewText = nil;
         
         // Move up
-        _labelTitle.frame = CGRectMake(12.0f, 37.0f, _windowWidth - 24.0f, kTitleHeight);
+        _labelTitle.frame = CGRectMake(12.0f, 37.0f, _windowWidth - 24.0f, _titleHeight);
     }
     
     if (!_labelTitle && !_viewText) {
