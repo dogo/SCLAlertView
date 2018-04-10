@@ -267,6 +267,13 @@ SCLTimerDisplay *buttonTimer;
     alertWindow.accessibilityViewIsModal = YES;
     self.SCLAlertWindow = alertWindow;
     self.usingNewWindow = YES;
+    
+    // Add gesture recognizer. So, when user taps anywhere, alerWindow will dismiss
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissAlertWindow)];
+    
+    [self.SCLAlertWindow addGestureRecognizer:tap];
 }
 
 #pragma mark - Modal Validation
@@ -471,6 +478,12 @@ SCLTimerDisplay *buttonTimer;
         navigationController.interactivePopGestureRecognizer.enabled = _restoreInteractivePopGestureEnabled;
         navigationController.interactivePopGestureRecognizer.delegate = _restoreInteractivePopGestureDelegate;
     }
+}
+
+// When user taps anywhere, dismiss alertWindow
+-(void)dismissAlertWindow
+{
+    [self hideView];
 }
 
 #pragma mark - Custom Fonts
