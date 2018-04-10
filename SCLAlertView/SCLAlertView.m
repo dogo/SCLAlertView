@@ -271,7 +271,7 @@ SCLTimerDisplay *buttonTimer;
     // Add gesture recognizer. So, when user taps anywhere, alerWindow will dismiss
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
-                                   action:@selector(dismissAlertWindow)];
+                                   action:@selector(hideView)];
     
     [self.SCLAlertWindow addGestureRecognizer:tap];
 }
@@ -478,12 +478,6 @@ SCLTimerDisplay *buttonTimer;
         navigationController.interactivePopGestureRecognizer.enabled = _restoreInteractivePopGestureEnabled;
         navigationController.interactivePopGestureRecognizer.delegate = _restoreInteractivePopGestureDelegate;
     }
-}
-
-// When user taps anywhere, dismiss alertWindow
--(void)dismissAlertWindow
-{
-    [self hideView];
 }
 
 #pragma mark - Custom Fonts
