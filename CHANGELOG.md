@@ -1,14 +1,22 @@
 # Change Log
 
-## [Unreleased](https://github.com/dogo/SCLAlertView/tree/HEAD)
-
-[Full Changelog](https://github.com/dogo/SCLAlertView/compare/1.1.3...HEAD)
+## [1.1.4](https://github.com/dogo/SCLAlertView/tree/1.1.4) (2018-06-19)
+[Full Changelog](https://github.com/dogo/SCLAlertView/compare/1.1.3...1.1.4)
 
 **Closed issues:**
 
+- Eliminate warnings [\#270](https://github.com/dogo/SCLAlertView/issues/270)
+- How to add in multiple subtitle in an alert view? [\#266](https://github.com/dogo/SCLAlertView/issues/266)
 - SCLAlertViewHideAnimation wrong animations [\#262](https://github.com/dogo/SCLAlertView/issues/262)
+- Title truncated [\#259](https://github.com/dogo/SCLAlertView/issues/259)
 - Use the builder pattern to build a SCLAlertView? [\#256](https://github.com/dogo/SCLAlertView/issues/256)
 - Carthage Support [\#255](https://github.com/dogo/SCLAlertView/issues/255)
+
+**Merged pull requests:**
+
+- Fluent style project cleanup. [\#269](https://github.com/dogo/SCLAlertView/pull/269) ([lolgear](https://github.com/lolgear))
+- Create CONTRIBUTING.md [\#265](https://github.com/dogo/SCLAlertView/pull/265) ([dogo](https://github.com/dogo))
+- Create CODE\_OF\_CONDUCT.md [\#264](https://github.com/dogo/SCLAlertView/pull/264) ([dogo](https://github.com/dogo))
 
 ## [1.1.3](https://github.com/dogo/SCLAlertView/tree/1.1.3) (2018-01-17)
 [Full Changelog](https://github.com/dogo/SCLAlertView/compare/1.1.2...1.1.3)
