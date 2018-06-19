@@ -1353,12 +1353,12 @@ SCLTimerDisplay *buttonTimer;
         [self.view removeFromSuperview];
         [self removeFromParentViewController];
         
-        if (_usingNewWindow) {
+        if (self.usingNewWindow) {
             // Remove current window
             [self.SCLAlertWindow setHidden:YES];
             self.SCLAlertWindow = nil;
         }
-        if ( _dismissAnimationCompletionBlock ){
+        if ( self.dismissAnimationCompletionBlock ){
             self.dismissAnimationCompletionBlock();
         }
     }];
@@ -1434,7 +1434,7 @@ SCLTimerDisplay *buttonTimer;
 
 - (void)simplyDisappear
 {
-    self.backgroundView.alpha = _backgroundOpacity;
+    self.backgroundView.alpha = self.backgroundOpacity;
     self.view.alpha = 1.0f;
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -1454,11 +1454,11 @@ SCLTimerDisplay *buttonTimer;
                           delay:0.0f
                         options:UIViewAnimationOptionCurveEaseIn
                      animations:^{
-                         self.backgroundView.alpha = _backgroundOpacity;
+                         self.backgroundView.alpha = self.backgroundOpacity;
                          self.view.alpha = 1.0f;
                      }
                      completion:^(BOOL finished) {
-                         if ( _showAnimationCompletionBlock ){
+                         if ( self.showAnimationCompletionBlock ){
                              self.showAnimationCompletionBlock();
                          }
                      }];
@@ -1474,7 +1474,7 @@ SCLTimerDisplay *buttonTimer;
         self.view.frame = frame;
         
         [UIView animateWithDuration:0.3f animations:^{
-            self.backgroundView.alpha = _backgroundOpacity;
+            self.backgroundView.alpha = self.backgroundOpacity;
             
             //To Frame
             CGRect frame = self.backgroundView.frame;
@@ -1484,9 +1484,9 @@ SCLTimerDisplay *buttonTimer;
             self.view.alpha = 1.0f;
         } completion:^(BOOL completed) {
             [UIView animateWithDuration:0.2f animations:^{
-                self.view.center = _backgroundView.center;
+                self.view.center = self.backgroundView.center;
             } completion:^(BOOL finished) {
-                if ( _showAnimationCompletionBlock ){
+                if ( self.showAnimationCompletionBlock ){
                     self.showAnimationCompletionBlock();
                 }
             }];
@@ -1499,7 +1499,7 @@ SCLTimerDisplay *buttonTimer;
         self.view.frame = frame;
         
         [UIView animateWithDuration:0.5f delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:0.5f options:0 animations:^{
-            self.backgroundView.alpha = _backgroundOpacity;
+            self.backgroundView.alpha = self.backgroundOpacity;
             
             //To Frame
             CGRect frame = self.backgroundView.frame;
@@ -1508,7 +1508,7 @@ SCLTimerDisplay *buttonTimer;
             
             self.view.alpha = 1.0f;
         } completion:^(BOOL finished) {
-            if ( _showAnimationCompletionBlock ){
+            if ( self.showAnimationCompletionBlock ){
                 self.showAnimationCompletionBlock();
             }
         }];
@@ -1523,7 +1523,7 @@ SCLTimerDisplay *buttonTimer;
     self.view.frame = frame;
     
     [UIView animateWithDuration:0.3f animations:^{
-        self.backgroundView.alpha = _backgroundOpacity;
+        self.backgroundView.alpha = self.backgroundOpacity;
         
         //To Frame
         CGRect frame = self.backgroundView.frame;
@@ -1533,9 +1533,9 @@ SCLTimerDisplay *buttonTimer;
         self.view.alpha = 1.0f;
     } completion:^(BOOL completed) {
         [UIView animateWithDuration:0.2f animations:^{
-            self.view.center = _backgroundView.center;
+            self.view.center = self.backgroundView.center;
         } completion:^(BOOL finished) {
-            if ( _showAnimationCompletionBlock ){
+            if ( self.showAnimationCompletionBlock ){
                 self.showAnimationCompletionBlock();
             }
         }];
@@ -1550,7 +1550,7 @@ SCLTimerDisplay *buttonTimer;
     self.view.frame = frame;
     
     [UIView animateWithDuration:0.3f animations:^{
-        self.backgroundView.alpha = _backgroundOpacity;
+        self.backgroundView.alpha = self.backgroundOpacity;
         
         //To Frame
         CGRect frame = self.backgroundView.frame;
@@ -1560,9 +1560,9 @@ SCLTimerDisplay *buttonTimer;
         self.view.alpha = 1.0f;
     } completion:^(BOOL completed) {
         [UIView animateWithDuration:0.2f animations:^{
-            self.view.center = _backgroundView.center;
+            self.view.center = self.backgroundView.center;
         } completion:^(BOOL finished) {
-            if ( _showAnimationCompletionBlock ){
+            if ( self.showAnimationCompletionBlock ){
                 self.showAnimationCompletionBlock();
             }
         }];
@@ -1577,7 +1577,7 @@ SCLTimerDisplay *buttonTimer;
     self.view.frame = frame;
     
     [UIView animateWithDuration:0.3f animations:^{
-        self.backgroundView.alpha = _backgroundOpacity;
+        self.backgroundView.alpha = self.backgroundOpacity;
         
         //To Frame
         CGRect frame = self.backgroundView.frame;
@@ -1587,9 +1587,9 @@ SCLTimerDisplay *buttonTimer;
         self.view.alpha = 1.0f;
     } completion:^(BOOL completed) {
         [UIView animateWithDuration:0.2f animations:^{
-            self.view.center = _backgroundView.center;
+            self.view.center = self.backgroundView.center;
         } completion:^(BOOL finished) {
-            if ( _showAnimationCompletionBlock ){
+            if ( self.showAnimationCompletionBlock ){
                 self.showAnimationCompletionBlock();
             }
         }];
@@ -1604,7 +1604,7 @@ SCLTimerDisplay *buttonTimer;
     self.view.alpha = 0.0f;
     
     [UIView animateWithDuration:0.3f animations:^{
-        self.backgroundView.alpha = _backgroundOpacity;
+        self.backgroundView.alpha = self.backgroundOpacity;
         
         //To Frame
         self.view.transform = CGAffineTransformConcat(CGAffineTransformIdentity,
@@ -1612,9 +1612,9 @@ SCLTimerDisplay *buttonTimer;
         self.view.alpha = 1.0f;
     } completion:^(BOOL completed) {
         [UIView animateWithDuration:0.2f animations:^{
-            self.view.center = _backgroundView.center;
+            self.view.center = self.backgroundView.center;
         } completion:^(BOOL finished) {
-            if ( _showAnimationCompletionBlock ){
+            if ( self.showAnimationCompletionBlock ){
                 self.showAnimationCompletionBlock();
             }
         }];
@@ -1629,7 +1629,7 @@ SCLTimerDisplay *buttonTimer;
     self.view.alpha = 0.0f;
     
     [UIView animateWithDuration:0.3f animations:^{
-        self.backgroundView.alpha = _backgroundOpacity;
+        self.backgroundView.alpha = self.backgroundOpacity;
         
         //To Frame
         self.view.transform = CGAffineTransformConcat(CGAffineTransformIdentity,
@@ -1637,9 +1637,9 @@ SCLTimerDisplay *buttonTimer;
         self.view.alpha = 1.0f;
     } completion:^(BOOL completed) {
         [UIView animateWithDuration:0.2f animations:^{
-            self.view.center = _backgroundView.center;
+            self.view.center = self.backgroundView.center;
         } completion:^(BOOL finished) {
-            if ( _showAnimationCompletionBlock ){
+            if ( self.showAnimationCompletionBlock ){
                 self.showAnimationCompletionBlock();
             }
         }];
@@ -1652,9 +1652,9 @@ SCLTimerDisplay *buttonTimer;
     self.view.alpha = 0.0f;
 
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        self.backgroundView.alpha = _backgroundOpacity;
+        self.backgroundView.alpha = self.backgroundOpacity;
         self.view.alpha = 1.0f;
-        if ( _showAnimationCompletionBlock ){
+        if ( self.showAnimationCompletionBlock ){
             self.showAnimationCompletionBlock();
         }
     });
