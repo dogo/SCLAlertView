@@ -473,7 +473,9 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
 - (void)setupFluent;
 @end
 
-@interface SCLAlertViewShowBuilder : NSObject <SCLItemsBuilder__Protocol__Fluent>
+@interface SCLAlertViewBuilder__WithFluent: NSObject <SCLItemsBuilder__Protocol__Fluent> @end
+
+@interface SCLAlertViewShowBuilder : SCLAlertViewBuilder__WithFluent
 
 @property(weak, nonatomic, readonly) UIViewController *parameterViewController;
 @property(copy, nonatomic, readonly) UIImage *parameterImage;
@@ -501,7 +503,7 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
 @property(copy, nonatomic, readonly) void (^show)(SCLAlertView *view, UIViewController *controller);
 @end
 
-@interface SCLALertViewTextFieldBuilder : NSObject <SCLItemsBuilder__Protocol__Fluent>
+@interface SCLALertViewTextFieldBuilder : SCLAlertViewBuilder__WithFluent
 
 #pragma mark - Available later after adding
 @property(weak, nonatomic, readonly) SCLTextView *textField;
@@ -511,7 +513,7 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
 
 @end
 
-@interface SCLALertViewButtonBuilder : NSObject <SCLItemsBuilder__Protocol__Fluent>
+@interface SCLALertViewButtonBuilder : SCLAlertViewBuilder__WithFluent
 
 #pragma mark - Available later after adding
 @property(weak, nonatomic, readonly) SCLButton *button;
@@ -525,7 +527,7 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
 
 @end
 
-@interface SCLAlertViewBuilder : NSObject <SCLItemsBuilder__Protocol__Fluent>
+@interface SCLAlertViewBuilder : SCLAlertViewBuilder__WithFluent
 
 #pragma mark - Parameters
 @property (strong, nonatomic, readonly) SCLAlertView *alertView;
