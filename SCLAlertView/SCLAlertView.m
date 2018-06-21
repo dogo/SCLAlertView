@@ -1663,6 +1663,16 @@ SCLTimerDisplay *buttonTimer;
 
 @end
 
+@implementation SCLAlertViewBuilder__WithFluent
+- (instancetype)init {
+    if (self = [super init]) {
+        [self setupFluent];
+    }
+    return self;
+}
+- (void)setupFluent {}
+@end
+
 @interface SCLALertViewTextFieldBuilder()
 #pragma mark - Parameters
 @property(copy, nonatomic) NSString *parameterTitle;
@@ -1681,13 +1691,6 @@ SCLTimerDisplay *buttonTimer;
         weakSelf.parameterTitle = title;
         return weakSelf;
     };
-}
-
-- (instancetype)init {
-    if (self = [super init]) {
-        [self setupFluent];
-    }
-    return self;
 }
 @end
 
@@ -1735,13 +1738,6 @@ SCLTimerDisplay *buttonTimer;
         weakSelf.parameterValidationBlock = validationBlock;
         return weakSelf;
     };
-}
-
-- (instancetype)init {
-    if (self = [super init]) {
-        [self setupFluent];
-    }
-    return self;
 }
 
 @end
