@@ -232,13 +232,9 @@ SCLTimerDisplay *buttonTimer;
     _viewText.textAlignment = NSTextAlignmentCenter;
     _viewText.font = [UIFont fontWithName:_bodyTextFontFamily size:_bodyFontSize];
     _viewText.frame = CGRectMake(12.0f, _subTitleY, _windowWidth - 24.0f, _subTitleHeight);
-    
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
-    {
-        _viewText.textContainerInset = UIEdgeInsetsZero;
-        _viewText.textContainer.lineFragmentPadding = 0;
-        self.automaticallyAdjustsScrollViewInsets = NO;
-    }
+    _viewText.textContainerInset = UIEdgeInsetsZero;
+    _viewText.textContainer.lineFragmentPadding = 0;
+    self.automaticallyAdjustsScrollViewInsets = NO;
     
     // Content View
     _contentView.backgroundColor = [UIColor whiteColor];
@@ -306,14 +302,6 @@ SCLTimerDisplay *buttonTimer;
     // Check if the rootViewController is modal, if so we need to get the modal size not the main screen size
     if ([self isModal] && !_usingNewWindow) {
         sz = _rootViewController.view.frame.size;
-    }
-    
-    if (SYSTEM_VERSION_LESS_THAN(@"8.0")) {
-        // iOS versions before 7.0 did not switch the width and height on device roration
-        if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
-            CGSize ssz = sz;
-            sz = CGSizeMake(ssz.height, ssz.width);
-        }
     }
     
     // Set new main frame
@@ -1466,53 +1454,25 @@ SCLTimerDisplay *buttonTimer;
 
 - (void)slideInFromTop
 {
-    if (SYSTEM_VERSION_LESS_THAN(@"7.0"))
-    {
-        //From Frame
+    //From Frame
+    CGRect frame = self.backgroundView.frame;
+    frame.origin.y = -self.backgroundView.frame.size.height;
+    self.view.frame = frame;
+    
+    [UIView animateWithDuration:0.5f delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:0.5f options:0 animations:^{
+        self.backgroundView.alpha = self.backgroundOpacity;
+        
+        //To Frame
         CGRect frame = self.backgroundView.frame;
-        frame.origin.y = -self.backgroundView.frame.size.height;
+        frame.origin.y = 0.0f;
         self.view.frame = frame;
         
-        [UIView animateWithDuration:0.3f animations:^{
-            self.backgroundView.alpha = self.backgroundOpacity;
-            
-            //To Frame
-            CGRect frame = self.backgroundView.frame;
-            frame.origin.y = 0.0f;
-            self.view.frame = frame;
-            
-            self.view.alpha = 1.0f;
-        } completion:^(BOOL completed) {
-            [UIView animateWithDuration:0.2f animations:^{
-                self.view.center = self.backgroundView.center;
-            } completion:^(BOOL finished) {
-                if ( self.showAnimationCompletionBlock ){
-                    self.showAnimationCompletionBlock();
-                }
-            }];
-        }];
-    }
-    else {
-        //From Frame
-        CGRect frame = self.backgroundView.frame;
-        frame.origin.y = -self.backgroundView.frame.size.height;
-        self.view.frame = frame;
-        
-        [UIView animateWithDuration:0.5f delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:0.5f options:0 animations:^{
-            self.backgroundView.alpha = self.backgroundOpacity;
-            
-            //To Frame
-            CGRect frame = self.backgroundView.frame;
-            frame.origin.y = 0.0f;
-            self.view.frame = frame;
-            
-            self.view.alpha = 1.0f;
-        } completion:^(BOOL finished) {
-            if ( self.showAnimationCompletionBlock ){
-                self.showAnimationCompletionBlock();
-            }
-        }];
-    }
+        self.view.alpha = 1.0f;
+    } completion:^(BOOL finished) {
+        if ( self.showAnimationCompletionBlock ){
+            self.showAnimationCompletionBlock();
+        }
+    }];
 }
 
 - (void)slideInFromBottom
