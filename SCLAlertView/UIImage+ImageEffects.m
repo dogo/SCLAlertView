@@ -312,22 +312,11 @@
     CGFloat scale = [UIScreen mainScreen].scale;
     UIImage *capturedScreen;
     
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
-    {
-        //Optimized/fast method for rendering a UIView as image on iOS 7 and later versions.
-        UIGraphicsBeginImageContextWithOptions(view.bounds.size, YES, scale);
-        [view drawViewHierarchyInRect:view.bounds afterScreenUpdates:NO];
-        capturedScreen = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-    }
-    else
-    {
-        //For devices running on earlier iOS versions.
-        UIGraphicsBeginImageContextWithOptions(view.bounds.size,YES, scale);
-        [view.layer renderInContext:UIGraphicsGetCurrentContext()];
-        capturedScreen = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-    }
+    //Optimized/fast method for rendering a UIView as image on iOS 7 and later versions.
+    UIGraphicsBeginImageContextWithOptions(view.bounds.size, YES, scale);
+    [view drawViewHierarchyInRect:view.bounds afterScreenUpdates:NO];
+    capturedScreen = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
     
     return capturedScreen;
 }
