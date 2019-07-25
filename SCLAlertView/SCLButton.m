@@ -9,8 +9,9 @@
 #import "SCLButton.h"
 #import "SCLTimerDisplay.h"
 
-#define MARGIN_BUTTON 12.0f
-#define DEFAULT_WINDOW_WIDTH 240
+#define SizeScale ([UIScreen mainScreen].bounds.size.width == 375 ? 1 : ([UIScreen mainScreen].bounds.size.width < 375 ? 0.9 : 1.1))
+#define MARGIN_BUTTON 23*SizeScale
+#define DEFAULT_WINDOW_WIDTH 300*SizeScale
 #define MIN_HEIGHT 35.0f
 
 @implementation SCLButton
@@ -66,7 +67,7 @@
 - (void)adjustWidthWithWindowWidth:(CGFloat)windowWidth numberOfButtons:(NSUInteger)numberOfButtons
 {
     CGFloat allButtonsWidth = windowWidth - (MARGIN_BUTTON * 2);
-    CGFloat buttonWidth = (allButtonsWidth - ((numberOfButtons - 1) * 10)) / numberOfButtons;
+    CGFloat buttonWidth = (allButtonsWidth - ((numberOfButtons - 1) * 27*SizeScale)) / numberOfButtons;
     
     self.frame = CGRectMake(0.0f, 0.0f, buttonWidth, MIN_HEIGHT);
 }

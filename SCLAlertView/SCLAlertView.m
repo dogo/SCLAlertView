@@ -21,10 +21,11 @@
 #import <AudioToolbox/AudioToolbox.h>
 #endif
 
+#define SizeScale ([UIScreen mainScreen].bounds.size.width == 375 ? 1 : ([UIScreen mainScreen].bounds.size.width < 375 ? 0.9 : 1.1))
 #define KEYBOARD_HEIGHT 80
 #define PREDICTION_BAR_HEIGHT 40
 #define ADD_BUTTON_PADDING 10.0f
-#define DEFAULT_WINDOW_WIDTH 240
+#define DEFAULT_WINDOW_WIDTH 300*SizeScale
 
 @interface SCLAlertView ()  <UITextFieldDelegate, UIGestureRecognizerDelegate>
 
@@ -154,8 +155,8 @@ SCLTimerDisplay *buttonTimer;
 {
     // Default values
     kCircleBackgroundTopPosition = -15.0f;
-    kCircleHeight = 56.0f;
-    kCircleHeightBackground = 62.0f;
+    kCircleHeight = 61.0f;
+    kCircleHeightBackground = 61.0f;
     kActivityIndicatorHeight = 40.0f;
     kTitleTop = 30.0f;
     self.titleHeight = 40.0f;
@@ -177,9 +178,9 @@ SCLTimerDisplay *buttonTimer;
     _titleFontFamily = @"HelveticaNeue";
     _bodyTextFontFamily = @"HelveticaNeue";
     _buttonsFontFamily = @"HelveticaNeue-Bold";
-    _titleFontSize = 20.0f;
-    _bodyFontSize = 14.0f;
-    _buttonsFontSize = 14.0f;
+    _titleFontSize = 15.0f;
+    _bodyFontSize = 12.0f;
+    _buttonsFontSize = 15.0f;
     
     // Init
     _labelTitle = [[UILabel alloc] init];
@@ -350,13 +351,13 @@ SCLTimerDisplay *buttonTimer;
     }
     
     // Buttons
-    CGFloat x = 12.0f;
+    CGFloat x = 23*SizeScale;
     for (SCLButton *btn in _buttons) {
         btn.frame = CGRectMake(x, y, btn.frame.size.width, btn.frame.size.height);
         
         // Add horizontal or vertical offset acording on _horizontalButtons parameter
         if (_horizontalButtons) {
-            x += btn.frame.size.width + 10.0f;
+            x += btn.frame.size.width + 27*SizeScale;
         } else {
             y += btn.frame.size.height + 10.0f;
         }
