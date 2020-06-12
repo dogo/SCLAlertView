@@ -984,8 +984,9 @@ SCLTimerDisplay *buttonTimer;
         {
             SCLButton *btn = _buttons[buttonTimer.buttonIndex];
             btn.timer = buttonTimer;
+            __weak __typeof(self) weakSelf = self;
             [buttonTimer startTimerWithTimeLimit:duration completed:^{
-                [self buttonTapped:btn];
+                [weakSelf buttonTapped:btn];
             }];
         }
         else
