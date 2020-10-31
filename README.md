@@ -112,10 +112,6 @@ SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
 SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindowWidth:300.0f];
 ```
 
-### New Window: Known issues
-
-1. SCLAlert animation is wrong in landscape. (iOS 6.X and 7.X)
-
 ### Add buttons
 ```Objective-C
 SCLAlertView *alert = [[SCLAlertView alloc] init];
