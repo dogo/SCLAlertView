@@ -1,7 +1,0 @@
-# reference: http://www.objc.io/issue-6/travis-ci.html
-
-language: objective-c
-osx_image: xcode8.3
-
-script:
-- xcodebuild -project SCLAlertView.xcodeproj -target SCLAlertView -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
