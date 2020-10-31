@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "SCLAlertView.h"
+#import "UIViewController+Alert.h"
 
 @interface ViewController ()
 
@@ -271,19 +272,23 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     
     SCLTextView *oddField = [alert addTextField:@"Enter an odd number"];
     oddField.keyboardType = UIKeyboardTypeNumberPad;
-    
+
+    __weak __typeof(self) weakSelf = self;
+
     [alert addButton:@"Test Validation" validationBlock:^BOOL{
         if (evenField.text.length == 0)
         {
-            [[[UIAlertView alloc] initWithTitle:@"Whoops!" message:@"You forgot to add an even number." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-            [evenField becomeFirstResponder];
+            [weakSelf showAlertWithTitle:@"Whoops!" message:@"You forgot to add an even number." actionBlock:^{
+                [evenField becomeFirstResponder];
+            }];
             return NO;
         }
         
         if (oddField.text.length == 0)
         {
-            [[[UIAlertView alloc] initWithTitle:@"Whoops!" message:@"You forgot to add an odd number." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-            [oddField becomeFirstResponder];
+            [weakSelf showAlertWithTitle:@"Whoops!" message:@"You forgot to add an odd number." actionBlock:^{
+                [oddField becomeFirstResponder];
+            }];
             return NO;
         }
         
@@ -292,8 +297,9 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
         
         if (!evenFieldPassedValidation)
         {
-            [[[UIAlertView alloc] initWithTitle:@"Whoops!" message:@"That is not an even number." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-            [evenField becomeFirstResponder];
+            [weakSelf showAlertWithTitle:@"Whoops!" message:@"That is not an even number." actionBlock:^{
+                [evenField becomeFirstResponder];
+            }];
             return NO;
         }
         
@@ -302,13 +308,14 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
         
         if (!oddFieldPassedValidation)
         {
-            [[[UIAlertView alloc] initWithTitle:@"Whoops!" message:@"That is not an odd number." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-            [oddField becomeFirstResponder];
+            [weakSelf showAlertWithTitle:@"Whoops!" message:@"That is not an odd number." actionBlock:^{
+                [oddField becomeFirstResponder];
+            }];
             return NO;
         }
         return YES;
     } actionBlock:^{
-        [[[UIAlertView alloc] initWithTitle:@"Great Job!" message:@"Thanks for playing." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+        [weakSelf showAlertWithTitle:@"Great Job!" message:@"Thanks for playing." actionBlock:nil];
     }];
     
     [alert showEdit:self title:@"Validation" subTitle:@"Ensure the data is correct before dismissing!" closeButtonTitle:@"Cancel" duration:0];
@@ -324,19 +331,23 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     
     SCLTextView *oddField = [alert addTextField:@"Enter an odd number"];
     oddField.keyboardType = UIKeyboardTypeNumberPad;
+
+    __weak __typeof(self) weakSelf = self;
     
     [alert addButton:@"Test Validation" validationBlock:^BOOL{
         if (evenField.text.length == 0)
         {
-            [[[UIAlertView alloc] initWithTitle:@"Whoops!" message:@"You forgot to add an even number." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-            [evenField becomeFirstResponder];
+            [weakSelf showAlertWithTitle:@"Whoops!" message:@"You forgot to add an even number." actionBlock:^{
+                [evenField becomeFirstResponder];
+            }];
             return NO;
         }
         
         if (oddField.text.length == 0)
         {
-            [[[UIAlertView alloc] initWithTitle:@"Whoops!" message:@"You forgot to add an odd number." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-            [oddField becomeFirstResponder];
+            [weakSelf showAlertWithTitle:@"Whoops!" message:@"You forgot to add an odd number." actionBlock:^{
+                [oddField becomeFirstResponder];
+            }];
             return NO;
         }
         
@@ -345,8 +356,9 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
         
         if (!evenFieldPassedValidation)
         {
-            [[[UIAlertView alloc] initWithTitle:@"Whoops!" message:@"That is not an even number." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-            [evenField becomeFirstResponder];
+            [weakSelf showAlertWithTitle:@"Whoops!" message:@"That is not an even number." actionBlock:^{
+                [evenField becomeFirstResponder];
+            }];
             return NO;
         }
         
@@ -355,13 +367,14 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
         
         if (!oddFieldPassedValidation)
         {
-            [[[UIAlertView alloc] initWithTitle:@"Whoops!" message:@"That is not an odd number." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-            [oddField becomeFirstResponder];
+            [weakSelf showAlertWithTitle:@"Whoops!" message:@"That is not an odd number." actionBlock:^{
+                [oddField becomeFirstResponder];
+            }];
             return NO;
         }
         return YES;
     } actionBlock:^{
-        [[[UIAlertView alloc] initWithTitle:@"Great Job!" message:@"Thanks for playing." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+        [weakSelf showAlertWithTitle:@"Great Job!" message:@"Thanks for playing." actionBlock:nil];
     }];
     
     [alert showEdit:self title:@"Validation" subTitle:@"Ensure the data is correct before dismissing!" closeButtonTitle:@"Cancel" duration:0];
