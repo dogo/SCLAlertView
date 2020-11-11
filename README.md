@@ -3,7 +3,7 @@ SCLAlertView-Objective-C
 
 Animated Alert View written in Swift but ported to Objective-C, which can be used as a `UIAlertView` or `UIAlertController` replacement.
 
-[![Build Status](https://travis-ci.org/dogo/SCLAlertView.svg?branch=master)](https://travis-ci.org/dogo/SCLAlertView)
+![Build Status](https://github.com/dogo/SCLAlertView/workflows/Building/badge.svg)
 [![Cocoapods](http://img.shields.io/cocoapods/v/SCLAlertView-Objective-C.svg)](http://cocoapods.org/?q=SCLAlertView-Objective-C)
 [![Pod License](http://img.shields.io/cocoapods/l/SCLAlertView-Objective-C.svg)](https://github.com/dogo/SCLAlertView/blob/master/LICENSE)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
@@ -111,10 +111,6 @@ SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
 // Using custom alert width
 SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindowWidth:300.0f];
 ```
-
-### New Window: Known issues
-
-1. SCLAlert animation is wrong in landscape. (iOS 6.X and 7.X)
 
 ### Add buttons
 ```Objective-C

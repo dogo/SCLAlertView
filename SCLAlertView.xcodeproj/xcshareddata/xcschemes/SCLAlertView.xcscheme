@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EF994B071D47AB1400619DFF"
-               BuildableName = "SCLAlertViewFramework.framework"
-               BlueprintName = "SCLAlertViewFramework"
+               BlueprintIdentifier = "DDB15F9C19D5B7C600173158"
+               BuildableName = "SCLAlertView.app"
+               BlueprintName = "SCLAlertView"
                ReferencedContainer = "container:SCLAlertView.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,6 +28,16 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DDB15FB519D5B7C600173158"
+               BuildableName = "SCLAlertViewTests.xctest"
+               BlueprintName = "SCLAlertViewTests"
+               ReferencedContainer = "container:SCLAlertView.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -40,15 +50,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EF994B071D47AB1400619DFF"
-            BuildableName = "SCLAlertViewFramework.framework"
-            BlueprintName = "SCLAlertViewFramework"
+            BlueprintIdentifier = "DDB15F9C19D5B7C600173158"
+            BuildableName = "SCLAlertView.app"
+            BlueprintName = "SCLAlertView"
             ReferencedContainer = "container:SCLAlertView.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -56,15 +67,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EF994B071D47AB1400619DFF"
-            BuildableName = "SCLAlertViewFramework.framework"
-            BlueprintName = "SCLAlertViewFramework"
+            BlueprintIdentifier = "DDB15F9C19D5B7C600173158"
+            BuildableName = "SCLAlertView.app"
+            BlueprintName = "SCLAlertView"
             ReferencedContainer = "container:SCLAlertView.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

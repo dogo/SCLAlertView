@@ -22,9 +22,10 @@
 		DD4B77E41D8C580B00CF97C7 /* SCLAlertViewFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 44E430DB1D889255002FE849 /* SCLAlertViewFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DD4BA9C119DED8EF008D73EB /* right_answer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DD4BA9C019DED8EF008D73EB /* right_answer.mp3 */; };
 		DD7282B919D6087C00077F54 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD7282B719D6087C00077F54 /* Storyboard.storyboard */; };
+		DDAD0113254DEABA00270C67 /* UIViewController+Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = DDAD0111254DEABA00270C67 /* UIViewController+Alert.m */; };
+		DDAD011D254DEAEC00270C67 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DDAD0119254DEAEC00270C67 /* AppDelegate.m */; };
+		DDAD011E254DEAEC00270C67 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDAD011B254DEAEC00270C67 /* ViewController.m */; };
 		DDB15FBD19D5B7C600173158 /* SCLAlertViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB15FBC19D5B7C600173158 /* SCLAlertViewTests.m */; };
-		DDB15FCA19D5B88A00173158 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB15FC719D5B88A00173158 /* AppDelegate.m */; };
-		DDB15FCB19D5B88A00173158 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB15FC919D5B88A00173158 /* ViewController.m */; };
 		DDB15FD019D5B8BF00173158 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDB15FCF19D5B8BF00173158 /* Images.xcassets */; };
 		DDB15FD419D5B8DB00173158 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB15FD319D5B8DB00173158 /* main.m */; };
 		DDB15FD719D5B96500173158 /* SCLAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB15FD619D5B96500173158 /* SCLAlertView.m */; };
@@ -73,14 +74,16 @@
 		DD4BA9C019DED8EF008D73EB /* right_answer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = right_answer.mp3; sourceTree = "<group>"; };
 		DD4BA9C219DEDD8E008D73EB /* SCLAlertView-Objective-C-prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SCLAlertView-Objective-C-prefix.pch"; path = "SCLAlertViewExample/SCLAlertView-Objective-C-prefix.pch"; sourceTree = SOURCE_ROOT; };
 		DD7282B819D6087C00077F54 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = SCLAlertViewExample/Base.lproj/Storyboard.storyboard; sourceTree = SOURCE_ROOT; };
+		DDAD0111254DEABA00270C67 /* UIViewController+Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Alert.m"; sourceTree = "<group>"; };
+		DDAD0112254DEABA00270C67 /* UIViewController+Alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Alert.h"; sourceTree = "<group>"; };
+		DDAD0118254DEAEC00270C67 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		DDAD0119254DEAEC00270C67 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		DDAD011B254DEAEC00270C67 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		DDAD011C254DEAEC00270C67 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		DDB15F9D19D5B7C600173158 /* SCLAlertView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SCLAlertView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDB15FB619D5B7C600173158 /* SCLAlertViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SCLAlertViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDB15FBB19D5B7C600173158 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DDB15FBC19D5B7C600173158 /* SCLAlertViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCLAlertViewTests.m; sourceTree = "<group>"; };
-		DDB15FC619D5B88A00173158 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = SCLAlertViewExample/AppDelegate.h; sourceTree = SOURCE_ROOT; };
-		DDB15FC719D5B88A00173158 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = SCLAlertViewExample/AppDelegate.m; sourceTree = SOURCE_ROOT; };
-		DDB15FC819D5B88A00173158 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = SCLAlertViewExample/ViewController.h; sourceTree = SOURCE_ROOT; };
-		DDB15FC919D5B88A00173158 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = SCLAlertViewExample/ViewController.m; sourceTree = SOURCE_ROOT; };
 		DDB15FCF19D5B8BF00173158 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = SCLAlertViewExample/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		DDB15FD319D5B8DB00173158 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = SCLAlertViewExample/main.m; sourceTree = SOURCE_ROOT; };
 		DDB15FD619D5B96500173158 /* SCLAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLAlertView.m; sourceTree = "<group>"; };
@@ -147,6 +150,36 @@
 			path = SCLAlertViewExample/Sounds;
 			sourceTree = SOURCE_ROOT;
 		};
+		DDAD0110254DEABA00270C67 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				DDAD0111254DEABA00270C67 /* UIViewController+Alert.m */,
+				DDAD0112254DEABA00270C67 /* UIViewController+Alert.h */,
+			);
+			name = Category;
+			path = SCLAlertViewExample/Category;
+			sourceTree = SOURCE_ROOT;
+		};
+		DDAD0117254DEAEC00270C67 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				DDAD0118254DEAEC00270C67 /* AppDelegate.h */,
+				DDAD0119254DEAEC00270C67 /* AppDelegate.m */,
+			);
+			name = AppDelegate;
+			path = SCLAlertViewExample/AppDelegate;
+			sourceTree = SOURCE_ROOT;
+		};
+		DDAD011A254DEAEC00270C67 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DDAD011C254DEAEC00270C67 /* ViewController.h */,
+				DDAD011B254DEAEC00270C67 /* ViewController.m */,
+			);
+			name = ViewController;
+			path = SCLAlertViewExample/ViewController;
+			sourceTree = SOURCE_ROOT;
+		};
 		DDB15F9419D5B7C600173158 = {
 			isa = PBXGroup;
 			children = (
@@ -173,12 +206,11 @@
 			isa = PBXGroup;
 			children = (
 				DDB15FCF19D5B8BF00173158 /* Images.xcassets */,
-				DDB15FC619D5B88A00173158 /* AppDelegate.h */,
-				DDB15FC719D5B88A00173158 /* AppDelegate.m */,
-				DDB15FC819D5B88A00173158 /* ViewController.h */,
-				DDB15FC919D5B88A00173158 /* ViewController.m */,
-				DDB15FA019D5B7C600173158 /* Supporting Files */,
 				DD7282B719D6087C00077F54 /* Storyboard.storyboard */,
+				DDAD0117254DEAEC00270C67 /* AppDelegate */,
+				DDAD0110254DEABA00270C67 /* Category */,
+				DDB15FA019D5B7C600173158 /* Supporting Files */,
+				DDAD011A254DEAEC00270C67 /* ViewController */,
 			);
 			name = SCLAlertViewExample;
 			path = SCLAlertView;
@@ -332,11 +364,12 @@
 		DDB15F9519D5B7C600173158 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1000;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "AnyKey Entertainment";
 				TargetAttributes = {
 					DDB15F9C19D5B7C600173158 = {
 						CreatedOnToolsVersion = 6.0.1;
+						LastSwiftMigration = 1200;
 					};
 					DDB15FB519D5B7C600173158 = {
 						CreatedOnToolsVersion = 6.0.1;
@@ -349,7 +382,7 @@
 			};
 			buildConfigurationList = DDB15F9819D5B7C600173158 /* Build configuration list for PBXProject "SCLAlertView" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -400,16 +433,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDAD011D254DEAEC00270C67 /* AppDelegate.m in Sources */,
 				DD2E172A19FA84B800CBAEC3 /* UIImage+ImageEffects.m in Sources */,
-				DDB15FCB19D5B88A00173158 /* ViewController.m in Sources */,
 				DDB15FD419D5B8DB00173158 /* main.m in Sources */,
 				CF6FB1241C5926FC009715F3 /* SCLSwitchView.m in Sources */,
 				DDB15FE119D5D85B00173158 /* SCLAlertViewStyleKit.m in Sources */,
+				DDAD0113254DEABA00270C67 /* UIViewController+Alert.m in Sources */,
+				DDAD011E254DEAEC00270C67 /* ViewController.m in Sources */,
 				DD24453C1BAC383600892117 /* SCLTextView.m in Sources */,
 				572BB1471B8383B3002DEE38 /* SCLTimerDisplay.m in Sources */,
 				DDB15FD719D5B96500173158 /* SCLAlertView.m in Sources */,
 				DDB15FDB19D5BAA000173158 /* SCLButton.m in Sources */,
-				DDB15FCA19D5B88A00173158 /* AppDelegate.m in Sources */,
 				DDB15FDE19D5BCF400173158 /* SCLAlertViewResponder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -481,6 +515,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -505,7 +540,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -535,6 +570,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -552,7 +588,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -565,11 +601,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/SCLAlertViewExample/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "br.com.anykey.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -578,11 +617,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/SCLAlertViewExample/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "br.com.anykey.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -636,11 +677,13 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = SCLAlertViewFramework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.anykey.SCLAlertViewFramework;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -661,11 +704,13 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = SCLAlertViewFramework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.anykey.SCLAlertViewFramework;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
