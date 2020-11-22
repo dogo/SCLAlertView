@@ -178,7 +178,7 @@ alert.attributedFormatBlock = ^NSAttributedString* (NSString *value)
 ```Objective-C
 SCLAlertView *alert = [[SCLAlertView alloc] init];
 
-UITextField *textField = [alert addTextField:@"Enter your name"];
+UITextField *textField = [alert addTextField:@"Enter your name" setDefaultText:nil];
 
 [alert addButton:@"Show Name" actionBlock:^(void) {
     NSLog(@"Text value: %@", textField.text);
