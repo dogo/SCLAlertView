@@ -119,7 +119,7 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
 {
     SCLAlertView *alert = [[SCLAlertView alloc] init];
     
-    SCLTextView *textField = [alert addTextField:@"Enter your name"];
+    SCLTextView *textField = [alert addTextField:@"Enter your name" setDefaultText:nil];
     [alert addButton:@"Show Name" actionBlock:^(void) {
         NSLog(@"Text value: %@", textField.text);
     }];
@@ -132,7 +132,7 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     SCLAlertView *alert = [[SCLAlertView alloc] init];
     [alert setHorizontalButtons:YES];
     
-    SCLTextView *textField = [alert addTextField:@"Enter your name"];
+    SCLTextView *textField = [alert addTextField:@"Enter your name" setDefaultText:nil];
     alert.hideAnimationType = SCLAlertViewHideAnimationSimplyDisappear;
     [alert addButton:@"Show Name" actionBlock:^(void) {
         NSLog(@"Text value: %@", textField.text);
@@ -157,7 +157,7 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
         NSLog(@"Second button tapped");
     }];
     
-    SCLTextView *textField = [alert addTextField:@"Enter your name"];
+    SCLTextView *textField = [alert addTextField:@"Enter your name" setDefaultText:nil];
     
     [alert addButton:@"Show Name" actionBlock:^(void) {
         NSLog(@"Text value: %@", textField.text);
@@ -211,7 +211,7 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
         NSLog(@"Second button tapped");
     }];
     
-    SCLTextView *textField = [alert addTextField:@"Enter your name"];
+    SCLTextView *textField = [alert addTextField:@"Enter your name" setDefaultText:nil];
     
     [alert addButton:@"Show Name" actionBlock:^(void) {
         NSLog(@"Text value: %@", textField.text);
@@ -267,10 +267,10 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
 {
     SCLAlertView *alert = [[SCLAlertView alloc] init];
     
-    SCLTextView *evenField = [alert addTextField:@"Enter an even number"];
+    SCLTextView *evenField = [alert addTextField:@"Enter an even number" setDefaultText:nil];
     evenField.keyboardType = UIKeyboardTypeNumberPad;
     
-    SCLTextView *oddField = [alert addTextField:@"Enter an odd number"];
+    SCLTextView *oddField = [alert addTextField:@"Enter an odd number" setDefaultText:nil];
     oddField.keyboardType = UIKeyboardTypeNumberPad;
 
     __weak __typeof(self) weakSelf = self;
@@ -326,10 +326,10 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     SCLAlertView *alert = [[SCLAlertView alloc] init];
     [alert setHorizontalButtons:YES];
     
-    SCLTextView *evenField = [alert addTextField:@"Enter an even number"];
+    SCLTextView *evenField = [alert addTextField:@"Enter an even number" setDefaultText:nil];
     evenField.keyboardType = UIKeyboardTypeNumberPad;
     
-    SCLTextView *oddField = [alert addTextField:@"Enter an odd number"];
+    SCLTextView *oddField = [alert addTextField:@"Enter an odd number" setDefaultText:nil];
     oddField.keyboardType = UIKeyboardTypeNumberPad;
 
     __weak __typeof(self) weakSelf = self;
