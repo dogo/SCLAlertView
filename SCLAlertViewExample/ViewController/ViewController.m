@@ -384,7 +384,7 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
 {
     SCLAlertView *alert = [[SCLAlertView alloc] init];
     
-    alert.showAnimationType = SCLAlertViewHideAnimationSlideOutToCenter;
+    alert.showAnimationType = SCLAlertViewShowAnimationSlideInToCenter;
     alert.hideAnimationType = SCLAlertViewHideAnimationSlideOutFromCenter;
     
     alert.backgroundType = SCLAlertViewBackgroundTransparent;
