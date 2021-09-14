@@ -17,8 +17,6 @@
 @import AVFoundation;
 @import AudioToolbox;
 
-#define KEYBOARD_HEIGHT 80
-#define PREDICTION_BAR_HEIGHT 40
 #define ADD_BUTTON_PADDING 10.0f
 #define DEFAULT_WINDOW_WIDTH 240
 
@@ -57,6 +55,9 @@
 @property (nonatomic) CGFloat titleHeight;
 @property (nonatomic) CGFloat subTitleHeight;
 @property (nonatomic) CGFloat subTitleY;
+
+@property (nonatomic) CGPoint tmpContentViewFrameOrigin;
+@property (nonatomic) CGPoint tmpCircleViewFrameOrigin;
 
 @end
 
@@ -670,25 +671,48 @@ SCLTimerDisplay *buttonTimer;
 - (void)keyboardWillShow:(NSNotification *)notification
 {
     if(_keyboardIsVisible) return;
-    
-    [UIView animateWithDuration:0.2f animations:^{
-        CGRect f = self.view.frame;
-        f.origin.y -= KEYBOARD_HEIGHT + PREDICTION_BAR_HEIGHT;
-        self.view.frame = f;
-    }];
+
+    NSDictionary *userInfo = [notification userInfo];
+    CGRect endKeyBoardRect = [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGFloat endKeyBoardFrame = CGRectGetMinY(endKeyBoardRect);
+
     _keyboardIsVisible = YES;
+
+    _tmpContentViewFrameOrigin = _contentView.frame.origin;
+    _tmpCircleViewFrameOrigin = _circleViewBackground.frame.origin;
+
+    CGFloat newContentViewFrameY = CGRectGetMaxY(_contentView.frame) - endKeyBoardFrame;
+
+    if(!IS_LANDSCAPE && newContentViewFrameY < 0) {
+        newContentViewFrameY = 0;
+    }
+
+    CGFloat newBallViewFrameY = _circleViewBackground.frame.origin.y - fabs(newContentViewFrameY);
+
+    CGRect contentFrame = self.contentView.frame;
+    contentFrame.origin.y -= fabs(newContentViewFrameY);
+    self.contentView.frame = contentFrame;
+
+    CGRect circleFrame = self.circleViewBackground.frame;
+    circleFrame.origin.y = newBallViewFrameY;
+    self.circleViewBackground.frame = circleFrame;
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification
 {
-    if(!_keyboardIsVisible) return;
-    
-    [UIView animateWithDuration:0.2f animations:^{
-        CGRect f = self.view.frame;
-        f.origin.y += KEYBOARD_HEIGHT + PREDICTION_BAR_HEIGHT;
-        self.view.frame = f;
-    }];
-    _keyboardIsVisible = NO;
+    if(_keyboardIsVisible) {
+        CGRect contentFrame = self.contentView.frame;
+        contentFrame.origin.y = _tmpContentViewFrameOrigin.y;
+        self.contentView.frame = contentFrame;
+        _tmpContentViewFrameOrigin = CGPointZero;
+
+        CGRect circleFrame = self.circleViewBackground.frame;
+        circleFrame.origin.y = _tmpCircleViewFrameOrigin.y;
+        self.circleViewBackground.frame = circleFrame;
+        _tmpCircleViewFrameOrigin = CGPointZero;
+
+        _keyboardIsVisible = NO;
+    }
 }
 
 #pragma mark - Buttons
