@@ -7,10 +7,10 @@ jobs:
     runs-on: macOS-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Setup Xcode version
-        uses: maxim-lobanov/setup-xcode@v1.1
+        uses: maxim-lobanov/setup-xcode@v1.41
         with:
-          xcode-version: 12.0.0
+          xcode-version: 13.2.1
       - name: Building iOS app
         run: exec ./.github/scripts/build_app.sh
