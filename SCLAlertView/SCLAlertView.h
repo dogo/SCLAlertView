@@ -230,6 +230,12 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
  */
 @property (nonatomic) BOOL horizontalButtons;
 
+/** Initialize SCLAlertView using specific width.
+ *
+ * Init instance
+ */
+- (instancetype)initWithWidth:(CGFloat)width;
+
 /** Initialize SCLAlertView using a new window.
  *
  * Init with new window
