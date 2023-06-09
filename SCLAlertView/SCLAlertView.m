@@ -96,6 +96,16 @@ SCLTimerDisplay *buttonTimer;
     return self;
 }
 
+- (instancetype)initWithWidth:(CGFloat)width
+{
+    self = [super init];
+    if (self)
+    {
+        [self setupViewWindowWidth:width];
+    }
+    return self;
+}
+
 - (instancetype)initWithWindowWidth:(CGFloat)windowWidth
 {
     self = [super init];
