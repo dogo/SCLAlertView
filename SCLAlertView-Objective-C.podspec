@@ -10,7 +10,7 @@ Pod::Spec.new do |spec|
   spec.social_media_url   = "http://twitter.com/di_autilio"
   spec.platform           = :ios
   spec.frameworks         = "UIKit", "AudioToolbox", "Accelerate", "CoreGraphics"
-  spec.ios.deployment_target = '9.0'
+  spec.ios.deployment_target = '12.0'
   spec.source             = { :git => "https://github.com/dogo/SCLAlertView.git", :tag => spec.version.to_s }
   spec.source_files       = "SCLAlertView/*"
   spec.requires_arc       = true
