@@ -10,33 +10,36 @@
 
 @interface SCLAlertViewResponder ()
 
-@property SCLAlertView *alertview;
+// Weak reference to the alert to avoid retain cycles. Valid while the alert is alive.
+@property (weak, nonatomic) SCLAlertView *alertview;
 
 @end
 
 @implementation SCLAlertViewResponder
 
-//
-//// Allow alerts to be closed/renamed in a chainable manner
-//// Example: SCLAlertView().showSuccess(self, title: "Test", subTitle: "Value").close()
-
-// Initialisation and Title/Subtitle/Close functions
+// Binds the responder to a presented alert, enabling title/subtitle updates and dismissal.
 - (instancetype)init:(SCLAlertView *)alertview
 {
-    self.alertview = alertview;
+    self = [super init];
+    if (self) {
+        self.alertview = alertview;
+    }
     return self;
 }
 
-- (void)setTitletitle:(NSString *)title
+// Updates the alert title (useful for async state changes).
+- (void)setTitle:(NSString *)title
 {
     self.alertview.labelTitle.text = title;
 }
 
+// Updates the alert subtitle/body text.
 - (void)setSubTitle:(NSString *)subTitle
 {
     self.alertview.viewText.text = subTitle;
 }
 
+// Dismisses the alert using its configured animation.
 - (void)close
 {
     [self.alertview hideView];

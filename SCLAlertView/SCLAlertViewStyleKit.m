@@ -3,7 +3,7 @@
 //  SCLAlertView
 //
 //  Created by Diogo Autilio on 9/26/14.
-//  Copyright (c) 2014-2017 AnyKey Entertainment. All rights reserved.
+//  Copyright (c) 2014-2025 AnyKey Entertainment. All rights reserved.
 //
 
 #import "SCLAlertViewStyleKit.h"
@@ -28,14 +28,14 @@ static UIImage *imageOfQuestion = nil;
 
 + (void)initialize
 {
-    // Do something
+    // Reserved for future initialization.
 }
 
 #pragma mark - Drawing Methods
 
 + (void)drawCheckmark
 {
-    // Checkmark Shape Drawing
+    // Checkmark shape drawing
     UIBezierPath *checkmarkShapePath = [[UIBezierPath alloc] init];
     [checkmarkShapePath moveToPoint:CGPointMake(73.25, 14.05)];
     [checkmarkShapePath addCurveToPoint:CGPointMake(64.51, 13.86) controlPoint1: CGPointMake(70.98, 11.44) controlPoint2: CGPointMake(66.78, 11.26)];
@@ -57,7 +57,7 @@ static UIImage *imageOfQuestion = nil;
 
 + (void)drawCross
 {
-    // Cross Shape Drawing
+    // Cross shape drawing
     UIBezierPath *crossShapePath = [[UIBezierPath alloc] init];
     [crossShapePath moveToPoint:CGPointMake(10, 70)];
     [crossShapePath addLineToPoint:CGPointMake(70, 10)];
@@ -74,7 +74,7 @@ static UIImage *imageOfQuestion = nil;
 
 + (void)drawNotice
 {
-    // Notice Shape Drawing
+    // Notice shape drawing
     UIBezierPath *noticeShapePath = [[UIBezierPath alloc] init];
     [noticeShapePath moveToPoint:CGPointMake(72, 48.54)];
     [noticeShapePath addLineToPoint:CGPointMake(72, 39.9)];
@@ -112,11 +112,11 @@ static UIImage *imageOfQuestion = nil;
 
 + (void)drawWarning
 {
-    // Color Declarations
+    // Color declarations
     UIColor *greyColor = [UIColor colorWithRed:0.236 green:0.236 blue:0.236 alpha:1.000];
     
-    // Warning Group
-    // Warning Circle Drawing
+    // Warning group
+    // Warning circle drawing
     UIBezierPath *warningCirclePath = [[UIBezierPath alloc] init];
     [warningCirclePath moveToPoint:CGPointMake(40.94, 63.39)];
     [warningCirclePath addCurveToPoint:CGPointMake(36.03, 65.55) controlPoint1: CGPointMake(39.06, 63.39) controlPoint2: CGPointMake(37.36, 64.18)];
@@ -134,7 +134,7 @@ static UIImage *imageOfQuestion = nil;
     [warningCirclePath fill];
     
     
-    //// Warning Shape Drawing
+    // Warning shape drawing
     UIBezierPath *warningShapePath = [[UIBezierPath alloc] init];
     [warningShapePath moveToPoint:CGPointMake(46.23, 4.26)];
     [warningShapePath addCurveToPoint:CGPointMake(40.94, 2.5) controlPoint1: CGPointMake(44.91, 3.09) controlPoint2: CGPointMake(43.02, 2.5)];
@@ -156,10 +156,10 @@ static UIImage *imageOfQuestion = nil;
 
 + (void)drawInfo
 {
-    // Color Declarations
+    // Color declarations
     UIColor *color0 = [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1.000];
     
-    // Info Shape Drawing
+    // Info shape drawing
     UIBezierPath *infoShapePath = [[UIBezierPath alloc] init];
     [infoShapePath moveToPoint:CGPointMake(45.66, 15.96)];
     [infoShapePath addCurveToPoint:CGPointMake(45.66, 5.22) controlPoint1: CGPointMake(48.78, 12.99) controlPoint2: CGPointMake(48.78, 8.19)];
@@ -185,10 +185,10 @@ static UIImage *imageOfQuestion = nil;
 
 + (void)drawEdit
 {
-    // Color Declarations
+    // Color declarations
     UIColor *color = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
     
-    // Edit shape Drawing
+    // Edit shape drawing
     UIBezierPath *editPathPath = [[UIBezierPath alloc] init];
     [editPathPath moveToPoint:CGPointMake(71, 2.7)];
     [editPathPath addCurveToPoint:CGPointMake(71.9, 15.2) controlPoint1:CGPointMake(74.7, 5.9) controlPoint2:CGPointMake(75.1, 11.6)];
@@ -238,10 +238,10 @@ static UIImage *imageOfQuestion = nil;
 
 + (void)drawQuestion
 {
-    // Color Declarations
+    // Color declarations
     UIColor *color = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
     
-    // Questionmark Shape Drawing
+    // Question mark shape drawing
     UIBezierPath *questionShapePath = [[UIBezierPath alloc] init];
     [questionShapePath moveToPoint: CGPointMake(33.75, 54.1)];
     [questionShapePath addLineToPoint: CGPointMake(44.15, 54.1)];

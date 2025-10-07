@@ -6,25 +6,21 @@
 //  Copyright (c) 2014-2017 AnyKey Entertainment. All rights reserved.
 //
 
-#if defined(__has_feature) && __has_feature(modules)
-@import Foundation;
-#else
 #import <Foundation/Foundation.h>
-#endif
 #import "SCLAlertView.h"
 
 @interface SCLAlertViewResponder : NSObject
 
-/** TODO
- *
- * TODO
- */
+/// Inicializa o responder vinculado a uma instância de SCLAlertView.
 - (instancetype)init:(SCLAlertView *)alertview;
 
-/** TODO
- *
- * TODO
- */
+/// Atualiza o título do alerta.
+- (void)setTitle:(NSString *)title;
+
+/// Atualiza o subtítulo/texto do corpo do alerta.
+- (void)setSubTitle:(NSString *)subTitle;
+
+/// Fecha o alerta.
 - (void)close;
 
 @end

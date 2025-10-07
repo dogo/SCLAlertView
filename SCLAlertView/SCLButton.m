@@ -103,7 +103,9 @@
 - (void)setTimer:(SCLTimerDisplay *)timer
 {
     _timer = timer;
-    [self addSubview:timer];
+    if (!timer.superview) {
+        [self addSubview:timer];
+    }
     [timer updateFrame:self.frame.size];
     timer.color = self.titleLabel.textColor;
 }
@@ -145,23 +147,25 @@
 - (UIColor *)darkerColorForColor:(UIColor *)color
 {
     CGFloat r, g, b, a;
-    if ([color getRed:&r green:&g blue:&b alpha:&a])
+    if ([color getRed:&r green:&g blue:&b alpha:&a]) {
         return [UIColor colorWithRed:MAX(r - 0.2f, 0.0f)
                                green:MAX(g - 0.2f, 0.0f)
                                 blue:MAX(b - 0.2f, 0.0f)
                                alpha:a];
-    return nil;
+    }
+    return color;
 }
 
 - (UIColor *)lighterColorForColor:(UIColor *)color
 {
     CGFloat r, g, b, a;
-    if ([color getRed:&r green:&g blue:&b alpha:&a])
+    if ([color getRed:&r green:&g blue:&b alpha:&a]) {
         return [UIColor colorWithRed:MIN(r + 0.2f, 1.0f)
                                green:MIN(g + 0.2f, 1.0f)
                                 blue:MIN(b + 0.2f, 1.0f)
                                alpha:a];
-    return nil;
+    }
+    return color;
 }
 
 @end

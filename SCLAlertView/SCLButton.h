@@ -3,14 +3,12 @@
 //  SCLAlertView
 //
 //  Created by Diogo Autilio on 9/26/14.
-//  Copyright (c) 2014-2017 AnyKey Entertainment. All rights reserved.
+//  Copyright (c) 2014-2025 AnyKey Entertainment. All rights reserved.
 //
 
-#if defined(__has_feature) && __has_feature(modules)
-@import UIKit;
-#else
 #import <UIKit/UIKit.h>
-#endif
+
+NS_ASSUME_NONNULL_BEGIN
 
 @class SCLTimerDisplay;
 
@@ -18,8 +16,8 @@
 
 typedef void (^SCLActionBlock)(void);
 typedef BOOL (^SCLValidationBlock)(void);
-typedef NSDictionary* (^CompleteButtonFormatBlock)(void);
-typedef NSDictionary* (^ButtonFormatBlock)(void);
+typedef NSDictionary * _Nonnull (^CompleteButtonFormatBlock)(void);
+typedef NSDictionary * _Nonnull (^ButtonFormatBlock)(void);
 
 // Action Types
 typedef NS_ENUM(NSInteger, SCLActionType)
@@ -29,81 +27,109 @@ typedef NS_ENUM(NSInteger, SCLActionType)
     SCLBlock
 };
 
-/** Set button action type.
- *
- * Holds the button action type.
+/**
+ Button action type.
+
+ Indicates how the button should handle taps (selector-based or block-based).
  */
 @property SCLActionType actionType;
 
-/** Set action button block.
- *
- * TODO
- */
-@property (copy, nonatomic) SCLActionBlock actionBlock;
+/**
+ Action block executed when the button is tapped.
 
-/** Set Validation button block.
- *
- * Set one kind of validation and keeps the alert visible until the validation is successful
+ @note Used when actionType == SCLBlock.
  */
-@property (copy, nonatomic) SCLValidationBlock validationBlock;
+@property (copy, nonatomic, nullable) SCLActionBlock actionBlock;
 
-/** Set Complete button format block.
- *
- * Holds the complete button format block.
- * Support keys : backgroundColor, borderWidth, borderColor, textColor
+/**
+ Validation block executed before the action.
+
+ Return YES to allow dismissal and call the action block; NO to keep the alert visible.
+
+ @note If provided and returns NO, the action is not executed and the alert remains visible.
  */
-@property (copy, nonatomic) CompleteButtonFormatBlock completeButtonFormatBlock;
+@property (copy, nonatomic, nullable) SCLValidationBlock validationBlock;
 
-/** Set button format block.
- *
- * Holds the button format block.
- * Support keys : backgroundColor, borderWidth, borderColor, textColor
+/**
+ Complete button format block.
+
+ Provides full button styling.
+
+ Supported keys:
+ - backgroundColor (UIColor)
+ - borderWidth (NSNumber/CGFloat)
+ - borderColor (UIColor)
+ - textColor (UIColor)
  */
-@property (copy, nonatomic) ButtonFormatBlock buttonFormatBlock;
+@property (copy, nonatomic, nullable) CompleteButtonFormatBlock completeButtonFormatBlock;
 
-/** Set SCLButton color.
- *
- * Set SCLButton color.
+/**
+ Button format block.
+
+ Provides button styling.
+
+ Supported keys:
+ - backgroundColor (UIColor)
+ - borderWidth (NSNumber/CGFloat)
+ - borderColor (UIColor)
+ - textColor (UIColor)
  */
-@property (strong, nonatomic) UIColor *defaultBackgroundColor UI_APPEARANCE_SELECTOR;
+@property (copy, nonatomic, nullable) ButtonFormatBlock buttonFormatBlock;
 
-/** Set Target object.
- *
- * Target is an object that holds the information necessary to send a message to another object when an event occurs.
+/**
+ Default background color for the button.
+
+ @note UI_APPEARANCE_SELECTOR is supported.
  */
-@property id target;
+@property (strong, nonatomic, nullable) UIColor *defaultBackgroundColor UI_APPEARANCE_SELECTOR;
 
-/** Set selector id.
- *
- * A selector is the name used to select a method to execute for an object,
- * or the unique identifier that replaces the name when the source code is compiled.
+/**
+ Target for selector-based actions.
+
+ @note Used when actionType == SCLSelector.
  */
-@property SEL selector;
+@property (nullable) id target;
 
-/** Parse button configuration
- *
- * Parse ButtonFormatBlock and CompleteButtonFormatBlock setting custom configuration.
- * Set keys : backgroundColor, borderWidth, borderColor, textColor
+/**
+ Selector to invoke on the target for selector-based actions.
+
+ @note Used when actionType == SCLSelector.
+ */
+@property (nullable) SEL selector;
+
+/**
+ Applies configuration returned by a format block.
+
+ @param buttonConfig The configuration dictionary.
+ @discussion Supported keys: backgroundColor, borderWidth, borderColor, textColor.
  */
 - (void)parseConfig:(NSDictionary *)buttonConfig;
 
-/** Set button timer.
- *
- * Holds the button timer, if present.
- */
-@property (strong, nonatomic) SCLTimerDisplay *timer;
+/**
+ Button timer (if present).
 
-/** Init method
- *
+ Used to show countdown/progress on the button.
+ */
+@property (strong, nonatomic, nullable) SCLTimerDisplay *timer;
+
+/**
+ Designated initializer for SCLButton.
+
+ @param windowWidth The width of the alert window used to size the button.
+ @return An initialized SCLButton instance.
  */
 - (instancetype)initWithWindowWidth:(CGFloat)windowWidth;
 
-/** Adjust width of the button according to the width of the alert and
- * the number of buttons. Only used when buttons are horizontally aligned.
- *
- * @param windowWidth The width of the alert.
- * @param numberOfButtons The number of buttons in the alert.
+/**
+ Adjusts the button width based on alert width and number of buttons.
+
+ Only used when buttons are horizontally aligned.
+
+ @param windowWidth The alert window width.
+ @param numberOfButtons Total number of buttons in the alert.
  */
 - (void)adjustWidthWithWindowWidth:(CGFloat)windowWidth numberOfButtons:(NSUInteger)numberOfButtons;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -3,21 +3,33 @@
 //  SCLAlertView
 //
 //  Created by André Felipe Santos on 27/01/16.
-//  Copyright (c) 2016-2017 AnyKey Entertainment. All rights reserved.
+//  Copyright (c) 2016-2025 AnyKey Entertainment. All rights reserved.
 //
 
-#if defined(__has_feature) && __has_feature(modules)
-@import UIKit;
-#else
 #import <UIKit/UIKit.h>
-#endif
 
+NS_ASSUME_NONNULL_BEGIN
+
+/**
+ A simple switch view with an optional label, configurable via UIAppearance.
+ */
 @interface SCLSwitchView : UIView
 
-@property (strong, nonatomic) UIColor *tintColor UI_APPEARANCE_SELECTOR;
-@property (strong, nonatomic) UIColor *labelColor UI_APPEARANCE_SELECTOR;
-@property (strong, nonatomic) UIFont *labelFont UI_APPEARANCE_SELECTOR;
-@property (strong, nonatomic) NSString *labelText UI_APPEARANCE_SELECTOR;
+/// Tint color for the switch (UIAppearance).
+@property (strong, nonatomic, nullable) UIColor *tintColor UI_APPEARANCE_SELECTOR;
+
+/// Label color (UIAppearance).
+@property (strong, nonatomic, nullable) UIColor *labelColor UI_APPEARANCE_SELECTOR;
+
+/// Label font (UIAppearance).
+@property (strong, nonatomic, nullable) UIFont *labelFont UI_APPEARANCE_SELECTOR;
+
+/// Label text (UIAppearance).
+@property (strong, nonatomic, nullable) NSString *labelText UI_APPEARANCE_SELECTOR;
+
+/// Selection state.
 @property (nonatomic, getter=isSelected) BOOL selected;
 
 @end
+
+NS_ASSUME_NONNULL_END

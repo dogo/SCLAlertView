@@ -3,7 +3,7 @@
 //  SCLAlertView
 //
 //  Created by Diogo Autilio on 9/26/14.
-//  Copyright (c) 2014-2016 AnyKey Entertainment. All rights reserved.
+//  Copyright (c) 2014-2025 AnyKey Entertainment. All rights reserved.
 //
 
 #import "ViewController.h"
@@ -11,9 +11,9 @@
 #import "UIViewController+Alert.h"
 
 @interface ViewController ()
-
 @end
 
+// MARK: Constants
 NSString *kSuccessTitle = @"Congratulations";
 NSString *kErrorTitle = @"Connection error";
 NSString *kNoticeTitle = @"Notice";
@@ -25,6 +25,8 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
 
 @implementation ViewController
 
+#pragma mark - Success
+
 - (IBAction)showSuccess:(id)sender
 {
     SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
@@ -34,12 +36,10 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     button.buttonFormatBlock = ^NSDictionary* (void)
     {
         NSMutableDictionary *buttonConfig = [[NSMutableDictionary alloc] init];
-        
         buttonConfig[@"backgroundColor"] = [UIColor whiteColor];
         buttonConfig[@"textColor"] = [UIColor blackColor];
         buttonConfig[@"borderWidth"] = @2.0f;
         buttonConfig[@"borderColor"] = [UIColor greenColor];
-        
         return buttonConfig;
     };
     
@@ -52,7 +52,8 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     [alert showSuccess:kSuccessTitle subTitle:kSubtitle closeButtonTitle:kButtonTitle duration:0.0f];
 }
 
-- (IBAction)showSuccessWithHorizontalButtons:(id)sender {
+- (IBAction)showSuccessWithHorizontalButtons:(id)sender
+{
     SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
     [alert setHorizontalButtons:YES];
     
@@ -61,12 +62,10 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     button.buttonFormatBlock = ^NSDictionary* (void)
     {
         NSMutableDictionary *buttonConfig = [[NSMutableDictionary alloc] init];
-        
         buttonConfig[@"backgroundColor"] = [UIColor whiteColor];
         buttonConfig[@"textColor"] = [UIColor blackColor];
         buttonConfig[@"borderWidth"] = @2.0f;
         buttonConfig[@"borderColor"] = [UIColor greenColor];
-        
         return buttonConfig;
     };
     
@@ -79,29 +78,41 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     [alert showSuccess:kSuccessTitle subTitle:kSubtitle closeButtonTitle:kButtonTitle duration:0.0f];
 }
 
+#pragma mark - Error
+
 - (IBAction)showError:(id)sender
 {
     SCLAlertView *alert = [[SCLAlertView alloc] init];
     
-    [alert showError:self title:@"An error with two title is presented ..."
+    [alert showError:self
+               title:@"An error with two title is presented ..."
             subTitle:@"You have not saved your Submission yet. Please save the Submission before accessing the Responses list. Blah de blah de blah, blah. Blah de blah de blah, blah.Blah de blah de blah, blah.Blah de blah de blah, blah.Blah de blah de blah, blah.Blah de blah de blah, End."
-    closeButtonTitle:@"OK" duration:0.0f];
+    closeButtonTitle:@"OK"
+           duration:0.0f];
 }
+
+#pragma mark - Notice
 
 - (IBAction)showNotice:(id)sender
 {
     SCLAlertView *alert = [[SCLAlertView alloc] init];
-    
     alert.backgroundType = SCLAlertViewBackgroundBlur;
-    [alert showNotice:self title:kNoticeTitle subTitle:@"You've just displayed this awesome Pop Up View with blur effect" closeButtonTitle:kButtonTitle duration:0.0f];
+    [alert showNotice:self
+                title:kNoticeTitle
+             subTitle:@"You've just displayed this awesome Pop Up View with blur effect"
+     closeButtonTitle:kButtonTitle
+             duration:0.0f];
 }
+
+#pragma mark - Warning
 
 - (IBAction)showWarning:(id)sender
 {
     SCLAlertView *alert = [[SCLAlertView alloc] init];
-    
     [alert showWarning:self title:kWarningTitle subTitle:kSubtitle closeButtonTitle:kButtonTitle duration:0.0f];
 }
+
+#pragma mark - Info
 
 - (IBAction)showInfo:(id)sender
 {
@@ -114,6 +125,8 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     
     [alert showInfo:self title:kInfoTitle subTitle:kSubtitle closeButtonTitle:kButtonTitle duration:0.0f];
 }
+
+#pragma mark - Edit
 
 - (IBAction)showEdit:(id)sender
 {
@@ -141,6 +154,8 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     [alert showEdit:self title:kInfoTitle subTitle:kSubtitle closeButtonTitle:kButtonTitle duration:0.0f];
 }
 
+#pragma mark - Advanced
+
 - (IBAction)showAdvanced:(id)sender
 {
     SCLAlertView *alert = [[SCLAlertView alloc] init];
@@ -166,18 +181,16 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     alert.completeButtonFormatBlock = ^NSDictionary* (void)
     {
         NSMutableDictionary *buttonConfig = [[NSMutableDictionary alloc] init];
-        
         buttonConfig[@"backgroundColor"] = [UIColor greenColor];
         buttonConfig[@"borderColor"] = [UIColor blackColor];
         buttonConfig[@"borderWidth"] = @"1.0f";
         buttonConfig[@"textColor"] = [UIColor blackColor];
-        
         return buttonConfig;
     };
     
     alert.attributedFormatBlock = ^NSAttributedString* (NSString *value)
     {
-        NSMutableAttributedString *subTitle = [[NSMutableAttributedString alloc]initWithString:value];
+        NSMutableAttributedString *subTitle = [[NSMutableAttributedString alloc] initWithString:value];
         
         NSRange redRange = [value rangeOfString:@"Attributed" options:NSCaseInsensitiveSearch];
         [subTitle addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:redRange];
@@ -220,18 +233,16 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     alert.completeButtonFormatBlock = ^NSDictionary* (void)
     {
         NSMutableDictionary *buttonConfig = [[NSMutableDictionary alloc] init];
-        
         buttonConfig[@"backgroundColor"] = [UIColor greenColor];
         buttonConfig[@"borderColor"] = [UIColor blackColor];
         buttonConfig[@"borderWidth"] = @"1.0f";
         buttonConfig[@"textColor"] = [UIColor blackColor];
-        
         return buttonConfig;
     };
     
     alert.attributedFormatBlock = ^NSAttributedString* (NSString *value)
     {
-        NSMutableAttributedString *subTitle = [[NSMutableAttributedString alloc]initWithString:value];
+        NSMutableAttributedString *subTitle = [[NSMutableAttributedString alloc] initWithString:value];
         
         NSRange redRange = [value rangeOfString:@"Attributed" options:NSCaseInsensitiveSearch];
         [subTitle addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:redRange];
@@ -248,12 +259,15 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     [alert showTitle:self title:@"Congratulations" subTitle:kAttributeTitle style:SCLAlertViewStyleSuccess closeButtonTitle:@"Done" duration:0.0f];
 }
 
+#pragma mark - Duration
+
 - (IBAction)showWithDuration:(id)sender
 {
     SCLAlertView *alert = [[SCLAlertView alloc] init];
-    
     [alert showNotice:self title:kNoticeTitle subTitle:@"You've just displayed this awesome Pop Up View with 5 seconds duration" closeButtonTitle:nil duration:5.0f];
 }
+
+#pragma mark - Custom
 
 - (IBAction)showCustom:(id)sender
 {
@@ -262,6 +276,8 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     UIColor *color = [UIColor colorWithRed:65.0/255.0 green:64.0/255.0 blue:144.0/255.0 alpha:1.0];
     [alert showCustom:self image:[UIImage imageNamed:@"git"] color:color title:@"Custom" subTitle:@"Add a custom icon and color for your own type of alert!" closeButtonTitle:@"OK" duration:0.0f];
 }
+
+#pragma mark - Validation
 
 - (IBAction)showValidation:(id)sender
 {
@@ -380,37 +396,48 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     [alert showEdit:self title:@"Validation" subTitle:@"Ensure the data is correct before dismissing!" closeButtonTitle:@"Cancel" duration:0];
 }
 
+#pragma mark - Waiting
+
 - (IBAction)showWaiting:(id)sender
 {
     SCLAlertView *alert = [[SCLAlertView alloc] init];
     
     alert.showAnimationType = SCLAlertViewShowAnimationSlideInToCenter;
     alert.hideAnimationType = SCLAlertViewHideAnimationSlideOutFromCenter;
-    
     alert.backgroundType = SCLAlertViewBackgroundTransparent;
     
-    [alert showWaiting:self title:@"Waiting..."
-            subTitle:@"You've just displayed this awesome Pop Up View with transparent background"
-    closeButtonTitle:nil duration:5.0f];
+    [alert showWaiting:self
+                 title:@"Waiting..."
+               subTitle:@"You've just displayed this awesome Pop Up View with transparent background"
+      closeButtonTitle:nil
+              duration:5.0f];
 }
+
+#pragma mark - Timer
 
 - (IBAction)showTimer:(id)sender
 {
     SCLAlertView *alert = [[SCLAlertView alloc] init];
     [alert addTimerToButtonIndex:0 reverse:YES];
-    [alert showInfo:self title:@"Countdown Timer"
-            subTitle:@"This alert has a duration set, and a countdown timer on the Dismiss button to show how long is left."
-    closeButtonTitle:@"Dismiss" duration:10.0f];
+    [alert showInfo:self
+              title:@"Countdown Timer"
+           subTitle:@"This alert has a duration set, and a countdown timer on the Dismiss button to show how long is left."
+   closeButtonTitle:@"Dismiss"
+           duration:10.0f];
 }
+
+#pragma mark - Question
 
 - (IBAction)showQuestion:(id)sender
 {
     SCLAlertView *alert = [[SCLAlertView alloc] init];
-    
     [alert showQuestion:self title:@"Question?" subTitle:kSubtitle closeButtonTitle:@"Dismiss" duration:0.0f];
 }
 
-- (IBAction)showSwitch:(id)sender {
+#pragma mark - Switch
+
+- (IBAction)showSwitch:(id)sender
+{
     SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
     alert.tintTopCircle = NO;
     alert.iconTintColor = [UIColor brownColor];
@@ -421,38 +448,37 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     [[SCLSwitchView appearance] setTintColor:[UIColor brownColor]];
     
     SCLButton *button = [alert addButton:@"Done" target:self selector:@selector(firstButton)];
-    
     button.buttonFormatBlock = ^NSDictionary* (void) {
         NSMutableDictionary *buttonConfig = [[NSMutableDictionary alloc] init];
         buttonConfig[@"cornerRadius"] = @"17.5f";
-        
         return buttonConfig;
     };
     
     [alert showCustom:self image:[UIImage imageNamed:@"switch"] color:[UIColor brownColor] title:kInfoTitle subTitle:kSubtitle closeButtonTitle:nil duration:0.0f];
 }
 
+#pragma mark - Actions
+
 - (void)firstButton
 {
     NSLog(@"First button tapped");
 }
+
+#pragma mark - Custom Button
 
 - (IBAction)showWithButtonCustom:(id)sender
 {
     SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
     
     SCLButton *button = [alert addButton:@"First Button" target:self selector:@selector(firstButton)];
-    
     button.buttonFormatBlock = ^NSDictionary* (void)
     {
         NSMutableDictionary *buttonConfig = [[NSMutableDictionary alloc] init];
-        
         buttonConfig[@"backgroundColor"] = [UIColor whiteColor];
         buttonConfig[@"textColor"] = [UIColor blackColor];
         buttonConfig[@"borderWidth"] = @2.0f;
         buttonConfig[@"borderColor"] = [UIColor greenColor];
         buttonConfig[@"font"] = [UIFont fontWithName:@"ComicSansMS" size:13];
-        
         return buttonConfig;
     };
     

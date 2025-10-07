@@ -9,14 +9,14 @@
 #import "SCLSwitchView.h"
 #import "SCLMacros.h"
 
+static const CGFloat kSpacing = 8.0f;
+
 @interface SCLSwitchView ()
 
 @property (strong, nonatomic) UISwitch *switchKnob;
 @property (strong, nonatomic) UILabel *switchLabel;
 
 @end
-
-#pragma mark
 
 @implementation SCLSwitchView
 
@@ -56,38 +56,62 @@
 
 - (void)setup
 {
+    self.backgroundColor = UIColor.clearColor;
+
     // Add switch knob
-    self.switchKnob = [[UISwitch alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 0.0f, 0.f)];
+    self.switchKnob = [[UISwitch alloc] initWithFrame:CGRectZero];
     [self addSubview:self.switchKnob];
     
     // Add switch label
-    CGFloat x, width, height;
-    x = self.switchKnob.frame.size.width + 8.0f;
-    width = self.frame.size.width - self.switchKnob.frame.size.width - 8.0f;
-    height = self.switchKnob.frame.size.height;
-    
-    self.switchLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, 0.0f, width, height)];
-    
-    NSString *switchFontFamily = @"HelveticaNeue-Bold";
-    CGFloat switchFontSize = 12.0f;
-    
+    self.switchLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     self.switchLabel.numberOfLines = 1;
     self.switchLabel.textAlignment = NSTextAlignmentLeft;
     self.switchLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     self.switchLabel.adjustsFontSizeToFitWidth = YES;
     self.switchLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
     self.switchLabel.minimumScaleFactor = 0.5f;
-    self.switchLabel.font = [UIFont fontWithName:switchFontFamily size:switchFontSize];
+    self.switchLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:12.0f];
     self.switchLabel.textColor = UIColorFromHEX(0x4D4D4D);
     
     [self addSubview:self.switchLabel];
+}
+
+#pragma mark - Layout
+
+- (CGSize)sizeThatFits:(CGSize)size {
+    CGSize switchSize = self.switchKnob.intrinsicContentSize;
+    CGFloat availableWidth = (size.width > 0 ? size.width : (switchSize.width + kSpacing + 120.0f)); // fallback width
+    CGFloat labelWidth = MAX(0, availableWidth - switchSize.width - kSpacing);
+    CGSize labelSize = [self.switchLabel sizeThatFits:CGSizeMake(labelWidth, CGFLOAT_MAX)];
+    CGFloat height = MAX(labelSize.height, switchSize.height);
+    return CGSizeMake(availableWidth, height);
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+
+    CGSize boundsSize = self.bounds.size;
+    CGSize switchSize = self.switchKnob.intrinsicContentSize;
+
+    // Place switch at leading (x=0)
+    CGFloat switchX = 0.0f;
+    CGFloat switchY = (boundsSize.height - switchSize.height) / 2.0f;
+    self.switchKnob.frame = CGRectMake(switchX, switchY, switchSize.width, switchSize.height);
+
+    // Label fills remaining space after switch + spacing
+    CGFloat labelX = CGRectGetMaxX(self.switchKnob.frame) + kSpacing;
+    CGFloat labelWidth = MAX(0, boundsSize.width - labelX);
+    CGSize labelFit = [self.switchLabel sizeThatFits:CGSizeMake(labelWidth, CGFLOAT_MAX)];
+    CGFloat labelHeight = MIN(labelFit.height, boundsSize.height);
+    CGFloat labelY = (boundsSize.height - labelHeight) / 2.0f;
+    self.switchLabel.frame = CGRectMake(labelX, labelY, labelWidth, labelHeight);
 }
 
 #pragma mark - Getters
 
 - (UIColor *)tintColor
 {
-    return self.switchKnob.tintColor;
+    return self.switchKnob.onTintColor;
 }
 
 - (UIColor *)labelColor
@@ -114,6 +138,7 @@
 
 - (void)setTintColor:(UIColor *)tintColor
 {
+    [super setTintColor:tintColor];
     self.switchKnob.onTintColor = tintColor;
 }
 
@@ -125,11 +150,13 @@
 - (void)setLabelFont:(UIFont *)labelFont
 {
     self.switchLabel.font = labelFont;
+    [self setNeedsLayout];
 }
 
 - (void)setLabelText:(NSString *)labelText
 {
     self.switchLabel.text = labelText;
+    [self setNeedsLayout];
 }
 
 - (void)setSelected:(BOOL)selected

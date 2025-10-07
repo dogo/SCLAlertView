@@ -8,49 +8,77 @@
 
 #import "SCLTextView.h"
 
-#define MIN_HEIGHT 30.0f
+static const CGFloat kSCLTextViewHeight = 35.0f;
+static const CGFloat kSCLTextViewHorizontalPadding = 8.0f;
 
 @implementation SCLTextView
 
-- (instancetype)init
-{
+- (instancetype)init {
     self = [super init];
-    if (self)
-    {
+    if (self) {
         [self setup];
     }
     return self;
 }
 
-- (instancetype)initWithCoder:(NSCoder *)aDecoder
-{
-    self = [super initWithCoder:aDecoder];
-    if(self)
-    {
-        [self setup];
-    }
-    return self;
-}
-
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-    if (self)
-    {
+    if (self) {
         [self setup];
     }
     return self;
 }
 
-- (void)setup
-{
-    self.frame = CGRectMake(0.0f, 0.0f, 0.0f, MIN_HEIGHT);
-    self.returnKeyType = UIReturnKeyDone;
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    self = [super initWithCoder:coder];
+    if (self) {
+        [self setup];
+    }
+    return self;
+}
+
+- (void)setup {
+    self.backgroundColor = [UIColor whiteColor];
+    self.textColor = [UIColor darkTextColor];
     self.borderStyle = UITextBorderStyleRoundedRect;
-    self.autocapitalizationType = UITextAutocapitalizationTypeSentences;
     self.clearButtonMode = UITextFieldViewModeWhileEditing;
-    self.layer.masksToBounds = YES;
-    self.layer.borderWidth = 1.0f;
+    self.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    self.autocorrectionType = UITextAutocorrectionTypeDefault;
+    self.autocapitalizationType = UITextAutocapitalizationTypeSentences;
+    self.returnKeyType = UIReturnKeyDone;
+
+    // Padding interno via left/right views
+    UIView *leftPad = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSCLTextViewHorizontalPadding, 1)];
+    UIView *rightPad = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSCLTextViewHorizontalPadding, 1)];
+    self.leftView = leftPad;
+    self.leftViewMode = UITextFieldViewModeAlways;
+    self.rightView = rightPad;
+    self.rightViewMode = UITextFieldViewModeAlways;
+
+    // Altura mínima padrão
+    CGRect f = self.frame;
+    if (CGRectIsEmpty(f)) {
+        f = CGRectMake(0, 0, 0, kSCLTextViewHeight);
+    } else {
+        f.size.height = MAX(f.size.height, kSCLTextViewHeight);
+    }
+    self.frame = f;
+}
+
+- (CGSize)intrinsicContentSize {
+    CGSize base = [super intrinsicContentSize];
+    if (base.height <= 0) {
+        base.height = kSCLTextViewHeight;
+    } else {
+        base.height = MAX(base.height, kSCLTextViewHeight);
+    }
+    return base;
+}
+
+- (CGSize)sizeThatFits:(CGSize)size {
+    CGSize fit = [super sizeThatFits:size];
+    fit.height = MAX(fit.height, kSCLTextViewHeight);
+    return fit;
 }
 
 @end

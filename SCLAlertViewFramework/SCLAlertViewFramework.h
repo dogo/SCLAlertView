@@ -3,7 +3,7 @@
 //  SCLAlertView
 //
 //  Created by Eugene Tulusha on 9/13/16.
-//  Copyright © 2016 AnyKey Entertainment. All rights reserved.
+//  Copyright © 2016-2025 AnyKey Entertainment. All rights reserved.
 //
 
 @import Foundation;

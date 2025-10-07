@@ -3,7 +3,7 @@
 //  SCLAlertView
 //
 //  Created by Diogo Autilio on 9/26/14.
-//  Copyright (c) 2014-2017 AnyKey Entertainment. All rights reserved.
+//  Copyright (c) 2014-2025 AnyKey Entertainment. All rights reserved.
 //
 
 #import "SCLAlertView.h"
@@ -14,13 +14,8 @@
 #import "SCLTimerDisplay.h"
 #import "SCLMacros.h"
 
-#if defined(__has_feature) && __has_feature(modules)
 @import AVFoundation;
 @import AudioToolbox;
-#else
-#import <AVFoundation/AVFoundation.h>
-#import <AudioToolbox/AudioToolbox.h>
-#endif
 
 #define KEYBOARD_HEIGHT 80
 #define PREDICTION_BAR_HEIGHT 40
@@ -143,6 +138,8 @@ SCLTimerDisplay *buttonTimer;
     [self restoreInteractivePopGesture];
 }
 
+#pragma mark - Observers
+
 - (void)addObservers
 {
     if(_canAddObservers)
@@ -159,7 +156,7 @@ SCLTimerDisplay *buttonTimer;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
-#pragma mark - Setup view
+#pragma mark - Setup View
 
 - (void)setupViewWindowWidth:(CGFloat)windowWidth
 {
@@ -184,7 +181,7 @@ SCLTimerDisplay *buttonTimer;
     self.backgroundType = SCLAlertViewBackgroundShadow;
     self.tintTopCircle = YES;
     
-    // Font
+    // Fonts
     _titleFontFamily = @"HelveticaNeue";
     _bodyTextFontFamily = @"HelveticaNeue";
     _buttonsFontFamily = @"HelveticaNeue-Bold";
@@ -206,28 +203,28 @@ SCLTimerDisplay *buttonTimer;
     _customViews = [[NSMutableArray alloc] init];
     self.view.accessibilityViewIsModal = YES;
     
-    // Add Subviews
+    // Add subviews
     [self.view addSubview:_contentView];
     [self.view addSubview:_circleViewBackground];
     
-    // Circle View
+    // Circle view
     CGFloat x = (kCircleHeightBackground - kCircleHeight) / 2;
     _circleView.frame = CGRectMake(x, x, kCircleHeight, kCircleHeight);
     _circleView.layer.cornerRadius = _circleView.frame.size.height / 2;
     
-    // Circle Background View
+    // Circle background view
     _circleViewBackground.backgroundColor = [UIColor whiteColor];
     _circleViewBackground.layer.cornerRadius = _circleViewBackground.frame.size.height / 2;
     x = (kCircleHeight - _circleIconHeight) / 2;
     
-    // Circle Image View
+    // Circle image view
     _circleIconImageView.frame = CGRectMake(x, x, _circleIconHeight, _circleIconHeight);
     _circleIconImageView.contentMode = UIViewContentModeScaleAspectFill;
     
     [_circleViewBackground addSubview:_circleView];
     [_circleView addSubview:_circleIconImageView];
     
-    // Background View
+    // Background view
     _backgroundView.userInteractionEnabled = YES;
     
     // Title
@@ -237,7 +234,7 @@ SCLTimerDisplay *buttonTimer;
     _labelTitle.font = [UIFont fontWithName:_titleFontFamily size:_titleFontSize];
     _labelTitle.frame = CGRectMake(12.0f, kTitleTop, _windowWidth - 24.0f, _titleHeight);
     
-    // View text
+    // Body text
     _viewText.editable = NO;
     _viewText.allowsEditingTextAttributes = YES;
     _viewText.textAlignment = NSTextAlignmentCenter;
@@ -245,26 +242,27 @@ SCLTimerDisplay *buttonTimer;
     _viewText.frame = CGRectMake(12.0f, _subTitleY, _windowWidth - 24.0f, _subTitleHeight);
     _viewText.textContainerInset = UIEdgeInsetsZero;
     _viewText.textContainer.lineFragmentPadding = 0;
-    self.automaticallyAdjustsScrollViewInsets = NO;
+    _viewText.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     
-    // Content View
+    // Content view
     _contentView.backgroundColor = [UIColor whiteColor];
     _contentView.layer.cornerRadius = 5.0f;
     _contentView.layer.masksToBounds = YES;
     _contentView.layer.borderWidth = 0.5f;
-    [_contentView addSubview:_viewText];    
+    [_contentView addSubview:_viewText];
     [_contentView addSubview:_labelTitle];
     
     // Colors
     self.backgroundViewColor = [UIColor whiteColor];
-    _labelTitle.textColor = UIColorFromHEX(0x4D4D4D); //Dark Grey
-    _viewText.textColor = UIColorFromHEX(0x4D4D4D); //Dark Grey
-    _contentView.layer.borderColor = UIColorFromHEX(0xCCCCCC).CGColor; //Light Grey
+    _labelTitle.textColor = UIColorFromHEX(0x4D4D4D); // Dark gray
+    _viewText.textColor = UIColorFromHEX(0x4D4D4D);   // Dark gray
+    _contentView.layer.borderColor = UIColorFromHEX(0xCCCCCC).CGColor; // Light gray
 }
 
-- (void)setupNewWindow {
+- (void)setupNewWindow
+{
     // Save previous window
-    self.previousWindow = [UIApplication sharedApplication].keyWindow;
+    self.previousWindow = [SCLAlertView scl_currentKeyWindow];
     
     // Create a new one to show the alert
     UIWindow *alertWindow = [[UIWindow alloc] initWithFrame:[self mainScreenFrame]];
@@ -282,7 +280,7 @@ SCLTimerDisplay *buttonTimer;
     return (_rootViewController != nil && _rootViewController.presentingViewController);
 }
 
-#pragma mark - View Cycle
+#pragma mark - View Lifecycle
 
 - (void)viewWillLayoutSubviews
 {
@@ -310,12 +308,12 @@ SCLTimerDisplay *buttonTimer;
         kCircleBackgroundTopPosition = -(kCircleHeightBackground / 2);
     }
     
-    // Check if the rootViewController is modal, if so we need to get the modal size not the main screen size
+    // Use modal size if presented modally (and not using a new window)
     if ([self isModal] && !_usingNewWindow) {
         sz = _rootViewController.view.frame.size;
     }
     
-    // Set new main frame
+    // Set main frame
     CGRect r;
     if (self.view.superview != nil) {
         // View is showing, position at center of screen
@@ -326,12 +324,12 @@ SCLTimerDisplay *buttonTimer;
     }
     self.view.frame = r;
     
-    // Set new background frame
+    // Background frame
     CGRect newBackgroundFrame = self.backgroundView.frame;
     newBackgroundFrame.size = sz;
     self.backgroundView.frame = newBackgroundFrame;
     
-    // Set frames
+    // Frames
     _contentView.frame = CGRectMake(0.0f, 0.0f, _windowWidth, _windowHeight);
     _circleViewBackground.frame = CGRectMake(_windowWidth / 2 - kCircleHeightBackground / 2, kCircleBackgroundTopPosition, kCircleHeightBackground, kCircleHeightBackground);
     _circleViewBackground.layer.cornerRadius = _circleViewBackground.frame.size.height / 2;
@@ -365,7 +363,7 @@ SCLTimerDisplay *buttonTimer;
     for (SCLButton *btn in _buttons) {
         btn.frame = CGRectMake(x, y, btn.frame.size.width, btn.frame.size.height);
         
-        // Add horizontal or vertical offset acording on _horizontalButtons parameter
+        // Add horizontal or vertical offset according to _horizontalButtons
         if (_horizontalButtons) {
             x += btn.frame.size.width + 10.0f;
         } else {
@@ -377,11 +375,11 @@ SCLTimerDisplay *buttonTimer;
     self.windowHeight = _useLargerIcon ? y : self.windowHeight;
     _contentView.frame = CGRectMake(_contentView.frame.origin.x, _contentView.frame.origin.y, _windowWidth, _windowHeight);
     
-    // Adjust corner radius, if a value has been passed
+    // Adjust corner radius (if a value has been passed)
     _contentView.layer.cornerRadius = self.cornerRadius ? self.cornerRadius : 5.0f;
 }
 
-#pragma mark - UIViewController
+#pragma mark - Status Bar
 
 - (BOOL)prefersStatusBarHidden
 {
@@ -393,7 +391,7 @@ SCLTimerDisplay *buttonTimer;
     return self.statusBarStyle;
 }
 
-#pragma mark - Handle gesture
+#pragma mark - Gesture Handling
 
 - (void)handleTap:(UITapGestureRecognizer *)gesture
 {
@@ -403,7 +401,7 @@ SCLTimerDisplay *buttonTimer;
         
         for(SCLTextView *txt in _inputs)
         {
-            // Check if there is any keyboard on screen and dismiss
+            // Dismiss keyboard if any input is editing
             if (txt.editing)
             {
                 [txt resignFirstResponder];
@@ -428,6 +426,8 @@ SCLTimerDisplay *buttonTimer;
     }
 }
 
+#pragma mark - Navigation Gesture
+
 - (void)disableInteractivePopGesture
 {
     UINavigationController *navigationController;
@@ -441,7 +441,7 @@ SCLTimerDisplay *buttonTimer;
         navigationController = _rootViewController.navigationController;
     }
     
-    // Disable iOS 7 back gesture
+    // Disable back gesture
     if ([navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)])
     {
         _restoreInteractivePopGestureEnabled = navigationController.interactivePopGestureRecognizer.enabled;
@@ -464,7 +464,7 @@ SCLTimerDisplay *buttonTimer;
         navigationController = _rootViewController.navigationController;
     }
     
-    // Restore iOS 7 back gesture
+    // Restore back gesture
     if ([navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)])
     {
         navigationController.interactivePopGestureRecognizer.enabled = _restoreInteractivePopGestureEnabled;
@@ -510,12 +510,12 @@ SCLTimerDisplay *buttonTimer;
 {
     _soundURL = soundURL;
     
-    //DisposeSound
+    // Dispose previous sound
     AudioServicesDisposeSystemSoundID(_soundID);
     
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)_soundURL, &_soundID);
     
-    //PlaySound
+    // Play new sound
     AudioServicesPlaySystemSound(_soundID);
 }
 
@@ -526,7 +526,7 @@ SCLTimerDisplay *buttonTimer;
     _subTitleHeight = value;
 }
 
-#pragma mark - ActivityIndicator
+#pragma mark - Activity Indicator
 
 - (void)addActivityIndicatorView
 {
@@ -536,7 +536,7 @@ SCLTimerDisplay *buttonTimer;
     [_circleView addSubview:_activityIndicatorView];
 }
 
-#pragma mark - UICustomView
+#pragma mark - Custom View
 
 - (UIView *)addCustomView:(UIView *)customView
 {
@@ -549,7 +549,7 @@ SCLTimerDisplay *buttonTimer;
     return customView;
 }
 
-#pragma mark - SwitchView
+#pragma mark - Switch View
 
 - (SCLSwitchView *)addSwitchViewWithLabel:(NSString *)label
 {
@@ -570,7 +570,7 @@ SCLTimerDisplay *buttonTimer;
     return switchView;
 }
 
-#pragma mark - TextField
+#pragma mark - Text Field
 
 - (SCLTextView *)addTextField:(NSString *)title setDefaultText:(NSString *)defaultText
 {
@@ -596,8 +596,7 @@ SCLTimerDisplay *buttonTimer;
     [_contentView addSubview:txt];
     [_inputs addObject:txt];
     
-    // If there are other fields in the inputs array, get the previous field and set the
-    // return key type on that to next.
+    // If there are other fields in the inputs array, set the previous field return key to Next
     if (_inputs.count > 1)
     {
         NSUInteger indexOfCurrentField = [_inputs indexOfObject:txt];
@@ -615,8 +614,7 @@ SCLTimerDisplay *buttonTimer;
     [_contentView addSubview:textField];
     [_inputs addObject:textField];
     
-    // If there are other fields in the inputs array, get the previous field and set the
-    // return key type on that to next.
+    // If there are other fields in the inputs array, set the previous field return key to Next
     if (_inputs.count > 1)
     {
         NSUInteger indexOfCurrentField = [_inputs indexOfObject:textField];
@@ -630,12 +628,11 @@ SCLTimerDisplay *buttonTimer;
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     // If this is the last object in the inputs array, resign first responder
-    // as the form is at the end.
     if (textField == _inputs.lastObject)
     {
         [textField resignFirstResponder];
     }
-    else // Otherwise find the next field and make it first responder.
+    else // Otherwise find the next field and make it first responder
     {
         NSUInteger indexOfCurrentField = [_inputs indexOfObject:textField];
         UITextField *nextField = _inputs[indexOfCurrentField + 1];
@@ -643,6 +640,8 @@ SCLTimerDisplay *buttonTimer;
     }
     return NO;
 }
+
+#pragma mark - Keyboard
 
 - (void)keyboardWillShow:(NSNotification *)notification
 {
@@ -750,11 +749,10 @@ SCLTimerDisplay *buttonTimer;
 
 - (void)buttonTapped:(SCLButton *)btn
 {
-    // Cancel Countdown timer
+    // Cancel countdown timer
     [buttonTimer cancelTimer];
     
-    // If the button has a validation block, and the validation block returns NO, validation
-    // failed, so we should bail.
+    // Validate if needed
     if (btn.validationBlock && !btn.validationBlock()) {
         return;
     }
@@ -792,7 +790,7 @@ SCLTimerDisplay *buttonTimer;
     buttonTimer.reverse = reverse;
 }
 
-#pragma mark - Show Alert
+#pragma mark - Show Alert (Core)
 
 - (SCLAlertViewResponder *)showTitle:(UIViewController *)vc image:(UIImage *)image color:(UIColor *)color title:(NSString *)title subTitle:(NSString *)subTitle duration:(NSTimeInterval)duration completeText:(NSString *)completeText style:(SCLAlertViewStyle)style
 {
@@ -873,7 +871,7 @@ SCLTimerDisplay *buttonTimer;
             break;
     }
     
-    // Custom Alert color
+    // Custom alert color override
     if(_customViewColor)
     {
         viewColor = _customViewColor;
@@ -883,11 +881,9 @@ SCLTimerDisplay *buttonTimer;
     if ([title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0) {
         self.labelTitle.text = title;
         
-        // Adjust text view size, if necessary
+        // Adjust text view size if necessary
         CGSize sz = CGSizeMake(_windowWidth - 24.0f, CGFLOAT_MAX);
-
         CGSize size = [_labelTitle sizeThatFits:sz];
-
         CGFloat ht = ceilf(size.height);
         if (ht > _titleHeight) {
             self.windowHeight += (ht - _titleHeight);
@@ -895,18 +891,15 @@ SCLTimerDisplay *buttonTimer;
             self.subTitleY += 20;
         }
     } else {
-        // Title is nil, we can move the body message to center and remove it from superView
+        // No title: center body and remove title view
         self.windowHeight -= _labelTitle.frame.size.height;
         [_labelTitle removeFromSuperview];
         _labelTitle = nil;
-        
         _subTitleY = kCircleHeight - 20;
     }
     
     // Subtitle
     if ([subTitle stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0) {
-        
-        // No custom text
         if (_attributedFormatBlock == nil) {
             _viewText.text = subTitle;
         } else {
@@ -914,11 +907,9 @@ SCLTimerDisplay *buttonTimer;
             _viewText.attributedText = self.attributedFormatBlock(subTitle);
         }
         
-        // Adjust text view size, if necessary
+        // Adjust text view size if necessary
         CGSize sz = CGSizeMake(_windowWidth - 24.0f, CGFLOAT_MAX);
-        
         CGSize size = [_viewText sizeThatFits:sz];
-        
         CGFloat ht = ceilf(size.height);
         if (ht < _subTitleHeight) {
             self.windowHeight -= (_subTitleHeight - ht);
@@ -928,7 +919,7 @@ SCLTimerDisplay *buttonTimer;
             self.subTitleHeight = ht;
         }
     } else {
-        // Subtitle is nil, we can move the title to center and remove it from superView
+        // No subtitle: center title and remove body view
         self.subTitleHeight = 0.0f;
         self.windowHeight -= _viewText.frame.size.height;
         [_viewText removeFromSuperview];
@@ -942,7 +933,7 @@ SCLTimerDisplay *buttonTimer;
         self.windowHeight -= kTitleTop;
     }
     
-    // Add button, if necessary
+    // Add button if needed
     if(completeText != nil)
     {
         [self addDoneButtonWithTitle:completeText];
@@ -990,7 +981,7 @@ SCLTimerDisplay *buttonTimer;
         }
     }
     
-    // Adding duration
+    // Duration
     if (duration > 0)
     {
         [durationTimer invalidate];
@@ -1022,7 +1013,7 @@ SCLTimerDisplay *buttonTimer;
     // Show the alert view
     [self showView];
     
-    // Chainable objects
+    // Chainable responder
     return [[SCLAlertViewResponder alloc] init:self];
 }
 
@@ -1078,7 +1069,6 @@ SCLTimerDisplay *buttonTimer;
 {
     [self showTitle:vc image:nil color:nil title:title subTitle:subTitle duration:duration completeText:closeButtonTitle style:SCLAlertViewStyleQuestion];
 }
-
 
 #pragma mark - Show using new window
 
@@ -1151,11 +1141,13 @@ SCLTimerDisplay *buttonTimer;
     self.dismissBlock = dismissBlock;
 }
 
-- (void)alertDismissAnimationIsCompleted:(SCLDismissAnimationCompletionBlock)dismissAnimationCompletionBlock{
+- (void)alertDismissAnimationIsCompleted:(SCLDismissAnimationCompletionBlock)dismissAnimationCompletionBlock
+{
     self.dismissAnimationCompletionBlock = dismissAnimationCompletionBlock;
 }
 
-- (void)alertShowAnimationIsCompleted:(SCLShowAnimationCompletionBlock)showAnimationCompletionBlock{
+- (void)alertShowAnimationIsCompleted:(SCLShowAnimationCompletionBlock)showAnimationCompletionBlock
+{
     self.showAnimationCompletionBlock = showAnimationCompletionBlock;
 }
 
@@ -1172,7 +1164,7 @@ SCLTimerDisplay *buttonTimer;
 
 - (CGRect)mainScreenFrame
 {
-    return [self isAppExtension] ? _extensionBounds : [UIApplication sharedApplication].keyWindow.bounds;
+    return [self isAppExtension] ? _extensionBounds : [SCLAlertView scl_currentKeyWindow].bounds;
 }
 
 - (BOOL)isAppExtension
@@ -1195,7 +1187,7 @@ SCLTimerDisplay *buttonTimer;
     UIView *fallbackView = _rootViewController.view;
     UIView *appView = _usingNewWindow ? (UIView *)[SCLAlertView scl_currentKeyWindow] : fallbackView;
     
-    // final fallback in case it still comes as nil
+    // Final fallback in case it still comes as nil
     if (!appView) {
         appView = [SCLAlertView scl_resolveAppViewWithFallback:fallbackView];
     }
@@ -1245,7 +1237,7 @@ SCLTimerDisplay *buttonTimer;
     }
 }
 
-#pragma mark - Show Alert
+#pragma mark - Show Alert (Animations)
 
 - (void)showView
 {
@@ -1285,7 +1277,7 @@ SCLTimerDisplay *buttonTimer;
     }
 }
 
-#pragma mark - Hide Alert
+#pragma mark - Hide Alert (Animations)
 
 - (void)hideView
 {
@@ -1460,7 +1452,6 @@ SCLTimerDisplay *buttonTimer;
     });
 }
 
-
 #pragma mark - Show Animations
 
 - (void)fadeIn
@@ -1484,7 +1475,7 @@ SCLTimerDisplay *buttonTimer;
 
 - (void)slideInFromTop
 {
-    //From Frame
+    // From frame
     CGRect frame = self.backgroundView.frame;
     frame.origin.y = -self.backgroundView.frame.size.height;
     self.view.frame = frame;
@@ -1492,7 +1483,7 @@ SCLTimerDisplay *buttonTimer;
     [UIView animateWithDuration:0.5f delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:0.5f options:0 animations:^{
         self.backgroundView.alpha = self.backgroundOpacity;
         
-        //To Frame
+        // To frame
         CGRect frame = self.backgroundView.frame;
         frame.origin.y = 0.0f;
         self.view.frame = frame;
@@ -1507,7 +1498,7 @@ SCLTimerDisplay *buttonTimer;
 
 - (void)slideInFromBottom
 {
-    //From Frame
+    // From frame
     CGRect frame = self.backgroundView.frame;
     frame.origin.y = self.backgroundView.frame.size.height;
     self.view.frame = frame;
@@ -1515,7 +1506,7 @@ SCLTimerDisplay *buttonTimer;
     [UIView animateWithDuration:0.3f animations:^{
         self.backgroundView.alpha = self.backgroundOpacity;
         
-        //To Frame
+        // To frame
         CGRect frame = self.backgroundView.frame;
         frame.origin.y = 0.0f;
         self.view.frame = frame;
@@ -1534,7 +1525,7 @@ SCLTimerDisplay *buttonTimer;
 
 - (void)slideInFromLeft
 {
-    //From Frame
+    // From frame
     CGRect frame = self.backgroundView.frame;
     frame.origin.x = -self.backgroundView.frame.size.width;
     self.view.frame = frame;
@@ -1542,7 +1533,7 @@ SCLTimerDisplay *buttonTimer;
     [UIView animateWithDuration:0.3f animations:^{
         self.backgroundView.alpha = self.backgroundOpacity;
         
-        //To Frame
+        // To frame
         CGRect frame = self.backgroundView.frame;
         frame.origin.x = 0.0f;
         self.view.frame = frame;
@@ -1561,7 +1552,7 @@ SCLTimerDisplay *buttonTimer;
 
 - (void)slideInFromRight
 {
-    //From Frame
+    // From frame
     CGRect frame = self.backgroundView.frame;
     frame.origin.x = self.backgroundView.frame.size.width;
     self.view.frame = frame;
@@ -1569,7 +1560,7 @@ SCLTimerDisplay *buttonTimer;
     [UIView animateWithDuration:0.3f animations:^{
         self.backgroundView.alpha = self.backgroundOpacity;
         
-        //To Frame
+        // To frame
         CGRect frame = self.backgroundView.frame;
         frame.origin.x = 0.0f;
         self.view.frame = frame;
@@ -1588,7 +1579,7 @@ SCLTimerDisplay *buttonTimer;
 
 - (void)slideInFromCenter
 {
-    //From Frame
+    // From frame
     self.view.transform = CGAffineTransformConcat(CGAffineTransformIdentity,
                                                   CGAffineTransformMakeScale(3.0f, 3.0f));
     self.view.alpha = 0.0f;
@@ -1596,7 +1587,7 @@ SCLTimerDisplay *buttonTimer;
     [UIView animateWithDuration:0.3f animations:^{
         self.backgroundView.alpha = self.backgroundOpacity;
         
-        //To Frame
+        // To frame
         self.view.transform = CGAffineTransformConcat(CGAffineTransformIdentity,
                                                       CGAffineTransformMakeScale(1.0f, 1.0f));
         self.view.alpha = 1.0f;
@@ -1613,7 +1604,7 @@ SCLTimerDisplay *buttonTimer;
 
 - (void)slideInToCenter
 {
-    //From Frame
+    // From frame
     self.view.transform = CGAffineTransformConcat(CGAffineTransformIdentity,
                                                   CGAffineTransformMakeScale(0.1f, 0.1f));
     self.view.alpha = 0.0f;
@@ -1621,7 +1612,7 @@ SCLTimerDisplay *buttonTimer;
     [UIView animateWithDuration:0.3f animations:^{
         self.backgroundView.alpha = self.backgroundOpacity;
         
-        //To Frame
+        // To frame
         self.view.transform = CGAffineTransformConcat(CGAffineTransformIdentity,
                                                       CGAffineTransformMakeScale(1.0f, 1.0f));
         self.view.alpha = 1.0f;
@@ -1649,7 +1640,6 @@ SCLTimerDisplay *buttonTimer;
         }
     });
 }
-
 
 @end
 
