@@ -102,7 +102,7 @@
 #import <Accelerate/Accelerate.h>
 #endif
 #import <float.h>
-
+#import <QuartzCore/QuartzCore.h>
 
 @implementation UIImage (ImageEffects)
 
@@ -307,18 +307,41 @@
     return capturedScreen;
 }
 
-+ (UIImage *)convertViewToImage:(UIView *)view
-{
-    CGFloat scale = [UIScreen mainScreen].scale;
-    UIImage *capturedScreen;
-    
-    //Optimized/fast method for rendering a UIView as image on iOS 7 and later versions.
-    UIGraphicsBeginImageContextWithOptions(view.bounds.size, YES, scale);
-    [view drawViewHierarchyInRect:view.bounds afterScreenUpdates:NO];
-    capturedScreen = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return capturedScreen;
++ (UIImage *)convertViewToImage:(UIView *)view {
+    if (!view) { return nil; }
+
+    [view layoutIfNeeded];
+
+    CGSize size = view.bounds.size;
+    if (size.width <= 0.0 || size.height <= 0.0) {
+        return nil;
+    }
+
+    CGFloat scale = UIScreen.mainScreen.scale;
+
+    if (@available(iOS 10.0, *)) {
+        UIGraphicsImageRendererFormat *fmt = [UIGraphicsImageRendererFormat defaultFormat];
+        fmt.scale = scale;
+        fmt.opaque = YES;
+        UIGraphicsImageRenderer *renderer = [[UIGraphicsImageRenderer alloc] initWithSize:size format:fmt];
+        return [renderer imageWithActions:^(__kindof UIGraphicsImageRendererContext * _Nonnull context) {
+            BOOL ok = [view drawViewHierarchyInRect:(CGRect){.origin = CGPointZero, .size = size}
+                               afterScreenUpdates:NO];
+            if (!ok) {
+                [view.layer renderInContext:context.CGContext];
+            }
+        }];
+    } else {
+        UIGraphicsBeginImageContextWithOptions(size, YES, scale);
+        BOOL ok = [view drawViewHierarchyInRect:(CGRect){.origin = CGPointZero, .size = size}
+                          afterScreenUpdates:NO];
+        if (!ok) {
+            [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+        }
+        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        return image;
+    }
 }
 
 @end

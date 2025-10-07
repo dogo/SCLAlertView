@@ -10,6 +10,7 @@
 #import "SCLAlertViewResponder.h"
 #import "SCLAlertViewStyleKit.h"
 #import "UIImage+ImageEffects.h"
+#import "SCLAlertView+WindowResolver.h"
 #import "SCLTimerDisplay.h"
 #import "SCLMacros.h"
 
@@ -1191,15 +1192,29 @@ SCLTimerDisplay *buttonTimer;
 
 - (void)makeBlurBackground
 {
-    UIView *appView = (_usingNewWindow) ? [UIApplication sharedApplication].keyWindow.subviews.lastObject : _rootViewController.view;
-    UIImage *image = [UIImage convertViewToImage:appView];
-    UIImage *blurSnapshotImage = [image applyBlurWithRadius:5.0f
-                                                  tintColor:[UIColor colorWithWhite:0.2f
-                                                                              alpha:0.7f]
-                                      saturationDeltaFactor:1.8f
-                                                  maskImage:nil];
+    UIView *fallbackView = _rootViewController.view;
+    UIView *appView = _usingNewWindow ? (UIView *)[SCLAlertView scl_currentKeyWindow] : fallbackView;
     
-    _backgroundView.image = blurSnapshotImage;
+    // final fallback in case it still comes as nil
+    if (!appView) {
+        appView = [SCLAlertView scl_resolveAppViewWithFallback:fallbackView];
+    }
+    
+    [appView layoutIfNeeded];
+    
+    UIImage *snapshot = [UIImage convertViewToImage:appView];
+    if (snapshot) {
+        UIImage *blurSnapshotImage = [snapshot applyBlurWithRadius:5.0f
+                                                         tintColor:[UIColor colorWithWhite:0.2f
+                                                                                     alpha:0.7f]
+                                          saturationDeltaFactor:1.8f
+                                                      maskImage:nil];
+        
+        _backgroundView.image = blurSnapshotImage;
+    } else {
+        _backgroundView.image = nil;
+        _backgroundView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.4f];
+    }
     _backgroundView.alpha = 0.0f;
     _backgroundOpacity = 1.0f;
 }
@@ -2027,3 +2042,4 @@ SCLTimerDisplay *buttonTimer;
 }
 
 @end
+

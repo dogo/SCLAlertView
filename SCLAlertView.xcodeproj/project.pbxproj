@@ -21,6 +21,9 @@
 		DD2E172A19FA84B800CBAEC3 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2E172919FA84B800CBAEC3 /* UIImage+ImageEffects.m */; };
 		DD4B77E41D8C580B00CF97C7 /* SCLAlertViewFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 44E430DB1D889255002FE849 /* SCLAlertViewFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DD4BA9C119DED8EF008D73EB /* right_answer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DD4BA9C019DED8EF008D73EB /* right_answer.mp3 */; };
+		DD5F3E112E954CB700E91C60 /* SCLAlertView+WindowResolver.h in Headers */ = {isa = PBXBuildFile; fileRef = DD5F3E102E954CB400E91C60 /* SCLAlertView+WindowResolver.h */; };
+		DD5F3E132E954D3100E91C60 /* SCLAlertView+WindowResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5F3E122E954D2F00E91C60 /* SCLAlertView+WindowResolver.m */; };
+		DD5F3E142E954D3100E91C60 /* SCLAlertView+WindowResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5F3E122E954D2F00E91C60 /* SCLAlertView+WindowResolver.m */; };
 		DD7282B919D6087C00077F54 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD7282B719D6087C00077F54 /* Storyboard.storyboard */; };
 		DDAD0113254DEABA00270C67 /* UIViewController+Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = DDAD0111254DEABA00270C67 /* UIViewController+Alert.m */; };
 		DDAD011D254DEAEC00270C67 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DDAD0119254DEAEC00270C67 /* AppDelegate.m */; };
@@ -73,6 +76,8 @@
 		DD2F03171AAFA4E0007BC507 /* SCLMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCLMacros.h; sourceTree = "<group>"; };
 		DD4BA9C019DED8EF008D73EB /* right_answer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = right_answer.mp3; sourceTree = "<group>"; };
 		DD4BA9C219DEDD8E008D73EB /* SCLAlertView-Objective-C-prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SCLAlertView-Objective-C-prefix.pch"; path = "SCLAlertViewExample/SCLAlertView-Objective-C-prefix.pch"; sourceTree = SOURCE_ROOT; };
+		DD5F3E102E954CB400E91C60 /* SCLAlertView+WindowResolver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SCLAlertView+WindowResolver.h"; sourceTree = "<group>"; };
+		DD5F3E122E954D2F00E91C60 /* SCLAlertView+WindowResolver.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SCLAlertView+WindowResolver.m"; sourceTree = "<group>"; };
 		DD7282B819D6087C00077F54 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = SCLAlertViewExample/Base.lproj/Storyboard.storyboard; sourceTree = SOURCE_ROOT; };
 		DDAD0111254DEABA00270C67 /* UIViewController+Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Alert.m"; sourceTree = "<group>"; };
 		DDAD0112254DEABA00270C67 /* UIViewController+Alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Alert.h"; sourceTree = "<group>"; };
@@ -248,23 +253,25 @@
 		DDB15FD519D5B96500173158 /* SCLAlertView */ = {
 			isa = PBXGroup;
 			children = (
-				DD2E172819FA84B800CBAEC3 /* UIImage+ImageEffects.h */,
-				DD2E172919FA84B800CBAEC3 /* UIImage+ImageEffects.m */,
 				DDB15FD819D5B98800173158 /* SCLAlertView.h */,
 				DDB15FD619D5B96500173158 /* SCLAlertView.m */,
-				DDB15FD919D5BAA000173158 /* SCLButton.h */,
-				DDB15FDA19D5BAA000173158 /* SCLButton.m */,
+				DD5F3E102E954CB400E91C60 /* SCLAlertView+WindowResolver.h */,
+				DD5F3E122E954D2F00E91C60 /* SCLAlertView+WindowResolver.m */,
 				DDB15FDC19D5BCF400173158 /* SCLAlertViewResponder.h */,
 				DDB15FDD19D5BCF400173158 /* SCLAlertViewResponder.m */,
 				DDB15FDF19D5D85B00173158 /* SCLAlertViewStyleKit.h */,
 				DDB15FE019D5D85B00173158 /* SCLAlertViewStyleKit.m */,
+				DDB15FD919D5BAA000173158 /* SCLButton.h */,
+				DDB15FDA19D5BAA000173158 /* SCLButton.m */,
 				DD2F03171AAFA4E0007BC507 /* SCLMacros.h */,
-				572BB1451B8383B3002DEE38 /* SCLTimerDisplay.h */,
-				572BB1461B8383B3002DEE38 /* SCLTimerDisplay.m */,
-				DD24453A1BAC383600892117 /* SCLTextView.h */,
-				DD24453B1BAC383600892117 /* SCLTextView.m */,
 				CF6FB1221C5926FC009715F3 /* SCLSwitchView.h */,
 				CF6FB1231C5926FC009715F3 /* SCLSwitchView.m */,
+				DD24453A1BAC383600892117 /* SCLTextView.h */,
+				DD24453B1BAC383600892117 /* SCLTextView.m */,
+				572BB1451B8383B3002DEE38 /* SCLTimerDisplay.h */,
+				572BB1461B8383B3002DEE38 /* SCLTimerDisplay.m */,
+				DD2E172819FA84B800CBAEC3 /* UIImage+ImageEffects.h */,
+				DD2E172919FA84B800CBAEC3 /* UIImage+ImageEffects.m */,
 			);
 			path = SCLAlertView;
 			sourceTree = "<group>";
@@ -299,6 +306,7 @@
 				726C8FA81EF805620060F33B /* SCLTextView.h in Headers */,
 				726C8FA71EF805520060F33B /* SCLButton.h in Headers */,
 				DD4B77E41D8C580B00CF97C7 /* SCLAlertViewFramework.h in Headers */,
+				DD5F3E112E954CB700E91C60 /* SCLAlertView+WindowResolver.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,6 +451,7 @@
 				DD24453C1BAC383600892117 /* SCLTextView.m in Sources */,
 				572BB1471B8383B3002DEE38 /* SCLTimerDisplay.m in Sources */,
 				DDB15FD719D5B96500173158 /* SCLAlertView.m in Sources */,
+				DD5F3E132E954D3100E91C60 /* SCLAlertView+WindowResolver.m in Sources */,
 				DDB15FDB19D5BAA000173158 /* SCLButton.m in Sources */,
 				DDB15FDE19D5BCF400173158 /* SCLAlertViewResponder.m in Sources */,
 			);
@@ -462,6 +471,7 @@
 			files = (
 				EF994B191D47AB4A00619DFF /* SCLAlertViewStyleKit.m in Sources */,
 				EF994B1C1D47AB4A00619DFF /* SCLSwitchView.m in Sources */,
+				DD5F3E142E954D3100E91C60 /* SCLAlertView+WindowResolver.m in Sources */,
 				EF994B1A1D47AB4A00619DFF /* SCLTimerDisplay.m in Sources */,
 				EF994B161D47AB4A00619DFF /* SCLAlertView.m in Sources */,
 				EF994B181D47AB4A00619DFF /* SCLAlertViewResponder.m in Sources */,
