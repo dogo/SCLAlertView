@@ -47,7 +47,7 @@ static const CGFloat kSCLTextViewHorizontalPadding = 8.0f;
     self.autocapitalizationType = UITextAutocapitalizationTypeSentences;
     self.returnKeyType = UIReturnKeyDone;
 
-    // Padding interno via left/right views
+    // Internal padding via left/right views
     UIView *leftPad = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSCLTextViewHorizontalPadding, 1)];
     UIView *rightPad = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSCLTextViewHorizontalPadding, 1)];
     self.leftView = leftPad;
@@ -55,7 +55,7 @@ static const CGFloat kSCLTextViewHorizontalPadding = 8.0f;
     self.rightView = rightPad;
     self.rightViewMode = UITextFieldViewModeAlways;
 
-    // Altura mínima padrão
+    // Default minimum height
     CGRect f = self.frame;
     if (CGRectIsEmpty(f)) {
         f = CGRectMake(0, 0, 0, kSCLTextViewHeight);

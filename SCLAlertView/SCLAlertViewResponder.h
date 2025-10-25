@@ -11,16 +11,16 @@
 
 @interface SCLAlertViewResponder : NSObject
 
-/// Inicializa o responder vinculado a uma instância de SCLAlertView.
+/// Initializes the responder associated with an instance of SCLAlertView.
 - (instancetype)init:(SCLAlertView *)alertview;
 
-/// Atualiza o título do alerta.
+/// Updates the alert's title.
 - (void)setTitle:(NSString *)title;
 
-/// Atualiza o subtítulo/texto do corpo do alerta.
+/// Updates the alert's subtitle / body text.
 - (void)setSubTitle:(NSString *)subTitle;
 
-/// Fecha o alerta.
+/// Closes the alert.
 - (void)close;
 
 @end
