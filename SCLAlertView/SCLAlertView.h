@@ -156,6 +156,16 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
 - (instancetype)initWithNewWindow;
 
 /**
+ Creates and returns a new alert configured to present in its own UIWindow.
+
+ This convenience constructor is equivalent to [[SCLAlertView alloc] initWithNewWindow].
+
+ @return A newly created SCLAlertView instance ready to be shown in a dedicated window.
+ @note In Swift, use SCLAlertView.newWindow() due to NS_SWIFT_NAME(newWindow()).
+ */
++ (instancetype)alertWithNewWindow NS_SWIFT_NAME(newWindow());
+
+/**
  Initializes an alert presented in a new UIWindow with custom width.
 
  @param windowWidth The desired alert width.
