@@ -122,6 +122,11 @@ SCLTimerDisplay *buttonTimer;
     return self;
 }
 
++ (instancetype)alertWithNewWindow
+{
+    return [[self alloc] initWithNewWindow];
+}
+
 - (instancetype)initWithNewWindowWidth:(CGFloat)windowWidth
 {
     self = [self initWithWindowWidth:windowWidth];
@@ -261,15 +266,34 @@ SCLTimerDisplay *buttonTimer;
 
 - (void)setupNewWindow
 {
-    // Save previous window
+    // Preserve the current key window to restore it after dismissing the alert
     self.previousWindow = [SCLAlertView scl_currentKeyWindow];
-    
-    // Create a new one to show the alert
+
+    // Create a dedicated window to host the alert
     UIWindow *alertWindow = [[UIWindow alloc] initWithFrame:[self mainScreenFrame]];
     alertWindow.windowLevel = UIWindowLevelAlert;
     alertWindow.backgroundColor = [UIColor clearColor];
     alertWindow.rootViewController = [UIViewController new];
     alertWindow.accessibilityViewIsModal = YES;
+
+    // On iOS 13+, explicitly attach the alert window to the active UIWindowScene
+    if (@available(iOS 13.0, *)) {
+        // Try to reuse the scene from the current key window, if available
+        UIWindow *key = [SCLAlertView scl_currentKeyWindow];
+        if (key.windowScene != nil) {
+            alertWindow.windowScene = key.windowScene;
+        } else {
+            // Fallback: iterate through connected scenes and pick a foreground active UIWindowScene
+            for (UIScene *scene in UIApplication.sharedApplication.connectedScenes) {
+                if (scene.activationState == UISceneActivationStateForegroundActive &&
+                    [scene isKindOfClass:[UIWindowScene class]]) {
+                    alertWindow.windowScene = (UIWindowScene *)scene;
+                    break;
+                }
+            }
+        }
+    }
+
     self.SCLAlertWindow = alertWindow;
     self.usingNewWindow = YES;
 }
@@ -1333,7 +1357,7 @@ SCLTimerDisplay *buttonTimer;
     
     if (_usingNewWindow)
     {
-        // Restore previous window
+        // Restore the previous key window after hiding the alert
         [self.previousWindow makeKeyAndVisible];
         self.previousWindow = nil;
     }
@@ -1364,7 +1388,7 @@ SCLTimerDisplay *buttonTimer;
         [self removeFromParentViewController];
         
         if (self.usingNewWindow) {
-            // Remove current window
+            // Remove current alert window
             [self.SCLAlertWindow setHidden:YES];
             self.SCLAlertWindow = nil;
         }
