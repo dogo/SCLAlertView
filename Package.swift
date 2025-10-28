@@ -2,20 +2,20 @@
 import PackageDescription
 
 let package = Package(
-    name: "SCLAlertView-Objective-C",
+    name: "SCLAlertViewObjC",
     platforms: [
         .iOS(.v12)
     ],
     products: [
         .library(
-            name: "SCLAlertView-Objective-C",
+            name: "SCLAlertViewObjC",
             type: .dynamic,
-            targets: ["SCLAlertView-Objective-C"]
+            targets: ["SCLAlertViewObjC"]
         )
     ],
     targets: [
         .target(
-            name: "SCLAlertView-Objective-C",
+            name: "SCLAlertViewObjC",
             path: "SCLAlertView",
             publicHeadersPath: ".",
             cSettings: [
