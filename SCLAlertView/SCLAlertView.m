@@ -17,8 +17,6 @@
 @import AVFoundation;
 @import AudioToolbox;
 
-#define KEYBOARD_HEIGHT 80
-#define PREDICTION_BAR_HEIGHT 40
 #define ADD_BUTTON_PADDING 10.0f
 #define DEFAULT_WINDOW_WIDTH 240
 
@@ -57,6 +55,9 @@
 @property (nonatomic) CGFloat titleHeight;
 @property (nonatomic) CGFloat subTitleHeight;
 @property (nonatomic) CGFloat subTitleY;
+
+@property (nonatomic) CGPoint tmpContentViewFrameOrigin;
+@property (nonatomic) CGPoint tmpCircleViewFrameOrigin;
 
 @end
 
@@ -670,25 +671,71 @@ SCLTimerDisplay *buttonTimer;
 - (void)keyboardWillShow:(NSNotification *)notification
 {
     if(_keyboardIsVisible) return;
+
+    NSDictionary *userInfo = notification.userInfo;
+    NSTimeInterval animationDuration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    UIViewAnimationOptions animationCurve = [userInfo[UIKeyboardAnimationCurveUserInfoKey] unsignedIntegerValue] << 16;
+
+    // Get the keyboard frame in screen coordinates
+    CGRect keyboardFrameEnd = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+
+    // Convert contentView frame to screen coordinates
+    UIWindow *window = self.view.window;
+    if (!window) {
+        window = _usingNewWindow ? _SCLAlertWindow : [SCLAlertView scl_currentKeyWindow];
+    }
     
-    [UIView animateWithDuration:0.2f animations:^{
-        CGRect f = self.view.frame;
-        f.origin.y -= KEYBOARD_HEIGHT + PREDICTION_BAR_HEIGHT;
-        self.view.frame = f;
-    }];
-    _keyboardIsVisible = YES;
+    CGRect contentViewScreenFrame = [_contentView.superview convertRect:_contentView.frame toView:nil];
+    CGFloat contentViewBottom = CGRectGetMaxY(contentViewScreenFrame);
+    CGFloat keyboardTop = CGRectGetMinY(keyboardFrameEnd);
+
+    // Calculate how much the content view overlaps with the keyboard
+    CGFloat overlap = contentViewBottom - keyboardTop;
+
+    // Add some padding so the content isn't flush against the keyboard
+    CGFloat padding = 10.0f;
+
+    if (overlap > 0) {
+        _keyboardIsVisible = YES;
+        _tmpContentViewFrameOrigin = _contentView.frame.origin;
+        _tmpCircleViewFrameOrigin = _circleViewBackground.frame.origin;
+
+        CGFloat offsetY = overlap + padding;
+
+        [UIView animateWithDuration:animationDuration delay:0 options:animationCurve animations:^{
+            CGRect contentFrame = self.contentView.frame;
+            contentFrame.origin.y -= offsetY;
+            self.contentView.frame = contentFrame;
+
+            CGRect circleFrame = self.circleViewBackground.frame;
+            circleFrame.origin.y -= offsetY;
+            self.circleViewBackground.frame = circleFrame;
+        } completion:nil];
+    }
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification
 {
-    if(!_keyboardIsVisible) return;
-    
-    [UIView animateWithDuration:0.2f animations:^{
-        CGRect f = self.view.frame;
-        f.origin.y += KEYBOARD_HEIGHT + PREDICTION_BAR_HEIGHT;
-        self.view.frame = f;
-    }];
-    _keyboardIsVisible = NO;
+    if(_keyboardIsVisible) {
+        NSDictionary *userInfo = notification.userInfo;
+        NSTimeInterval animationDuration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+        UIViewAnimationOptions animationCurve = [userInfo[UIKeyboardAnimationCurveUserInfoKey] unsignedIntegerValue] << 16;
+
+        [UIView animateWithDuration:animationDuration delay:0 options:animationCurve animations:^{
+            CGRect contentFrame = self.contentView.frame;
+            contentFrame.origin.y = self->_tmpContentViewFrameOrigin.y;
+            self.contentView.frame = contentFrame;
+
+            CGRect circleFrame = self.circleViewBackground.frame;
+            circleFrame.origin.y = self->_tmpCircleViewFrameOrigin.y;
+            self.circleViewBackground.frame = circleFrame;
+        } completion:^(BOOL finished) {
+            self->_tmpContentViewFrameOrigin = CGPointZero;
+            self->_tmpCircleViewFrameOrigin = CGPointZero;
+        }];
+
+        _keyboardIsVisible = NO;
+    }
 }
 
 #pragma mark - Buttons
