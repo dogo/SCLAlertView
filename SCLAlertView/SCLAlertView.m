@@ -721,6 +721,8 @@ SCLTimerDisplay *buttonTimer;
         NSTimeInterval animationDuration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
         UIViewAnimationOptions animationCurve = [userInfo[UIKeyboardAnimationCurveUserInfoKey] unsignedIntegerValue] << 16;
 
+        _keyboardIsVisible = NO;
+        
         [UIView animateWithDuration:animationDuration delay:0 options:animationCurve animations:^{
             CGRect contentFrame = self.contentView.frame;
             contentFrame.origin.y = self->_tmpContentViewFrameOrigin.y;
@@ -730,11 +732,12 @@ SCLTimerDisplay *buttonTimer;
             circleFrame.origin.y = self->_tmpCircleViewFrameOrigin.y;
             self.circleViewBackground.frame = circleFrame;
         } completion:^(BOOL finished) {
-            self->_tmpContentViewFrameOrigin = CGPointZero;
-            self->_tmpCircleViewFrameOrigin = CGPointZero;
+            // Only reset if keyboard hasn't been shown again during the animation
+            if (!self->_keyboardIsVisible) {
+                self->_tmpContentViewFrameOrigin = CGPointZero;
+                self->_tmpCircleViewFrameOrigin = CGPointZero;
+            }
         }];
-
-        _keyboardIsVisible = NO;
     }
 }
 
