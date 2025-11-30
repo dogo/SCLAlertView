@@ -5,6 +5,14 @@ jobs:
   build:
     name: Building SCLAlertView
     runs-on: macos-15
+    strategy:
+      matrix:
+        scheme: [
+          SCLAlertView
+        ]
+        destination: [
+          'platform=iOS Simulator,name=iPhone 16,OS=26.1'
+        ]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -20,5 +28,9 @@ jobs:
           ruby-version: 3.1.2
           bundler-cache: true
 
-      - name: Building iOS app
-        run: exec ./.github/scripts/build_app.sh
+      - name: Building ${{ matrix.scheme }} on ${{ matrix.destination }}
+        run: |
+          set -o pipefail && xcodebuild -project SCLAlertView.xcodeproj \
+            -scheme ${{ matrix.scheme }} \
+            -destination '${{ matrix.destination }}' \
+            clean build | xcbeautify --renderer github-actions
