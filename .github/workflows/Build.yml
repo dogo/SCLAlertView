@@ -4,7 +4,7 @@ on: [push, pull_request]
 jobs:
   build:
     name: Building SCLAlertView
-    runs-on: macos-13
+    runs-on: macos-15
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -12,7 +12,7 @@ jobs:
       - name: Setup Xcode version
         uses: maxim-lobanov/setup-xcode@v1.6.0
         with:
-          xcode-version: 15.0.1
+          xcode-version: 26.1
 
       - name: Install Project Tools
         uses: jdx/mise-action@v3

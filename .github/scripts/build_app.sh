@@ -4,5 +4,5 @@ set -eo pipefail
 
 xcodebuild -project SCLAlertView.xcodeproj \
             -scheme SCLAlertView \
-            -destination platform=iOS\ Simulator,OS=17.2,name=iPhone\ 15 \
+            -destination platform=iOS\ Simulator,OS=26.1,name=iPhone\ 16 \
             clean build | xcpretty
