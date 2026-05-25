@@ -65,6 +65,11 @@
 
 - (void)adjustWidthWithWindowWidth:(CGFloat)windowWidth numberOfButtons:(NSUInteger)numberOfButtons
 {
+    if (numberOfButtons == 0) {
+        self.frame = CGRectMake(0.0f, 0.0f, MAX(windowWidth - (MARGIN_BUTTON * 2), 0.0f), MIN_HEIGHT);
+        return;
+    }
+
     CGFloat allButtonsWidth = windowWidth - (MARGIN_BUTTON * 2);
     CGFloat buttonWidth = (allButtonsWidth - ((numberOfButtons - 1) * 10)) / numberOfButtons;
     

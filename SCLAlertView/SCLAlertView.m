@@ -856,8 +856,13 @@ SCLTimerDisplay *buttonTimer;
 
 - (void)addTimerToButtonIndex:(NSInteger)buttonIndex reverse:(BOOL)reverse
 {
+    if (_buttons.count == 0) {
+        buttonTimer = nil;
+        return;
+    }
+
     buttonIndex = MAX(buttonIndex, 0);
-    buttonIndex = MIN(buttonIndex, [_buttons count]);
+    buttonIndex = MIN(buttonIndex, (NSInteger)_buttons.count - 1);
     
     buttonTimer = [[SCLTimerDisplay alloc] initWithOrigin:CGPointMake(5, 5) radius:13 lineWidth:4];
     buttonTimer.buttonIndex = buttonIndex;
@@ -1062,7 +1067,8 @@ SCLTimerDisplay *buttonTimer;
         
         if (buttonTimer && _buttons.count > 0)
         {
-            SCLButton *btn = _buttons[buttonTimer.buttonIndex];
+            NSInteger buttonIndex = MIN(MAX(buttonTimer.buttonIndex, 0), (NSInteger)_buttons.count - 1);
+            SCLButton *btn = _buttons[buttonIndex];
             btn.timer = buttonTimer;
             __weak __typeof(self) weakSelf = self;
             [buttonTimer startTimerWithTimeLimit:duration completed:^{
@@ -2106,4 +2112,3 @@ SCLTimerDisplay *buttonTimer;
 }
 
 @end
-
