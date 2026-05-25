@@ -28,7 +28,11 @@
 		DDAD0113254DEABA00270C67 /* UIViewController+Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = DDAD0111254DEABA00270C67 /* UIViewController+Alert.m */; };
 		DDAD011D254DEAEC00270C67 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DDAD0119254DEAEC00270C67 /* AppDelegate.m */; };
 		DDAD011E254DEAEC00270C67 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDAD011B254DEAEC00270C67 /* ViewController.m */; };
-		DDB15FBD19D5B7C600173158 /* SCLAlertViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB15FBC19D5B7C600173158 /* SCLAlertViewTests.m */; };
+		DDAA00012F00000100A11E57 /* SCLAlertViewTestHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = DDAA00072F00000100A11E57 /* SCLAlertViewTestHelpers.m */; };
+		DDAA00022F00000100A11E57 /* SCLAlertViewButtonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DDAA00082F00000100A11E57 /* SCLAlertViewButtonTests.m */; };
+		DDAA00032F00000100A11E57 /* SCLAlertViewComponentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DDAA00092F00000100A11E57 /* SCLAlertViewComponentTests.m */; };
+		DDAA00042F00000100A11E57 /* SCLAlertViewPresentationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DDAA000A2F00000100A11E57 /* SCLAlertViewPresentationTests.m */; };
+		DDAA00052F00000100A11E57 /* SCLAlertViewBuilderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DDAA000B2F00000100A11E57 /* SCLAlertViewBuilderTests.m */; };
 		DDB15FD019D5B8BF00173158 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDB15FCF19D5B8BF00173158 /* Images.xcassets */; };
 		DDB15FD419D5B8DB00173158 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB15FD319D5B8DB00173158 /* main.m */; };
 		DDB15FD719D5B96500173158 /* SCLAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB15FD619D5B96500173158 /* SCLAlertView.m */; };
@@ -88,7 +92,12 @@
 		DDB15F9D19D5B7C600173158 /* SCLAlertView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SCLAlertView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDB15FB619D5B7C600173158 /* SCLAlertViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SCLAlertViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDB15FBB19D5B7C600173158 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DDB15FBC19D5B7C600173158 /* SCLAlertViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCLAlertViewTests.m; sourceTree = "<group>"; };
+		DDAA00062F00000100A11E57 /* SCLAlertViewTestHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCLAlertViewTestHelpers.h; sourceTree = "<group>"; };
+		DDAA00072F00000100A11E57 /* SCLAlertViewTestHelpers.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCLAlertViewTestHelpers.m; sourceTree = "<group>"; };
+		DDAA00082F00000100A11E57 /* SCLAlertViewButtonTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCLAlertViewButtonTests.m; sourceTree = "<group>"; };
+		DDAA00092F00000100A11E57 /* SCLAlertViewComponentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCLAlertViewComponentTests.m; sourceTree = "<group>"; };
+		DDAA000A2F00000100A11E57 /* SCLAlertViewPresentationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCLAlertViewPresentationTests.m; sourceTree = "<group>"; };
+		DDAA000B2F00000100A11E57 /* SCLAlertViewBuilderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCLAlertViewBuilderTests.m; sourceTree = "<group>"; };
 		DDB15FCF19D5B8BF00173158 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = SCLAlertViewExample/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		DDB15FD319D5B8DB00173158 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = SCLAlertViewExample/main.m; sourceTree = SOURCE_ROOT; };
 		DDB15FD619D5B96500173158 /* SCLAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLAlertView.m; sourceTree = "<group>"; };
@@ -236,7 +245,12 @@
 		DDB15FB919D5B7C600173158 /* SCLAlertViewTests */ = {
 			isa = PBXGroup;
 			children = (
-				DDB15FBC19D5B7C600173158 /* SCLAlertViewTests.m */,
+				DDAA00062F00000100A11E57 /* SCLAlertViewTestHelpers.h */,
+				DDAA00072F00000100A11E57 /* SCLAlertViewTestHelpers.m */,
+				DDAA00082F00000100A11E57 /* SCLAlertViewButtonTests.m */,
+				DDAA00092F00000100A11E57 /* SCLAlertViewComponentTests.m */,
+				DDAA000A2F00000100A11E57 /* SCLAlertViewPresentationTests.m */,
+				DDAA000B2F00000100A11E57 /* SCLAlertViewBuilderTests.m */,
 				DDB15FBA19D5B7C600173158 /* Supporting Files */,
 			);
 			path = SCLAlertViewTests;
@@ -461,7 +475,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDB15FBD19D5B7C600173158 /* SCLAlertViewTests.m in Sources */,
+				DDAA00012F00000100A11E57 /* SCLAlertViewTestHelpers.m in Sources */,
+				DDAA00022F00000100A11E57 /* SCLAlertViewButtonTests.m in Sources */,
+				DDAA00032F00000100A11E57 /* SCLAlertViewComponentTests.m in Sources */,
+				DDAA00042F00000100A11E57 /* SCLAlertViewPresentationTests.m in Sources */,
+				DDAA00052F00000100A11E57 /* SCLAlertViewBuilderTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
