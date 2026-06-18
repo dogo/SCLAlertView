@@ -15,6 +15,18 @@
 
 @implementation SCLAlertViewComponentTests
 
+- (void)testSwitchDefaultInitializerAndLayout
+{
+    SCLSwitchView *switchView = [[SCLSwitchView alloc] init];
+    switchView.frame = CGRectMake(0.0f, 0.0f, 180.0f, 40.0f);
+    switchView.labelText = @"Enabled";
+
+    [switchView layoutSubviews];
+
+    XCTAssertEqualObjects(switchView.backgroundColor, UIColor.clearColor);
+    XCTAssertGreaterThan([switchView sizeThatFits:CGSizeMake(180.0f, 0.0f)].width, 0.0f);
+}
+
 - (void)testAddTextFieldConfiguresTextAndReturnKeys
 {
     SCLAlertView *alertView = [[SCLAlertView alloc] init];

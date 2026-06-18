@@ -13,6 +13,16 @@
 
 @implementation SCLAlertViewButtonTests
 
+- (void)testDefaultInitializerConfiguresButton
+{
+    SCLButton *button = [[SCLButton alloc] init];
+
+    XCTAssertEqualWithAccuracy(button.frame.size.width, 216.0f, 0.001f);
+    XCTAssertEqualWithAccuracy(button.frame.size.height, 35.0f, 0.001f);
+    XCTAssertEqual(button.titleLabel.lineBreakMode, NSLineBreakByWordWrapping);
+    XCTAssertEqualWithAccuracy(button.layer.cornerRadius, 3.0f, 0.001f);
+}
+
 - (void)testButtonActionBlockRunsWhenTapped
 {
     SCLAlertView *alertView = [[SCLAlertView alloc] init];
@@ -90,6 +100,15 @@
     XCTAssertEqualWithAccuracy(button.layer.borderWidth, 2.0f, 0.001f);
     XCTAssertEqual(button.layer.borderColor, UIColor.greenColor.CGColor);
     XCTAssertEqualObjects(button.titleLabel.font, font);
+}
+
+- (void)testButtonParseConfigAppliesBorderWidthWithoutBorderColor
+{
+    SCLButton *button = [[SCLButton alloc] initWithWindowWidth:240.0f];
+
+    [button parseConfig:@{@"borderWidth": @3.0f}];
+
+    XCTAssertEqualWithAccuracy(button.layer.borderWidth, 3.0f, 0.001f);
 }
 
 - (void)testButtonHighlightUsesDarkerDefaultBackgroundColor

@@ -33,6 +33,12 @@
 		DDAA00032F00000100A11E57 /* SCLAlertViewComponentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DDAA00092F00000100A11E57 /* SCLAlertViewComponentTests.m */; };
 		DDAA00042F00000100A11E57 /* SCLAlertViewPresentationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DDAA000A2F00000100A11E57 /* SCLAlertViewPresentationTests.m */; };
 		DDAA00052F00000100A11E57 /* SCLAlertViewBuilderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DDAA000B2F00000100A11E57 /* SCLAlertViewBuilderTests.m */; };
+		DDAA000C2F00000100A11E57 /* SCLAlertViewImageEffectsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DDAA00102F00000100A11E57 /* SCLAlertViewImageEffectsTests.m */; };
+		DDAA000D2F00000100A11E57 /* SCLAlertViewStyleKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DDAA00112F00000100A11E57 /* SCLAlertViewStyleKitTests.m */; };
+		DDAA000E2F00000100A11E57 /* SCLTimerDisplayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DDAA00122F00000100A11E57 /* SCLTimerDisplayTests.m */; };
+		DDAA000F2F00000100A11E57 /* SCLAlertViewLifecycleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DDAA00132F00000100A11E57 /* SCLAlertViewLifecycleTests.m */; };
+		DDAA00142F00000100A11E57 /* SCLAlertViewPresentationWrapperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DDAA00152F00000100A11E57 /* SCLAlertViewPresentationWrapperTests.m */; };
+		DDAA00162F00000100A11E57 /* SCLAlertViewLayoutAndKeyboardTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DDAA00172F00000100A11E57 /* SCLAlertViewLayoutAndKeyboardTests.m */; };
 		DDB15FD019D5B8BF00173158 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDB15FCF19D5B8BF00173158 /* Images.xcassets */; };
 		DDB15FD419D5B8DB00173158 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB15FD319D5B8DB00173158 /* main.m */; };
 		DDB15FD719D5B96500173158 /* SCLAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB15FD619D5B96500173158 /* SCLAlertView.m */; };
@@ -98,6 +104,12 @@
 		DDAA00092F00000100A11E57 /* SCLAlertViewComponentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCLAlertViewComponentTests.m; sourceTree = "<group>"; };
 		DDAA000A2F00000100A11E57 /* SCLAlertViewPresentationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCLAlertViewPresentationTests.m; sourceTree = "<group>"; };
 		DDAA000B2F00000100A11E57 /* SCLAlertViewBuilderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCLAlertViewBuilderTests.m; sourceTree = "<group>"; };
+		DDAA00102F00000100A11E57 /* SCLAlertViewImageEffectsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCLAlertViewImageEffectsTests.m; sourceTree = "<group>"; };
+		DDAA00112F00000100A11E57 /* SCLAlertViewStyleKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCLAlertViewStyleKitTests.m; sourceTree = "<group>"; };
+		DDAA00122F00000100A11E57 /* SCLTimerDisplayTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCLTimerDisplayTests.m; sourceTree = "<group>"; };
+		DDAA00132F00000100A11E57 /* SCLAlertViewLifecycleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCLAlertViewLifecycleTests.m; sourceTree = "<group>"; };
+		DDAA00152F00000100A11E57 /* SCLAlertViewPresentationWrapperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCLAlertViewPresentationWrapperTests.m; sourceTree = "<group>"; };
+		DDAA00172F00000100A11E57 /* SCLAlertViewLayoutAndKeyboardTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCLAlertViewLayoutAndKeyboardTests.m; sourceTree = "<group>"; };
 		DDB15FCF19D5B8BF00173158 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = SCLAlertViewExample/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		DDB15FD319D5B8DB00173158 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = SCLAlertViewExample/main.m; sourceTree = SOURCE_ROOT; };
 		DDB15FD619D5B96500173158 /* SCLAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLAlertView.m; sourceTree = "<group>"; };
@@ -251,6 +263,12 @@
 				DDAA00092F00000100A11E57 /* SCLAlertViewComponentTests.m */,
 				DDAA000A2F00000100A11E57 /* SCLAlertViewPresentationTests.m */,
 				DDAA000B2F00000100A11E57 /* SCLAlertViewBuilderTests.m */,
+				DDAA00102F00000100A11E57 /* SCLAlertViewImageEffectsTests.m */,
+				DDAA00112F00000100A11E57 /* SCLAlertViewStyleKitTests.m */,
+				DDAA00122F00000100A11E57 /* SCLTimerDisplayTests.m */,
+				DDAA00132F00000100A11E57 /* SCLAlertViewLifecycleTests.m */,
+				DDAA00152F00000100A11E57 /* SCLAlertViewPresentationWrapperTests.m */,
+				DDAA00172F00000100A11E57 /* SCLAlertViewLayoutAndKeyboardTests.m */,
 				DDB15FBA19D5B7C600173158 /* Supporting Files */,
 			);
 			path = SCLAlertViewTests;
@@ -480,6 +498,12 @@
 				DDAA00032F00000100A11E57 /* SCLAlertViewComponentTests.m in Sources */,
 				DDAA00042F00000100A11E57 /* SCLAlertViewPresentationTests.m in Sources */,
 				DDAA00052F00000100A11E57 /* SCLAlertViewBuilderTests.m in Sources */,
+				DDAA000C2F00000100A11E57 /* SCLAlertViewImageEffectsTests.m in Sources */,
+				DDAA000D2F00000100A11E57 /* SCLAlertViewStyleKitTests.m in Sources */,
+				DDAA000E2F00000100A11E57 /* SCLTimerDisplayTests.m in Sources */,
+				DDAA000F2F00000100A11E57 /* SCLAlertViewLifecycleTests.m in Sources */,
+				DDAA00142F00000100A11E57 /* SCLAlertViewPresentationWrapperTests.m in Sources */,
+				DDAA00162F00000100A11E57 /* SCLAlertViewLayoutAndKeyboardTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

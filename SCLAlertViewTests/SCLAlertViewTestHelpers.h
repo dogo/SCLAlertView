@@ -12,6 +12,10 @@
 #import "SCLButton.h"
 
 @interface SCLAlertView (Tests) <UITextFieldDelegate>
+- (instancetype)initWithWindowWidth:(CGFloat)windowWidth;
+- (void)handleTap:(UITapGestureRecognizer *)gesture;
+- (void)keyboardWillShow:(NSNotification *)notification;
+- (void)keyboardWillHide:(NSNotification *)notification;
 @end
 
 @interface SCLAlertViewTestCase : XCTestCase
